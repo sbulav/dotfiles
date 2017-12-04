@@ -1,0 +1,9 @@
+
+[user]
+        email = bulavintsev.sergey@gmail.com
+        name = Sergey Bulavintsev
+[alias]
+        st = status -sb
+        lga = log --oneline --all --decorate --graph --color
+[push]
+        default = simple
