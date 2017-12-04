@@ -1,3 +1,10 @@
+"""""""""""""""""""""""""""""""""""""""""
+"  Vim configuration file               "
+"""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""
+"   SHORTCUTS                           "
+"   F1   - disable, use :help           "
 "   F2   - change paste mode            "
 "   F3   - show NerdTree                "
 "   F4   - numberToggle on/off          "
@@ -5,6 +12,7 @@
 "   SPACE - fold/unfold                 "
 "   CTRL + SPACE - Code completion      "
 "   gcc  - Comment/uncomment a line     "
+"""""""""""""""""""""""""""""""""""""""""
 
 
 set nocompatible
