@@ -4,7 +4,7 @@
 
 """""""""""""""""""""""""""""""""""""""""
 "   SHORTCUTS                           "
-"   F1   - disable, use :help           "
+"   F1   - disabled, use :help          "
 "   F2   - change paste mode            "
 "   F3   - show NerdTree                "
 "   F4   - numberToggle on/off          "
@@ -176,32 +176,38 @@ augroup vimmic_cpp_indent
     autocmd FileType c,cpp  set smartindent
 augroup END
 
-
-" Enable folding with the spacebar
-nnoremap <space> za
-
-" NerdTree настройки
-" показать NERDTree на F3
-map <F3> :NERDTreeToggle<CR>
-nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
-"игноррируемые файлы с расширениями
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']  
-
+" Key mappings
+"""""""""""""""""""
 
 "Get rid of stupid Goddamned help keys
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-" Copy pasting from the system
+" Copy pasting from the system on F2
 set pastetoggle=<F2>
 
+" NerdTree settings
+" Show NERDTree on F3
+map <F3> :NERDTreeToggle<CR>
+"Ignore following files in NERDTree
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']  
+
+"Show/unshow Numbers on F4
+nnoremap <F4> :NumbersToggle<CR>
+
+"Execute current buffer on F5
+nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
+
+" Check spelling on F6
 nmap <F6> :set spell!<CR>
 
 " space toggle fold
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
+" Enable folding with the spacebar
+"nnoremap <space> za
 " Indent, keep selected text
 vmap < <gv
 vmap > >gv
@@ -223,8 +229,6 @@ vnoremap <silent> <Leader>pt :call TrimSpaces()<CR>
 
 " Avoid the non-completing enter key by making it behave like ctrl-y
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-nnoremap <F4> :NumbersToggle<CR>
 
 " Highlight all
 let python_highlight_all=1
