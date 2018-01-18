@@ -1,6 +1,7 @@
-# My VIM config
+# My configuration files
 
-# Installation:
+## Vim configuration
+## Installation:
 
 1. Install Vundle
 ```
@@ -20,5 +21,8 @@ git clone https://github.com/sbulav/profile && cp profile/.vimrc ~/.vimrc
 Done!
 
 
-
+## Install bash profile, tmux, and vim at one command
+```
+git clone https://github.com/sbulav/profile && cp profile/.* ~/
+```
 
