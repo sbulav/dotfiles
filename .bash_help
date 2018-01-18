@@ -1,0 +1,71 @@
+########################################################################
+# HISTORY:
+########################################################################
+!NUMBER - execute command <number>
+!! - repeat last command
+!xyz - repeat last command starting with xyz
+!xyz:p -print last command starting with xyz
+!$ - repeat the last argument of the last command(ex vim !$)
+!* - repeat all arguments of the last command (echo !*)
+
+^error^correction - replace first occurance of a with b in the last command and execute it
+[root@master salt]# echo one tvo three
+one tvo three
+[root@master salt]# ^tvo^two
+echo one two three
+one two three
+
+GET  EXACT ARGUMENT
+!:1 - get first argument
+!:1-2 - get first and second argument
+!:2-$ - get second to last arguments
+
+:s substitute first occurance of the string
+EX. !!:s/confih/config
+:gs substitute all occurance of the string
+EX. mroe /etc/hosts;more /etc/hostname
+!:gs/mroe/more
+CTRL+SHIFT+A - comment out current line
+
+########################################################################
+# MOVES:
+########################################################################
+^w erase word
+^u erase from here to beginning of the line (I use this ALL the time.)
+^k erase from here to beginning of the line (I use this ALL the time.)
+^a move the cursor to the beginning of the line
+^e move the curor to the end of the line
+
+alt+[b,f] - move cursor back(forward) one word
+alt+t - swap two words
+
+########################################################################
+# Word Modifiers
+########################################################################
+:h - Remove a trailing file name component, leaving only the head.
+:t - Remove all leading file name components, leaving the tail.
+:r - Remove a trailing suffix of the form .xxx, leaving the basename.
+:e - Remove all but the trailing suffix.
+
+EX: 
+cat /var/log/messages
+cd !$:h  - 
+!-5:t
+
+GET  EXACT ARGUMENT
+!:1 - get first argument
+!:1-2 - get first and second argument
+!:2-$ - get second to last arguments
+
+:s substitute first occurance of the string
+EX. !!:s/confih/config
+:gs substitute all occurance of the string
+EX. mroe /etc/hosts;more /etc/hostname
+!:gs/mroe/more
+CTRL+SHIFT+A - comment out current line
+
+CTRL+X,CTRL+E - open current command in $EDITOR
+
+# COUNT output as a file
+<()
+diff <(grep somestring file1) <(grep somestring file2)
