@@ -69,3 +69,16 @@ CTRL+X,CTRL+E - open current command in $EDITOR
 # COUNT output as a file
 <()
 diff <(grep somestring file1) <(grep somestring file2)
+
+
+########################################################################
+# REGEXP
+########################################################################
+
+To test RegExp in console, you can use following trick - let grep read from stdin, and use option -o to show only matching.
+For example, to test RegExp which matches only lines with 8 or 9 at the end, execute:
+
+grep -oE '.*(8|9)$'
+
+Grep connects to stdin, and you can type any line you'd line. If line matches RegExp, you will receive a highlighted matched part
+
