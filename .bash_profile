@@ -18,9 +18,6 @@ export LESS="-X"
 export PATH
 alias ll='ls -la'
 
-# Remove all stopped docker containers
-alias rma="docker rm $(docker ps -a -q)"
-
 # Show my bash tips
 alias helpb="cat .bash_help|less"
 # Connect to existing tmux session; start a new one otherwise
