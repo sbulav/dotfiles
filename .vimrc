@@ -36,6 +36,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'mitsuhiko/vim-jinja'        " Jinja support for vim
+Plugin 'pearofducks/ansible-vim'
 
 
 
@@ -123,6 +124,7 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg " Binary Imgs
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " Compiled Object files
 set wildignore+=*.spl " Compiled speolling world list
 set wildignore+=*.sw? " Vim swap files
+set wildignore+=*.yaml " Yaml
 set wildignore+=*.DS_Store " OSX SHIT
 set wildignore+=*.luac " Lua byte code
 set wildignore+=migrations " Django migrations
@@ -174,6 +176,12 @@ augroup END
 " C/CPP improved indentation
 augroup vimmic_cpp_indent
     autocmd FileType c,cpp  set smartindent
+augroup END
+
+" Ansible
+augroup vimmic_yaml_jinja2
+    autocmd Filetype yaml set filetype=yaml.ansible
+    autocmd BufNewFile,BufRead *.j2 set filetype=ruby.jinja2
 augroup END
 
 " Key mappings
