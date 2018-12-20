@@ -6,7 +6,7 @@
 "   SHORTCUTS                           "
 "   F1   - disabled, use :help          "
 "   F2   - change paste mode            "
-"   F3   - show NerdTree                "
+"   F3   - show netrw                   "
 "   F4   - numberToggle on/off          "
 "   F5   - run python                   "
 "   SPACE - fold/unfold                 "
@@ -30,12 +30,12 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
-Plugin 'scrooloose/nerdtree'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'mitsuhiko/vim-jinja'        " Jinja support for vim
+Plugin 'pearofducks/ansible-vim'
 
 
 
@@ -123,6 +123,7 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg " Binary Imgs
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " Compiled Object files
 set wildignore+=*.spl " Compiled speolling world list
 set wildignore+=*.sw? " Vim swap files
+set wildignore+=*.yaml " Yaml
 set wildignore+=*.DS_Store " OSX SHIT
 set wildignore+=*.luac " Lua byte code
 set wildignore+=migrations " Django migrations
@@ -176,6 +177,12 @@ augroup vimmic_cpp_indent
     autocmd FileType c,cpp  set smartindent
 augroup END
 
+" Ansible
+augroup vimmic_yaml_jinja2
+    autocmd Filetype yaml set filetype=yaml.ansible
+    autocmd BufNewFile,BufRead *.j2 set filetype=ruby.jinja2
+augroup END
+
 " Key mappings
 """""""""""""""""""
 
@@ -187,11 +194,8 @@ vnoremap <F1> <ESC>
 " Copy pasting from the system on F2
 set pastetoggle=<F2>
 
-" NerdTree settings
-" Show NERDTree on F3
-map <F3> :NERDTreeToggle<CR>
-"Ignore following files in NERDTree
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']  
+" Use netrw as file Explorer
+map <silent> <F3> :call ToggleVExplorer()<CR>
 
 "Show/unshow Numbers on F4
 nnoremap <F4> :NumbersToggle<CR>
@@ -242,3 +246,33 @@ let g:SimpylFold_docstring_preview=1
 
 " Disable choose first function/method at autocomplete
 let g:jedi#popup_select_first = 0
+
+" netrw options
+"""""""""""""""""""""""""""""
+" Ignore some types of files
+let g:netrw_list_hide = '.*\.swp$,.*\.pyc$,^\.git/$,^tags$,^\.vagrant/$'
+
+" Function for opening and closing Explorer window
+function! ToggleVExplorer()
+    if exists("t:expl_buf_num")
+        let expl_win_num = bufwinnr(t:expl_buf_num)
+        let cur_win_num = winnr()
+
+        if expl_win_num != -1
+            while expl_win_num != cur_win_num
+                exec "wincmd w"
+                let cur_win_num = winnr()
+            endwhile
+
+            close
+        endif
+
+        unlet t:expl_buf_num
+    else
+         Vexplore
+         let t:expl_buf_num = bufnr("%")
+    endif
+endfunction
+
+" Open files in new tab
+let g:netrw_browse_split = 3
