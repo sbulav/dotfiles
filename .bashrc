@@ -10,4 +10,6 @@ fi
 
 # User specific aliases and functions
 # Set correct TMux pane name
-printf "\033k$(whoami)@$(hostname)\033\\";
+if shopt -q login_shell; then
+  printf "\033k$(whoami)@$(hostname)\033\\";
+fi
