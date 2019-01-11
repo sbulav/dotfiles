@@ -242,10 +242,24 @@ let python_highlight_all=1
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
-let g:SimpylFold_docstring_preview=1
 
+" Jedi config
+"""""""""""""""""""""""""""""
 " Disable choose first function/method at autocomplete
-let g:jedi#popup_select_first = 0
+let g:jedi#popup_select_first = 1
+
+" Dont' pop-up on dot
+let g:jedi#popup_on_dot = 0
+
+" Leader = \
+" Following keymaps are available for Jedi
+" let g:jedi#goto_command = "<leader>d"
+" let g:jedi#goto_assignments_command = "<leader>g"
+" let g:jedi#documentation_command = "K"
+" let g:jedi#usages_command = "<leader>n"
+" let g:jedi#completions_command = "<C-Space>"
+" let g:jedi#rename_command = "<leader>r"
+
 
 " netrw options
 """""""""""""""""""""""""""""
