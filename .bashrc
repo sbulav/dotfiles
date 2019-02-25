@@ -12,4 +12,8 @@ fi
 # Set correct TMux pane name
 if shopt -q login_shell; then
   printf "\033k$(whoami)@$(hostname)\033\\";
+  # If credentials folder exists, source everything from there
+  if [ -d .credentials ]; then
+      for file in $(ls .credentials);do source .credentials/$file;done
+  fi
 fi
