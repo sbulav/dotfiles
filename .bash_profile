@@ -26,6 +26,9 @@ alias ll='ls -la'
 # Show my bash tips
 alias helpb="cat .bash_help|less"
 
+# Show my vim tips
+alias helpv="cat .vim_help|less"
+
 # Connect to existing tmux session; start a new one otherwise
 if shopt -q login_shell; then
   tmux ls 2>/dev/null && tmux a|| tmux
