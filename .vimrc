@@ -9,6 +9,7 @@
 "   F3   - show netrw                   "
 "   F4   - numberToggle on/off          "
 "   F5   - run python                   "
+"   F7   - run flake8 check(install it! "
 "   SPACE - fold/unfold                 "
 "   CTRL + SPACE - Code completion      "
 "   gcc  - Comment/uncomment a line     "
@@ -32,9 +33,10 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surroun.noarch.rpmd'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'davidhalter/jedi-vim'
-Plugin 'mitsuhiko/vim-jinja'        " Jinja support for vim
+Plugin 'glench/vim-jinja2-syntax'        " Jinja support for vim
 Plugin 'pearofducks/ansible-vim'
 
 
@@ -92,11 +94,17 @@ set nojoinspaces                  " one space after joining lines with poncutati
 
 " Trailing / tabs
 set list
-set listchars=tab:▸\ ,extends:❰,nbsp:⇏,trail:•
+if &listchars ==# 'eol:$'
+    set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+endif
+
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j " Delete comment character when joining commented lines
+endif
 
 " Display and search configuration
 """""""""""""""""""""""""""""""""""""""
-set shortmess=a                 " Deal with messages
+set shortmess=a                   " Deal with messages
 set nowrap                        " No new line when the line is too long
 set showmatch                     " Show matching parenthesis
 set ignorecase                    " Basically, ignore case when searching...
@@ -104,6 +112,7 @@ set smartcase                     " ...but be smart on the case when searching
 set hlsearch                      " Highlight search matches as you type
 set incsearch                     " Show search matches as you type
 set ruler                         " Display the current cursor position
+set display+=lastline             " Indicate that log lines are truncated
 
 " Readability
 """""""""""""""""""""""""""""""""""""""
@@ -215,6 +224,32 @@ vnoremap <Space> zf
 " Indent, keep selected text
 vmap < <gv
 vmap > >gv
+
+" ----------------------------------------------------------------------------
+" Quickfix
+" ----------------------------------------------------------------------------
+nnoremap ]q :cnext<cr>zz
+nnoremap [q :cprev<cr>zz
+nnoremap ]l :lnext<cr>zz
+nnoremap [l :lprev<cr>zz
+
+" ----------------------------------------------------------------------------
+" Buffers
+" ----------------------------------------------------------------------------
+nnoremap ]b :bnext<cr>
+nnoremap [b :bprev<cr>
+
+" ----------------------------------------------------------------------------
+" Tabs
+" ----------------------------------------------------------------------------
+nnoremap ]t :tabn<cr>
+nnoremap [t :tabp<cr>
+
+" ----------------------------------------------------------------------------
+" <tab> / <s-tab> | Circular windows navigation
+" ----------------------------------------------------------------------------
+nnoremap <tab>   <c-w>w
+nnoremap <S-tab> <c-w>W
 
 " Completion & code
 """""""""""""""""""
