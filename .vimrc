@@ -29,11 +29,10 @@ Plugin 'gmarik/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 Plugin 'vim-scripts/indentpython.vim'
-Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-surroun.noarch.rpmd'
+Plugin 'tpope/vim-surround'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'glench/vim-jinja2-syntax'        " Jinja support for vim
