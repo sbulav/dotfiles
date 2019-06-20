@@ -132,6 +132,7 @@ set wildmode=list:longest,full
 set wildignore+=.hg,.git,.svn " Version Controls
 set wildignore+=*.aux,*.out,*.toc " Latex Indermediate files
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg " Binary Imgs
+set wildignore+=*.tar,*.tar.gz,*.xz " Archives
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " Compiled Object files
 set wildignore+=*.spl " Compiled speolling world list
 set wildignore+=*.sw? " Vim swap files
@@ -149,6 +150,15 @@ set completeopt=menu,longest
 augroup vimmic_popup_menu
     autocmd CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 augroup END
+
+" File extensions to append on file jump gf
+"""""""""""""""""""""""""""""""""""""""
+set suffixesadd+=.c
+set suffixesadd+=.html
+set suffixesadd+=.json
+set suffixesadd+=.yaml
+set suffixesadd+=.md
+set suffixesadd+=.py
 
 
 " Cursor
