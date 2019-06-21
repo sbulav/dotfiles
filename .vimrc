@@ -133,6 +133,7 @@ set wildignore+=.hg,.git,.svn " Version Controls
 set wildignore+=*.aux,*.out,*.toc " Latex Indermediate files
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg " Binary Imgs
 set wildignore+=*.tar,*.tar.gz,*.xz " Archives
+set wildignore+=*.rpm,*.pkg, " Packages
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " Compiled Object files
 set wildignore+=*.spl " Compiled speolling world list
 set wildignore+=*.sw? " Vim swap files
