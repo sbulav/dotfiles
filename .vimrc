@@ -339,3 +339,11 @@ endfunction
 
 " Open files in new tab
 let g:netrw_browse_split = 3
+
+" Better vimdiff
+"""""""""""""""""""""""""""""
+" Use patience GIT diff algorithm for block comparison and indent-heuristic
+" for better indentation
+if has("patch-8.1.0360")
+    set diffopt+=internal,algorithm:patience,indent-heuristic
+endif
