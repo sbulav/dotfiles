@@ -58,9 +58,17 @@ else
     start_agent;
 fi
 
-# Show GIT branch in prompt
-parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-
-export PS1="[\u@\h \W]\[\033[33m\]\$(parse_git_branch)\[\033[00m\]$ "
+# Command prompt with current GIT branch and status
+# (branch *) means a tracked file is modified
+# (branch +) means a tracked file is modified and staged with git add
+# (branch %) means untracked files are in your tree
+GIT_PROMPT_SCRIPT=/usr/share/git-core/contrib/completion/git-prompt.sh
+if [ -f "${GIT_PROMPT_SCRIPT}" ]; then
+    source ${GIT_PROMPT_SCRIPT}
+    export GIT_PS1_SHOWDIRTYSTATE=true
+    export GIT_PS1_SHOWUNTRACKEDFILES=true
+    #export PS1='[\u@\h \W$(declare -F __git_ps1 &>/dev/null && __git_ps1 " (%s)")]\$ '
+    export PS1='[\u@\h \W]\[\033[33m\]$(declare -F __git_ps1 &>/dev/null && __git_ps1 " (%s)")\[\033[00m\]$ '
+else
+    export PS1='[\u@\h \W]$'
+fi
