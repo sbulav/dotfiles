@@ -33,6 +33,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'glench/vim-jinja2-syntax'        " Jinja support for vim
