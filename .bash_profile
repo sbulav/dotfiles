@@ -70,5 +70,5 @@ if [ -f "${GIT_PROMPT_SCRIPT}" ]; then
     #export PS1='[\u@\h \W$(declare -F __git_ps1 &>/dev/null && __git_ps1 " (%s)")]\$ '
     export PS1='[\u@\h \W]\[\033[33m\]$(declare -F __git_ps1 &>/dev/null && __git_ps1 " (%s)")\[\033[00m\]$ '
 else
-    export PS1='[\u@\h \W]$'
+    export PS1='[\u@\h \W]$ '
 fi
