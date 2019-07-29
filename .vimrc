@@ -38,6 +38,7 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'glench/vim-jinja2-syntax'        " Jinja support for vim
 Plugin 'pearofducks/ansible-vim'
+Plugin 'airblade/vim-gitgutter'          " Git line status
 
 
 
@@ -347,4 +348,17 @@ let g:netrw_browse_split = 3
 " for better indentation
 if has("patch-8.1.0360")
     set diffopt+=internal,algorithm:patience,indent-heuristic
+endif
+
+" Use sane colorscheme in diff mode
+if &diff
+    colorscheme industry
+endif
+
+" Better grep
+"""""""""""""""""""""""""""""
+" If OS has ag installed, use it instead of grp
+if executable("ag")
+    set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
