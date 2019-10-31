@@ -17,6 +17,9 @@
 
 
 set nocompatible
+set termguicolors
+set background=dark
+
 filetype on
 filetype plugin on
 
@@ -39,6 +42,7 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'glench/vim-jinja2-syntax'        " Jinja support for vim
 Plugin 'pearofducks/ansible-vim'
 Plugin 'airblade/vim-gitgutter'          " Git line status
+Plugin 'lifepillar/vim-solarized8'
 
 
 
@@ -139,7 +143,6 @@ set wildignore+=*.rpm,*.pkg, " Packages
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " Compiled Object files
 set wildignore+=*.spl " Compiled speolling world list
 set wildignore+=*.sw? " Vim swap files
-set wildignore+=*.yaml " Yaml
 set wildignore+=*.DS_Store " OSX SHIT
 set wildignore+=*.luac " Lua byte code
 set wildignore+=migrations " Django migrations
@@ -317,7 +320,65 @@ let g:jedi#popup_on_dot = 0
 " Ignore some types of files
 let g:netrw_list_hide = '.*\.swp$,.*\.pyc$,^\.git/$,^tags$,^\.vagrant/$'
 
-" Function for opening and closing Explorer window
+" Open files in new tab
+let g:netrw_browse_split = 3
+
+" Better vimdiff
+"""""""""""""""""""""""""""""
+" Use patience GIT diff algorithm for block comparison and indent-heuristic
+" for better indentation
+if has("patch-8.1.0360")
+    set diffopt+=internal,algorithm:patience,indent-heuristic
+endif
+
+" Use sane colorscheme in diff mode
+colorscheme solarized8_high
+if &diff
+    colorscheme industry
+endif
+
+" Better grep
+"""""""""""""""""""""""""""""
+" If OS has ag installed, use it instead of grp
+if executable("ag")
+    set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
+
+" Managing files with shortcuts, default leader '\'
+"""""""""""""""""""""""""""""
+" Add files with wildcards, like *.md
+nnoremap <leader>a :argadd <c-r>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
+" Display all buffers
+nnoremap <leader>b :b <C-d>
+" Open a single file
+nnoremap <leader>e :e **/
+" Quickly go to grep,
+nnoremap <leader>g :grep<space>
+" Jump to tags selection, use ctags to generate ones
+nnoremap <leader>j :tjump /
+" Simply run a make command
+nnoremap <leader>m :make<cr>
+" Run a function to strip trailing whitespaces
+nnoremap <leader>s :call StripTrailingWhitespace()<cr>
+" Switch to last edited buffer
+nnoremap <leader>q :b#<cr>
+
+
+" Functions
+" Function to strip trailing whitespaces
+function! StripTrailingWhitespace()
+  if !&binary && &filetype != 'diff'
+    normal mz
+    normal Hmy
+    %s/\s\+$//e
+    normal 'yz<CR>
+    normal `z
+  endif
+endfunction
+
+" Function for opening and closing netrw Explorer window
 function! ToggleVExplorer()
     if exists("t:expl_buf_num")
         let expl_win_num = bufwinnr(t:expl_buf_num)
@@ -338,27 +399,3 @@ function! ToggleVExplorer()
          let t:expl_buf_num = bufnr("%")
     endif
 endfunction
-
-" Open files in new tab
-let g:netrw_browse_split = 3
-
-" Better vimdiff
-"""""""""""""""""""""""""""""
-" Use patience GIT diff algorithm for block comparison and indent-heuristic
-" for better indentation
-if has("patch-8.1.0360")
-    set diffopt+=internal,algorithm:patience,indent-heuristic
-endif
-
-" Use sane colorscheme in diff mode
-if &diff
-    colorscheme industry
-endif
-
-" Better grep
-"""""""""""""""""""""""""""""
-" If OS has ag installed, use it instead of grp
-if executable("ag")
-    set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-endif
