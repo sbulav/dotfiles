@@ -211,6 +211,12 @@ augroup vimmic_yaml_jinja2
     autocmd BufNewFile,BufRead *.j2 set filetype=ruby.jinja2
 augroup END
 
+" Terraform
+autocmd FileType tf setlocal commentstring=#\ %s
+
+" Jenkinsfile
+au BufNewFile,BufRead Jenkinsfile set filetype=groovy
+
 " Key mappings
 """""""""""""""""""
 
