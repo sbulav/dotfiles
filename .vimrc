@@ -31,20 +31,41 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'nvie/vim-flake8'
-Plugin 'myusuf3/numbers.vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'glench/vim-jinja2-syntax'        " Jinja support for vim
-Plugin 'pearofducks/ansible-vim'
+" Interface
+Plugin 'myusuf3/numbers.vim'             " Intelligently toggle line numbers
+Plugin 'tpope/vim-commentary'            " Comment stuff in and out
+Plugin 'tpope/vim-eunuch'                " Integration with UNIX shell
+Plugin 'tpope/vim-repeat'                " Use dot to repeat more actions
+Plugin 'tpope/vim-surround'              " Surround objects with parenthesys, quotes and more
+Plugin 'romainl/vim-qf'                  " Better work with quickfix
+
+" Version Control Plugins
 Plugin 'airblade/vim-gitgutter'          " Git line status
+Plugin 'tpope/vim-fugitive'              " Git combine
+
+" Languages
+Plugin 'elzr/vim-json'                   " Json syntax highlight
+Plugin 'glench/vim-jinja2-syntax'        " Jinja support for vim
+Plugin 'pearofducks/ansible-vim'         " Ansible 2.x syntax
+
+" Code display
 Plugin 'lifepillar/vim-solarized8'
 
+" Python
+"Plugin 'davidhalter/jedi-vim'            " Using Jedi to autocomplete
+Plugin 'nvie/vim-flake8'                 " Check code with flake8
+Plugin 'tmhedberg/SimpylFold'            " Python code folding
+Plugin 'Vimjas/vim-python-pep8-indent'   " PEP8 compliant indentation
 
+" Text objects
+Plugin 'beloglazov/vim-textobj-quotes'     " TO closest pair of quotes of any type iq/aq
+Plugin 'jceb/vim-textobj-uri'              " TO URL                                iu/au
+Plugin 'kana/vim-textobj-entire'           " TO entire buffer                      ie/ae
+Plugin 'kana/vim-textobj-fold'             " TO folding                            iz/az
+Plugin 'kana/vim-textobj-function'         " TO function                           if/af
+Plugin 'kana/vim-textobj-indent'           " TO block of code based on indent      ii/ai
+Plugin 'kana/vim-textobj-line'             " TO line                               il/al
+Plugin 'kana/vim-textobj-user'             " Allow use of custom textobjects
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -250,6 +271,15 @@ vnoremap <Space> zf
 vmap < <gv
 vmap > >gv
 
+" one came from eunich
+" :Delete: Delete a buffer and the file on disk simultaneously.
+" :Move: Rename a buffer and the file on disk simultaneously.
+" :Rename: Like :Move, but relative to the current file's containing directory.
+" :Chmod: Change the permissions of the current file.
+" :Mkdir: Create a directory, defaulting to the parent of the current file.
+" :SudoWrite: Write a privileged file with sudo.
+" :SudoEdit: Edit a privileged file with sudo.
+
 " ----------------------------------------------------------------------------
 " Quickfix
 " ----------------------------------------------------------------------------
@@ -287,10 +317,6 @@ nnoremap <S-tab> <c-w>W
 " inoremap <C-x><C-x> <C-x><C-o>
 inoremap <C-space> <C-x><C-o>
 
-" remove unwanted trailling spaces, global or in selection
-nnoremap <silent> <Leader>pt :0,$call TrimSpaces()<CR>
-vnoremap <silent> <Leader>pt :call TrimSpaces()<CR>
-
 " Avoid the non-completing enter key by making it behave like ctrl-y
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
@@ -306,10 +332,10 @@ set foldlevel=99
 " Jedi config
 """""""""""""""""""""""""""""
 " Disable choose first function/method at autocomplete
-let g:jedi#popup_select_first = 1
+"let g:jedi#popup_select_first = 1
 
 " Dont' pop-up on dot
-let g:jedi#popup_on_dot = 0
+"let g:jedi#popup_on_dot = 0
 
 " Leader = \
 " Following keymaps are available for Jedi
@@ -351,6 +377,9 @@ if executable("ag")
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
+" Set tags to .git folder(as it was removed in Fugitive)
+"""""""""""""""""""""""""""""
+set tags^=.git/tags;~
 
 " Managing files with shortcuts, default leader '\'
 """""""""""""""""""""""""""""
@@ -373,6 +402,7 @@ nnoremap <leader>q :b#<cr>
 
 
 " Functions
+"""""""""""""""""""""""""""""
 " Function to strip trailing whitespaces
 function! StripTrailingWhitespace()
   if !&binary && &filetype != 'diff'
