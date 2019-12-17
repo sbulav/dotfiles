@@ -38,6 +38,7 @@ Plugin 'tpope/vim-eunuch'                " Integration with UNIX shell
 Plugin 'tpope/vim-repeat'                " Use dot to repeat more actions
 Plugin 'tpope/vim-surround'              " Surround objects with parenthesys, quotes and more
 Plugin 'romainl/vim-qf'                  " Better work with quickfix
+Plugin 'mbbill/undotree'                 " Undotree
 
 " Version Control Plugins
 Plugin 'airblade/vim-gitgutter'          " Git line status
@@ -377,6 +378,19 @@ if executable("ag")
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
+" Persistend undo
+"""""""""""""""""""""""""""""
+if has('persistent_undo')
+    " define a path to store persistent undo files.
+    let target_path = expand('~/.vim/vim-persisted-undo/')    " create the directory and any parent directories
+    " if the location does not exist.
+    if !isdirectory(target_path)
+        call system('mkdir -p ' . target_path)
+    endif    " point Vim to the defined undo directory.
+    let &undodir = target_path    " finally, enable undo persistence.
+    set undofile
+endif
+
 " Set tags to .git folder(as it was removed in Fugitive)
 """""""""""""""""""""""""""""
 set tags^=.git/tags;~
@@ -399,6 +413,10 @@ nnoremap <leader>m :make<cr>
 nnoremap <leader>s :call StripTrailingWhitespace()<cr>
 " Switch to last edited buffer
 nnoremap <leader>q :b#<cr>
+" Close current buffer
+nnoremap <leader>d :bd<cr>
+" Undotree
+nnoremap <leader>u :UndotreeToggle<cr>
 
 
 " Functions
