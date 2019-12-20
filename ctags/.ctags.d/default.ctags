@@ -1,0 +1,51 @@
+--exclude=.git
+--exclude=.svn
+--exclude=.hg
+--exclude=min
+--exclude=vendor
+--exclude=\*.min.\*
+--exclude=\*.map
+--exclude=\*.swp
+--exclude=\*.bak
+--exclude=\*.pyc
+--exclude=\*.class
+--exclude=\*.sln
+--exclude=\*.Master
+--exclude=\*.csproj
+--exclude=\*.csproj.user
+--exclude=\*.cache
+--exclude=\*.dll
+--exclude=\*.pdb
+--exclude=tags
+--exclude=cscope.\*
+--exclude=\*.tar.\*
+--exclude=node_modules
+--exclude=bower_components
+--exclude=dist
+--exclude=test
+--exclude=tests
+--exclude=.tmp
+--exclude=*bundle.*
+
+--sort=no
+--recurse=yes
+--tag-relative=yes
+--exclude=.git
+--exclude=.terraform
+
+--regex-make=/^([^# \t]*):/\1/t,target/
+
+--langdef=ansible
+--langmap=ansible:.yml.yaml
+--regex-ansible=/^[ \t]*-[ \t]*name:[ \t]*(.+)/\1/t,tasks/
+--regex-ansible=/^[ \t]*-[ \t]*hosts:[ \t]*(.+)/\1/h,hosts/
+
+--langdef=terraform
+--langmap=terraform:.tf.tfvars
+--regex-terraform=/^resource "(.+)" "(.+)"/\1 \2/r,resources/
+--regex-terraform=/^variable "(.+)"/\1/v,variables/
+--regex-terraform=/^module "(.+)"/\1/m,modules/
+--regex-terraform=/^output "(.+)"/\1/o,outputs/
+--regex-terraform=/^([a-z0-9_]+) =/\1/f,tfvars/
+
+--regex-sh=/readonly (.*)=.*/\1/c,constants/

@@ -32,3 +32,8 @@ Hooks are triggered on following events:
 - post-merge
 
 Only files tracked by GIT are scanned by ctags
+
+5) Add additional ctags config by copying
+```bash
+cp -R .ctags.d/ ~/
+```
