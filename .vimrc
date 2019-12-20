@@ -188,6 +188,18 @@ set suffixesadd+=.yaml
 set suffixesadd+=.md
 set suffixesadd+=.py
 
+" Filetype detection and syntax markup
+"""""""""""""""""""""""""""""""""""""""
+" execute buffer for various languages
+augroup makeCmd
+  autocmd!
+
+  au FileType go         call SetComp ('go', 'go run %')
+  au FileType python     call SetComp ('pyunit', 'python %')
+  au FileType tf         call SetComp ('', 'terraform plan -no-color')
+  au FileType sh         call SetComp ('', 'bash %')
+
+augroup ENDw
 
 " Cursor
 """""""""""""""""""""""""""""""""""""""
@@ -284,10 +296,14 @@ vmap > >gv
 " ----------------------------------------------------------------------------
 " Quickfix
 " ----------------------------------------------------------------------------
-nnoremap ]q :cnext<cr>zz
-nnoremap [q :cprev<cr>zz
-nnoremap ]l :lnext<cr>zz
-nnoremap [l :lprev<cr>zz
+nnoremap ]q :cnext<cr>zz        " Quickfix next
+nnoremap [q :cprev<cr>zz        " Quickfix previous
+nnoremap ]Q :cnewer<cr>zz       " Open newer quickfix results
+nnoremap [Q :colder<cr>zz       " Open older quickfix results
+nnoremap ]l :lnext<cr>zz        " Location next
+nnoremap [l :lprev<cr>zz        " Location previous
+nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR> " Open/Close location
+nmap <silent> <leader>q :call ToggleList("Quickfix List", 'c')<CR> " Open/Close quickfix
 
 " ----------------------------------------------------------------------------
 " Buffers
@@ -378,7 +394,7 @@ if executable("ag")
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
-" Persistend undo
+" Persistent undo
 """""""""""""""""""""""""""""
 if has('persistent_undo')
     " define a path to store persistent undo files.
@@ -412,11 +428,13 @@ nnoremap <leader>m :make<cr>
 " Run a function to strip trailing whitespaces
 nnoremap <leader>s :call StripTrailingWhitespace()<cr>
 " Switch to last edited buffer
-nnoremap <leader>q :b#<cr>
+nnoremap <leader>le :b#<cr>
 " Close current buffer
 nnoremap <leader>d :bd<cr>
 " Undotree
 nnoremap <leader>u :UndotreeToggle<cr>
+" Terminal normal mode
+nnoremap <leader>n <c-\> <c-n>
 
 
 " Functions
@@ -452,4 +470,41 @@ function! ToggleVExplorer()
          Vexplore
          let t:expl_buf_num = bufnr("%")
     endif
+endfunction
+
+function! GetBufferList()
+  redir =>buflist
+  silent! ls!
+  redir END
+  return buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+  let buflist = GetBufferList()
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      exec(a:pfx.'close')
+      return
+    endif
+  endfor
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      return
+  endif
+  let winnr = winnr()
+  exec(a:pfx.'open')
+  if winnr() != winnr
+    wincmd p
+  endif
+endfunction
+
+" Set makeprg and compiler
+function! SetComp(comp, make)
+  if !empty(a:comp)
+    exec 'compiler '.a:comp
+  endif
+  if !empty(a:make)
+    let &makeprg=a:make
+  endif
 endfunction
