@@ -87,7 +87,7 @@ set autoread                    " Reload the file if changed from the outside
 set switchbuf=useopen           " if opening a file from :ls, :buffers, :files, etc. jump to open version
                                 " of the file, if one exists
 set confirm                     " dialog foor unsaved changes
-set splitright                  " got to right pane by default (Needed for quickmenu)
+set splitright                  " go to right pane by default (Needed for quickmenu)
 
 " Terminal/GUI setup
 scriptencoding utf-8              " Fix encoding
@@ -151,6 +151,9 @@ syntax on
 set number                        " Always show line number
 set cursorline                    " Change the current line background
 set scrolloff=8                   " Keep 8 line above and under the current one
+set laststatus=2
+set showtabline=0
+set guioptions-=e
 
 " Autocompletion
 """""""""""""""""""""""""""""""""""""""
@@ -187,18 +190,17 @@ set suffixesadd+=.json
 set suffixesadd+=.yaml
 set suffixesadd+=.md
 set suffixesadd+=.py
+set suffixesadd+=.md
 
 " Filetype detection and syntax markup
 """""""""""""""""""""""""""""""""""""""
 " execute buffer for various languages
 augroup makeCmd
   autocmd!
-
   au FileType go         call SetComp ('go', 'go run %')
-  au FileType python     call SetComp ('pyunit', 'python %')
+  au FileType python     call SetComp ('', 'python %')
   au FileType tf         call SetComp ('', 'terraform plan -no-color')
   au FileType sh         call SetComp ('', 'bash %')
-
 augroup ENDw
 
 " Cursor
@@ -211,8 +213,9 @@ augroup cline
 augroup END
 
 " http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
 
 " Make Sure that Vim returns to the same line when we reopen a file"
 augroup line_return
@@ -225,7 +228,6 @@ augroup END
 
 " Filetype specific
 """""""""""""""""""""""""""""""""""""""
-
 augroup vimmic_cmake_filetype
     autocmd BufNewFile,BufRead CMakeLists.txt set filetype=cmake
 augroup END
@@ -246,14 +248,17 @@ augroup vimmic_yaml_jinja2
 augroup END
 
 " Terraform
-autocmd FileType tf setlocal commentstring=#\ %s
+augroup vimmic_hcl_comments
+    autocmd FileType tf setlocal commentstring=#\ %s
+augroup END
 
 " Jenkinsfile
-au BufNewFile,BufRead Jenkinsfile set filetype=groovy
+augroup vimmic_groovy_filetype
+    au BufNewFile,BufRead Jenkinsfile set filetype=groovy
+augroup END
 
 " Key mappings
 """""""""""""""""""
-
 "Get rid of stupid Goddamned help keys
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
@@ -335,7 +340,7 @@ nnoremap <S-tab> <c-w>W
 inoremap <C-space> <C-x><C-o>
 
 " Avoid the non-completing enter key by making it behave like ctrl-y
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Highlight all
 let python_highlight_all=1
@@ -390,9 +395,26 @@ endif
 """""""""""""""""""""""""""""
 " If OS has ag installed, use it instead of grp
 if executable("ag")
-    set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
+    set grepprg=ag\ --vimgrep
 endif
+
+" https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
+" Execute grep in a subshell to avoid annoying confirmation screens
+function! Grep(args)
+    let args = split(a:args, ' ')
+    return system(join([&grepprg, shellescape(args[0]), len(args) > 1 ? join(args[1:-1], ' ') : ''], ' '))
+endfunction
+
+" Command to populate quickfix with Grep function results
+command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<q-args>)
+command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<q-args>)
+
+" Open quickfix automatically if there are valid entries
+augroup quickfix
+    autocmd!
+    autocmd QuickFixCmdPost cgetexpr cwindow
+    autocmd QuickFixCmdPost lgetexpr lwindow
+augroup END
 
 " Persistent undo
 """""""""""""""""""""""""""""
@@ -413,14 +435,26 @@ set tags^=.git/tags;~
 
 " Managing files with shortcuts, default leader '\'
 """""""""""""""""""""""""""""
-" Add files with wildcards, like *.md
-nnoremap <leader>a :argadd <c-r>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
 " Display all buffers
 nnoremap <leader>b :b <C-d>
-" Open a single file
-nnoremap <leader>e :e **/
-" Quickly go to grep,
-nnoremap <leader>g :grep<space>
+" Add files with wildcards in CWD, like *.md
+nnoremap <leader>a :argadd <C-R>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
+" Add files with wildcards in subfolders, like *.md
+nnoremap <leader>A :argadd <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+" Open a single file in current buffer
+nnoremap <leader>f :find *
+nnoremap <leader>F :find <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+" Open a single file in horizontal split
+nnoremap <leader>s :sfind *
+nnoremap <leader>S :sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+" Open a single file in vertical split
+nnoremap <leader>v :vert sfind *
+nnoremap <leader>V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+" Open a single file in new tab
+nnoremap <leader>t :tabfind *
+nnoremap <leader>T :tabfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+" Quickly go to custom Grep
+nnoremap <leader>g :Grep<space>
 " Jump to tags selection, use ctags to generate ones
 nnoremap <leader>j :tjump /
 " Simply run a make command
@@ -435,7 +469,8 @@ nnoremap <leader>d :bd<cr>
 nnoremap <leader>u :UndotreeToggle<cr>
 " Terminal normal mode
 nnoremap <leader>n <c-\> <c-n>
-
+" Reload vim config
+nnoremap <leader>r :source $MYVIMRC<CR>
 
 " Functions
 """""""""""""""""""""""""""""
@@ -472,6 +507,7 @@ function! ToggleVExplorer()
     endif
 endfunction
 
+" Utility function for ToggleList
 function! GetBufferList()
   redir =>buflist
   silent! ls!
@@ -479,6 +515,7 @@ function! GetBufferList()
   return buflist
 endfunction
 
+" Show/close quickfix window
 function! ToggleList(bufname, pfx)
   let buflist = GetBufferList()
   for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
@@ -508,3 +545,86 @@ function! SetComp(comp, make)
     let &makeprg=a:make
   endif
 endfunction
+
+" make list-like commands more intuitive
+function! CCR()
+    let cmdline = getcmdline()
+    if cmdline =~ '\v\C^(ls|files|buffers)'
+        " like :ls but prompts for a buffer command
+        return "\<CR>:b"
+    elseif cmdline =~ '\v\C/(#|nu|num|numb|numbe|number)$'
+        " like :g//# but prompts for a command
+        return "\<CR>:"
+    elseif cmdline =~ '\v\C^(dli|il)'
+        " like :dlist or :ilist but prompts for a count for :djump or :ijump
+        return "\<CR>:" . cmdline[0] . "j  " . split(cmdline, " ")[1] . "\<S-Left>\<Left>"
+    elseif cmdline =~ '\v\C^(cli|lli)'
+        " like :clist or :llist but prompts for an error/location number
+        return "\<CR>:sil " . repeat(cmdline[0], 2) . "\<Space>"
+    elseif cmdline =~ '\C^old'
+        " like :oldfiles but prompts for an old file to edit
+        set nomore
+        return "\<CR>:sil se more|e #<"
+    elseif cmdline =~ '\C^changes'
+        " like :changes but prompts for a change to jump to
+        set nomore
+        return "\<CR>:sil se more|norm! g;\<S-Left>"
+    elseif cmdline =~ '\C^ju'
+        " like :jumps but prompts for a position to jump to
+        set nomore
+        return "\<CR>:sil se more|norm! \<C-o>\<S-Left>"
+    elseif cmdline =~ '\C^marks'
+        " like :marks but prompts for a mark to jump to
+        return "\<CR>:norm! `"
+    elseif cmdline =~ '\C^undol'
+        " like :undolist but prompts for a change to undo
+        return "\<CR>:u "
+    else
+        return "\<CR>"
+    endif
+endfunction
+cnoremap <expr> <CR> CCR()
+
+" Redirect the output of a Vim or external command into a scratch buffer
+function! Redir(cmd)
+    for win in range(1, winnr('$'))
+        if getwinvar(win, 'scratch')
+            execute win . 'windo close'
+        endif
+    endfor
+    if a:cmd =~ '^!'
+        let cmd = a:cmd =~' %' ? substitute(a:cmd, ' %', ' ' . expand('%:p'), '') : a:cmd
+        let output = system(matchstr(cmd, '^!\zs.*'))
+    else
+        redir => output
+        execute a:cmd
+        redir END
+    endif
+    vnew
+    let w:scratch = 1
+    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
+    call setline(1, split(output, "\n"))
+endfunction
+
+command! -nargs=1 -complete=command Redir silent call Redir(<q-args>)
+
+" custom highlight groups
+highlight IsModified    ctermbg=red
+highlight IsNotModified ctermbg=green
+set statusline=
+" Buffer number
+set statusline=[%n]
+" Dynamic status line
+set statusline+=\ %#IsModified#%{&mod?expand('%'):''}%*%#IsNotModified#%{&mod?'':expand('%')}%*\ 
+" Show if file is read-only
+set statusline+=%r
+" Show file type
+set statusline+=%y
+" Git branch
+set statusline+=\ %{fugitive#statusline()}
+" CursorColumn
+set statusline+=%=%3c
+" CurrentLine/TotalLines
+set statusline+=\ %l\/%-6L
+" Percentage
+set statusline+=\ [%p%%]
