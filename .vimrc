@@ -15,60 +15,57 @@
 "   gcc  - Comment/uncomment a line     "
 """""""""""""""""""""""""""""""""""""""""
 
-
 set nocompatible
 set termguicolors
 set background=dark
 
-filetype off
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+if empty(glob('~/.vim/autoload/plug.vim'))
+      silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
+" Add all your plugins here (note older versions of Vundle used Bundle instead of Plug)
 " Interface
-Plugin 'myusuf3/numbers.vim'             " Intelligently toggle line numbers
-Plugin 'tpope/vim-commentary'            " Comment stuff in and out
-Plugin 'tpope/vim-eunuch'                " Integration with UNIX shell
-Plugin 'tpope/vim-repeat'                " Use dot to repeat more actions
-Plugin 'tpope/vim-surround'              " Surround objects with parenthesys, quotes and more
-Plugin 'romainl/vim-qf'                  " Better work with quickfix
-Plugin 'mbbill/undotree'                 " Undotree
+Plug 'myusuf3/numbers.vim'             " Intelligently toggle line numbers
+Plug 'tpope/vim-commentary'            " Comment stuff in and out
+Plug 'tpope/vim-eunuch'                " Integration with UNIX shell
+Plug 'tpope/vim-repeat'                " Use dot to repeat more actions
+Plug 'tpope/vim-surround'              " Surround objects with parenthesys, quotes and more
+Plug 'romainl/vim-qf'                  " Better work with quickfix
+Plug 'mbbill/undotree'                 " Undotree
 
 " Version Control Plugins
-Plugin 'airblade/vim-gitgutter'          " Git line status
-Plugin 'tpope/vim-fugitive'              " Git combine
+Plug 'airblade/vim-gitgutter'          " Git line status
+Plug 'tpope/vim-fugitive'              " Git combine
 
 " Languages
-Plugin 'elzr/vim-json'                   " Json syntax highlight
-Plugin 'glench/vim-jinja2-syntax'        " Jinja support for vim
-Plugin 'pearofducks/ansible-vim'         " Ansible 2.x syntax
-Plugin 'sbulav/vim-helm'                 " Helm syntax and compiler
+Plug 'elzr/vim-json'                   " Json syntax highlight
+Plug 'glench/vim-jinja2-syntax'        " Jinja support for vim
+Plug 'pearofducks/ansible-vim'         " Ansible 2.x syntax
+Plug 'sbulav/vim-helm'                 " Helm syntax and compiler
 
 " Code display
-Plugin 'lifepillar/vim-solarized8'
+Plug 'lifepillar/vim-solarized8'
 
 " Python
-"Plugin 'davidhalter/jedi-vim'            " Using Jedi to autocomplete
-Plugin 'nvie/vim-flake8'                 " Check code with flake8
-Plugin 'tmhedberg/SimpylFold'            " Python code folding
-Plugin 'Vimjas/vim-python-pep8-indent'   " PEP8 compliant indentation
+Plug 'nvie/vim-flake8'                 " Check code with flake8
+Plug 'tmhedberg/SimpylFold'            " Python code folding
+Plug 'Vimjas/vim-python-pep8-indent'   " PEP8 compliant indentation
 
 " Text objects
-Plugin 'beloglazov/vim-textobj-quotes'     " TO closest pair of quotes of any type iq/aq
-Plugin 'jceb/vim-textobj-uri'              " TO URL                                iu/au
-Plugin 'kana/vim-textobj-entire'           " TO entire buffer                      ie/ae
-Plugin 'kana/vim-textobj-fold'             " TO folding                            iz/az
-Plugin 'kana/vim-textobj-function'         " TO function                           if/af
-Plugin 'kana/vim-textobj-indent'           " TO block of code based on indent      ii/ai
-Plugin 'kana/vim-textobj-line'             " TO line                               il/al
-Plugin 'kana/vim-textobj-user'             " Allow use of custom textobjects
+Plug 'beloglazov/vim-textobj-quotes'     " TO closest pair of quotes of any type iq/aq
+Plug 'jceb/vim-textobj-uri'              " TO URL                                iu/au
+Plug 'kana/vim-textobj-entire'           " TO entire buffer                      ie/ae
+Plug 'kana/vim-textobj-fold'             " TO folding                            iz/az
+Plug 'kana/vim-textobj-function'         " TO function                           if/af
+Plug 'kana/vim-textobj-indent'           " TO block of code based on indent      ii/ai
+Plug 'kana/vim-textobj-line'             " TO line                               il/al
+Plug 'kana/vim-textobj-user'             " Allow use of custom textobjects
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()
+
 filetype on
 filetype plugin on
 filetype plugin indent on    " required
@@ -82,9 +79,6 @@ set noerrorbells                " No buzz on error
 set novisualbell                " No 'visual buzz' on error
 set t_vb=                       " Same as above
 set autoread                    " Reload the file if changed from the outside
-"set timeout                    " Enable timeout on mapping and key codes
-"set timeoutlen=400             " Maximum wait time for command sequence
-"set ttimeoutlen=400            " Same as above
 set switchbuf=useopen           " if opening a file from :ls, :buffers, :files, etc. jump to open version
                                 " of the file, if one exists
 set confirm                     " dialog foor unsaved changes
@@ -278,10 +272,10 @@ set pastetoggle=<F2>
 " Use netrw as file Explorer
 map <silent> <F3> :call ToggleVExplorer()<CR>
 
-"Show/unshow Numbers on F4
+" Show/unshow Numbers on F4
 nnoremap <F4> :NumbersToggle<CR>
 
-"Execute current buffer on F5
+" Execute current buffer on F5
 nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
 
 " Check spelling on F6
@@ -336,46 +330,52 @@ nnoremap [t :tabp<cr>
 nnoremap <tab>   <c-w>w
 nnoremap <S-tab> <c-w>W
 
-" Completion & code
-"""""""""""""""""""
+" ----------------------------------------------------------------------------
+" Managing files with shortcuts, default leader '\'
+" ----------------------------------------------------------------------------
 
-" Code completion via ctrl-space
-"inoremap <C-Space> <C-n>
-"inoremap <Nul> <C-n>
-
-" Ctrl-x x for cleaver completion
-" inoremap <C-x><C-x> <C-x><C-o>
-inoremap <C-space> <C-x><C-o>
-
-" Avoid the non-completing enter key by making it behave like ctrl-y
-" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Highlight all
-let python_highlight_all=1
+" Display all buffers
+nnoremap <leader>b :b <C-d>
+" Add files with wildcards in CWD, like *.md
+nnoremap <leader>a :argadd <C-R>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
+" Add files with wildcards in subfolders, like *.md
+nnoremap <leader>A :argadd <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+" Open a single file in current buffer
+nnoremap <leader>f :find *
+nnoremap <leader>F :find <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+" Open a single file in horizontal split
+nnoremap <leader>s :sfind *
+nnoremap <leader>S :sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+" Open a single file in vertical split
+nnoremap <leader>v :vert sfind *
+nnoremap <leader>V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+" Open a single file in new tab
+nnoremap <leader>t :tabfind *
+nnoremap <leader>T :tabfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+" Quickly go to custom Grep
+nnoremap <leader>g :Grep<space>
+" Jump to tags selection, use ctags to generate ones
+nnoremap <leader>j :tjump /
+" Simply run a make command
+nnoremap <leader>m :make<cr>
+" Run a function to strip trailing whitespaces
+nnoremap <leader>s :call StripTrailingWhitespace()<cr>
+" Switch to last edited buffer
+nnoremap <leader>le :b#<cr>
+" Close current buffer
+nnoremap <leader>d :bd<cr>
+" Undotree
+nnoremap <leader>u :UndotreeToggle<cr>
+" Reload vim config
+nnoremap <leader>r :source $MYVIMRC<CR>
+" Global replace word under cursor
+nnoremap <leader>% :%s/\<<C-r>=expand('<cword>')<CR>\>/
 
 " Folding
 """""""""""""""""""""""""""""
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
-
-" Jedi config
-"""""""""""""""""""""""""""""
-" Disable choose first function/method at autocomplete
-"let g:jedi#popup_select_first = 1
-
-" Dont' pop-up on dot
-"let g:jedi#popup_on_dot = 0
-
-" Leader = \
-" Following keymaps are available for Jedi
-" let g:jedi#goto_command = "<leader>d"
-" let g:jedi#goto_assignments_command = "<leader>g"
-" let g:jedi#documentation_command = "K"
-" let g:jedi#usages_command = "<leader>n"
-" let g:jedi#completions_command = "<C-Space>"
-" let g:jedi#rename_command = "<leader>r"
-
 
 " netrw options
 """""""""""""""""""""""""""""
@@ -439,47 +439,6 @@ endif
 " Set tags to .git folder(as it was removed in Fugitive)
 """""""""""""""""""""""""""""
 set tags^=.git/tags;~
-
-" Managing files with shortcuts, default leader '\'
-"""""""""""""""""""""""""""""
-" Display all buffers
-nnoremap <leader>b :b <C-d>
-" Add files with wildcards in CWD, like *.md
-nnoremap <leader>a :argadd <C-R>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
-" Add files with wildcards in subfolders, like *.md
-nnoremap <leader>A :argadd <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
-" Open a single file in current buffer
-nnoremap <leader>f :find *
-nnoremap <leader>F :find <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
-" Open a single file in horizontal split
-nnoremap <leader>s :sfind *
-nnoremap <leader>S :sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
-" Open a single file in vertical split
-nnoremap <leader>v :vert sfind *
-nnoremap <leader>V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
-" Open a single file in new tab
-nnoremap <leader>t :tabfind *
-nnoremap <leader>T :tabfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
-" Quickly go to custom Grep
-nnoremap <leader>g :Grep<space>
-" Jump to tags selection, use ctags to generate ones
-nnoremap <leader>j :tjump /
-" Simply run a make command
-nnoremap <leader>m :make<cr>
-" Run a function to strip trailing whitespaces
-nnoremap <leader>s :call StripTrailingWhitespace()<cr>
-" Switch to last edited buffer
-nnoremap <leader>le :b#<cr>
-" Close current buffer
-nnoremap <leader>d :bd<cr>
-" Undotree
-nnoremap <leader>u :UndotreeToggle<cr>
-" Terminal normal mode
-nnoremap <leader>n <c-\> <c-n>
-" Reload vim config
-nnoremap <leader>r :source $MYVIMRC<CR>
-" Global replace word under cursor
-nnoremap <leader>%       :%s/\<<C-r>=expand('<cword>')<CR>\>/
 
 " Functions
 """""""""""""""""""""""""""""
