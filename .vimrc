@@ -20,9 +20,7 @@ set nocompatible
 set termguicolors
 set background=dark
 
-filetype on
-filetype plugin on
-
+filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -48,6 +46,7 @@ Plugin 'tpope/vim-fugitive'              " Git combine
 Plugin 'elzr/vim-json'                   " Json syntax highlight
 Plugin 'glench/vim-jinja2-syntax'        " Jinja support for vim
 Plugin 'pearofducks/ansible-vim'         " Ansible 2.x syntax
+Plugin 'sbulav/vim-helm'                 " Helm syntax and compiler
 
 " Code display
 Plugin 'lifepillar/vim-solarized8'
@@ -70,6 +69,8 @@ Plugin 'kana/vim-textobj-user'             " Allow use of custom textobjects
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+filetype on
+filetype plugin on
 filetype plugin indent on    " required
 
 " Files & Buffers
@@ -135,6 +136,7 @@ endif
 
 " Display and search configuration
 """""""""""""""""""""""""""""""""""""""
+colorscheme solarized8_high
 set shortmess=a                   " Deal with messages
 set nowrap                        " No new line when the line is too long
 set showmatch                     " Show matching parenthesis
@@ -154,6 +156,30 @@ set scrolloff=8                   " Keep 8 line above and under the current one
 set laststatus=2
 set showtabline=0
 set guioptions-=e
+
+" Statusline
+"""""""""""""""""""""""""""""""""""""""
+" Custom highlight groups
+highlight StatusLine ctermbg=0 cterm=NONE
+highlight IsModified    ctermbg=red
+highlight IsNotModified ctermbg=green
+set statusline=
+" Buffer number
+set statusline=[%n]
+" Dynamic status line
+set statusline+=\ %#IsModified#%{&mod?expand('%'):''}%*%#IsNotModified#%{&mod?'':expand('%')}%*\ 
+" Show if file is read-only
+set statusline+=%r
+" Show file type
+set statusline+=%y
+" Git branch
+set statusline+=\ %{fugitive#statusline()}
+" CursorColumn
+set statusline+=%=%3c
+" CurrentLine/TotalLines
+set statusline+=\ %l\/%-6L
+" Percentage
+set statusline+=\ [%p%%]
 
 " Autocompletion
 """""""""""""""""""""""""""""""""""""""
@@ -201,6 +227,7 @@ augroup makeCmd
   au FileType python     call SetComp ('', 'python %')
   au FileType tf         call SetComp ('', 'terraform plan -no-color')
   au FileType sh         call SetComp ('', 'bash %')
+  au FileType helm       call SetComp ('helm', 'helm lint')
 augroup ENDw
 
 " Cursor
@@ -228,25 +255,6 @@ augroup END
 
 " Filetype specific
 """""""""""""""""""""""""""""""""""""""
-augroup vimmic_cmake_filetype
-    autocmd BufNewFile,BufRead CMakeLists.txt set filetype=cmake
-augroup END
-
-augroup vimmic_xml_matchpair
-    autocmd FileType xml,html set matchpairs+=<:>
-augroup END
-
-" C/CPP improved indentation
-augroup vimmic_cpp_indent
-    autocmd FileType c,cpp  set smartindent
-augroup END
-
-" Ansible
-augroup vimmic_yaml_jinja2
-    autocmd Filetype yaml set filetype=yaml.ansible
-    autocmd BufNewFile,BufRead *.j2 set filetype=ruby.jinja2
-augroup END
-
 " Terraform
 augroup vimmic_hcl_comments
     autocmd FileType tf setlocal commentstring=#\ %s
@@ -386,7 +394,6 @@ if has("patch-8.1.0360")
 endif
 
 " Use sane colorscheme in diff mode
-colorscheme solarized8_high
 if &diff
     colorscheme industry
 endif
@@ -471,6 +478,8 @@ nnoremap <leader>u :UndotreeToggle<cr>
 nnoremap <leader>n <c-\> <c-n>
 " Reload vim config
 nnoremap <leader>r :source $MYVIMRC<CR>
+" Global replace word under cursor
+nnoremap <leader>%       :%s/\<<C-r>=expand('<cword>')<CR>\>/
 
 " Functions
 """""""""""""""""""""""""""""
@@ -546,7 +555,7 @@ function! SetComp(comp, make)
   endif
 endfunction
 
-" make list-like commands more intuitive
+" Make list-like commands more intuitive
 function! CCR()
     let cmdline = getcmdline()
     if cmdline =~ '\v\C^(ls|files|buffers)'
@@ -607,24 +616,3 @@ function! Redir(cmd)
 endfunction
 
 command! -nargs=1 -complete=command Redir silent call Redir(<q-args>)
-
-" custom highlight groups
-highlight IsModified    ctermbg=red
-highlight IsNotModified ctermbg=green
-set statusline=
-" Buffer number
-set statusline=[%n]
-" Dynamic status line
-set statusline+=\ %#IsModified#%{&mod?expand('%'):''}%*%#IsNotModified#%{&mod?'':expand('%')}%*\ 
-" Show if file is read-only
-set statusline+=%r
-" Show file type
-set statusline+=%y
-" Git branch
-set statusline+=\ %{fugitive#statusline()}
-" CursorColumn
-set statusline+=%=%3c
-" CurrentLine/TotalLines
-set statusline+=\ %l\/%-6L
-" Percentage
-set statusline+=\ [%p%%]
