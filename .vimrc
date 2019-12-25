@@ -102,6 +102,7 @@ set sessionoptions=buffers,curdir,tabpages,winpos,winsize
 " Search down into subfolders, use :find <pattern> <TAB> to list results in
 " quickwindow
 set path+=**
+set path-=/usr/include
 
 " Indentation
 """""""""""""""""""""""""""""""""""""""
@@ -153,15 +154,17 @@ set guioptions-=e
 
 " Statusline
 """""""""""""""""""""""""""""""""""""""
-" Custom highlight groups
-highlight StatusLine ctermbg=0 cterm=NONE
-highlight IsModified    ctermbg=red
-highlight IsNotModified ctermbg=green
+" Set statusline transparent
+if has("nvim")
+    highlight StatusLine NONE
+else
+    highlight StatusLine ctermbg=0 cterm=NONE
+endif
 set statusline=
 " Buffer number
 set statusline=[%n]
-" Dynamic status line
-set statusline+=\ %#IsModified#%{&mod?expand('%'):''}%*%#IsNotModified#%{&mod?'':expand('%')}%*\ 
+" Dynamic status line, using built-in HL groups DiffDelete and DiffAdd
+set statusline+=%#DiffDelete#%{&mod?expand('%'):''}%*%#DiffAdd#%{&mod?'':expand('%')}%*
 " Show if file is read-only
 set statusline+=%r
 " Show file type
@@ -256,7 +259,7 @@ augroup END
 
 " Jenkinsfile
 augroup vimmic_groovy_filetype
-    au BufNewFile,BufRead Jenkinsfile set filetype=groovy
+    au BufNewFile,BufRead *enkinsfile* set filetype=groovy
 augroup END
 
 " Key mappings
@@ -285,6 +288,12 @@ nmap <F6> :set spell!<CR>
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
+" quicker access to command mode
+nmap ; :
+xmap ; :
+
+" reset searchhighlight
+nnoremap <silent>zz :nohlsearch<cr>
 " Enable folding with the spacebar
 "nnoremap <space> za
 " Indent, keep selected text
@@ -299,6 +308,12 @@ vmap > >gv
 " :Mkdir: Create a directory, defaulting to the parent of the current file.
 " :SudoWrite: Write a privileged file with sudo.
 " :SudoEdit: Edit a privileged file with sudo.
+
+" useful ones in insert mode, see :h index
+" <c-r> - insert text from register
+" <c-a> - last inserted text
+" <c-w> - delete one word before cursorc
+" <c-o> - execute one normal command and return to insert mode
 
 " ----------------------------------------------------------------------------
 " Quickfix
@@ -368,8 +383,14 @@ nnoremap <leader>d :bd<cr>
 nnoremap <leader>u :UndotreeToggle<cr>
 " Reload vim config
 nnoremap <leader>r :source $MYVIMRC<CR>
+" Use Redir function to open vim command in split
+nnoremap <leader>R :Redir <c-f>A
+" Open vimrc
+nnoremap <leader>rc :edit $MYVIMRC<CR>
 " Global replace word under cursor
 nnoremap <leader>% :%s/\<<C-r>=expand('<cword>')<CR>\>/
+" Change project folder to current file's directory for current window
+nnoremap <leader>c :lcd %:p:h<cr>
 
 " Folding
 """""""""""""""""""""""""""""
@@ -395,7 +416,8 @@ endif
 
 " Use sane colorscheme in diff mode
 if &diff
-    colorscheme industry
+    " colorscheme industry
+    syntax off
 endif
 
 " Better grep
