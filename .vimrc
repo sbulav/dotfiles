@@ -34,7 +34,7 @@ Plug 'tpope/vim-repeat'                " Use dot to repeat more actions
 Plug 'tpope/vim-surround'              " Surround objects with parenthesys, quotes and more
 Plug 'romainl/vim-qf'                  " Better work with quickfix
 Plug 'mbbill/undotree'                 " Undotree
-Plug 'junegunn/fzf.vim'                    " Fuzzy finder
+Plug 'junegunn/fzf.vim'                " Fuzzy finder
 
 " Version Control Plugins
 Plug 'airblade/vim-gitgutter'          " Git line status
@@ -361,6 +361,15 @@ nnoremap <leader>fl :Lines<cr>
 nnoremap <leader>fm :Maps<cr>
 nnoremap <leader>fo :Commands<cr>
 nnoremap <leader>ft :Tags<cr>
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+" imap <c-x><c-l> <plug>(fzf-complete-line)
 " Quickly go to custom Grep
 nnoremap <leader>g :Grep<space>
 " Simply run a make command
@@ -370,7 +379,8 @@ nnoremap <leader>s :call StripTrailingWhitespace()<cr>
 " Switch to last edited buffer
 nnoremap <leader>le :b#<cr>
 " Close current buffer
-nnoremap <leader>d :bd<cr>
+nnoremap <leader>d :bdelete<cr>
+nnoremap <leader>D :bdelete!<cr>
 " Undotree
 nnoremap <leader>u :UndotreeToggle<cr>
 " Reload vim config
@@ -378,11 +388,15 @@ nnoremap <leader>r :source $MYVIMRC<CR>
 " Use Redir function to open vim command in split
 nnoremap <leader>R :Redir <c-f>A
 " Open vimrc
-nnoremap <leader>rc :edit $MYVIMRC<CR>
+nnoremap <leader>rc :edit ~/.vimrc<CR>
 " Global replace word under cursor
 nnoremap <leader>% :%s/\<<C-r>=expand('<cword>')<CR>\>/
 " Change project folder to current file's directory for current window
 nnoremap <leader>c :lcd %:p:h<cr>
+" Open terminal
+nnoremap <leader>to :terminal<cr>
+" Exit terminal insert mode
+tnoremap <Esc> <C-\><C-n>
 
 " Folding
 """""""""""""""""""""""""""""
@@ -590,22 +604,6 @@ endfunction
 
 command! -nargs=1 -complete=command Redir silent call Redir(<q-args>)
 
-" Redirect the output of a Vim or external command into a popup window
-function! Nedir(cmd)
-    if a:cmd =~ '^!'
-        let cmd = a:cmd =~' %' ? substitute(a:cmd, ' %', ' ' . expand('%:p'), '') : a:cmd
-        let output = system(matchstr(cmd, '^!\zs.*'))
-    else
-        redir => output
-        execute a:cmd
-        redir END
-    endif
-    let winid = popup_atcursor('', #{ time: 15000, moved: "WORD" })
-    let bufnr = winbufnr(winid)
-    call setbufline(bufnr, 1, split(output, "\n"))
-endfunction
-command! -nargs=1 -complete=command Nedir silent call Nedir(<q-args>)
-
 " Using floating windows of Neovim to start fzf
 if has('nvim')
   let $FZF_DEFAULT_OPTS .= ' --border --margin=0,2'
@@ -625,3 +623,23 @@ if has('nvim')
 
   let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 endif
+
+function! Floattst()
+    let width = float2nr(50)
+    let height = float2nr(50)
+    let buf = nvim_create_buf(v:false, v:true)
+    let opts = {'relative': 'cursor', 'width': 50, 'height': 50, 'col': &columns - 50, 'row': 1, 'anchor': 'NW', 'style': 'minimal'}
+    call nvim_buf_set_lines(buf, 0, -1, v:true, split(@", "\n"))
+    let win = nvim_open_win(buf, 0, opts)
+    " optional: change highlight, otherwise Pmenu is used
+    call nvim_win_set_option(win, 'winhl', 'Normal:MyHighlight')
+" setlocal
+"         \ buftype=nofile
+"         \ nobuflisted
+"         \ bufhidden=hide
+"         \ nonumber
+"         \ norelativenumber
+"         \ signcolumn=no
+endfunction
+
+command! -nargs=0 -complete=command Ft silent call Floattst()
