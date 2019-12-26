@@ -15,7 +15,6 @@
 "   gcc  - Comment/uncomment a line     "
 """""""""""""""""""""""""""""""""""""""""
 
-set nocompatible
 set termguicolors
 set background=dark
 
@@ -65,10 +64,6 @@ Plug 'kana/vim-textobj-line'             " TO line                              
 Plug 'kana/vim-textobj-user'             " Allow use of custom textobjects
 
 call plug#end()
-
-filetype on
-filetype plugin on
-filetype plugin indent on    " required
 
 " Files & Buffers
 """""""""""""""""""""""""""""""""""""""
@@ -597,3 +592,19 @@ function! Redir(cmd)
 endfunction
 
 command! -nargs=1 -complete=command Redir silent call Redir(<q-args>)
+
+" Redirect the output of a Vim or external command into a popup window
+function! Nedir(cmd)
+    if a:cmd =~ '^!'
+        let cmd = a:cmd =~' %' ? substitute(a:cmd, ' %', ' ' . expand('%:p'), '') : a:cmd
+        let output = system(matchstr(cmd, '^!\zs.*'))
+    else
+        redir => output
+        execute a:cmd
+        redir END
+    endif
+    let winid = popup_atcursor('', #{ time: 15000, moved: "WORD" })
+    let bufnr = winbufnr(winid)
+    call setbufline(bufnr, 1, split(output, "\n"))
+endfunction
+command! -nargs=1 -complete=command Nedir silent call Nedir(<q-args>)
