@@ -9,10 +9,13 @@ fi
 PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 # Use more colorful scheme
-export TERM=xterm-256color
+export TERM=xterm-24bit
+#export TERM=screen-256color
+
 
 # Set default editor to VIM
-export EDITOR=vim
+export EDITOR=nvim
+export VISUAL=nvim
 
 # Don't clear less output
 export LESS="-X"
@@ -29,9 +32,17 @@ alias helpb="cat .bash_help|less"
 # Show my vim tips
 alias helpv="cat .vim_help|less"
 
+alias cat='bat -p'
+
+alias kk=kubectl
+alias kubens='kubectl config set-context --current --namespace '
+
+alias vim=nvim
+alias vi=nvim
+
 # Connect to existing tmux session; start a new one otherwise
 if shopt -q login_shell; then
-  tmux ls 2>/dev/null && tmux a|| tmux
+  tmux ls 2>&1 >/dev/null && tmux a|| tmux
 fi
 
 # Set up SSH AGENT
@@ -44,7 +55,6 @@ function start_agent {
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
     /usr/bin/ssh-add;
-    /usr/bin/ssh-add .ssh/id_rsa_priv;
 }
 
 # Source SSH settings, if applicable
