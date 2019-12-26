@@ -34,6 +34,7 @@ Plug 'tpope/vim-repeat'                " Use dot to repeat more actions
 Plug 'tpope/vim-surround'              " Surround objects with parenthesys, quotes and more
 Plug 'romainl/vim-qf'                  " Better work with quickfix
 Plug 'mbbill/undotree'                 " Undotree
+Plug 'junegunn/fzf.vim'                    " Fuzzy finder
 
 " Version Control Plugins
 Plug 'airblade/vim-gitgutter'          " Git line status
@@ -165,7 +166,7 @@ set statusline+=%r
 " Show file type
 set statusline+=%y
 " Git branch
-set statusline+=\ %{fugitive#statusline()}
+set statusline+=\ %{fugitive#head()}
 " CursorColumn
 set statusline+=%=%3c
 " CurrentLine/TotalLines
@@ -350,22 +351,18 @@ nnoremap <leader>b :b <C-d>
 nnoremap <leader>a :argadd <C-R>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
 " Add files with wildcards in subfolders, like *.md
 nnoremap <leader>A :argadd <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
-" Open a single file in current buffer
-nnoremap <leader>f :find *
-nnoremap <leader>F :find <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
-" Open a single file in horizontal split
-nnoremap <leader>s :sfind *
-nnoremap <leader>S :sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
-" Open a single file in vertical split
-nnoremap <leader>v :vert sfind *
-nnoremap <leader>V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
-" Open a single file in new tab
-nnoremap <leader>t :tabfind *
-nnoremap <leader>T :tabfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+" Fuzzy commands, use CTRL-T / CTRL-X / CTRL-V key bindings to open in a new
+" tab, a new split, or in a new vertical split
+nnoremap <leader>fa :Ag<cr>
+nnoremap <leader>fc :Commits<cr>
+nnoremap <leader>ff :Files<cr>
+nnoremap <leader>fh :History<cr>
+nnoremap <leader>fl :Lines<cr>
+nnoremap <leader>fm :Maps<cr>
+nnoremap <leader>fo :Commands<cr>
+nnoremap <leader>ft :Tags<cr>
 " Quickly go to custom Grep
 nnoremap <leader>g :Grep<space>
-" Jump to tags selection, use ctags to generate ones
-nnoremap <leader>j :tjump /
 " Simply run a make command
 nnoremap <leader>m :make<cr>
 " Run a function to strip trailing whitespaces
@@ -608,3 +605,23 @@ function! Nedir(cmd)
     call setbufline(bufnr, 1, split(output, "\n"))
 endfunction
 command! -nargs=1 -complete=command Nedir silent call Nedir(<q-args>)
+
+" Using floating windows of Neovim to start fzf
+if has('nvim')
+  let $FZF_DEFAULT_OPTS .= ' --border --margin=0,2'
+
+  function! FloatingFZF()
+    let width = float2nr(&columns * 0.9)
+    let height = float2nr(&lines * 0.6)
+    let opts = { 'relative': 'editor',
+               \ 'row': (&lines - height) / 2,
+               \ 'col': (&columns - width) / 2,
+               \ 'width': width,
+               \ 'height': height }
+
+    let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+    call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
+  endfunction
+
+  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+endif
