@@ -229,6 +229,16 @@ augroup makeCmd
   au FileType helm       call SetComp ('helm', 'helm lint')
 augroup ENDw
 
+augroup execute
+augroup END
+
+augroup pscbindings
+  autocmd! pscbindings
+  autocmd FileType yaml nnoremap <buffer> <F5> :Redir !kubectl apply --dry-run -o yaml -f %<cr>
+  autocmd FileType yaml nnoremap <buffer> <F6> :Redir !kubectl apply -f %<cr>
+  autocmd FileType helm nnoremap <buffer> <F5> :Redir !helm install . --dry-run --debug <cr>
+augroup end
+
 " Cursor
 """""""""""""""""""""""""""""""""""""""
 " Show cursorline only for active window
