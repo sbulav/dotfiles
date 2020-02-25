@@ -53,6 +53,7 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'nvie/vim-flake8'                 " Check code with flake8
 Plug 'tmhedberg/SimpylFold'            " Python code folding
 Plug 'Vimjas/vim-python-pep8-indent'   " PEP8 compliant indentation
+Plug 'janko/vim-test'                  " Running tests
 
 " Text objects
 Plug 'beloglazov/vim-textobj-quotes'     " TO closest pair of quotes of any type iq/aq
@@ -216,6 +217,7 @@ set suffixesadd+=.yaml
 set suffixesadd+=.md
 set suffixesadd+=.py
 set suffixesadd+=.md
+set suffixesadd+=.groovy
 
 " Filetype detection and syntax markup
 """""""""""""""""""""""""""""""""""""""
@@ -237,6 +239,7 @@ augroup pscbindings
   autocmd FileType yaml nnoremap <buffer> <F5> :Redir !kubectl apply --dry-run -o yaml -f %<cr>
   autocmd FileType yaml nnoremap <buffer> <F6> :Redir !kubectl apply -f %<cr>
   autocmd FileType helm nnoremap <buffer> <F5> :Redir !helm install . --dry-run --debug <cr>
+  autocmd FileType python nnoremap <buffer> <F5> :Redir !pytest --kube-config=$KUBECONFIG<cr>
 augroup end
 
 " Cursor
@@ -414,7 +417,13 @@ nnoremap <leader>to :terminal<cr>
 " Exit terminal insert mode
 tnoremap <Esc> <C-\><C-n>
 
-" Folding
+" vim-test mappings
+
+nmap <silent> <leader>tn :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ts :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tv :TestVisit<CR>Folding
 """""""""""""""""""""""""""""
 " Enable folding
 set foldmethod=indent
