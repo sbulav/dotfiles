@@ -303,10 +303,6 @@ nmap <F6> :set spell!<CR>
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
-" quicker access to command mode
-nmap ; :
-xmap ; :
-
 " reset searchhighlight
 nnoremap <silent>zz :nohlsearch<cr>
 " Enable folding with the spacebar
@@ -364,8 +360,6 @@ nnoremap <S-tab> <c-w>W
 " Managing files with shortcuts, default leader '\'
 " ----------------------------------------------------------------------------
 
-" Display all buffers
-nnoremap <leader>b :b <C-d>
 " Add files with wildcards in CWD, like *.md
 nnoremap <leader>a :argadd <C-R>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
 " Add files with wildcards in subfolders, like *.md
@@ -373,6 +367,7 @@ nnoremap <leader>A :argadd <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 " Fuzzy commands, use CTRL-T / CTRL-X / CTRL-V key bindings to open in a new
 " tab, a new split, or in a new vertical split
 nnoremap <leader>fa :Ag<cr>
+nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>fc :Commits<cr>
 nnoremap <leader>ff :Files<cr>
 nnoremap <leader>fh :History<cr>
