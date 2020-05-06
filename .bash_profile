@@ -22,6 +22,8 @@ export LESS="-X"
 
 # Export path
 export PATH
+export HISTSIZE=10000
+export HISTFILESIZE=10000
 
 # Use ll alias
 alias ll='ls -la'
@@ -36,6 +38,7 @@ alias cat='bat -p'
 
 alias kk=kubectl
 alias kubens='kubectl config set-context --current --namespace '
+alias kubectx='kubectl config use-context '
 
 alias vim=nvim
 alias vi=nvim
@@ -82,3 +85,11 @@ if [ -f "${GIT_PROMPT_SCRIPT}" ]; then
 else
     export PS1='[\u@\h \W]$ '
 fi
+
+
+
+# FZF mappings and options
+[ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash
+# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_OPTS="--height 50% -1 --layout=reverse-list --multi --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'"
