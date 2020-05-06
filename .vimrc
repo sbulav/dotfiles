@@ -366,7 +366,7 @@ nnoremap <leader>a :argadd <C-R>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
 nnoremap <leader>A :argadd <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 " Fuzzy commands, use CTRL-T / CTRL-X / CTRL-V key bindings to open in a new
 " tab, a new split, or in a new vertical split
-nnoremap <leader>fa :Ag<cr>
+nnoremap <leader>fa :Rg<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>fc :Commits<cr>
 nnoremap <leader>ff :Files<cr>
@@ -448,9 +448,9 @@ endif
 
 " Better grep
 """""""""""""""""""""""""""""
-" If OS has ag installed, use it instead of grp
-if executable("ag")
-    set grepprg=ag\ --vimgrep
+" If OS has rg installed, use it instead of grep
+if executable("rg")
+    set grepprg=rg\ --vimgrep
 endif
 
 " https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
@@ -625,24 +625,24 @@ endfunction
 command! -nargs=1 -complete=command Redir silent call Redir(<q-args>)
 
 " Using floating windows of Neovim to start fzf
-if has('nvim')
-  let $FZF_DEFAULT_OPTS .= ' --border --margin=0,2'
+" if has('nvim')
+"   let $FZF_DEFAULT_OPTS .= ' --border --margin=0,2'
 
-  function! FloatingFZF()
-    let width = float2nr(&columns * 0.9)
-    let height = float2nr(&lines * 0.6)
-    let opts = { 'relative': 'editor',
-               \ 'row': (&lines - height) / 2,
-               \ 'col': (&columns - width) / 2,
-               \ 'width': width,
-               \ 'height': height }
+"   function! FloatingFZF()
+"     let width = float2nr(&columns * 0.9)
+"     let height = float2nr(&lines * 0.6)
+"     let opts = { 'relative': 'editor',
+"                \ 'row': (&lines - height) / 2,
+"                \ 'col': (&columns - width) / 2,
+"                \ 'width': width,
+"                \ 'height': height }
 
-    let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-    call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
-  endfunction
+"     let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+"     call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
+"   endfunction
 
-  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-endif
+"   let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+" endif
 
 function! Floattst()
     let width = float2nr(50)
