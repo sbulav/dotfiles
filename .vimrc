@@ -8,10 +8,9 @@
 "   F2   - change paste mode            "
 "   F3   - show netrw                   "
 "   F4   - numberToggle on/off          "
-"   F5   - run python                   "
+"   F5   - run buffer is <PRG>          "
 "   F7   - run flake8 check(install it! "
 "   SPACE - fold/unfold                 "
-"   CTRL + SPACE - Code completion      "
 "   gcc  - Comment/uncomment a line     "
 """""""""""""""""""""""""""""""""""""""""
 
@@ -32,6 +31,7 @@ Plug 'tpope/vim-commentary'            " Comment stuff in and out
 Plug 'tpope/vim-eunuch'                " Integration with UNIX shell
 Plug 'tpope/vim-repeat'                " Use dot to repeat more actions
 Plug 'tpope/vim-surround'              " Surround objects with parenthesys, quotes and more
+Plug 'justinmk/vim-sneak'              " Jump to location specified by two characters
 Plug 'romainl/vim-qf'                  " Better work with quickfix
 Plug 'mbbill/undotree'                 " Undotree
 Plug 'junegunn/fzf.vim'                " Fuzzy finder
@@ -45,6 +45,9 @@ Plug 'elzr/vim-json'                   " Json syntax highlight
 Plug 'glench/vim-jinja2-syntax'        " Jinja support for vim
 Plug 'pearofducks/ansible-vim'         " Ansible 2.x syntax
 Plug 'sbulav/vim-helm'                 " Helm syntax and compiler
+Plug 'neovim/nvim-lsp'                 " LSP templates and completions
+Plug 'haorenW1025/completion-nvim'     " Async completions for nvim-lsp
+Plug 'haorenW1025/diagnostic-nvim'     " Async diagnostincs for nvim-lsp
 
 " Code display
 Plug 'lifepillar/vim-solarized8'
@@ -226,16 +229,13 @@ augroup makeCmd
   autocmd!
   au FileType go         call SetComp ('go', 'go run %')
   au FileType python     call SetComp ('', 'python %')
-  au FileType tf         call SetComp ('', 'terraform plan -no-color')
+  au FileType terraform  call SetComp ('', 'terraform plan -no-color')
   au FileType sh         call SetComp ('', 'bash %')
   au FileType helm       call SetComp ('helm', 'helm lint')
 augroup ENDw
 
-augroup execute
-augroup END
-
 augroup pscbindings
-  autocmd! pscbindings
+  autocmd!
   autocmd FileType yaml nnoremap <buffer> <F5> :Redir !kubectl apply --dry-run -o yaml -f %<cr>
   autocmd FileType yaml nnoremap <buffer> <F6> :Redir !kubectl apply -f %<cr>
   autocmd FileType helm nnoremap <buffer> <F5> :Redir !helm install . --dry-run --debug <cr>
@@ -269,7 +269,8 @@ augroup END
 """""""""""""""""""""""""""""""""""""""
 " Terraform
 augroup vimmic_hcl_comments
-    autocmd FileType tf setlocal commentstring=#\ %s
+    au BufNewFile,BufRead *.tf set filetype=terraform
+    autocmd FileType terraform setlocal commentstring=#\ %s
 augroup END
 
 " Jenkinsfile
@@ -366,6 +367,7 @@ nnoremap <leader>a :argadd <C-R>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
 nnoremap <leader>A :argadd <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 " Fuzzy commands, use CTRL-T / CTRL-X / CTRL-V key bindings to open in a new
 " tab, a new split, or in a new vertical split
+" In lines CTRL-A to select all lines and CTRL-T to populate quickfix
 nnoremap <leader>fa :Rg<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>fc :Commits<cr>
@@ -624,42 +626,74 @@ endfunction
 
 command! -nargs=1 -complete=command Redir silent call Redir(<q-args>)
 
-" Using floating windows of Neovim to start fzf
-" if has('nvim')
-"   let $FZF_DEFAULT_OPTS .= ' --border --margin=0,2'
+" Built-in LSP
+"""""""""""""""""""""""""""""""""""""""
 
-"   function! FloatingFZF()
-"     let width = float2nr(&columns * 0.9)
-"     let height = float2nr(&lines * 0.6)
-"     let opts = { 'relative': 'editor',
-"                \ 'row': (&lines - height) / 2,
-"                \ 'col': (&columns - width) / 2,
-"                \ 'width': width,
-"                \ 'height': height }
+" Setup language servers
+lua << EOF
+	require'nvim_lsp'.yamlls.setup{}
+	require'nvim_lsp'.vimls.setup{}
+	require'nvim_lsp'.terraformls.setup{}
+EOF
 
-"     let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-"     call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
-"   endfunction
+" command to troubleshoot if client is connected
+" :lua print(vim.inspect(vim.lsp.buf_get_clients()))
 
-"   let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-" endif
+" nvim-lsp Mappings
+function! s:ConfigureBuffer()
+    nnoremap <buffer> <silent> gd          <cmd>lua vim.lsp.buf.definition()<CR>
+    nnoremap <buffer> <silent> K           <cmd>lua vim.lsp.buf.hover()<CR>
+    nnoremap <buffer> <silent> gi          <cmd>lua vim.lsp.buf.implementation()<CR>
+    nnoremap <buffer> <silent> gr          <cmd>lua vim.lsp.buf.references()<CR>
+    nnoremap <buffer> <silent> gs          <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+    " rename currently has issues https://github.com/neovim/neovim/pull/12185
+    nnoremap <buffer> <silent> <leader>rn  <cmd>lua vim.lsp.buf.rename()<CR>
+    " nnoremap <silent> <leader>f   <cmd>lua vim.lsp.buf.formatting()<CR>
 
-function! Floattst()
-    let width = float2nr(50)
-    let height = float2nr(50)
-    let buf = nvim_create_buf(v:false, v:true)
-    let opts = {'relative': 'cursor', 'width': 50, 'height': 50, 'col': &columns - 50, 'row': 1, 'anchor': 'NW', 'style': 'minimal'}
-    call nvim_buf_set_lines(buf, 0, -1, v:true, split(@", "\n"))
-    let win = nvim_open_win(buf, 0, opts)
-    " optional: change highlight, otherwise Pmenu is used
-    call nvim_win_set_option(win, 'winhl', 'Normal:MyHighlight')
-" setlocal
-"         \ buftype=nofile
-"         \ nobuflisted
-"         \ bufhidden=hide
-"         \ nonumber
-"         \ norelativenumber
-"         \ signcolumn=no
+    " Mapping specific to plugins
+    nnoremap <buffer> <silent> [a          :NextDiagnostic<CR>
+    nnoremap <buffer> <silent> ]a          :PrevDiagnostic<CR>
+    nnoremap <buffer> <silent> go          :OpenDiagnostic<CR>
+
+    if exists('+signcolumn')
+      setlocal signcolumn=yes
+    endif
+    setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    " Set completeopt to have a better completion experience
+    setlocal completeopt=menuone,noinsert,noselect
+    " Avoid showing message extra message when using completion
+    setlocal shortmess+=c
+    " always show signcolumns
+    setlocal signcolumn=yes
 endfunction
 
-command! -nargs=0 -complete=command Ft silent call Floattst()
+
+" nvim-lsp Settings
+autocmd FileType terraform,vim,yaml,bash call s:ConfigureBuffer()
+
+sign define LspDiagnosticsErrorSign text=✖
+sign define LspDiagnosticsWarningSign text=⚠
+sign define LspDiagnosticsInformationSign text=ℹ
+sign define LspDiagnosticsHintSign text=➤
+
+" lua callbacks
+:lua << EOF
+  local nvim_lsp = require'nvim_lsp'
+  local M = {}
+
+  M.on_attach = function()
+      require'diagnostic'.on_attach();
+      require'completion'.on_attach();
+    end
+
+  nvim_lsp.yamlls.setup{ on_attach = M.on_attach; }
+  nvim_lsp.vimls.setup{ on_attach = M.on_attach; }
+  nvim_lsp.terraformls.setup{ on_attach = M.on_attach; }
+EOF
+
+"-----------------------------------------------------------------------------
+" completion-nvim settings
+"-----------------------------------------------------------------------------
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
