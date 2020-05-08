@@ -633,6 +633,7 @@ command! -nargs=1 -complete=command Redir silent call Redir(<q-args>)
 lua << EOF
 	require'nvim_lsp'.yamlls.setup{}
 	require'nvim_lsp'.vimls.setup{}
+	require'nvim_lsp'.sumneko_lua.setup{}
 	require'nvim_lsp'.terraformls.setup{}
 EOF
 
@@ -651,8 +652,8 @@ function! s:ConfigureBuffer()
     " nnoremap <silent> <leader>f   <cmd>lua vim.lsp.buf.formatting()<CR>
 
     " Mapping specific to plugins
-    nnoremap <buffer> <silent> [a          :NextDiagnostic<CR>
-    nnoremap <buffer> <silent> ]a          :PrevDiagnostic<CR>
+    nnoremap <buffer> <silent> [e          :NextDiagnostic<CR>
+    nnoremap <buffer> <silent> ]e          :PrevDiagnostic<CR>
     nnoremap <buffer> <silent> go          :OpenDiagnostic<CR>
 
     if exists('+signcolumn')
@@ -669,7 +670,7 @@ endfunction
 
 
 " nvim-lsp Settings
-autocmd FileType terraform,vim,yaml,bash call s:ConfigureBuffer()
+autocmd FileType terraform,vim,yaml,bash,lua call s:ConfigureBuffer()
 
 sign define LspDiagnosticsErrorSign text=✖
 sign define LspDiagnosticsWarningSign text=⚠
