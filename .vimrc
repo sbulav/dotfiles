@@ -4,7 +4,7 @@
 
 """""""""""""""""""""""""""""""""""""""""
 "   SHORTCUTS                           "
-"   F1   - disabled, use :help          "
+"   F1   - show columnline at 81        "
 "   F2   - change paste mode            "
 "   F3   - show netrw                   "
 "   F4   - numberToggle on/off          "
@@ -287,8 +287,8 @@ augroup END
 " Key mappings
 """""""""""""""""""
 "Get rid of stupid Goddamned help keys
-inoremap <F1> <ESC>
-nnoremap <F1> <ESC>
+inoremap <silent> <F1> <ESC>:execute "set colorcolumn=" . (&colorcolumn == "" ? "81" : "")<CR>a
+nnoremap <silent> <F1> :execute "set colorcolumn=" . (&colorcolumn == "" ? "81" : "")<CR>
 vnoremap <F1> <ESC>
 
 " Copy pasting from the system on F2
