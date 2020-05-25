@@ -394,6 +394,8 @@ imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 " imap <c-x><c-l> <plug>(fzf-complete-line)
 " Quickly go to custom Grep
 nnoremap <leader>g :Grep<space>
+" Invoke Fugitive's Git
+nnoremap <leader>G :Git<cr>
 " Simply run a make command
 nnoremap <leader>m :make<cr>
 " Run a function to strip trailing whitespaces
