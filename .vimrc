@@ -265,6 +265,12 @@ augroup line_return
                 \ endif
 augroup END
 
+" Highlight yanked text in neovim
+if exists('##TextYankPost')
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank('IncSearch', 1500)
+endif
+
+"
 " Filetype specific
 """""""""""""""""""""""""""""""""""""""
 " Terraform
