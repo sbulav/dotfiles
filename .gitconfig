@@ -1,26 +1,29 @@
-
 [user]
         email = bulavintsev.sergey@gmail.com
         name = Sergey Bulavintsev
 [alias]
-        st = status -sb
-        lga = log --oneline --all --decorate --graph --color
+    st = status -sb
+    lga = log --oneline --all --decorate --graph --color
+    lg = log --pretty=lg
+    glg = log --graph --pretty=lg
+    slg = stash list --pretty=reflg
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 [push]
-        default = simple
+    default = simple
 [core]
-	pager = bat
+    pager = bat
 [merge]
-	tool = nvimdiff
-	conflictstyle = diff3
+    tool = nvimdiff
+    conflictstyle = diff3
 [diff]
-	tool = nvimdiff
+    tool = nvimdiff
 [difftool]
-	prompt = false
+    prompt = false
 [mergetool]
-	prompt = false
+    prompt = false
 [difftool "nvimdiff"]
-	cmd = nvim -d $LOCAL $REMOTE
-[mergetool "vimdiff"]
-	cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    cmd = nvim -d $LOCAL $REMOTE
+[mergetool "nvimdiff"]
+    cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [init]
-	templatedir = ~/.git_template
+    templatedir = ~/.git_template
