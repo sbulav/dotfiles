@@ -6,7 +6,7 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs
-PATH=$PATH:$HOME/.local/bin:$HOME/bin
+PATH=$PATH:$HOME/.local/bin:$HOME/bin:${HOME}/.krew/bin:
 
 # Use more colorful scheme
 export TERM=xterm-24bit
@@ -22,8 +22,8 @@ export LESS="-X"
 
 # Export path
 export PATH
-export HISTSIZE=10000
-export HISTFILESIZE=10000
+export HISTSIZE=50000
+export HISTFILESIZE=50000
 
 # Use ll alias
 alias ll='ls -la'
@@ -37,11 +37,11 @@ alias helpv="cat .vim_help|less"
 alias cat='bat -p'
 
 alias kk=kubectl
-alias kubens='kubectl config set-context --current --namespace '
-alias kubectx='kubectl config use-context '
 
 alias vim=nvim
 alias vi=nvim
+
+alias git-clean='git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d;git remote prune origin'
 
 # Connect to existing tmux session; start a new one otherwise
 if shopt -q login_shell; then
@@ -110,7 +110,13 @@ fo() (
 kgjq() { (FZF_DEFAULT_OPTS='';kubectl get $* -o json > /tmp/kf.json;echo ''  | fzf --print-query --preview 'jq {q} /tmp/kf.json';) }
 
 # Get kubernetes #kind #name, preview in  yaml and open on enter in nvim
-kg() { kubectl get $* -o name | fzf --preview 'kubectl get {} -o yaml' --bind "enter:execute(kubectl get {} -o yaml | nvim )"; }
+kg() {
+    kubectl get $* -o name | \
+        fzf --preview 'kubectl get {} -o yaml' \
+            --bind "ctrl-\:execute(kubectl get {+} -o yaml | nvim )" \
+            --bind "ctrl-r:reload(kubectl get $* -o name)" --header 'Press CTRL-R to reload' \
+            --bind "ctrl-]:execute(kubectl edit {+})";
+     }
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
