@@ -93,3 +93,24 @@ fi
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_DEFAULT_OPTS="--height 50% -1 --layout=reverse-list --multi --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'"
+
+# Modified version where you can press
+#   - CTRL-O to open with `open` command,
+#   - CTRL-E or Enter key to open with the $EDITOR
+fo() (
+  IFS=$'\n' out=("$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)")
+  key=$(head -1 <<< "$out")
+  file=$(head -2 <<< "$out" | tail -1)
+  if [ -n "$file" ]; then
+    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+  fi
+)
+
+# Get kubernetes #kind #name and parse it in jq
+kgjq() { (FZF_DEFAULT_OPTS='';kubectl get $* -o json > /tmp/kf.json;echo ''  | fzf --print-query --preview 'jq {q} /tmp/kf.json';) }
+
+# Get kubernetes #kind #name, preview in  yaml and open on enter in nvim
+kg() { kubectl get $* -o name | fzf --preview 'kubectl get {} -o yaml' --bind "enter:execute(kubectl get {} -o yaml | nvim )"; }
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
