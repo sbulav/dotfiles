@@ -111,10 +111,13 @@ kgjq() { (FZF_DEFAULT_OPTS='';kubectl get $* -o json > /tmp/kf.json;echo ''  | f
 
 # Get kubernetes #kind #name, preview in  yaml and open on enter in nvim
 kg() {
-    kubectl get $* -o name | \
-        fzf --preview 'kubectl get {} -o yaml' \
-            --bind "ctrl-\:execute(kubectl get {+} -o yaml | nvim )" \
-            --bind "ctrl-r:reload(kubectl get $* -o name)" --header 'Press CTRL-R to reload' \
+    kubectl get $1 -o name | \
+        fzf --query="${@: -1}" \
+            --preview 'kubectl get {}' \
+            --bind "ctrl-s:execute(kubectl get {+} | bat --paging=always)" \
+            --bind "ctrl-d:execute(kubectl describe {+} | bat --paging=always)" \
+            --bind "ctrl-\:execute(kubectl get {+} -o yaml --export | nvim +'set ft=yaml')" \
+            --bind "ctrl-r:reload(kubectl get $1 -o name)" --header "Press CTRL-R to reload resource:$1" \
             --bind "ctrl-]:execute(kubectl edit {+})";
      }
 
