@@ -108,8 +108,8 @@ set path-=/usr/include
 """""""""""""""""""""""""""""""""""""""
 " Global configuration
 set expandtab                     " Transform kitten killer tabs to spaces
-set tabstop=4                     " Number of visual spaces per tab
-set shiftwidth=4                  " Number of spaces to use for autoindent
+set tabstop=2                     " Number of visual spaces per tab
+set shiftwidth=2                  " Number of spaces to use for autoindent
 set backspace=indent,eol,start    " Allow backspacing over everything in
                                   " insert mode
 set autoindent                    " Always set autoindent on
