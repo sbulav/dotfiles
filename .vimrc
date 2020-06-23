@@ -44,6 +44,7 @@ Plug 'tpope/vim-fugitive'              " Git combine
 Plug 'elzr/vim-json'                   " Json syntax highlight
 Plug 'glench/vim-jinja2-syntax'        " Jinja support for vim
 Plug 'pearofducks/ansible-vim'         " Ansible 2.x syntax
+Plug 'hashivim/vim-terraform'          " Terraform syntax highlight
 Plug 'sbulav/vim-helm'                 " Helm syntax and compiler
 Plug 'neovim/nvim-lsp'                 " LSP templates and completions
 Plug 'haorenW1025/completion-nvim'     " Async completions for nvim-lsp
@@ -240,6 +241,8 @@ augroup pscbindings
   autocmd FileType yaml nnoremap <buffer> <F6> :Redir !kubectl apply -f %<cr>
   autocmd FileType helm nnoremap <buffer> <F5> :Redir !helm install . --dry-run --debug <cr>
   autocmd FileType python nnoremap <buffer> <F5> :Redir !pytest --kube-config=$KUBECONFIG<cr>
+  autocmd FileType terraform nnoremap <buffer> <F5> :Redir !terraform plan -no-color<cr>
+  autocmd FileType yaml nnoremap <buffer> <F6> :Redir !terraform apply<cr>
 augroup end
 
 " Cursor
