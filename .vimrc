@@ -140,6 +140,7 @@ set ignorecase                    " Basically, ignore case when searching...
 set smartcase                     " ...but be smart on the case when searching
 set hlsearch                      " Highlight search matches as you type
 set incsearch                     " Show search matches as you type
+set inccommand=nosplit            " Show result of substitution immediately
 set ruler                         " Display the current cursor position
 set display+=lastline             " Indicate that log lines are truncated
 
