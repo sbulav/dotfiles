@@ -271,7 +271,7 @@ augroup END
 
 " Highlight yanked text in neovim
 if exists('##TextYankPost')
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank('IncSearch', 1500)
+    autocmd TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=1500, on_visual=true}
 endif
 
 "
