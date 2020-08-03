@@ -42,6 +42,7 @@ alias vim=nvim
 alias vi=nvim
 
 alias git-clean='git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d;git remote prune origin'
+alias git-checkout='git checkout $(git branch -l | fzf)'
 
 # Connect to existing tmux session; start a new one otherwise
 if shopt -q login_shell; then
@@ -118,6 +119,7 @@ kg() {
             --bind "ctrl-d:execute(kubectl describe {+} | bat --paging=always)" \
             --bind "ctrl-\:execute(kubectl get {+} -o yaml --export | nvim +'set ft=yaml')" \
             --bind "ctrl-r:reload(kubectl get $1 -o name)" --header "Press CTRL-R to reload resource:$1" \
+            --bind "ctrl-l:execute(kubectl logs --tail=100 {+} | bat)" \
             --bind "ctrl-]:execute(kubectl edit {+})";
      }
 
