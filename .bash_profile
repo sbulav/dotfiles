@@ -122,6 +122,10 @@ kg() {
             --bind "ctrl-l:execute(kubectl logs --tail=100 {+} | bat)" \
             --bind "ctrl-]:execute(kubectl edit {+})";
      }
+#Get kubernetes resources and limits in current namespace
+kgreq() {
+  kubectl get pods  -o=custom-columns='NAME:spec.containers[*].name,MEMREQ:spec.containers[*].resources.requests.memory,MEMLIM:spec.containers[*].resources.limits.memory,CPUREQ:spec.containers[*].resources.requests.cpu,CPULIM:spec.containers[*].resources.limits.cpu'
+}
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
