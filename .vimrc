@@ -29,8 +29,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'myusuf3/numbers.vim'             " Intelligently toggle line numbers
 Plug 'tpope/vim-commentary'            " Comment stuff in and out
 Plug 'tpope/vim-eunuch'                " Integration with UNIX shell
-Plug 'tpope/vim-repeat'                " Use dot to repeat more actions
-Plug 'tpope/vim-surround'              " Surround objects with parenthesys, quotes and more
+Plug 'machakann/vim-sandwich'          " Surround objects with any character e.g. saiw|sdb|srb"
 Plug 'justinmk/vim-sneak'              " Jump to location specified by two characters
 Plug 'romainl/vim-qf'                  " Better work with quickfix
 Plug 'mbbill/undotree'                 " Undotree
@@ -60,7 +59,7 @@ Plug 'Vimjas/vim-python-pep8-indent'   " PEP8 compliant indentation
 Plug 'janko/vim-test'                  " Running tests
 
 " Text objects
-Plug 'beloglazov/vim-textobj-quotes'     " TO closest pair of quotes of any type iq/aq
+" Provided by vim-sandwitch              " TO closest pair of quotes of any type ib/ab
 Plug 'jceb/vim-textobj-uri'              " TO URL                                iu/au
 Plug 'kana/vim-textobj-entire'           " TO entire buffer                      ie/ae
 Plug 'kana/vim-textobj-fold'             " TO folding                            iz/az
@@ -241,7 +240,8 @@ augroup pscbindings
   autocmd FileType yaml nnoremap <buffer> <F5> :Redir !kubectl apply --dry-run -o yaml -f %<cr>
   autocmd FileType yaml nnoremap <buffer> <F6> :Redir !kubectl apply -f %<cr>
   autocmd FileType helm nnoremap <buffer> <F5> :Redir !helm install . --dry-run --debug <cr>
-  autocmd FileType python nnoremap <buffer> <F5> :Redir !pytest --kube-config=$KUBECONFIG<cr>
+  " autocmd FileType python nnoremap <buffer> <F5> :Redir !pytest --kube-config=$KUBECONFIG<cr>
+  autocmd FileType python nnoremap <buffer> <F5> :Redir !python %<cr>
   autocmd FileType terraform nnoremap <buffer> <F5> :Redir !terraform plan -no-color<cr>
   autocmd FileType yaml nnoremap <buffer> <F6> :Redir !terraform apply<cr>
 augroup end
@@ -416,7 +416,7 @@ nnoremap <leader>r :source $MYVIMRC<CR>
 " Use Redir function to open vim command in split
 nnoremap <leader>R :Redir <c-f>A
 " Open vimrc
-nnoremap <leader>rc :edit ~/.vimrc<CR>
+nnoremap <leader>rc :edit ~/dotfiles/.vimrc<CR>
 " Global replace word under cursor
 nnoremap <leader>% :%s/\<<C-r>=expand('<cword>')<CR>\>/
 " Change project folder to current file's directory for current window
@@ -433,6 +433,11 @@ nmap <silent> <leader>tf :TestFile<CR>
 nmap <silent> <leader>ts :TestSuite<CR>
 nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tv :TestVisit<CR>Folding
+
+" vim-sneak mappings
+
+map f <Plug>Sneak_s
+map F <Plug>Sneak_S
 """""""""""""""""""""""""""""
 " Enable folding
 set foldmethod=indent
@@ -699,7 +704,16 @@ sign define LspDiagnosticsHintSign text=➤
       require'completion'.on_attach();
     end
 
-  nvim_lsp.yamlls.setup{ on_attach = M.on_attach; }
+    nvim_lsp.yamlls.setup{
+      on_attach = M.on_attach,
+      -- settings = {
+      --     yaml = {
+      --       schemas = {
+      --       ['kubernetes'] = "/*.yaml"
+      --       },
+      --  }
+      --}
+  }
   nvim_lsp.vimls.setup{ on_attach = M.on_attach; }
   nvim_lsp.terraformls.setup{ on_attach = M.on_attach; }
 EOF
