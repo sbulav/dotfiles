@@ -46,8 +46,8 @@ Plug 'pearofducks/ansible-vim'         " Ansible 2.x syntax
 Plug 'hashivim/vim-terraform'          " Terraform syntax highlight
 Plug 'sbulav/vim-helm'                 " Helm syntax and compiler
 Plug 'neovim/nvim-lsp'                 " LSP templates and completions
-Plug 'haorenW1025/completion-nvim'     " Async completions for nvim-lsp
-Plug 'haorenW1025/diagnostic-nvim'     " Async diagnostincs for nvim-lsp
+Plug 'nvim-lua/completion-nvim'        " Async completions for nvim-lsp
+Plug 'nvim-lua/diagnostic-nvim'        " Async diagnostincs for nvim-lsp
 
 " Code display
 Plug 'lifepillar/vim-solarized8'
@@ -687,7 +687,7 @@ endfunction
 
 
 " nvim-lsp Settings
-autocmd FileType terraform,vim,yaml,bash,lua call s:ConfigureBuffer()
+autocmd FileType terraform,vim,yaml,bash,lua,python call s:ConfigureBuffer()
 
 sign define LspDiagnosticsErrorSign text=✖
 sign define LspDiagnosticsWarningSign text=⚠
@@ -715,6 +715,7 @@ sign define LspDiagnosticsHintSign text=➤
       --}
   }
   nvim_lsp.vimls.setup{ on_attach = M.on_attach; }
+  nvim_lsp.pyls.setup{ on_attach = M.on_attach; }
   nvim_lsp.terraformls.setup{ on_attach = M.on_attach; }
 EOF
 
