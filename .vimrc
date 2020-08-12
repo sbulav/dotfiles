@@ -81,6 +81,7 @@ set t_vb=                       " Same as above
 set autoread                    " Reload the file if changed from the outside
 set switchbuf=useopen           " if opening a file from :ls, :buffers, :files, etc. jump to open version
                                 " of the file, if one exists
+set clipboard+=unnamedplus      " Use * and + registers to access system clipboard(i.e. tmux)
 set confirm                     " dialog foor unsaved changes
 set splitright                  " go to right pane by default (Needed for quickmenu)
 
