@@ -25,7 +25,7 @@ load_keys
 set -g __fish_git_prompt_show_informative_status 1
 # set -g __fish_git_prompt_hide_untrackedfiles 1
 set __fish_git_prompt_showdirtystate 'yes'
-set __fish_git_prompt_showstashstate 'no'
+# set __fish_git_prompt_showstashstate 'no'
 set __fish_git_prompt_showupstream 'auto'
 set __fish_git_prompt_color_branch yellow
 
