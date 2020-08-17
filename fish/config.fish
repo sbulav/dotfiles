@@ -19,4 +19,10 @@ load_keys
 # git_prompt
 # Configure FZF
 set -gx FZF_DEFAULT_COMMAND 'rg --files'
-set -gx FZF_DEFAULT_OPTS "--height 50% -1 --layout=reverse-list --multi --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'"
+# Smart fzf preview window
+set -gx FZF_DEFAULT_OPTS "--height 50% -1 --layout=reverse-list --multi \
+  --preview='set -l data (file --mime {}); \
+  string match -q \"*binary\" \$data \
+  && echo \"Binary file\"\n\$data \
+  || bat --style=numbers --color=always {} 2>/dev/null; \
+  or echo {}'"
