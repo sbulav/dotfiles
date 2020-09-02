@@ -34,6 +34,7 @@ Plug 'justinmk/vim-sneak'              " Jump to location specified by two chara
 Plug 'romainl/vim-qf'                  " Better work with quickfix
 Plug 'mbbill/undotree'                 " Undotree
 Plug 'junegunn/fzf.vim'                " Fuzzy finder
+Plug 'junegunn/fzf'                    " Fzf wrapper
 
 " Version Control Plugins
 Plug 'airblade/vim-gitgutter'          " Git line status
@@ -650,8 +651,6 @@ command! -nargs=1 -complete=command Redir silent call Redir(<q-args>)
 " Setup language servers
 lua << EOF
 	require'nvim_lsp'.yamlls.setup{}
-	require'nvim_lsp'.vimls.setup{}
-	require'nvim_lsp'.sumneko_lua.setup{}
 	require'nvim_lsp'.terraformls.setup{}
 EOF
 
@@ -688,7 +687,7 @@ endfunction
 
 
 " nvim-lsp Settings
-autocmd FileType terraform,vim,yaml,bash,lua,python call s:ConfigureBuffer()
+autocmd FileType terraform,yaml,bash,python call s:ConfigureBuffer()
 
 sign define LspDiagnosticsErrorSign text=✖
 sign define LspDiagnosticsWarningSign text=⚠
@@ -715,7 +714,6 @@ sign define LspDiagnosticsHintSign text=➤
       --  }
       --}
   }
-  nvim_lsp.vimls.setup{ on_attach = M.on_attach; }
   nvim_lsp.pyls.setup{ on_attach = M.on_attach; }
   nvim_lsp.terraformls.setup{ on_attach = M.on_attach; }
 EOF
