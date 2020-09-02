@@ -5,7 +5,7 @@ fzf_key_bindings
 set -g TERM xterm-256color
 
 # Append paths
-set -a PATH "$HOME/bin/" "$HOME/.local/bin" "$HOME/.krew/bin" "$HOME/.rvm/bin/"
+set -a PATH "$HOME/bin/" "$HOME/.local/bin"
 
 # Set EDITOR to nvim
 set -gx EDITOR nvim
@@ -39,3 +39,6 @@ set -gx FZF_DEFAULT_OPTS "--height 50% -1 --layout=reverse-list --multi \
   && echo \"Binary file\"\n\$data \
   || bat --style=numbers --color=always {} 2>/dev/null; \
   or echo {}'"
+
+# Fix MTU under VPN in WSL2
+sudo ip link set dev eth0 mtu 1350
