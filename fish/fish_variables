@@ -3,6 +3,8 @@
 SETUVAR __fish_initialized:3100
 SETUVAR _fish_abbr_gc:git\x2dcheckout
 SETUVAR _fish_abbr_kbuectl:kubectl
+SETUVAR _fish_abbr_ks:kubens
+SETUVAR _fish_abbr_kx:kubectx
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:005fd7
