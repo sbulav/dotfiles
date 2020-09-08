@@ -49,6 +49,7 @@ Plug 'sbulav/vim-helm'                 " Helm syntax and compiler
 Plug 'neovim/nvim-lsp'                 " LSP templates and completions
 Plug 'nvim-lua/completion-nvim'        " Async completions for nvim-lsp
 Plug 'nvim-lua/diagnostic-nvim'        " Async diagnostincs for nvim-lsp
+Plug 'Konfekt/vim-compilers'           " Set of vim compilers
 
 " Code display
 Plug 'lifepillar/vim-solarized8'
@@ -231,7 +232,7 @@ set suffixesadd+=.groovy
 augroup makeCmd
   autocmd!
   au FileType go         call SetComp ('go', 'go run %')
-  au FileType python     call SetComp ('', 'python %')
+  au FileType python     call SetComp ('python', 'python %')
   au FileType terraform  call SetComp ('', 'terraform plan -no-color')
   au FileType sh         call SetComp ('', 'bash %')
   au FileType helm       call SetComp ('helm', 'helm lint')
@@ -245,7 +246,7 @@ augroup pscbindings
   " autocmd FileType python nnoremap <buffer> <F5> :Redir !pytest --kube-config=$KUBECONFIG<cr>
   autocmd FileType python nnoremap <buffer> <F5> :Redir !python %<cr>
   autocmd FileType terraform nnoremap <buffer> <F5> :Redir !terraform plan -no-color<cr>
-  autocmd FileType yaml nnoremap <buffer> <F6> :Redir !terraform apply<cr>
+  autocmd FileType terraform nnoremap <buffer> <F6> :Redir !terraform apply --auto-approve<cr>
 augroup end
 
 " Cursor
