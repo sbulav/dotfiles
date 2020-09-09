@@ -388,6 +388,7 @@ nnoremap <leader>ff :Files<cr>
 nnoremap <leader>fh :History<cr>
 nnoremap <leader>fl :Lines<cr>
 nnoremap <leader>fm :Maps<cr>
+nnoremap <leader>fM :Marks<cr>
 nnoremap <leader>fo :Commands<cr>
 nnoremap <leader>ft :Tags<cr>
 " Mapping selecting mappings
@@ -428,6 +429,8 @@ nnoremap <leader>c :lcd %:p:h<cr>
 nnoremap <leader>to :terminal<cr>
 " Exit terminal insert mode
 tnoremap <Esc> <C-\><C-n>
+" Call completion
+inoremap <silent><expr> <c-space> completion#trigger_completion()
 
 " vim-test mappings
 
@@ -562,11 +565,11 @@ function! ToggleList(bufname, pfx)
       return
     endif
   endfor
-  if a:pfx == 'l' && len(getloclist(0)) == 0
-      echohl ErrorMsg
-      echo "Location List is Empty."
-      return
-  endif
+  " if a:pfx == 'l' && len(getloclist(0)) == 0
+  "     echohl ErrorMsg
+  "     echo "Location List is Empty."
+  "     return
+  " endif
   let winnr = winnr()
   exec(a:pfx.'open')
   if winnr() != winnr
