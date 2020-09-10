@@ -43,7 +43,6 @@ Plug 'tpope/vim-fugitive'              " Git combine
 " Languages
 Plug 'elzr/vim-json'                   " Json syntax highlight
 Plug 'glench/vim-jinja2-syntax'        " Jinja support for vim
-Plug 'pearofducks/ansible-vim'         " Ansible 2.x syntax
 Plug 'hashivim/vim-terraform'          " Terraform syntax highlight
 Plug 'sbulav/vim-helm'                 " Helm syntax and compiler
 Plug 'neovim/nvim-lsp'                 " LSP templates and completions
@@ -69,6 +68,8 @@ Plug 'kana/vim-textobj-function'         " TO function                          
 Plug 'kana/vim-textobj-indent'           " TO block of code based on indent      ii/ai
 Plug 'kana/vim-textobj-line'             " TO line                               il/al
 Plug 'kana/vim-textobj-user'             " Allow use of custom textobjects
+
+Plug 'nvim-treesitter/nvim-treesitter'
 
 call plug#end()
 
@@ -662,11 +663,13 @@ EOF
 " :lua print(vim.inspect(vim.lsp.buf_get_clients()))
 
 " nvim-lsp Mappings
+" :h lsp-buf
 function! s:ConfigureBuffer()
     nnoremap <buffer> <silent> gd          <cmd>lua vim.lsp.buf.definition()<CR>
     nnoremap <buffer> <silent> K           <cmd>lua vim.lsp.buf.hover()<CR>
     nnoremap <buffer> <silent> gi          <cmd>lua vim.lsp.buf.implementation()<CR>
     nnoremap <buffer> <silent> gr          <cmd>lua vim.lsp.buf.references()<CR>
+    nnoremap <buffer> <silent> <c-k>       <cmd>lua vim.lsp.buf.signature_help()<CR>
     nnoremap <buffer> <silent> gs          <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
     " rename currently has issues https://github.com/neovim/neovim/pull/12185
     nnoremap <buffer> <silent> <leader>rn  <cmd>lua vim.lsp.buf.rename()<CR>
@@ -728,3 +731,12 @@ EOF
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "python",     -- one of "all", "language", or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+}
+EOF
