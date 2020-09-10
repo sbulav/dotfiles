@@ -1,28 +1,44 @@
 # My configuration files
 
-## Vim configuration
-## Installation:
 
-1. Install Vundle
-```
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+## Tools installation
+
+Run make and specify tool to install:
+
+```bash
+make
+ tools               : Install neovim, rg, fzf, etc..
+ neovim              : Update neovim to nightly version
+ fzf                 : Update fzf to nightly version
+ k9s                 : Update k9s to nightly version
+ ripgrep             : Update ripgrep to latest release
+ dotfiles            : Update dotfiles to latest version
+ alpine              : Run alpine container for tests
+ nginx-conf          : Get ingress configuration for host
+ kk-tools            : Run tools containers in current cluster
+ /tmp/nvim.appimage  : Download nightly nvim appimage
+ /tmp/fzf.tgz        : Download latest fzf release
+ /tmp/k9s.tgz        : Download latest k9s release
+ /tmp/ripgrep.deb    : Download latest ripgrep release
 ```
 
-2. Install my vimrc config file
+Run `make tools` to install all of the tools.
+
+Create symlinks:
 ```
-git clone https://github.com/sbulav/dotfiles && cp dotfiles/.vimrc ~/.vimrc
+ln -s ~/dotfiles/nvim/ ~/.config/nvim
+ln -s ~/dotfiles/Makefile  ~/Makefile
+ln -s ~/dotfiles/tmux/plugins/kube-tmux ~/.tmux
+ln -s ~/dotfiles/fish/ ~/.config/fish
 ```
 
-3. Install necessary plugins by executing command below from VIM
-```
-:PluginInstall
-```
+## NeoVim configuration
 
-Done!
+Just run `nvim` or `vim` if you've aliased `vim`=`nvim`
 
+`vim-plug` will be installed automatically.
 
-## Install bash profile, tmux, and vim at one command
-```
-git clone https://github.com/sbulav/dotfiles && cp dotfiles/.* ~/
-```
+- To install missing neovim Plugins, run `PlugInstall`
+- To update plugins, run `PlugUpdate`.
+  - You can use `D` to view changes
 
