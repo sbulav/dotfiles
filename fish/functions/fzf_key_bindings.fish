@@ -25,7 +25,7 @@ function fzf_key_bindings
     # $dir itself, even if hidden.
     test -n "$FZF_CTRL_T_COMMAND"; or set -l FZF_CTRL_T_COMMAND "
     command find -L \$dir -mindepth 1 \\( -path \$dir'*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs'\
-    -o -path '*node_modules*' -o -path '*venv*' \\) -prune \
+    -o -path '*node_modules*' -o -path '*venv*' -o -path '*ctags*' \\) -prune \
     -o -type f -print \
     -o -type d -print \
     -o -type l -print 2> /dev/null | sed 's@^\./@@'"
@@ -78,7 +78,7 @@ function fzf_key_bindings
 
     test -n "$FZF_ALT_C_COMMAND"; or set -l FZF_ALT_C_COMMAND "
     command find -L \$dir -mindepth 1 \\( -path \$dir'*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs'\
-    -o -path '*node_modules*' -o -path '*venv*' \\) -prune \
+    -o -path '*node_modules*' -o -path '*venv*' -o -path '*ctags*' \\) -prune \
     -o -type d -print 2> /dev/null | sed 's@^\./@@'"
     test -n "$FZF_TMUX_HEIGHT"; or set FZF_TMUX_HEIGHT 40%
     begin
