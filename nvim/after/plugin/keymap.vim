@@ -38,6 +38,8 @@ nnoremap <F8> :TSPlaygroundToggle<CR>
 " Show lsp log
 nnoremap <F9> :Redir !tail -100 ~/.local/share/nvim/lsp.log<cr>
 
+" Show lsp status
+nnoremap <F10> :Redir lua print(vim.inspect(vim.lsp.buf_get_clients()))<cr>
 
 " space toggle fold
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
