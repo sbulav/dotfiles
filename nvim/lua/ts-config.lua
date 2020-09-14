@@ -34,6 +34,37 @@ require'nvim-treesitter.configs'.setup {
             }
         }
     },
+    textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+        },
+      },
+    move = {
+      enable = true,
+      goto_next_start = {
+        ["]f"] = "@function.outer",
+        ["]]"] = "@class.outer",
+      },
+      goto_next_end = {
+        ["]F"] = "@function.outer",
+        ["]["] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[f"] = "@function.outer",
+        ["[["] = "@class.outer",
+      },
+      goto_previous_end = {
+        ["[F"] = "@function.outer",
+        ["[]"] = "@class.outer",
+      },
+    },
+  },
     ensure_installed = {'bash', 'html','query', 'json', 'lua', 'markdown', 'python', 'yaml' } -- one of 'all', 'language', or a list of languages
 }
 
