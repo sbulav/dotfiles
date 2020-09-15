@@ -28,7 +28,7 @@ Plug 'elzr/vim-json'                   " Json syntax highlight
 Plug 'glench/vim-jinja2-syntax'        " Jinja support for vim
 Plug 'hashivim/vim-terraform'          " Terraform syntax highlight
 Plug 'sbulav/vim-helm'                 " Helm syntax and compiler
-Plug 'neovim/nvim-lsp'                 " LSP templates and completions
+Plug 'neovim/nvim-lspconfig'           " LSP templates and completions
 Plug 'nvim-lua/completion-nvim'        " Async completions for nvim-lsp
 Plug 'nvim-lua/diagnostic-nvim'        " Async diagnostincs for nvim-lsp
 Plug 'Konfekt/vim-compilers'           " Set of vim compilers
