@@ -28,7 +28,6 @@ KUBE_TMUX_CTX_COLOR="${KUBE_TMUX_CTX_COLOR-red}"
 KUBE_TMUX_NS_COLOR="${KUBE_TMUX_NS_COLOR-cyan}"
 KUBE_TMUX_KUBECONFIG_CACHE="${KUBECONFIG}"
 KUBE_TMUX_UNAME=$(uname)
-KUBE_TMUX_LAST_TIME=0
 
 _kube_tmux_binary_check() {
   command -v $1 >/dev/null
@@ -56,25 +55,17 @@ _kube_tmux_split() {
   echo $2
 }
 
-# stat_command() {
-#   if `stat -f '%a' `
-#   stat_bsd="$(stat -f '%a' "$(dirname "${dir}")")"
-#   stat_gnu="$(stat -c '%Lp' "$(dirname "${dir}")")"
-# }
-
 _kube_tmux_file_newer_than() {
   local mtime
   local file=$1
-  local check_time=$2
+  local check_time
 
   if [[ "$KUBE_TMUX_UNAME" == "Linux" ]]; then
     mtime=$(stat -c %Y "${file}")
-  elif [[ "$KUBE_TMUX_UNAME" == "Darwin" ]]; then
-    # Use native stat in cases where gnutils are installed
-    mtime=$(/usr/bin/stat -f %m "$file")
+    check_time=$(stat -c %Y /tmp/.kube-tmux-stat)
   fi
 
-  [[ "${mtime}" -gt "${check_time}" ]]
+  [[ "${check_time}" -lt "${check_time}" ]]
 }
 
 _kube_tmux_update_cache() {
@@ -91,7 +82,7 @@ _kube_tmux_update_cache() {
   local conf
   for conf in $(_kube_tmux_split : "${KUBECONFIG:-${HOME}/.kube/config}"); do
     [[ -r "${conf}" ]] || continue
-    if _kube_tmux_file_newer_than "${conf}" "${KUBE_TMUX_LAST_TIME}"; then
+    if _kube_tmux_file_newer_than "${conf}" ; then
       _kube_tmux_get_context_ns
       return
     fi
@@ -101,39 +92,37 @@ _kube_tmux_update_cache() {
 _kube_tmux_get_context_ns() {
   # Set the command time
 
-  if [[ "${KUBE_TMUX_SHELL}" == "bash" ]]; then
-    if ((BASH_VERSINFO[0] >= 4)); then
-      KUBE_TMUX_LAST_TIME=$(printf '%(%s)T')
-    else
-      KUBE_TMUX_LAST_TIME=$(date +%s)
-    fi
-  fi
-
   KUBE_TMUX_CONTEXT="$(grep current-context $KUBECONFIG | cut -f2 -d ":" | tr -d " ")"
   KUBE_TMUX_NAMESPACE="$(awk '/^contexts:/,/^current/' $KUBECONFIG | grep -E '(^  -|namespace:|name:)' | grep -C1 "$KUBE_TMUX_CONTEXT" | grep namespace|cut -f2 -d":")"
-
-}
-
-kube_tmux() {
-  _kube_tmux_update_cache
 
   local KUBE_TMUX
 
   # Symbol
-  KUBE_TMUX+="#[fg=blue]$(_kube_tmux_symbol)#[fg=colour${1}]"
+  KUBE_TMUX+="#[fg=blue]$(_kube_tmux_symbol)#[fg=colour250]"
 
   # Context
-  KUBE_TMUX+="#[fg=${2}]${KUBE_TMUX_CONTEXT}"
+  KUBE_TMUX+="#[fg=magenta]${KUBE_TMUX_CONTEXT}"
 
   # Namespace
   if [[ "${KUBE_TMUX_NS_ENABLE}" == true ]]; then
     if [[ -n "${KUBE_TMUX_DIVIDER}" ]]; then
       KUBE_TMUX+="#[fg=colour250]${KUBE_TMUX_DIVIDER}"
     fi
-    KUBE_TMUX+="#[fg=${3}]${KUBE_TMUX_NAMESPACE}"
+    KUBE_TMUX+="#[fg=cyan]${KUBE_TMUX_NAMESPACE}"
   fi
 
-  echo "${KUBE_TMUX}"
+  echo "${KUBE_TMUX}" > /tmp/.kube-tmux-stat
+
+}
+
+kube_tmux() {
+  if [[ ! -f "/tmp/.kube-tmux-stat" ]]; then
+    _kube_tmux_get_context_ns
+  fi
+  _kube_tmux_update_cache
+
+  cat /tmp/.kube-tmux-stat
+
 }
 
 kube_tmux "$@"
