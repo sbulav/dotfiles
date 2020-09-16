@@ -65,7 +65,7 @@ _kube_tmux_file_newer_than() {
     check_time=$(stat -c %Y /tmp/.kube-tmux-stat)
   fi
 
-  [[ "${check_time}" -lt "${check_time}" ]]
+  [[ "${check_time}" -lt "${mtime}" ]]
 }
 
 _kube_tmux_update_cache() {
