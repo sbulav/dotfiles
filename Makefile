@@ -33,7 +33,7 @@ fzf: /tmp/fzf.tgz
 k9s: /tmp/k9s.tgz
 	@echo "----Making Tool k9s-----"
 	@sudo tar xvf /tmp/k9s.tgz -C /usr/local/bin/ --overwrite
-	@k9s version | head -1
+	@k9s version | tail -3
 
 ## ripgrep             : Update ripgrep to latest release
 .PHONY : ripgrep
@@ -42,7 +42,7 @@ ripgrep: /tmp/ripgrep.deb
 	@sudo dpkg -i /tmp/ripgrep.deb
 	@fzf --version | head -1
 
-## terraform            : Update terraform to latest release
+## terraform           : Update terraform to latest release
 .PHONY : terraform
 terraform: /tmp/terraform.zip
 	@echo "----Making Tool terraform-----"
