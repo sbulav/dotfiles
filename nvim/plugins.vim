@@ -52,8 +52,4 @@ Plug 'kana/vim-textobj-indent'           " TO block of code based on indent     
 Plug 'kana/vim-textobj-line'             " TO line                               il/al
 Plug 'kana/vim-textobj-user'             " Allow use of custom textobjects
 
-" Treesitter
-Plug 'nvim-treesitter/nvim-treesitter'   " Smart text parsing
-Plug 'nvim-treesitter/playground'        " Live treesitter information
-
 call plug#end()

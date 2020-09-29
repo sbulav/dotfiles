@@ -32,9 +32,6 @@ nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
 " Check spelling on F6
 nmap <F6> :set spell!<CR>
 
-" Show treesitter playground
-nnoremap <F8> :TSPlaygroundToggle<CR>
-
 " Show lsp log
 nnoremap <F9> :Redir !tail -100 ~/.local/share/nvim/lsp.log<cr>
 
