@@ -1,6 +1,7 @@
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 NEOVIM ?= /usr/local/bin/nvim
 TERRAFORM_VERSION ?= 0.13.3
+GH_VERSION ?= 1.1.0
 HOST ?= one-ingress.tst.k8s.ecom.ahold.nl
 .DEFAULT: help
 
@@ -10,7 +11,7 @@ help : Makefile
 	@sed -n 's/^##//p' $<
 
 ## tools               : Install neovim, rg, fzf, etc..
-tools: neovim fzf ripgrep k9s terraform
+tools: neovim fzf ripgrep k9s terraform gh
 
 ## neovim              : Update neovim to nightly version
 .PHONY : neovim
@@ -34,6 +35,13 @@ k9s: /tmp/k9s.tgz
 	@echo "----Making Tool k9s-----"
 	@sudo tar xvf /tmp/k9s.tgz -C /usr/local/bin/ --overwrite
 	@k9s version | tail -3
+
+## gh                  : Update gh to nightly version
+.PHONY : gh
+gh: /tmp/gh.tgz
+	@echo "----Making Tool gh-----"
+	@sudo tar xvf /tmp/gh.tgz --strip-components 2 -C /home/sab/bin/ gh_$(GH_VERSION)_linux_amd64/bin/gh
+	@gh version
 
 ## ripgrep             : Update ripgrep to latest release
 .PHONY : ripgrep
@@ -83,6 +91,10 @@ kk-tools:
 ## /tmp/k9s.tgz        : Download latest k9s release
 /tmp/k9s.tgz:
 	@curl -s -S -L -f https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_x86_64.tar.gz -z $@ -o $@
+
+## /tmp/gh.tgz         : Download latest gh release
+/tmp/gh.tgz:
+	curl -s -S -L -f https://github.com/cli/cli/releases/download/v$(GH_VERSION)/gh_$(GH_VERSION)_linux_amd64.tar.gz -z $@ -o $@
 
 ## /tmp/ripgrep.deb    : Download latest ripgrep release
 /tmp/ripgrep.deb:
