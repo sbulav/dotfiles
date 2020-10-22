@@ -2,6 +2,7 @@ ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 NEOVIM ?= /usr/local/bin/nvim
 TERRAFORM_VERSION ?= 0.13.3
 GH_VERSION ?= 1.1.0
+FZF_VERSION ?= 0.23.0
 HOST ?= one-ingress.tst.k8s.ecom.ahold.nl
 .DEFAULT: help
 
@@ -86,7 +87,7 @@ kk-tools:
 
 ## /tmp/fzf.tgz        : Download latest fzf release
 /tmp/fzf.tgz:
-	@curl -s -S -L -f https://github.com/junegunn/fzf-bin/releases/download/0.22.0/fzf-0.22.0-linux_amd64.tgz -z $@ -o $@
+	@curl -s -S -L -f https://github.com/junegunn/fzf-bin/releases/download/$(FZF_VERSION)/fzf-$(FZF_VERSION)-linux_amd64.tgz -z $@ -o $@
 
 ## /tmp/k9s.tgz        : Download latest k9s release
 /tmp/k9s.tgz:
@@ -94,7 +95,7 @@ kk-tools:
 
 ## /tmp/gh.tgz         : Download latest gh release
 /tmp/gh.tgz:
-	curl -s -S -L -f https://github.com/cli/cli/releases/download/v$(GH_VERSION)/gh_$(GH_VERSION)_linux_amd64.tar.gz -z $@ -o $@
+	@curl -s -S -L -f https://github.com/cli/cli/releases/download/v$(GH_VERSION)/gh_$(GH_VERSION)_linux_amd64.tar.gz -z $@ -o $@
 
 ## /tmp/ripgrep.deb    : Download latest ripgrep release
 /tmp/ripgrep.deb:
