@@ -1,8 +1,8 @@
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 NEOVIM ?= /usr/local/bin/nvim
 TERRAFORM_VERSION ?= 0.13.3
-GH_VERSION ?= 1.1.0
-FZF_VERSION ?= 0.23.0
+GH_VERSION ?= 1.2.0
+FZF_VERSION ?= 0.24.2
 HOST ?= one-ingress.tst.k8s.ecom.ahold.nl
 .DEFAULT: help
 
@@ -87,7 +87,7 @@ kk-tools:
 
 ## /tmp/fzf.tgz        : Download latest fzf release
 /tmp/fzf.tgz:
-	@curl -s -S -L -f https://github.com/junegunn/fzf-bin/releases/download/$(FZF_VERSION)/fzf-$(FZF_VERSION)-linux_amd64.tgz -z $@ -o $@
+	curl -s -S -L -f https://github.com/junegunn/fzf/releases/download/$(FZF_VERSION)/fzf-$(FZF_VERSION)-linux_amd64.tar.gz -z $@ -o $@
 
 ## /tmp/k9s.tgz        : Download latest k9s release
 /tmp/k9s.tgz:
