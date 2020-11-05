@@ -1,8 +1,8 @@
 " Auto install vim-plug
 if has('nvim')
-    if empty(glob($XDG_DATA_HOME.'/nvim/site/autoload/plug.vim'))
-        silent !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
-              \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+      silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     endif
     call plug#begin('~/.local/share/nvim/plugged')
 endif
