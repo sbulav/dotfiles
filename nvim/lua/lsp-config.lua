@@ -1,4 +1,4 @@
-local nvim_lsp = require'nvim_lsp'
+local lspconfig = require'lspconfig'
 local completion = require('completion')
 
 local mapper = function(mode, key, result)
@@ -35,10 +35,10 @@ local custom_attach = function(client)
   mapper('n', ']e', ':PrevDiagnostic<CR>')
 end
 
-nvim_lsp.pyls.setup{
+lspconfig.pyls.setup{
   on_attach = custom_attach;
 }
 
-nvim_lsp.terraformls.setup{
+lspconfig.terraformls.setup{
   on_attach = custom_attach;
 }
