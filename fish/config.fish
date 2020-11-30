@@ -41,4 +41,4 @@ set -gx FZF_DEFAULT_OPTS "--height 50% -1 --layout=reverse-list --multi \
   or echo {}'"
 
 # Fix MTU under VPN in WSL2
-sudo ip link set dev eth0 mtu 1350
+#sudo ip link set dev eth0 mtu 1350
