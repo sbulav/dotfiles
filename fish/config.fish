@@ -14,6 +14,9 @@ set -gx VISUAL nvim
 # Set KUBECONFIG
 set -gx KUBECONFIG "$HOME/.kube/all-merged"
 
+# Add krew to path
+set -gx PATH $PATH $HOME/.krew/bin
+
 # Do not complete CRD, to speed things up
 set -gx FISH_KUBECTL_COMPLETION_COMPLETE_CRDS 0
 
