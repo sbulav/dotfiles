@@ -22,11 +22,6 @@ endfunction
 " nvim-lsp Settings
 autocmd FileType terraform,yaml,bash,python call s:ConfigureBuffer()
 
-set_sign("Hint", "➤")
-set_sign("Information", "ℹ")
-set_sign("Warning", "⚠")
-set_sign("Error", "✖")
-
 "-----------------------------------------------------------------------------
 " completion-nvim settings
 "-----------------------------------------------------------------------------

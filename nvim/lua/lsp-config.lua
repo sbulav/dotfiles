@@ -26,6 +26,11 @@ local function set_sign(type, icon)
   vim.fn.sign_define(sign, {text = icon, texthl = texthl})
 end
 
+set_sign("Hint", "➤")
+set_sign("Information", "ℹ")
+set_sign("Warning", "⚠")
+set_sign("Error", "✖")
+
 if vim.api.nvim_buf_get_option(0, 'filetype') ~= 'lua' then
   mapper('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
 end
