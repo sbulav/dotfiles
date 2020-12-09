@@ -6,3 +6,7 @@ Kubernetes
 Ubuntu
 CreateContainerError
 Seccomp
+PSP
+ServiceAccounts
+PodSecurityPolicies
+admin
