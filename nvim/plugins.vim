@@ -30,7 +30,6 @@ Plug 'hashivim/vim-terraform'          " Terraform syntax highlight
 Plug 'sbulav/vim-helm'                 " Helm syntax and compiler
 Plug 'neovim/nvim-lspconfig'           " LSP templates and completions
 Plug 'nvim-lua/completion-nvim'        " Async completions for nvim-lsp
-Plug 'nvim-lua/diagnostic-nvim'        " Async diagnostincs for nvim-lsp
 Plug 'Konfekt/vim-compilers'           " Set of vim compilers
 
 " Code display

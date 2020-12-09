@@ -21,9 +21,6 @@
 " LSP keymappings
 " lua/lsp-config.lua
 "
-" TreeSitter keymappings
-" lua/ts-config.lua
-"
 " Plugins, Undo, logs, swap
 " ~/.local/share/nvim/
 runtime plugins.vim

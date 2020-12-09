@@ -6,16 +6,32 @@ local mapper = function(mode, key, result)
   completion.on_attach(client)
 end
 
+-- Enable/disable specific diagnostics features
+-- :h vim.lsp.diagnostic.on_publish_diagnostics()
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+  vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  {
+    underline = true,
+    virtual_text = true,
+    signs = true,
+    update_in_insert = false
+  }
+)
+
+-- Customize diagnostics signs
+local function set_sign(type, icon)
+  local sign = string.format("LspDiagnosticsSign%s", type)
+  local texthl = string.format("LspDiagnosticsDefault%s", type)
+  vim.fn.sign_define(sign, {text = icon, texthl = texthl})
+end
+
 if vim.api.nvim_buf_get_option(0, 'filetype') ~= 'lua' then
   mapper('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
 end
 
 local custom_attach = function(client)
   -- require'lsp_status'.on_attach(client)
-  require'diagnostic'.on_attach({
-    -- enable_virtual_text = 1,
-    -- virtual_text_prefix = 'F',
-  })
   require'completion'.on_attach({
     sorting = 'alphabet',
     matching_strategy_list = {'exact', 'fuzzy'},
@@ -30,9 +46,9 @@ local custom_attach = function(client)
   mapper('n', 'g0', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
   mapper('i', '<c-l>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 
-  mapper('n', '<leader>e', ':OpenDiagnostic<CR>')
-  mapper('n', '[e', ':NextDiagnostic<CR>')
-  mapper('n', ']e', ':PrevDiagnostic<CR>')
+  mapper('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
+  mapper('n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
+  mapper('n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
 end
 
 lspconfig.pyls.setup{
