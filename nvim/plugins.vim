@@ -20,7 +20,7 @@ Plug 'junegunn/fzf.vim'                " Fuzzy finder
 Plug 'junegunn/fzf'                    " Fzf wrapper
 
 " Version Control Plugins
-Plug 'airblade/vim-gitgutter'          " Git line status
+Plug 'mhinz/vim-signify'               " Git line status
 Plug 'tpope/vim-fugitive'              " Git combine
 
 " Languages
