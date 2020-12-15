@@ -63,3 +63,14 @@ lspconfig.pyls.setup{
 lspconfig.terraformls.setup{
   on_attach = custom_attach;
 }
+
+lspconfig.yamlls.setup{
+  on_attach = custom_attach;
+  settings = {
+    yaml = {
+      schemas = {
+        kubernetes = '/*.yaml'
+      }
+    }
+  }
+}
