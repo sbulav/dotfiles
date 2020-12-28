@@ -11,6 +11,9 @@ set -a PATH "$HOME/bin/" "$HOME/.local/bin"
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
+# Use python3 as default on Mac
+set -gx PATH "/usr/local/opt/python/libexec/bin" $PATH
+
 # Set KUBECONFIG
 set -gx KUBECONFIG "$HOME/.kube/all-merged"
 
