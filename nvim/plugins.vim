@@ -36,9 +36,6 @@ Plug 'Konfekt/vim-compilers'           " Set of vim compilers
 Plug 'lifepillar/vim-solarized8'
 
 " Python
-Plug 'nvie/vim-flake8'                 " Check code with flake8
-Plug 'tmhedberg/SimpylFold'            " Python code folding
-Plug 'Vimjas/vim-python-pep8-indent'   " PEP8 compliant indentation
 Plug 'janko/vim-test'                  " Running tests
 
 " Text objects

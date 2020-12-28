@@ -56,7 +56,7 @@ local custom_attach = function(client)
   mapper('n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
 end
 
-lspconfig.pyls.setup{
+lspconfig.pyright.setup{
   on_attach = custom_attach;
 }
 
