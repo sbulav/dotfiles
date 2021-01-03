@@ -18,6 +18,7 @@ Plug 'romainl/vim-qf'                  " Better work with quickfix
 Plug 'mbbill/undotree'                 " Undotree
 Plug 'junegunn/fzf.vim'                " Fuzzy finder
 Plug 'junegunn/fzf'                    " Fzf wrapper
+Plug 'mhinz/vim-startify'              " Startup screen
 
 " Version Control Plugins
 Plug 'mhinz/vim-signify'               " Git line status
