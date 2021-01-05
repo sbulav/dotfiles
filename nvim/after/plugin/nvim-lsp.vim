@@ -20,7 +20,7 @@ function! s:ConfigureBuffer()
 endfunction
 
 " nvim-lsp Settings
-autocmd FileType terraform,yaml,bash,python call s:ConfigureBuffer()
+autocmd FileType terraform,yaml,bash,python,lua call s:ConfigureBuffer()
 
 "-----------------------------------------------------------------------------
 " completion-nvim settings
