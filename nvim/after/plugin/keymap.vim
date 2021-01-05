@@ -50,6 +50,8 @@ nnoremap <silent>zz :nohlsearch<cr>
 vmap < <gv
 vmap > >gv
 
+" Call Train
+nnoremap zx :call train#show_matches(['{','}','(', ')',']]','[[','H','M','L'])<cr>
 " one came from eunich
 " :Delete: Delete a buffer and the file on disk simultaneously.
 " :Move: Rename a buffer and the file on disk simultaneously.
@@ -124,6 +126,7 @@ omap <leader><tab> <plug>(fzf-maps-o)
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file)
+
 " imap <c-x><c-l> <plug>(fzf-complete-line)
 " Quickly go to custom Grep
 nnoremap <leader>g :Grep<space>
