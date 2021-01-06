@@ -51,7 +51,7 @@ vmap < <gv
 vmap > >gv
 
 " Call Train
-nnoremap zx :call train#show_matches(['w', 'W', 'e', 'E', 'b', 'B','{','}','(', ')',']]','[[','H','M','L'])<cr>
+nnoremap <silent> zx :call train#show_matches(['w', 'W', 'e', 'E', 'b', 'B','{','}','(', ')',']]','[[','H','M','L'])<cr>
 " one came from eunich
 " :Delete: Delete a buffer and the file on disk simultaneously.
 " :Move: Rename a buffer and the file on disk simultaneously.

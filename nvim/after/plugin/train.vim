@@ -1,6 +1,6 @@
 " Automatically Trigger Train each 10 sec
-augroup auto_highlight
+augroup auto_show_train
     au!
     setlocal updatetime=10000
-    autocmd CursorHold * execute 'normal zx'
+    autocmd CursorHold * if &l:buftype !=# 'help' | execute 'normal zx' | endif
 augroup end
