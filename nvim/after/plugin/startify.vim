@@ -21,7 +21,7 @@ let g:startify_session_autoload = 'no'
 let g:startify_change_to_dir = 1
 let g:startify_change_to_vcs_root = 1
 
-let g:startify_enable_unsafe = 1
+let g:startify_enable_unsafe = 0
 
 nnoremap <leader>so :SLoad<Space>
 nnoremap <leader>ss :SSave<Space>
