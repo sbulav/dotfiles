@@ -38,3 +38,5 @@ augroup makeCmd
   au FileType sh         call SetComp ('', 'bash %')
   au FileType helm       call SetComp ('helm', 'helm lint')
 augroup ENDw
+
+lua require'netrw'

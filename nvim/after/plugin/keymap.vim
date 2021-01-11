@@ -21,7 +21,8 @@ vnoremap <F1> <ESC>
 set pastetoggle=<F2>
 
 " Use netrw as file Explorer
-map <silent> <F3> :call ToggleVExplorer()<CR>
+" Moved to LUA
+" map <silent> <F3> :call ToggleVExplorer()<CR>
 
 " Show/unshow Numbers on F4
 nnoremap <F4> :NumbersToggle<CR>
