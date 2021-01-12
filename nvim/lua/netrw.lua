@@ -6,7 +6,7 @@
 vim.g.netrw_banner = 1
 
 -- Open file in new tab
-vim.g.netrw_browse_split = 1
+vim.g.netrw_browse_split = 3
 
 -- sort is affecting only: directories on the top, files below
 -- vim.g.netrw_sort_sequence = '[\/]$,*'
