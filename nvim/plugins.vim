@@ -20,6 +20,7 @@ Plug 'junegunn/fzf.vim'                " Fuzzy finder
 Plug 'junegunn/fzf'                    " Fzf wrapper
 Plug 'mhinz/vim-startify'              " Startup screen
 Plug 'tjdevries/train.nvim'            " Train vim movements
+Plug 'sbulav/nredir.nvim'              " Redirect output to scratch buffer
 
 " Version Control Plugins
 Plug 'mhinz/vim-signify'               " Git line status
