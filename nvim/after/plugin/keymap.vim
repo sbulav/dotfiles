@@ -147,7 +147,7 @@ nnoremap <leader>u :UndotreeToggle<cr>
 " Reload vim config
 nnoremap <leader>r :source $MYVIMRC<CR>
 " Use Redir function to open vim command in split
-nnoremap <leader>R :Redir <c-f>A
+nnoremap <leader>R :Nredir <c-f>A
 " Open vimrc
 nnoremap <leader>rc :edit $MYVIMRC<CR>
 " Global replace word under cursor
