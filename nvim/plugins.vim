@@ -38,6 +38,13 @@ Plug 'Konfekt/vim-compilers'           " Set of vim compilers
 " Code display
 Plug 'lifepillar/vim-solarized8'
 
+" Lua
+Plug 'tjdevries/nlua.nvim'
+
+" (OPTIONAL): This is a suggested plugin to get better Lua syntax highlighting
+"   but it's not currently required
+Plug 'euclidianAce/BetterLua.vim'
+
 " Python
 Plug 'janko/vim-test'                  " Running tests
 
