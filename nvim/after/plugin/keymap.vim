@@ -3,13 +3,13 @@
 
 augroup pscbindings
   autocmd!
-  autocmd FileType yaml nnoremap <buffer> <F5> :Redir !kubectl apply --dry-run -o yaml -f %<cr>
-  autocmd FileType yaml nnoremap <buffer> <F6> :Redir !kubectl apply -f %<cr>
-  autocmd FileType helm nnoremap <buffer> <F5> :Redir !helm install . --dry-run --debug <cr>
-  " autocmd FileType python nnoremap <buffer> <F5> :Redir !pytest --kube-config=$KUBECONFIG<cr>
-  autocmd FileType python nnoremap <buffer> <F5> :Redir !python %<cr>
-  autocmd FileType terraform nnoremap <buffer> <F5> :Redir !terraform plan -no-color<cr>
-  autocmd FileType terraform nnoremap <buffer> <F6> :Redir !terraform apply --auto-approve<cr>
+  autocmd FileType yaml nnoremap <buffer> <F5> :Nredir !kubectl apply --dry-run -o yaml -f %<cr>
+  autocmd FileType yaml nnoremap <buffer> <F6> :Nredir !kubectl apply -f %<cr>
+  autocmd FileType helm nnoremap <buffer> <F5> :Nredir !helm install . --dry-run --debug <cr>
+  " autocmd FileType python nnoremap <buffer> <F5> :Nredir !pytest --kube-config=$KUBECONFIG<cr>
+  autocmd FileType python nnoremap <buffer> <F5> :Nredir !python %<cr>
+  autocmd FileType terraform nnoremap <buffer> <F5> :Nredir !terraform plan -no-color<cr>
+  autocmd FileType terraform nnoremap <buffer> <F6> :Nredir !terraform apply --auto-approve<cr>
 augroup end
 
 " Get rid of stupid Goddamned help keys
@@ -34,10 +34,10 @@ nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
 nmap <F6> :set spell!<CR>
 
 " Show lsp log
-nnoremap <F9> :Redir !tail -100 ~/.local/share/nvim/lsp.log<cr>
+nnoremap <F9> :Nredir !tail -100 ~/.local/share/nvim/lsp.log<cr>
 
 " Show lsp status
-nnoremap <F10> :Redir lua print(vim.inspect(vim.lsp.buf_get_clients()))<cr>
+nnoremap <F10> :lua print(vim.inspect(vim.lsp.buf_get_clients()))<cr>
 
 " space toggle fold
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -146,7 +146,7 @@ nnoremap <leader>D :bdelete!<cr>
 nnoremap <leader>u :UndotreeToggle<cr>
 " Reload vim config
 nnoremap <leader>r :source $MYVIMRC<CR>
-" Use Redir function to open vim command in split
+" Use Nredir function to open vim command in split
 nnoremap <leader>R :Nredir <c-f>A
 " Open vimrc
 nnoremap <leader>rc :edit $MYVIMRC<CR>
@@ -161,6 +161,10 @@ if has("nvim")
   au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
   au FileType fzf tunmap <buffer> <Esc>
 endif
+" Open command window on ;
+nnoremap ; q:
+" escape works in command window
+autocmd CmdwinEnter * nnoremap <buffer> <Esc> <C-c>
 " Call completion
 inoremap <silent><expr> <c-space> completion#trigger_completion()
 
