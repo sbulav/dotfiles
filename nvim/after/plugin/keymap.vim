@@ -52,7 +52,7 @@ vmap < <gv
 vmap > >gv
 
 " Call Train
-nnoremap <silent> zx :call train#show_matches(['w', 'W', 'e', 'E', 'b', 'B','{','}','(', ')',']]','[[','H','M','L'])<cr>
+nnoremap <silent> zx :call train#show_matches(['gM', 'b', 'B','{','}','(', ')',']]','[[','H','M','L'])<cr>
 " one came from eunich
 " :Delete: Delete a buffer and the file on disk simultaneously.
 " :Move: Rename a buffer and the file on disk simultaneously.
@@ -156,8 +156,11 @@ nnoremap <leader>% :%s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap <leader>c :lcd %:p:h<cr>
 " Open terminal
 nnoremap <leader>to :terminal<cr>
-" Exit terminal insert mode
-tnoremap <Esc> <C-\><C-n>
+" Exit terminal insert mode but not in fzf
+if has("nvim")
+  au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+  au FileType fzf tunmap <buffer> <Esc>
+endif
 " Call completion
 inoremap <silent><expr> <c-space> completion#trigger_completion()
 
