@@ -46,16 +46,16 @@ Plug 'tjdevries/nlua.nvim'
 Plug 'euclidianAce/BetterLua.vim'
 
 " Python
-Plug 'janko/vim-test'                  " Running tests
+" Plug 'janko/vim-test'                  " Running tests
 
 " Text objects
 " Provided by vim-sandwitch              " TO closest pair of quotes of any type ib/ab
-Plug 'jceb/vim-textobj-uri'              " TO URL                                iu/au
-Plug 'kana/vim-textobj-entire'           " TO entire buffer                      ie/ae
-Plug 'kana/vim-textobj-fold'             " TO folding                            iz/az
-Plug 'kana/vim-textobj-function'         " TO function                           if/af
-Plug 'kana/vim-textobj-indent'           " TO block of code based on indent      ii/ai
-Plug 'kana/vim-textobj-line'             " TO line                               il/al
-Plug 'kana/vim-textobj-user'             " Allow use of custom textobjects
+" Plug 'jceb/vim-textobj-uri'              " TO URL                                iu/au
+" Plug 'kana/vim-textobj-entire'           " TO entire buffer                      ie/ae
+" Plug 'kana/vim-textobj-fold'             " TO folding                            iz/az
+" Plug 'kana/vim-textobj-function'         " TO function                           if/af
+" Plug 'kana/vim-textobj-indent'           " TO block of code based on indent      ii/ai
+" Plug 'kana/vim-textobj-line'             " TO line                               il/al
+" Plug 'kana/vim-textobj-user'             " Allow use of custom textobjects
 
 call plug#end()

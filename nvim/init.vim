@@ -40,3 +40,4 @@ augroup makeCmd
 augroup ENDw
 
 lua require'netrw'
+lua require'global'

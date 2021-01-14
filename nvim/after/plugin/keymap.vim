@@ -162,7 +162,7 @@ if has("nvim")
   au FileType fzf tunmap <buffer> <Esc>
 endif
 " Open command window on ;
-nnoremap ; q:
+nnoremap ; q:A
 " escape works in command window
 autocmd CmdwinEnter * nnoremap <buffer> <Esc> <C-c>
 " Call completion
