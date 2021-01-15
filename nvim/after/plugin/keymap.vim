@@ -5,7 +5,8 @@ augroup pscbindings
   autocmd!
   autocmd FileType yaml nnoremap <buffer> <F5> :Nredir !kubectl apply --dry-run -o yaml -f %<cr>
   autocmd FileType yaml nnoremap <buffer> <F6> :Nredir !kubectl apply -f %<cr>
-  autocmd FileType helm nnoremap <buffer> <F5> :Nredir !helm install . --dry-run --debug <cr>
+  autocmd FileType helm nnoremap <buffer> <F5> :Nredir !helm install . --dry-run --debug --generate-name <cr>
+  autocmd FileType helm nnoremap <buffer> <F6> :Nredir !helm template . <cr>
   " autocmd FileType python nnoremap <buffer> <F5> :Nredir !pytest --kube-config=$KUBECONFIG<cr>
   autocmd FileType python nnoremap <buffer> <F5> :Nredir !python %<cr>
   autocmd FileType terraform nnoremap <buffer> <F5> :Nredir !terraform plan -no-color<cr>
