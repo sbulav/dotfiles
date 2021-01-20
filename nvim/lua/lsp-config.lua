@@ -64,16 +64,27 @@ lspconfig.terraformls.setup{
   on_attach = custom_attach;
 }
 
-lspconfig.yamlls.setup{
-  on_attach = custom_attach;
-  settings = {
-    yaml = {
-      schemas = {
-        kubernetes = '/*.yaml'
-      }
-    }
-  }
-}
+-- Workaround to not trigger yaml on helm files
+-- if vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), 'filetype') ~= 'yaml'
+--   and not string.find(vim.fn.expand('%:p'), "template")
+--   and not string.find(vim.fn.expand('%:p'), "Chart.yaml")
+--   and not string.find(vim.fn.expand('%:p'), "values") then
+-- -- print("Setting up yamlls")
+-- -- print(vim.fn.expand('%:p'))
+-- lspconfig.yamlls.setup{
+--   on_attach = custom_attach;
+--   settings = {
+--     filetypes = {"yaml"},
+--     yaml = {
+--       schemas = {
+--         -- kubernetes = '/*.yaml';
+--         ['https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json'] = 'docker-compose*.yml',
+--         ['https://json.schemastore.org/github-workflow'] = '.github/workflows/*';
+--       }
+--     }
+--   }
+-- }
+-- end
 
 -- local system_name
 -- if vim.fn.has("mac") == 1 then
