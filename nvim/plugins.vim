@@ -21,6 +21,8 @@ Plug 'junegunn/fzf'                    " Fzf wrapper
 Plug 'mhinz/vim-startify'              " Startup screen
 Plug 'tjdevries/train.nvim'            " Train vim movements
 Plug 'sbulav/nredir.nvim'              " Redirect output to scratch buffer
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 
 " Version Control Plugins
 Plug 'mhinz/vim-signify'               " Git line status

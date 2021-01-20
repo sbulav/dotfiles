@@ -39,5 +39,5 @@ augroup makeCmd
   au FileType helm       call SetComp ('helm', 'helm lint')
 augroup ENDw
 
-lua require'netrw'
+lua require'tree'
 lua require'global'
