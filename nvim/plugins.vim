@@ -21,21 +21,19 @@ Plug 'junegunn/fzf'                    " Fzf wrapper
 Plug 'mhinz/vim-startify'              " Startup screen
 Plug 'tjdevries/train.nvim'            " Train vim movements
 Plug 'sbulav/nredir.nvim'              " Redirect output to scratch buffer
-Plug 'kyazdani42/nvim-web-devicons' " for file icons
-Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-web-devicons'    " for file icons
+Plug 'kyazdani42/nvim-tree.lua'        " File manager
 
 " Version Control Plugins
 Plug 'mhinz/vim-signify'               " Git line status
 Plug 'tpope/vim-fugitive'              " Git combine
 
 " Languages
-Plug 'elzr/vim-json'                   " Json syntax highlight
-Plug 'glench/vim-jinja2-syntax'        " Jinja support for vim
 Plug 'hashivim/vim-terraform'          " Terraform syntax highlight
 Plug 'sbulav/vim-helm'                 " Helm syntax and compiler
 Plug 'neovim/nvim-lspconfig'           " LSP templates and completions
 Plug 'nvim-lua/completion-nvim'        " Async completions for nvim-lsp
-Plug 'Konfekt/vim-compilers'           " Set of vim compilers
+" Plug 'Konfekt/vim-compilers'           " Set of vim compilers
 
 " Code display
 Plug 'lifepillar/vim-solarized8'
