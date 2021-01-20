@@ -7,6 +7,9 @@ set -g TERM xterm-256color
 # Append paths
 set -a PATH "$HOME/bin/" "$HOME/.local/bin"
 
+# Set correct locale
+set -x LANG en_US.UTF-8
+
 # Set EDITOR to nvim
 set -gx EDITOR nvim
 set -gx VISUAL nvim
