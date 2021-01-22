@@ -3,7 +3,7 @@ local completion = require('completion')
 
 local mapper = function(mode, key, result)
   vim.fn.nvim_buf_set_keymap(0, mode, key, result, {noremap=true, silent=true})
-  completion.on_attach(client)
+  completion.on_attach()
 end
 
 -- Enable/disable specific diagnostics features
@@ -35,8 +35,8 @@ if vim.api.nvim_buf_get_option(0, 'filetype') ~= 'lua' then
   mapper('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
 end
 
-local custom_attach = function(client)
-  -- require'lsp_status'.on_attach(client)
+local custom_attach = function()
+  -- require'lsp_status'.on_attach()
   require'completion'.on_attach({
     sorting = 'alphabet',
     matching_strategy_list = {'exact', 'fuzzy'},

@@ -107,29 +107,16 @@ nnoremap <S-tab> <c-w>W
 nnoremap <leader>a :argadd <C-R>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
 " Add files with wildcards in subfolders, like *.md
 nnoremap <leader>A :argadd <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
-" Fuzzy commands, use CTRL-T / CTRL-X / CTRL-V key bindings to open in a new
-" tab, a new split, or in a new vertical split
-" In lines CTRL-A to select all lines and CTRL-T to populate quickfix
-nnoremap <leader>fa :Rg<cr>
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>fc :Commits<cr>
-nnoremap <leader>ff :Files<cr>
-nnoremap <leader>fh :History<cr>
-nnoremap <leader>fl :Lines<cr>
-nnoremap <leader>fm :Maps<cr>
-nnoremap <leader>fM :Marks<cr>
-nnoremap <leader>fo :Commands<cr>
-nnoremap <leader>ft :Tags<cr>
-" Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-" Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file)
-
-" imap <c-x><c-l> <plug>(fzf-complete-line)
+" Telescope
+" <c-x>,<c-v> open in split/vsplit, <c-u>,<c-d> up/down preview
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').oldfiles()<cr>
+nnoremap <leader>fm <cmd>lua require('telescope.builtin').keymaps()<cr>
+nnoremap <leader>fM <cmd>lua require('telescope.builtin').marks()<cr>
+nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>fc <cmd>lua require('telescope.builtin').git_commits()<cr>
 " Quickly go to custom Grep
 nnoremap <leader>g :Grep<space>
 " Invoke Fugitive's Git
@@ -155,12 +142,13 @@ nnoremap <leader>rc :edit $MYVIMRC<CR>
 nnoremap <leader>% :%s/\<<C-r>=expand('<cword>')<CR>\>/
 " Change project folder to current file's directory for current window
 nnoremap <leader>c :lcd %:p:h<cr>
+" Close all buffers except currnent one
+nnoremap <leader>o :w <bar> %bd <bar> e# <bar> bd# <CR>
 " Open terminal
 nnoremap <leader>to :terminal<cr>
-" Exit terminal insert mode but not in fzf
+" Exit terminal insert mode
 if has("nvim")
   au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
-  au FileType fzf tunmap <buffer> <Esc>
 endif
 " Open command window on ;
 nnoremap ; q:A

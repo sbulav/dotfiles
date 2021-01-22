@@ -16,13 +16,14 @@ Plug 'machakann/vim-sandwich'          " Surround objects with any character e.g
 Plug 'justinmk/vim-sneak'              " Jump to location specified by two characters
 Plug 'romainl/vim-qf'                  " Better work with quickfix
 Plug 'mbbill/undotree'                 " Undotree
-Plug 'junegunn/fzf.vim'                " Fuzzy finder
-Plug 'junegunn/fzf'                    " Fzf wrapper
 Plug 'mhinz/vim-startify'              " Startup screen
 Plug 'tjdevries/train.nvim'            " Train vim movements
 Plug 'sbulav/nredir.nvim'              " Redirect output to scratch buffer
 Plug 'kyazdani42/nvim-web-devicons'    " for file icons
 Plug 'kyazdani42/nvim-tree.lua'        " File manager
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " Version Control Plugins
 Plug 'mhinz/vim-signify'               " Git line status
