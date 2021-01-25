@@ -21,9 +21,10 @@ Plug 'tjdevries/train.nvim'            " Train vim movements
 Plug 'sbulav/nredir.nvim'              " Redirect output to scratch buffer
 Plug 'kyazdani42/nvim-web-devicons'    " for file icons
 Plug 'kyazdani42/nvim-tree.lua'        " File manager
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/popup.nvim'             " Telescope required libs
+Plug 'nvim-lua/plenary.nvim'           " Telescope required libs
+Plug 'nvim-telescope/telescope.nvim'   " Fuzzy finder
+Plug 'glepnir/indent-guides.nvim'      " Indentation highlighs
 
 " Version Control Plugins
 Plug 'mhinz/vim-signify'               " Git line status
