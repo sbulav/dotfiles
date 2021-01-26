@@ -41,8 +41,8 @@ nnoremap <F9> :Nredir !tail -100 ~/.local/share/nvim/lsp.log<cr>
 nnoremap <F10> :lua print(vim.inspect(vim.lsp.buf_get_clients()))<cr>
 
 " space toggle fold
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-vnoremap <Space> zf
+" nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+" vnoremap <Space> zf
 
 " reset searchhighlight
 nnoremap <silent>zz :nohlsearch<cr>
@@ -103,6 +103,7 @@ nnoremap <S-tab> <c-w>W
 " Managing files with shortcuts, default leader '\'
 " ----------------------------------------------------------------------------
 
+map <Space> <Leader>
 " Add files with wildcards in CWD, like *.md
 nnoremap <leader>a :argadd <C-R>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
 " Add files with wildcards in subfolders, like *.md
