@@ -22,6 +22,8 @@ let g:startify_change_to_dir = 1
 let g:startify_change_to_vcs_root = 1
 
 let g:startify_enable_unsafe = 0
+let g:startify_files_number = 10
+let g:startify_session_persistence = 0
 
 nnoremap <leader>so :SLoad<Space>
 nnoremap <leader>ss :SSave<Space>
