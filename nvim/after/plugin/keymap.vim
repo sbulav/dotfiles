@@ -51,6 +51,12 @@ nnoremap <silent>zz :nohlsearch<cr>
 " Indent, keep selected text
 vmap < <gv
 vmap > >gv
+" Move visual selection up/down in visual mode
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Delete current visual selection to blackhole buffer and paste from clipboard
+vnoremap <leader>p "_dP
 
 " Call Train
 nnoremap <silent> zx :call train#show_matches(['gM', 'b', 'B','{','}','(', ')',']]','[[','H','M','L'])<cr>
@@ -103,6 +109,7 @@ nnoremap <S-tab> <c-w>W
 " Managing files with shortcuts, default leader '\'
 " ----------------------------------------------------------------------------
 
+let mapleader=" "
 map <Space> <Leader>
 " Add files with wildcards in CWD, like *.md
 nnoremap <leader>a :argadd <C-R>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
@@ -118,6 +125,7 @@ nnoremap <leader>fm <cmd>lua require('telescope.builtin').keymaps()<cr>
 nnoremap <leader>fM <cmd>lua require('telescope.builtin').marks()<cr>
 nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fc <cmd>lua require('telescope.builtin').git_commits()<cr>
+nnoremap <leader>fr <cmd>lua require('telescope.builtin').registers()<cr>
 " Quickly go to custom Grep
 nnoremap <leader>g :Grep<space>
 " Invoke Fugitive's Git
@@ -155,6 +163,20 @@ endif
 nnoremap ; q:A
 " escape works in command window
 autocmd CmdwinEnter * nnoremap <buffer> <Esc> <C-c>
+" Execute this file
+function! s:save_and_exec() abort
+  if &filetype == 'vim'
+    :silent! write
+    :source %
+  elseif &filetype == 'lua'
+    :silent! write
+    :luafile %
+  endif
+
+  return
+endfunction
+" save and resource current file
+nnoremap <leader><leader>x :call <SID>save_and_exec()<CR>
 " Call completion
 inoremap <silent><expr> <c-space> completion#trigger_completion()
 
@@ -170,6 +192,25 @@ nmap <silent> <leader>tv :TestVisit<CR>Folding
 
 map f <Plug>Sneak_s
 map F <Plug>Sneak_S
+
+" Easier Moving between splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Make windows to be basically the same size
+nnoremap <leader>= <C-w>=
+
+" Sizing window horizontally
+nnoremap <A-,> <C-W>10<
+nnoremap <A-.> <C-W>10>
+
+" Sizing window vertically
+" taller
+nnoremap <A-t> <C-W>10+
+" shorter
+nnoremap <A-s> <C-W>10-
 
 "-----------------------------------------------------------------------------
 " completion-nvim settings
