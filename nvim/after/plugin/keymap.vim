@@ -109,6 +109,7 @@ nnoremap <S-tab> <c-w>W
 " Managing files with shortcuts, default leader '\'
 " ----------------------------------------------------------------------------
 
+nnoremap Q :quit<cr>
 let mapleader=" "
 map <Space> <Leader>
 " Add files with wildcards in CWD, like *.md
