@@ -34,7 +34,7 @@ Plug 'tpope/vim-fugitive'              " Git combine
 Plug 'hashivim/vim-terraform'          " Terraform syntax highlight
 Plug 'sbulav/vim-helm'                 " Helm syntax and compiler
 Plug 'neovim/nvim-lspconfig'           " LSP templates and completions
-Plug 'nvim-lua/completion-nvim'        " Async completions for nvim-lsp
+Plug 'hrsh7th/nvim-compe'              " completions for nvim-lsp
 " Plug 'Konfekt/vim-compilers'           " Set of vim compilers
 
 " Code display
