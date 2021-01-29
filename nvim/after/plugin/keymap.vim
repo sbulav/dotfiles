@@ -39,7 +39,7 @@ nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
 nmap <F6> :set spell!<CR>
 
 " Show lsp log
-nnoremap <F9> :Nredir !tail -100 ~/.local/share/nvim/lsp.log<cr>
+nnoremap <F9> :lua require'nredir'.nredir("!tail -100 " .. vim.lsp.get_log_path())<cr>
 
 " Show lsp status
 nnoremap <F10> :lua print(vim.inspect(vim.lsp.buf_get_clients()))<cr>
@@ -214,12 +214,3 @@ nnoremap <A-.> <C-W>10>
 nnoremap <A-t> <C-W>10+
 " shorter
 nnoremap <A-s> <C-W>10-
-
-"-----------------------------------------------------------------------------
-" completion-nvim settings
-"-----------------------------------------------------------------------------
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Nvim-lsp keymaps defined in after/plugin/nvim-lsp.vim

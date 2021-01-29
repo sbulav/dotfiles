@@ -1,5 +1,12 @@
 local keymap = vim.api.nvim_set_keymap
 
+--- Commands to troubleshoot LSP
+--- :lua print(vim.inspect(vim.lsp.buf_get_clients()))
+--- :lua vim.cmd('e'..vim.lsp.get_log_path())
+--- :LspInfo
+--- Set log level to debug:
+--- vim.lsp.set_log_level("debug")
+
 function Show_documentation()
     if vim.fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
         vim.cmd('h ' .. vim.fn.expand('<cword>'))

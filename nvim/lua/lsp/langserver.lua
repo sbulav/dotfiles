@@ -4,8 +4,19 @@ local function custom_on_init()
     print('Language Server Protocol started!')
 end
 
+vim.lsp.set_log_level("info")
+
 lspconfig.pyright.setup{
-  on_init = custom_on_init;
+  on_init = custom_on_init,
+  handlers = {
+    -- pyright ignores dynamicRegistration settings
+    ['client/registerCapability'] = function(_, _, _, _)
+      return {
+        result = nil;
+        error = nil;
+      }
+    end
+  };
 }
 
 lspconfig.terraformls.setup{
@@ -23,19 +34,28 @@ require('nlua.lsp.nvim').setup(require('lspconfig'), {
   }
 })
 
-lspconfig.yamlls.setup{
-  on_init = custom_on_init,
-  settings = {
-    filetypes = {"yaml", "helm"},
-    yaml = {
-      schemas = {
-        kubernetes = '/*.yaml',
-        ['https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json'] = 'docker-compose*.yml',
-        ['https://json.schemastore.org/github-workflow'] = '.github/workflows/*';
-      }
-    }
-  }
-}
+-- lspconfig.yamlls.setup{
+--   on_init = custom_on_init,
+--   handlers = {
+--     -- yamlls ignores dynamicRegistration settings
+--     ['client/registerCapability'] = function(_, _, _, _)
+--       return {
+--         result = nil;
+--         error = nil;
+--       }
+--     end
+--   };
+--   settings = {
+--     filetypes = {"yaml"},
+--     yaml = {
+--       schemas = {
+--         -- kubernetes = '/*.yaml',
+--         ['https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json'] = 'docker-compose*.yml',
+--         ['https://json.schemastore.org/github-workflow'] = '.github/workflows/*';
+--       }
+--     }
+--   }
+-- }
 
 -- local system_name
 -- if vim.fn.has("mac") == 1 then
