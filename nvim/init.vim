@@ -27,8 +27,6 @@ runtime plugins.vim
 runtime settings.vim
 runtime theme.vim
 
-" reference config
-" https://github.com/anfedu/nvim-lua/blob/83dc5ee753c1a80d48920f048048d9f52609533f/lua/lsp/langserver.lua
 " Filetype detection and syntax markup
 """""""""""""""""""""""""""""""""""""""
 " execute buffer for various languages
@@ -43,3 +41,4 @@ augroup ENDw
 
 lua require'tree'
 lua require'global'
+lua require'lsp'

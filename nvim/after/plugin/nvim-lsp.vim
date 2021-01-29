@@ -2,7 +2,7 @@
 """""""""""""""""""""""""""""""""""""""
 
 
-lua require'lsp-config'
+" lua require'lsp-config'
 " command to troubleshoot if client is connected
 " :lua print(vim.inspect(vim.lsp.buf_get_clients()))
 
@@ -20,4 +20,4 @@ function! s:ConfigureBuffer()
 endfunction
 
 " nvim-lsp Settings
-autocmd FileType terraform,yaml,bash,python,lua call s:ConfigureBuffer()
+autocmd FileType terraform,yaml,helm,bash,python,lua call s:ConfigureBuffer()
