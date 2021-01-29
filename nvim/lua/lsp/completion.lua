@@ -28,3 +28,6 @@ keymap('i', '<Tab>',
 
 keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"',
     {noremap = true, expr = true})
+
+keymap('i', '<C-space>', '<C-r>=compe#complete()<CR>',
+    {noremap = false, silent = true})
