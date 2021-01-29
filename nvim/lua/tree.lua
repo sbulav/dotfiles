@@ -3,7 +3,7 @@ vim.g.nvim_tree_width = 40
 vim.g.nvim_tree_auto_open = 0
 vim.g.nvim_tree_auto_close = 0
 vim.g.nvim_tree_follow = 0
-vim.g.nvim_tree_hide_dotfiles = 1
+vim.g.nvim_tree_hide_dotfiles = 0
 vim.g.nvim_tree_ignore = { '.swp', '.pyc', '.git', 'node_modules', '.cache' }
 vim.g.nvim_tree_side = 'left'
 

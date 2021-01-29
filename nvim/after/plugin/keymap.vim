@@ -1,6 +1,10 @@
 " Key mappings
 """""""""""""""""""
 
+" Set leader to space
+let mapleader=" "
+map <Space> <Leader>
+
 augroup pscbindings
   autocmd!
   autocmd FileType yaml nnoremap <buffer> <F5> :Nredir !kubectl apply --dry-run -o yaml -f %<cr>
@@ -110,8 +114,6 @@ nnoremap <S-tab> <c-w>W
 " ----------------------------------------------------------------------------
 
 nnoremap Q :quit<cr>
-let mapleader=" "
-map <Space> <Leader>
 " Add files with wildcards in CWD, like *.md
 nnoremap <leader>a :argadd <C-R>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
 " Add files with wildcards in subfolders, like *.md
