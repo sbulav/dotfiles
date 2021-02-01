@@ -130,7 +130,12 @@ nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fc <cmd>lua require('telescope.builtin').git_commits()<cr>
 nnoremap <leader>fr <cmd>lua require('telescope.builtin').registers()<cr>
 " Quickly go to custom Grep
-nnoremap <leader>g :Grep<space>
+" nnoremap <leader>g :Grep<space>
+" Git wrappers
+" Add all modified files to staging
+nnoremap <leader>ga :Git add .<cr>
+" Run Gdiffsplit against current file and HEAD
+nnoremap <leader>gd :Gdiffsplit<cr>
 " Invoke Fugitive's Git
 nnoremap <leader>G :Git<cr>
 " Simply run a make command
