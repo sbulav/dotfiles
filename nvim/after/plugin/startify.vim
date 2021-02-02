@@ -19,7 +19,7 @@ let g:startify_commands = [
 " let g:startify_session_dir = '~/.config/nvim/session'
 let g:startify_session_autoload = 'no'
 let g:startify_change_to_dir = 1
-let g:startify_change_to_vcs_root = 1
+let g:startify_change_to_vcs_root = 0
 
 let g:startify_enable_unsafe = 0
 let g:startify_files_number = 10

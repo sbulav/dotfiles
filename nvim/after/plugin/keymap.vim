@@ -136,6 +136,8 @@ nnoremap <leader>fr <cmd>lua require('telescope.builtin').registers()<cr>
 nnoremap <leader>ga :Git add .<cr>
 " Run Gdiffsplit against current file and HEAD
 nnoremap <leader>gd :Gdiffsplit<cr>
+" Change directory to git root
+nnoremap <leader>g :Gcd<cr>
 " Invoke Fugitive's Git
 nnoremap <leader>G :Git<cr>
 " Simply run a make command
