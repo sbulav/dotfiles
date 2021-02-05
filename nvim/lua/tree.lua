@@ -1,3 +1,5 @@
+vim.cmd[[packadd nvim-tree.lua]]
+
 -- File explorer config
 vim.g.nvim_tree_width = 40
 vim.g.nvim_tree_auto_open = 0
@@ -8,10 +10,6 @@ vim.g.nvim_tree_hide_dotfiles = 0
 vim.g.nvim_tree_ignore = { '.swp', '.pyc', '.git', 'node_modules', '.cache' }
 vim.g.nvim_tree_side = 'left'
 
-
--- highlight link NvimTreeFolderName NERDTreeDir
--- highlight link NvimTreeSpecialFile Normal
--- " edit_tab = '<C-t>',
 vim.g.nvim_tree_bindings = {
     edit = { '<CR>', 'o' },
     edit_vsplit = '<C-v>',

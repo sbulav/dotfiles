@@ -6,14 +6,14 @@ let g:startify_lists = [
 	\ { 'type': 'sessions',  'header': ['   Sessions']       },
 \ ]
 
-let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'} ]
+let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.lua'} ]
 
 let g:startify_skiplist = [
 	\ 'COMMIT_EDITMSG',
 \ ]
 
 let g:startify_commands = [
-                \ {'u': ['Update Plugins', ':PlugUpdate']},
+                \ {'u': ['Update Plugins', ':PackerUpdate']},
                 \ ]
 
 " let g:startify_session_dir = '~/.config/nvim/session'

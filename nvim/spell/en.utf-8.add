@@ -39,3 +39,6 @@ PIDs
 PID
 Sysdig
 Csysdig
+ServiceAccount
+CKS
+RoleBindings

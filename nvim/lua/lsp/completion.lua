@@ -1,3 +1,4 @@
+vim.cmd[[packadd nvim-compe]]
 local keymap = vim.api.nvim_set_keymap
 
 require('compe').setup({
@@ -10,7 +11,16 @@ require('compe').setup({
     incomplete_delay = 400,
     allow_prefix_unmatch = false,
 
-    source = {path = true, buffer = true, vsnip = false, nvim_lsp = true}
+    source = {
+      buffer = true,
+      nvim_lsp = true,
+      nvim_treesitter = false,
+      path = true,
+      spell = true,
+      tags = true,
+      ultisnips = false,
+      vsnip = false,
+    }
 })
 
 function Check_backspace()

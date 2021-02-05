@@ -30,7 +30,7 @@ set pastetoggle=<F2>
 " map <silent> <F3> :call ToggleVExplorer()<CR>
 
 " Show/unshow Numbers on F4
-nnoremap <F4> :NumbersToggle<CR>
+nnoremap <F4> :set relativenumber!<CR>
 
 " Execute current buffer on F5
 nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
@@ -120,15 +120,16 @@ nnoremap <leader>a :argadd <C-R>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
 nnoremap <leader>A :argadd <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 " Telescope
 " <c-x>,<c-v> open in split/vsplit, <c-u>,<c-d> up/down preview
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fM <cmd>lua require('telescope.builtin').marks()<cr>
 nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fc <cmd>lua require('telescope.builtin').git_commits()<cr>
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').oldfiles()<cr>
 nnoremap <leader>fm <cmd>lua require('telescope.builtin').keymaps()<cr>
-nnoremap <leader>fM <cmd>lua require('telescope.builtin').marks()<cr>
-nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
-nnoremap <leader>fc <cmd>lua require('telescope.builtin').git_commits()<cr>
 nnoremap <leader>fr <cmd>lua require('telescope.builtin').registers()<cr>
+nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
 " Quickly go to custom Grep
 " nnoremap <leader>g :Grep<space>
 " Git wrappers
