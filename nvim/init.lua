@@ -27,8 +27,8 @@ lua/lsp/keybindings.lua
 
 ]]
 
-require'lsp'
 require'plugins'
+require'lsp'
 require'options'
 require'tree'
 

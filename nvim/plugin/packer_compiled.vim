@@ -12,8 +12,8 @@ packadd packer.nvim
 try
 
 lua << END
-local package_path_str = "/Users/sergey_bulavincev/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/Users/sergey_bulavincev/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/Users/sergey_bulavincev/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/Users/sergey_bulavincev/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/Users/sergey_bulavincev/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/sab/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/sab/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/sab/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/sab/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/sab/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -33,108 +33,108 @@ end
 _G.packer_plugins = {
   ["BetterLua.vim"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/BetterLua.vim"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/BetterLua.vim"
   },
   ["indent-guides.nvim"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/indent-guides.nvim"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/indent-guides.nvim"
   },
   kommentary = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/kommentary"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/kommentary"
   },
   ["nlua.nvim"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/nlua.nvim"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/nlua.nvim"
   },
   ["nredir.nvim"] = {
     commands = { "Nredir" },
     loaded = false,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/opt/nredir.nvim"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/opt/nredir.nvim"
   },
   ["nvim-compe"] = {
     loaded = false,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/opt/nvim-compe"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/opt/nvim-compe"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-tree.lua"] = {
     after = { "nvim-web-devicons" },
     loaded = false,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-web-devicons"] = {
     load_after = {
       ["nvim-tree.lua"] = true
     },
     loaded = false,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = false,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/opt/packer.nvim"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
   ["popup.nvim"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/popup.nvim"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
   ["train.nvim"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/train.nvim"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/train.nvim"
   },
   undotree = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/undotree"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/undotree"
   },
   ["vim-eunuch"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/vim-eunuch"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/vim-eunuch"
   },
   ["vim-fugitive"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/vim-fugitive"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/vim-fugitive"
   },
   ["vim-helm"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/vim-helm"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/vim-helm"
   },
   ["vim-qf"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/vim-qf"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/vim-qf"
   },
   ["vim-sandwich"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/vim-sandwich"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/vim-sandwich"
   },
   ["vim-signify"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/vim-signify"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/vim-signify"
   },
   ["vim-sneak"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/vim-sneak"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/vim-sneak"
   },
   ["vim-solarized8"] = {
     loaded = false,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/opt/vim-solarized8"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/opt/vim-solarized8"
   },
   ["vim-startify"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/vim-startify"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/vim-startify"
   },
   ["vim-terraform"] = {
     loaded = true,
-    path = "/Users/sergey_bulavincev/.local/share/nvim/site/pack/packer/start/vim-terraform"
+    path = "/home/sab/.local/share/nvim/site/pack/packer/start/vim-terraform"
   }
 }
 

@@ -1,7 +1,5 @@
 local cmd = vim.cmd
 local fn = vim.fn
--- Load packer from pack, requied as packer is opt
-cmd[[packadd! packer.nvim]]
 
 -- Check that packer is installed, try to install otherwise
 local packer_exists = pcall(cmd, [[packadd packer.nvim]])
@@ -30,6 +28,9 @@ if not packer_exists then
 
   return
 end
+
+-- Load packer from pack, requied as packer is opt
+cmd[[packadd! packer.nvim]]
 
 return require('packer').startup(function()
   -- Packer plugin manager
