@@ -24,7 +24,7 @@ if not packer_exists then
 
   print(out)
   print("Downloading packer.nvim...")
-  print("( You'll need to restart now )")
+  print("(Restart and run :PackerSync...)")
 
   return
 end
