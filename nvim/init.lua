@@ -31,6 +31,7 @@ require'packages'
 require'lsp'
 require'options'
 require'tree'
+require'autocommands'
 
 --[[{{{
 " Filetype detection and syntax markup

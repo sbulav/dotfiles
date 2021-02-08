@@ -38,9 +38,6 @@ vim.g.loaded_ruby_provider = 0
 -- Add current path and subpaths to path
 o.path = o.path .. '**'
 
--- Highlight on yank
-vimcmd("autocmd TextYankPost * lua vim.highlight.on_yank{higroup='IncSearch', timeout=1500, on_visual=true}")
-
 local options = {
   -- Visual customizations{{{
   termguicolors = true,   -- truecolours for better experience
