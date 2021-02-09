@@ -46,7 +46,7 @@ return require('packer').startup(function()
   use {'romainl/vim-qf'}                    -- Better work with quickfix
   use {'mbbill/undotree'}                   -- Undotree
   use {'mhinz/vim-startify'}                -- Startup screen
-  use {'tjdevries/train.nvim'}              -- Train vim movements
+  use {'phaazon/hop.nvim'}                  -- Easymotion in lua
   use {'sbulav/nredir.nvim',                -- Redirect output to scratch buffer
     opt = true,
     cmd = 'Nredir'

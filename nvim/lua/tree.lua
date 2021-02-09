@@ -2,7 +2,7 @@ vim.cmd[[packadd nvim-tree.lua]]
 
 -- File explorer config
 vim.g.nvim_tree_width = 40
-vim.g.nvim_tree_auto_open = 0
+vim.g.nvim_tree_auto_open = 1
 vim.g.nvim_tree_auto_close = 1
 vim.g.nvim_tree_quit_on_open = 1
 vim.g.nvim_tree_follow = 0

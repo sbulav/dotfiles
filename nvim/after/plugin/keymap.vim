@@ -63,7 +63,7 @@ vnoremap K :m '<-2<CR>gv=gv
 vnoremap <leader>p "_dP
 
 " Call Train
-nnoremap <silent> zx :call train#show_matches(['gM', 'b', 'B','{','}','(', ')',']]','[[','H','M','L'])<cr>
+nnoremap <silent> zx :HopWord<cr>
 " one came from eunich
 " :Delete: Delete a buffer and the file on disk simultaneously.
 " :Move: Rename a buffer and the file on disk simultaneously.
@@ -203,6 +203,8 @@ nmap <silent> <leader>tv :TestVisit<CR>Folding
 
 map f <Plug>Sneak_s
 map F <Plug>Sneak_S
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
 
 " Easier Moving between splits
 nnoremap <C-J> <C-W><C-J>
