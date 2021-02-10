@@ -130,7 +130,9 @@ nnoremap <leader>fh <cmd>lua require('telescope.builtin').oldfiles()<cr>
 nnoremap <leader>fm <cmd>lua require('telescope.builtin').keymaps()<cr>
 nnoremap <leader>fr <cmd>lua require('telescope.builtin').registers()<cr>
 nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
-" Quickly go to custom Grep
+" c-q,c-q to populate quickfix with current buffers
+nnoremap <C-q> :lua require('telescope.builtin').buffers()<Cr>
+"Quickly go to custom Grep
 " nnoremap <leader>g :Grep<space>
 " Git wrappers
 " Add all modified files to staging

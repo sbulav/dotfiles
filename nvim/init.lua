@@ -30,9 +30,10 @@ lua/lsp/keybindings.lua
 require'packages'
 require'lsp'
 require'options'
-require'tree'
 require'autocommands'
 require'mappings'
+require'_nvim_tree'
+require'_telescope'
 
 --[[{{{
 " Filetype detection and syntax markup

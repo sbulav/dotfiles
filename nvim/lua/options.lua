@@ -64,7 +64,7 @@ local options = {
   -- novisualbell = true,        -- No 'visual buzz' on error
   -- t_vb = "",                  -- Same as above
   -- autoread = true,            -- Reload the file if changed from the outside
-  switchbuf = "vsplit",       -- If opening a file from :ls, :buffers, :files, etc. jump to open version
+  switchbuf = "uselast",       -- If opening a file from :ls, :buffers, :files, etc. jump to open version
                               -- of the file, if one exists
   clipboard = "unnamed",      -- Use * and + registers to access system clipboard(i.e. tmux)
   confirm = true,             -- Dialog foor unsaved changes
