@@ -1,5 +1,4 @@
 local M = {}
-local fn = vim.fn
 local api = vim.api
 
 function _G.dump(...)

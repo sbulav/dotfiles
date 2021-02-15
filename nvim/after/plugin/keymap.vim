@@ -43,7 +43,9 @@ nnoremap <F9> :lua require'nredir'.nredir("!tail -100 " .. vim.lsp.get_log_path(
 
 " Show lsp status
 nnoremap <F10> :lua print(vim.inspect(vim.lsp.buf_get_clients()))<cr>
-
+"
+" Stop all lsp clients
+nnoremap <F12> :lua vim.lsp.stop_client(vim.lsp.get_active_clients())<cr>
 " space toggle fold
 " nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 " vnoremap <Space> zf
@@ -103,6 +105,11 @@ nnoremap [b :bprev<cr>
 nnoremap ]t :tabn<cr>
 nnoremap [t :tabp<cr>
 
+" ----------------------------------------------------------------------------
+" Jumps
+" ----------------------------------------------------------------------------
+nnoremap ]j <c-i>
+nnoremap [j <c-o>
 " ----------------------------------------------------------------------------
 " <tab> / <s-tab> | Circular windows navigation
 " ----------------------------------------------------------------------------
