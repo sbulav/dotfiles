@@ -1,4 +1,5 @@
 vim.cmd[[packadd nvim-compe]]
+
 local keymap = vim.api.nvim_set_keymap
 
 require('compe').setup({
@@ -33,7 +34,7 @@ function Check_backspace()
 end
 
 keymap('i', '<Tab>',
-    'pumvisible() ? "<C-n>" : v:lua.Check_backspace() ? "<Tab>" : compe#confirm(lexima#expand("<LT>CR>", "i"))',
+    'pumvisible() ? "<C-n>" : v:lua.Check_backspace() ? "<Tab>" : compe#confirm("<CR>")',
     {silent = true, noremap = true, expr = true})
 
 keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"',
