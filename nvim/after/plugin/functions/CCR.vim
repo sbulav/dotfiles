@@ -21,10 +21,10 @@ function! CCR()
         " like :changes but prompts for a change to jump to
         set nomore
         return "\<CR>:sil se more|norm! g;\<S-Left>"
-    elseif cmdline =~ '\C^ju'
-        " like :jumps but prompts for a position to jump to
-        set nomore
-        return "\<CR>:sil se more|norm! \<C-o>\<S-Left>"
+    " elseif cmdline =~ '\C^ju'
+    "     " like :jumps but prompts for a position to jump to
+    "     set nomore
+    "     return "\<CR>:sil se more|norm! \<C-o>\<S-Left>"
     elseif cmdline =~ '\C^marks'
         " like :marks but prompts for a mark to jump to
         return "\<CR>:norm! `"

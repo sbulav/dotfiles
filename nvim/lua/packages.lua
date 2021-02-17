@@ -47,6 +47,7 @@ return require('packer').startup(function()
   use {'mbbill/undotree'}                   -- Undotree
   use {'mhinz/vim-startify'}                -- Startup screen
   use {'phaazon/hop.nvim'}                  -- Easymotion in lua
+  use {'sbulav/jump-ray.nvim'}
   use {'sbulav/nredir.nvim',                -- Redirect output to scratch buffer
     opt = true,
     cmd = 'Nredir'
