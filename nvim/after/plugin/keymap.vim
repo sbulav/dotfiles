@@ -136,6 +136,7 @@ nnoremap <leader>fg <cmd>lua require('telescope.builtin').current_buffer_fuzzy_f
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').oldfiles()<cr>
 nnoremap <leader>fm <cmd>lua require('telescope.builtin').keymaps()<cr>
 nnoremap <leader>fr <cmd>lua require('telescope.builtin').registers()<cr>
+nnoremap <leader>fs <cmd>lua require('telescope.builtin').git_files()<cr>
 nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
 " c-q,c-q to populate quickfix with current buffers
 nnoremap <C-q> :lua require('telescope.builtin').buffers()<Cr>

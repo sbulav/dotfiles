@@ -6,10 +6,10 @@ require('telescope').setup{
   defaults = {
     mappings = {
       i = {
-        ['<CR>'] = actions.goto_file_selection_edit,
-        ['<C-v>'] = actions.goto_file_selection_vsplit,
-        ['<C-x>'] = actions.goto_file_selection_split,
-        ['<C-t>'] = actions.goto_file_selection_tabedit,
+        ['<CR>'] = actions.select_default + actions.center,
+        ['<C-v>'] = actions.select_vertical,
+        ['<C-x>'] = actions.select_horizontal,
+        ['<C-t>'] = actions.select_tab,
         ['<C-c>'] = actions.close,
         -- ['<Esc>'] = actions.close,
 
@@ -21,10 +21,11 @@ require('telescope').setup{
         -- ["<C-w>l"] = actions.preview_switch_window_right,
       },
       n = {
-        ['<CR>'] = actions.goto_file_selection_edit,
-        ['<C-v>'] = actions.goto_file_selection_vsplit,
-        ['<C-x>'] = actions.goto_file_selection_split,
-        ['<C-t>'] = actions.goto_file_selection_tabedit,
+        ['<CR>'] = actions.select_default + actions.center,
+        ['<C-v>'] = actions.select_vertical,
+        ['<C-x>'] = actions.select_horizontal,
+        ['<C-t>'] = actions.select_tab,
+        ['<C-c>'] = actions.close,
         ['<Esc>'] = actions.close,
 
         ["j"] = actions.move_selection_next,
