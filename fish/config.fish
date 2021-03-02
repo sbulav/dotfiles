@@ -39,7 +39,7 @@ set __fish_git_prompt_showupstream 'auto'
 set __fish_git_prompt_color_branch yellow
 
 # Configure FZF
-set -gx FZF_DEFAULT_COMMAND 'rg --files'
+set -gx FZF_DEFAULT_COMMAND 'rg --files --no-follow --color never --glob "!{.git,node_modules}/*"'
 set -gx FZF_ALT_C_COMMAND 'fd --type directory \
   --exclude ".git" \
   --exclude "venv*" \
