@@ -40,6 +40,13 @@ set __fish_git_prompt_color_branch yellow
 
 # Configure FZF
 set -gx FZF_DEFAULT_COMMAND 'rg --files'
+set -gx FZF_ALT_C_COMMAND 'fd --type directory \
+  --exclude ".git" \
+  --exclude "venv*" \
+  --exclude "*node_modules*" \
+  --exclude "*ctags*" \
+  --exclude "Library" \
+  --exclude "Music" '
 
 # Smart fzf preview window
 set -gx FZF_DEFAULT_OPTS "--height 50% -1 --layout=reverse-list --multi \
