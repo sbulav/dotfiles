@@ -138,6 +138,8 @@ nnoremap <leader>fm <cmd>lua require('telescope.builtin').keymaps()<cr>
 nnoremap <leader>fr <cmd>lua require('telescope.builtin').registers()<cr>
 nnoremap <leader>fs <cmd>lua require('telescope.builtin').git_files()<cr>
 nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>fv <cmd>lua require('_telescope.myfunctions').search_vimfiles()<cr>
+nnoremap <leader>fd <cmd>lua require('_telescope.myfunctions').search_vimfiles()<cr>
 " c-q,c-q to populate quickfix with current buffers
 nnoremap <C-q> :lua require('telescope.builtin').buffers()<Cr>
 "Quickly go to custom Grep

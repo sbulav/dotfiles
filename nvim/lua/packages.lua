@@ -90,6 +90,6 @@ return require('packer').startup(function()
   use {'euclidianAce/BetterLua.vim'}
 
   -- Tests
-  -- use {'janko/vim-test'}
+  use {'janko/vim-test'}
 
 end)
