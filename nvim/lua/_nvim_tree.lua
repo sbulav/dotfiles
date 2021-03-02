@@ -11,7 +11,7 @@ vim.g.nvim_tree_hide_dotfiles = 0
 vim.g.nvim_tree_ignore = { '.swp', '.pyc', '.git', 'node_modules', '.cache' }
 vim.g.nvim_tree_side = 'left'
 
-vim.g.nvim_tree_bindings = {
+--[[ vim.g.nvim_tree_bindings = {
     edit = { '<CR>', 'o' },
     edit_vsplit = '<C-v>',
     edit_split = '<C-x>',
@@ -28,5 +28,5 @@ vim.g.nvim_tree_bindings = {
     paste = 'p',
     prev_git_item = '[c',
     next_git_item = ']c',
-}
+} ]]
 vim.api.nvim_set_keymap('n', '<F3>', ':NvimTreeToggle<cr><paste>', { noremap = true, silent = false })
