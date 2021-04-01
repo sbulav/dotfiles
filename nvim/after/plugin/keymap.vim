@@ -17,12 +17,12 @@ augroup pscbindings
   autocmd FileType terraform nnoremap <buffer> <F6> :Nredir !terraform apply --auto-approve<cr>
 augroup end
 
-" Get rid of stupid Goddamned help keys
+" Draw a visual line in any mode on F1
 inoremap <silent> <F1> <ESC>:execute "set colorcolumn=" . (&colorcolumn == "" ? "81" : "")<CR>a
 nnoremap <silent> <F1> :execute "set colorcolumn=" . (&colorcolumn == "" ? "81" : "")<CR>
 vnoremap <F1> <ESC>
 
-" Copy pasting from the system on F2
+" Paste mode on F2
 set pastetoggle=<F2>
 
 " Use netrw as file Explorer
@@ -32,9 +32,6 @@ set pastetoggle=<F2>
 " Show/unshow Numbers on F4
 nnoremap <F4> :set relativenumber!<CR>
 
-" Execute current buffer on F5
-nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
-
 " Check spelling on F6
 nmap <F6> :set spell!<CR>
 
@@ -43,20 +40,24 @@ nnoremap <F9> :lua require'nredir'.nredir("!tail -100 " .. vim.lsp.get_log_path(
 
 " Show lsp status
 nnoremap <F10> :lua print(vim.inspect(vim.lsp.buf_get_clients()))<cr>
-"
+
 " Stop all lsp clients
 nnoremap <F12> :lua vim.lsp.stop_client(vim.lsp.get_active_clients())<cr>
-" space toggle fold
+
+" Space toggle fold
 " nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 " vnoremap <Space> zf
 
-" reset searchhighlight
+" Reset searchhighlight
 nnoremap <silent>zz :nohlsearch<cr>
+
 " Enable folding with the spacebar
 "nnoremap <space> za
+
 " Indent, keep selected text
 vmap < <gv
 vmap > >gv
+
 " Move visual selection up/down in visual mode
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
@@ -64,9 +65,11 @@ vnoremap K :m '<-2<CR>gv=gv
 " Delete current visual selection to blackhole buffer and paste from clipboard
 vnoremap <leader>p "_dP
 
-" Call Train
+" Show Hop on with easy move
 nnoremap <silent> zx :HopWord<cr>
-" one came from eunich
+vnoremap <silent> zx :HopWord<cr>
+
+" Bindings that came from Eunich
 " :Delete: Delete a buffer and the file on disk simultaneously.
 " :Move: Rename a buffer and the file on disk simultaneously.
 " :Rename: Like :Move, but relative to the current file's containing directory.
@@ -75,7 +78,7 @@ nnoremap <silent> zx :HopWord<cr>
 " :SudoWrite: Write a privileged file with sudo.
 " :SudoEdit: Edit a privileged file with sudo.
 
-" useful ones in insert mode, see :h index
+" Useful ones in insert mode, see :h index
 " <c-r> - insert text from register
 " <c-a> - last inserted text
 " <c-w> - delete one word before cursorc
@@ -117,14 +120,17 @@ nnoremap <tab>   <c-w>w
 nnoremap <S-tab> <c-w>W
 
 " ----------------------------------------------------------------------------
-" Managing files with shortcuts, default leader '\'
+" Managing files with shortcuts, leader mapped to <SPACE>
 " ----------------------------------------------------------------------------
-
+" Close any window with one small shortcut
 nnoremap Q :quit<cr>
+
 " Add files with wildcards in CWD, like *.md
 nnoremap <leader>a :argadd <C-R>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
+
 " Add files with wildcards in subfolders, like *.md
 nnoremap <leader>A :argadd <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+
 " Telescope
 " <c-x>,<c-v> open in split/vsplit, <c-u>,<c-d> up/down preview
 nnoremap <leader>fM <cmd>lua require('telescope.builtin').marks()<cr>
@@ -141,19 +147,22 @@ nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fv <cmd>lua require('_telescope.myfunctions').search_vimfiles()<cr>
 nnoremap <leader>fd <cmd>lua require('_telescope.myfunctions').search_vimfiles()<cr>
 nnoremap <leader>fp <cmd>lua require'telescope'.extensions.project.project{ change_dir = true }<cr>
-" c-q,c-q to populate quickfix with current buffers
+
+" Populate quickfix with current buffers with <c-q><c-q>
 nnoremap <C-q> :lua require('telescope.builtin').buffers()<Cr>
-"Quickly go to custom Grep
+
+" Quickly go to custom Grep
 " nnoremap <leader>g :Grep<space>
-" Git wrappers
-" Add all modified files to staging
+
+" GIT - add all modified files to staging
 nnoremap <leader>ga :Git add .<cr>
-" Run Gdiffsplit against current file and HEAD
+" GIT - run Gdiffsplit against current file and HEAD
 nnoremap <leader>gd :Gdiffsplit<cr>
-" Change directory to git root
+" GIT - change directory to git root
 nnoremap <leader>g :Gcd<cr>
-" Invoke Fugitive's Git
+" GIT - Invoke Fugitive's
 nnoremap <leader>G :Git<cr>
+
 " Simply run a make command
 nnoremap <leader>m :make<cr>
 " Run a function to strip trailing whitespaces
@@ -185,7 +194,7 @@ if has("nvim")
 endif
 " Open command window on ;
 nnoremap ; q:A
-" escape works in command window
+" Escape works in command window
 autocmd CmdwinEnter * nnoremap <buffer> <Esc> <C-c>
 " Execute this file
 function! s:save_and_exec() abort
@@ -200,13 +209,13 @@ function! s:save_and_exec() abort
 
   return
 endfunction
-" save and resource current file
+
+" Save and resource current file
 nnoremap <leader><leader>x :call <SID>save_and_exec()<CR>
 " Call completion
 inoremap <silent><expr> <c-space> completion#trigger_completion()
 
 " vim-test mappings
-
 nmap <silent> <leader>tn :TestNearest<CR>
 nmap <silent> <leader>tf :TestFile<CR>
 nmap <silent> <leader>ts :TestSuite<CR>
@@ -214,7 +223,6 @@ nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tv :TestVisit<CR>Folding
 
 " vim-sneak mappings
-
 map f <Plug>Sneak_s
 map F <Plug>Sneak_S
 map t <Plug>Sneak_t
@@ -230,11 +238,11 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <leader>= <C-w>=
 
 " Sizing window horizontally
-nnoremap <A-,> <C-W>10<
-nnoremap <A-.> <C-W>10>
+nnoremap <A-l> <C-W>10<
+nnoremap <A-h> <C-W>10>
 
 " Sizing window vertically
 " taller
-nnoremap <A-t> <C-W>10+
+nnoremap <A-j> <C-W>10+
 " shorter
-nnoremap <A-s> <C-W>10-
+nnoremap <A-k> <C-W>10-

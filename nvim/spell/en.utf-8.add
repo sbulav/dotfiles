@@ -43,3 +43,9 @@ ServiceAccount
 CKS
 RoleBindings
 Lua
+serviceAccount
+kubelet
+ConstraintTemplate
+namespace
+Udemy
+RBAC
