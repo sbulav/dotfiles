@@ -15,8 +15,10 @@ require('telescope').setup{
 
         ['<C-u>'] = actions.preview_scrolling_up,
         ['<C-d>'] = actions.preview_scrolling_down,
-        ['<C-q>'] = actions.send_to_qflist + actions.open_qflist,
-        ['<C-s>'] = actions.send_selected_to_qflist + actions.open_qflist,
+        -- Replace current quickfix with selected Telescope entries(or all entries)
+        ['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
+        -- Add entries to current quickfix (selected or all entries)
+        ['<C-a>'] = actions.smart_add_to_qflist + actions.open_qflist,
         ['<Tab>'] = actions.toggle_selection,
         -- ["<C-w>l"] = actions.preview_switch_window_right,
       },
@@ -33,8 +35,10 @@ require('telescope').setup{
 
         ['<C-u>'] = actions.preview_scrolling_up,
         ['<C-d>'] = actions.preview_scrolling_down,
-        ['<C-q>'] = actions.send_to_qflist + actions.open_qflist,
-        ['<C-s>'] = actions.send_selected_to_qflist + actions.open_qflist,
+        -- Replace current quickfix with selected Telescope entries(or all entries)
+        ['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
+        -- Add entries to current quickfix (selected or all entries)
+        ['<C-a>'] = actions.smart_add_to_qflist + actions.open_qflist,
         ['<Tab>'] = actions.toggle_selection,
         -- ["<C-w>l"] = actions.preview_switch_window_right,
       }
