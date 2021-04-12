@@ -25,13 +25,13 @@ end
 
 function gb -d "Show branches and list of branch commits in GIT directory"
   is_in_git_repo || return
-  git branch -a --color=always | grep -v '/HEAD\s' | sort | \
-  fzf-down --ansi --multi --tac --preview-window right:70% \
-    --preview 'git log --oneline --graph --date=short --color=always \
-    --pretty="format:%C(auto)%cd %h%d %s" (echo {} | rev | cut -f1 -d" " | rev) \
-    | head -'$LINES | \
-  sed 's/^..//' | cut -d' ' -f1 |
-  sed 's#^remotes/##'
+  set branch_checked (git branch -a --color=always | grep -v '/HEAD\s' | sort |
+  fzf-down --ansi --tac --preview-window right:70% \
+    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" (echo {} | rev | cut -f1 -d" " | rev)' |
+      sed 's/^..//' |
+      cut -d' ' -f1 |
+      sed 's#^remotes/##')
+  git checkout $branch_checked
 end
 
 function gt -d "Show list of tags in GIT directory"
