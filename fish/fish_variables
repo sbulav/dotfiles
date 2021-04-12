@@ -1,7 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR __fish_initialized:3100
-SETUVAR _fish_abbr_gc:git\x2dcheckout
 SETUVAR _fish_abbr_kbuectl:kubectl
 SETUVAR _fish_abbr_ks:kubens
 SETUVAR _fish_abbr_kx:kubectx
