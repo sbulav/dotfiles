@@ -18,7 +18,7 @@ require('telescope').setup{
         -- Replace current quickfix with selected Telescope entries(or all entries)
         ['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
         -- Add entries to current quickfix (selected or all entries)
-        ['<C-a>'] = actions.smart_add_to_qflist + actions.open_qflist,
+        ['<C-a>'] = actions.smart_add_to_qflist,
         ['<Tab>'] = actions.toggle_selection,
         -- ["<C-w>l"] = actions.preview_switch_window_right,
       },
@@ -38,7 +38,7 @@ require('telescope').setup{
         -- Replace current quickfix with selected Telescope entries(or all entries)
         ['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
         -- Add entries to current quickfix (selected or all entries)
-        ['<C-a>'] = actions.smart_add_to_qflist + actions.open_qflist,
+        ['<C-a>'] = actions.smart_add_to_qflist,
         ['<Tab>'] = actions.toggle_selection,
         -- ["<C-w>l"] = actions.preview_switch_window_right,
       }
