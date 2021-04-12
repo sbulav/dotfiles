@@ -58,17 +58,40 @@ function gr -d "Show list of existing git remotes"
   cut -d' ' -f1
 end
 
+function ghi -d "Github: View Open Issues"
+  is_in_git_repo || return
+  gh issue list | 
+  fzf-down --ansi --no-sort \
+    --preview 'gh issue view (echo {} | cut -f1)' \
+    --bind "enter:execute(gh issue view --web (echo {} | cut -f1))"
+end
 
-  bind \cg\cf gf
-  bind \cg\cg gb
-  bind \cg\ct gt
-  bind \cg\ch ghh
-  bind \cg\cr gr
+function ghprl -d "Github: View Open PRs"
+  is_in_git_repo || return
+  gh pr list -L100 |
+  fzf-down --ansi --no-sort \
+    --preview 'gh pr view (echo {} | cut -f1)' \
+    --bind "enter:execute(gh pr view --web (echo {} | cut -f1))"
+end
 
-  if bind -M insert > /dev/null 2>&1
-    bind -M insert \cg\cf gf
-    bind -M insert \cg\cg gb
-    bind -M insert \cg\ct gt
-    bind -M insert \cg\ch ghh
-    bind -M insert \cg\cr gr
-  end
+function ghprr -d "Github: View Open PRs needing my review"
+  is_in_git_repo || return
+  gh pr list -L100 --search "is:open is:pr review-requested:@me" |
+  fzf-down --ansi --no-sort \
+    --preview 'gh pr view (echo {} | cut -f1)' \
+    --bind "enter:execute(gh pr view --web (echo {} | cut -f1))"
+end
+
+bind \cg\cf gf
+bind \cg\cg gb
+bind \cg\ct gt
+bind \cg\ch ghh
+bind \cg\cr gr
+
+if bind -M insert > /dev/null 2>&1
+  bind -M insert \cg\cf gf
+  bind -M insert \cg\cg gb
+  bind -M insert \cg\ct gt
+  bind -M insert \cg\ch ghh
+  bind -M insert \cg\cr gr
+end
