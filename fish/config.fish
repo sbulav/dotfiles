@@ -2,7 +2,7 @@
 fzf_key_bindings
 
 # Set terminal
-set -g TERM xterm-256color
+set -g TERM screen-256color
 
 # Append paths
 set -a PATH "$HOME/bin/" "$HOME/.local/bin"
