@@ -1,6 +1,5 @@
 local cmd = vim.api.nvim_command
 local o = vim.o
-local vimcmd = vim.cmd
 
 local apply_options = function(opts)
   for k, v in pairs(opts) do
@@ -15,7 +14,7 @@ local apply_options = function(opts)
 end
 
 -- Set theme
-vim.g.colors_name = "solarized8_high"
+vim.g.colors_name = "OceanicNext"
 
 -- Deactivate plugins I don't use
 vim.g.loaded_netrwPlugin = 1

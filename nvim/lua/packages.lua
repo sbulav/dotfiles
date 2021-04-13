@@ -85,6 +85,7 @@ return require('packer').startup(function()
 
   -- Code display
   use {'lifepillar/vim-solarized8', opt = true}
+  use {'mhartington/oceanic-next', opt = true}
 
   -- Lua
   use {'tjdevries/nlua.nvim'}
