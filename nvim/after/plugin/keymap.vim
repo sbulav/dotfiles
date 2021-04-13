@@ -161,7 +161,7 @@ nnoremap <leader>gd :Gdiffsplit<cr>
 " GIT - change directory to git root
 nnoremap <leader>g :Gcd<cr>
 " GIT - Invoke Fugitive's
-nnoremap <leader>G :Git<cr>
+nnoremap <leader>g :Git<cr>
 
 " Simply run a make command
 nnoremap <leader>m :make<cr>
