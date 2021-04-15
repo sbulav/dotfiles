@@ -34,6 +34,7 @@ require'autocommands'
 require'mappings'
 require'_nvim_tree'
 require'_telescope'
+require'_treesitter'
 
 --[[{{{
 " Filetype detection and syntax markup

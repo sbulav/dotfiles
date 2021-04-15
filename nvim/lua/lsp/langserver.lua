@@ -34,6 +34,10 @@ require('nlua.lsp.nvim').setup(require('lspconfig'), {
   }
 })
 
+lspconfig.tsserver.setup{
+  on_init = custom_on_init;
+}
+
 -- lspconfig.yamlls.setup{
 --   on_init = custom_on_init,
 --   handlers = {

@@ -64,6 +64,8 @@ return require('packer').startup(function()
       -- {'nvim-telescope/telescope-frecency.nvim'}, -- media preview
     },
   }
+  use {'nvim-treesitter/nvim-treesitter'}
+  use {'nvim-treesitter/playground'}
   use {                                     -- Tree file manager
     'kyazdani42/nvim-tree.lua',
     opt = true,

@@ -15,7 +15,7 @@ require('compe').setup({
     source = {
       buffer = true,
       nvim_lsp = true,
-      nvim_treesitter = false,
+      nvim_treesitter = true,
       path = true,
       spell = true,
       tags = true,

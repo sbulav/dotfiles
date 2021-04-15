@@ -35,6 +35,8 @@ nnoremap <F4> :set relativenumber!<CR>
 " Check spelling on F6
 nmap <F6> :set spell!<CR>
 
+" Show TS Playground
+nnoremap <F8> :TSPlaygroundToggle<CR>
 " Show lsp log
 nnoremap <F9> :lua require'nredir'.nredir("!tail -100 " .. vim.lsp.get_log_path())<cr>
 
@@ -159,7 +161,7 @@ nnoremap <leader>ga :Git add .<cr>
 " GIT - run Gdiffsplit against current file and HEAD
 nnoremap <leader>gd :Gdiffsplit<cr>
 " GIT - change directory to git root
-nnoremap <leader>g :Gcd<cr>
+nnoremap <leader>G :Gcd<cr>
 " GIT - Invoke Fugitive's
 nnoremap <leader>g :Git<cr>
 
