@@ -13,20 +13,27 @@ function Show_documentation()
     if fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
         cmd('h ' .. vim.fn.expand('<cword>'))
     else
-        cmd('lua vim.lsp.buf.hover()')
+        cmd('<cmd>lua require"lspsaga.hover".render_hover_doc()<CR>')
     end
 end
 
 keymap('n', 'K', '<CMD>lua Show_documentation()<CR>', {noremap = true, silent = true})
-keymap('n', 'gA', '<CMD>lua vim.lsp.buf.code_action()<CR>', {noremap = true, silent = true})
-keymap('n', 'gd', '<CMD>lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
-keymap('n', 'gD', '<CMD>lua vim.lsp.util.show_line_diagnostics()<CR>', {noremap = true, silent = true})
-keymap('n', 'gr', '<CMD>lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})
-keymap('n', 'gR', '<CMD>lua vim.lsp.buf.renme()<CR>', {noremap = true, silent = true})
 keymap('n', '<leader>F', '<CMD>lua vim.lsp.buf.formatting()<CR>', {noremap = true, silent = true})
 keymap('v', '<leader>F', '<CMD>lua vim.lsp.buf.formatting()<CR>', {noremap = true, silent = true})
-
---[[ keymap('i', '<C-j>', 'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<C-j>"', {silent = true, expr = true})
-keymap('s', '<C-j>', 'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<C-j>"', {silent = true, expr = true})
-keymap('i', '<C-k>', 'vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "<C-k>"', {silent = true, expr = true})
-keymap('s', '<C-k>', 'vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "<C-k>"', {silent = true, expr = true}) ]]
+-- lsp provider to find the cursor word definition and reference
+keymap('n', 'gh', '<cmd>lua require"lspsaga.provider".lsp_finder()<CR>', {noremap = true, silent = true})
+-- code action
+keymap('n', 'gA', '<cmd>lua require"lspsaga.codeaction".code_action()<CR>', {noremap = true, silent = true})
+-- show signature help
+keymap('n', 'gs', '<cmd>lua require"lspsaga.signaturehelp".signature_help()<CR>', {noremap = true, silent = true})
+-- rename
+keymap('n', 'gr', '<cmd>lua require"lspsaga.rename".rename()<CR>', {noremap = true, silent = true})
+-- preview definition
+keymap('n', 'gd', '<cmd>lua require"lspsaga.provider".preview_definition()<CR>', {noremap = true, silent = true})
+-- show line diagnostic
+keymap('n', 'gD','<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>', {noremap = true, silent = true})
+-- jump diagnostic
+keymap('n', '[e', '<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()<CR>', {noremap = true, silent = true})
+keymap('n', ']e', '<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_next()<CR>', {noremap = true, silent = true})
+keymap('n', '<Space>to', '<cmd>lua require"lspsaga.floaterm".open_float_terminal()<CR>', {noremap = true, silent = true})
+keymap('t', '<Space>tc', '<C-\\><C-n> :lua require"lspsaga.floaterm".close_float_terminal()<CR>', {noremap = true, silent = true})

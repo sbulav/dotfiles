@@ -15,6 +15,7 @@ augroup pscbindings
   autocmd FileType python nnoremap <buffer> <F5> :Nredir !python %<cr>
   autocmd FileType terraform nnoremap <buffer> <F5> :Nredir !terraform plan -no-color<cr>
   autocmd FileType terraform nnoremap <buffer> <F6> :Nredir !terraform apply --auto-approve<cr>
+  autocmd FileType typescript nnoremap <buffer> <F5> :Nredir !npm run build && npm run test && npm run lint<cr>
 augroup end
 
 " Draw a visual line in any mode on F1
@@ -189,7 +190,7 @@ nnoremap <leader>c :lcd %:p:h<cr>
 " Close all buffers except currnent one
 nnoremap <leader>o :w <bar> %bd <bar> e# <bar> bd# <CR>
 " Open terminal
-nnoremap <leader>to :terminal<cr>
+nnoremap <leader>tO :terminal<cr>A
 " Exit terminal insert mode
 if has("nvim")
   au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>

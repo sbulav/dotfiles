@@ -83,7 +83,8 @@ return require('packer').startup(function()
   use {'sbulav/vim-helm'}                    -- Helm syntax and compiler
 
   use {'neovim/nvim-lspconfig'}              -- LSP templates and completions
-  use {'hrsh7th/nvim-compe', opt = true}     -- completions for nvim-lsp
+  use {'hrsh7th/nvim-compe'}     -- completions for nvim-lsp
+  use {'glepnir/lspsaga.nvim'}              -- LSP templates and completions
 
   -- Code display
   use {'lifepillar/vim-solarized8', opt = true}
