@@ -1,30 +1,28 @@
-local M = {}
+vim.cmd[[packadd nvim-compe]]
 
 local keymap = vim.api.nvim_set_keymap
 
-M.setup = function()
-  require('compe').setup({
-      enabled = true,
-      debug = false,
-      min_length = 2,
-      auto_preselect = false,
-      throttle_time = 100,
-      source_timeout = 200,
-      incomplete_delay = 400,
-      allow_prefix_unmatch = false,
+require('compe').setup({
+    enabled = true,
+    debug = false,
+    min_length = 1,
+    auto_preselect = false,
+    throttle_time = 100,
+    source_timeout = 200,
+    incomplete_delay = 400,
+    allow_prefix_unmatch = false,
 
-      source = {
-        buffer = true,
-        nvim_lsp = true,
-        nvim_treesitter = true,
-        path = true,
-        spell = true,
-        tags = true,
-        ultisnips = false,
-        vsnip = false,
-      }
-  })
-end
+    source = {
+      buffer = true,
+      nvim_lsp = true,
+      nvim_treesitter = true,
+      path = true,
+      spell = true,
+      tags = true,
+      ultisnips = false,
+      vsnip = false,
+    }
+})
 
 function Check_backspace()
     local col = vim.fn.col('.') - 1
@@ -44,5 +42,3 @@ keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"',
 
 keymap('i', '<C-space>', '<C-r>=compe#complete()<CR>',
     {noremap = false, silent = true})
-
-return M

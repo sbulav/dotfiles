@@ -13,7 +13,7 @@ function Show_documentation()
     if fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
         cmd('h ' .. vim.fn.expand('<cword>'))
     else
-        cmd('<cmd>lua require"lspsaga.hover".render_hover_doc()<CR>')
+        cmd('lua require"lspsaga.hover".render_hover_doc()')
     end
 end
 
@@ -29,9 +29,9 @@ keymap('n', 'gs', '<cmd>lua require"lspsaga.signaturehelp".signature_help()<CR>'
 -- rename
 keymap('n', 'gr', '<cmd>lua require"lspsaga.rename".rename()<CR>', {noremap = true, silent = true})
 -- preview definition
-keymap('n', 'gd', '<cmd>lua require"lspsaga.provider".preview_definition()<CR>', {noremap = true, silent = true})
+keymap('n', 'gD', '<cmd>lua require"lspsaga.provider".preview_definition()<CR>', {noremap = true, silent = true})
 -- show line diagnostic
-keymap('n', 'gD','<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>', {noremap = true, silent = true})
+keymap('n', 'gd','<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>', {noremap = true, silent = true})
 -- jump diagnostic
 keymap('n', '[e', '<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()<CR>', {noremap = true, silent = true})
 keymap('n', ']e', '<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_next()<CR>', {noremap = true, silent = true})

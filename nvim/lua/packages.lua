@@ -37,8 +37,6 @@ return require('packer').startup(function()
   use {'wbthomason/packer.nvim', opt = true}
 
   -- Interface plugins
-  -- use {'myusuf3/numbers.vim'}               -- Intelligently toggle line numbers
-  -- use {'tpope/vim-commentary'}              -- Comment stuff in and out
   use {'b3nj5m1n/kommentary'}               -- Comment stuff in and out
   use {'tpope/vim-eunuch'}                  -- Integration with UNIX shell
   use {'machakann/vim-sandwich'}            -- Surround objects with any character e.g. saiw|sdb|srb"
