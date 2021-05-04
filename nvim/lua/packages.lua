@@ -57,6 +57,8 @@ return require('packer').startup(function()
       {'nvim-lua/popup.nvim'},
       {'nvim-lua/plenary.nvim'},
       {'nvim-telescope/telescope-project.nvim'},
+      {'nvim-telescope/telescope-github.nvim'},
+      -- {'/Users/sergey_bulavincev/git_priv/telescope-github.nvim'},
       -- {'nvim-telescope/telescope-fzy-native.nvim'}, -- fast finder
       -- {'nvim-telescope/telescope-media-files.nvim'}, -- media preview
       -- {'nvim-telescope/telescope-frecency.nvim'}, -- media preview

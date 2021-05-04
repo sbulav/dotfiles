@@ -52,7 +52,7 @@ nnoremap <F12> :lua vim.lsp.stop_client(vim.lsp.get_active_clients())<cr>
 " vnoremap <Space> zf
 
 " Reset searchhighlight
-nnoremap <silent>zz :nohlsearch<cr>
+nnoremap <silent>zz :nohlsearch<cr>z.
 
 " Enable folding with the spacebar
 "nnoremap <space> za
