@@ -144,12 +144,13 @@ nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').oldfiles()<cr>
 nnoremap <leader>fm <cmd>lua require('telescope.builtin').keymaps()<cr>
-nnoremap <leader>fr <cmd>lua require('telescope.builtin').registers()<cr>
+nnoremap <leader>fe <cmd>lua require('telescope.builtin').registers()<cr>
 nnoremap <leader>fs <cmd>lua require('telescope.builtin').git_files()<cr>
 nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fv <cmd>lua require('_telescope.myfunctions').search_vimfiles()<cr>
 nnoremap <leader>fd <cmd>lua require('_telescope.myfunctions').search_vimfiles()<cr>
 nnoremap <leader>fp <cmd>lua require'telescope'.extensions.project.project{ change_dir = true }<cr>
+nnoremap <leader>fr <cmd>lua require'telescope'.extensions.gh.run()<cr>
 
 " Populate quickfix with current buffers with <c-q><c-q>
 nnoremap <C-q> :lua require('telescope.builtin').buffers()<Cr>

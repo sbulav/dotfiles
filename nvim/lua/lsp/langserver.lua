@@ -1,43 +1,81 @@
 local lspconfig = require'lspconfig'
 
+
 local function custom_on_init()
     print('Language Server Protocol started!')
 end
 
 vim.lsp.set_log_level("info")
 
-lspconfig.pyright.setup{
-  on_init = custom_on_init,
-  handlers = {
-    -- pyright ignores dynamicRegistration settings
-    ['client/registerCapability'] = function(_, _, _, _)
-      return {
-        result = nil;
-        error = nil;
-      }
-    end
-  };
-}
-
-lspconfig.terraformls.setup{
-  on_init = custom_on_init;
-}
-
--- NOTE: This replaces the calls where you would have before done `require('nvim_lsp').sumneko_lua.setup()`
-require('nlua.lsp.nvim').setup(require('lspconfig'), {
-  on_init = custom_on_init,
-
-  -- Include globals you want to tell the LSP are real :)
-  globals = {
-    -- Colorbuddy
-    "Color", "c", "Group", "g", "s",
+if vim.fn.has("mac") == 1 then
+  lspconfig.pyright.setup{
+    on_init = custom_on_init,
+    handlers = {
+      -- pyright ignores dynamicRegistration settings
+      ['client/registerCapability'] = function(_, _, _, _)
+        return {
+          result = nil;
+          error = nil;
+        }
+      end
+    };
   }
-})
 
-lspconfig.tsserver.setup{
-  on_init = custom_on_init;
-}
+  lspconfig.terraformls.setup{
+    on_init = custom_on_init
+  }
 
+  -- NOTE: This replaces the calls where you would have before done `require('nvim_lsp').sumneko_lua.setup()`
+  require('nlua.lsp.nvim').setup(require('lspconfig'), {
+    on_init = custom_on_init,
+
+    -- Include globals you want to tell the LSP are real :)
+    globals = {
+      -- Colorbuddy
+      "Color", "c", "Group", "g", "s",
+    }
+  })
+
+  lspconfig.tsserver.setup{
+    on_init = custom_on_init
+  }
+
+elseif vim.fn.has("unix") == 1 then 
+  print('Initializing langservers in containers')
+  require'lspconfig'.pyright.setup {
+    before_init = function(params)
+      params.processId = vim.NIL
+    end,
+    on_init = custom_on_init,
+    cmd = require'lspcontainers'.command('pyright'),
+    -- root_dir = util.root_pattern(".git", vim.fn.getcwd()),
+
+    handlers = {
+      -- pyright ignores dynamicRegistration settings
+      ['client/registerCapability'] = function(_, _, _, _)
+        return {
+          result = nil;
+          error = nil;
+        }
+      end
+    };
+  }
+
+  require'lspconfig'.terraformls.setup {
+    cmd = require'lspcontainers'.command('terraformls'),
+    filetypes = { "hcl", "tf", "terraform", "tfvars" },
+    on_init = custom_on_init
+  }
+
+  require'lspconfig'.tsserver.setup {
+    before_init = function(params)
+      params.processId = vim.NIL
+    end,
+    on_init = custom_on_init,
+    cmd = require'lspcontainers'.command('tsserver'),
+    -- root_dir = util.root_pattern(".git", vim.fn.getcwd()),
+  }
+end
 -- lspconfig.yamlls.setup{
 --   on_init = custom_on_init,
 --   handlers = {

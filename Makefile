@@ -1,7 +1,7 @@
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 NEOVIM ?= /usr/local/bin/nvim
 TERRAFORM_VERSION ?= 0.13.3
-GH_VERSION ?= 1.2.0
+GH_VERSION ?= 1.9.2
 FZF_VERSION ?= 0.24.2
 HOST ?= one-ingress.tst.k8s.ecom.ahold.nl
 .DEFAULT: help
@@ -18,10 +18,10 @@ tools: neovim fzf ripgrep k9s terraform gh
 .PHONY : neovim
 neovim: /tmp/nvim.appimage
 	@echo "----Making Tool Neovim-----"
-	@sudo cp /tmp/nvim.appimage $(NEOVIM)
-	@sudo chmod u+x $(NEOVIM)
-	@nvim --version | head -1
-	@curl -s https://github.com/neovim/neovim/commits/master | grep Merge |  cut -d '"' -f2 | cut -d '"' -f1 | grep Merge
+	sudo cp /tmp/nvim.appimage $(NEOVIM)
+	sudo chmod u+x $(NEOVIM)
+	nvim --version | head -1
+#	curl -s https://github.com/neovim/neovim/commits/master | grep Merge |  cut -d '"' -f2 | cut -d '"' -f1 | grep Merge
 
 ## fzf                 : Update fzf to nightly version
 .PHONY : fzf
@@ -48,8 +48,8 @@ gh: /tmp/gh.tgz
 .PHONY : ripgrep
 ripgrep: /tmp/ripgrep.deb
 	@echo "----Making Tool ripgrep-----"
-	@sudo dpkg -i /tmp/ripgrep.deb
-	@fzf --version | head -1
+	#@sudo dpkg -i /tmp/ripgrep.deb
+	sudo dnf install ripgrep -y
 
 ## terraform           : Update terraform to latest release
 .PHONY : terraform
@@ -57,7 +57,6 @@ terraform: /tmp/terraform.zip
 	@echo "----Making Tool terraform-----"
 	@unzip -o /tmp/terraform.zip -d /home/sab/bin
 	@terraform version
-
 
 ## dotfiles            : Update dotfiles to latest version
 .PHONY : dotfiles
@@ -80,6 +79,23 @@ kk-tools:
 	kubectl run tools --image=docker-registry-dev.ecom.ahold.nl/tools-report:3 --restart=Never --rm -it /bin/bash
 #kk port-forward svc/dev-myah-be-ah-tomcat 8080:8080 --address=0.0.0.0
 #kubectl ingress-nginx --service=nginx-ingress-controller -n kube-system info
+
+## colemak             : Install colemak-dhm
+.PHONY : colemak
+colemak:
+	git clone git@github.com:DreymaR/BigBagKbdTrixXKB.git /home/sab/git_priv
+	sudo bash /home/sav/git_priv/install-dreymar-xmod.sh -ox
+	echo "Now reboot"
+	echo "After reboot, go to settings->keyboard and pick english(us)->colemak[ed],Curl-DH"
+
+## symlinks            : Create symliks to configs
+.PHONY : symlinks
+symlinks:
+	ln -s /home/sab/dotfiles/nvim/ /home/sab/.config/nvim || true
+	ln -s /home/sab/dotfiles/tmux/.tmux.conf .tmux.conf || true
+	ln -s /home/sab/dotfiles/tmux/plugins/kube-tmux/ .tmux || true
+	rm -rf /home/sab/.config/fish || true
+	ln -s /home/sab/dotfiles/fish /home/sab/.config/fish || true
 
 ## /tmp/nvim.appimage  : Download nightly nvim appimage
 /tmp/nvim.appimage:
