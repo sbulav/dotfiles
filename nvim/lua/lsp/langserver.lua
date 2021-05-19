@@ -48,7 +48,7 @@ elseif vim.fn.has("unix") == 1 then
     end,
     on_init = custom_on_init,
     cmd = require'lspcontainers'.command('pyright'),
-    -- root_dir = util.root_pattern(".git", vim.fn.getcwd()),
+    root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
 
     handlers = {
       -- pyright ignores dynamicRegistration settings
@@ -73,8 +73,15 @@ elseif vim.fn.has("unix") == 1 then
     end,
     on_init = custom_on_init,
     cmd = require'lspcontainers'.command('tsserver'),
-    -- root_dir = util.root_pattern(".git", vim.fn.getcwd()),
+    root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
   }
+  require('nlua.lsp.nvim').setup(require('lspconfig'), {
+    on_init = custom_on_init,
+    -- Include globals you want to tell the LSP are real :)
+    globals = {
+      -- Colorbuddy
+      "Color", "c", "Group", "g", "s",
+    }})
 end
 -- lspconfig.yamlls.setup{
 --   on_init = custom_on_init,
