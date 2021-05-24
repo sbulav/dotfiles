@@ -84,7 +84,7 @@ return require('packer').startup(function()
   use {'neovim/nvim-lspconfig'}              -- LSP templates and completions
   use {'hrsh7th/nvim-compe'}                 -- completions for nvim-lsp
   use {'glepnir/lspsaga.nvim'}               -- LSP templates and completions
-  if vim.fn.has("unix") == 1 and not vim.fn.has("mac") then
+  if vim.fn.has("unix") == 1 and vim.fn.has("mac") ~=1 then 
     use 'lspcontainers/lspcontainers.nvim'   -- Lang servers in containers
   end
 
