@@ -45,7 +45,6 @@ return require('packer').startup(function()
   use {'mbbill/undotree'}                   -- Undotree
   use {'mhinz/vim-startify'}                -- Startup screen
   use {'phaazon/hop.nvim'}                  -- Easymotion in lua
-  use {'sbulav/jump-ray.nvim'}
   use {'sbulav/nredir.nvim',                -- Redirect output to scratch buffer
     opt = true,
     cmd = 'Nredir'
@@ -85,7 +84,7 @@ return require('packer').startup(function()
   use {'neovim/nvim-lspconfig'}              -- LSP templates and completions
   use {'hrsh7th/nvim-compe'}                 -- completions for nvim-lsp
   use {'glepnir/lspsaga.nvim'}               -- LSP templates and completions
-  if vim.fn.has("unix") == 1 and not vim.fn.has("mac") then 
+  if vim.fn.has("unix") == 1 and not vim.fn.has("mac") then
     use 'lspcontainers/lspcontainers.nvim'   -- Lang servers in containers
   end
 

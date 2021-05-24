@@ -33,6 +33,8 @@ vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
+-- Fix vim sandwitch overriding sentence text obje
+vim.g.textobj_sandwich_no_default_key_mappings = 1
 
 -- Add current path and subpaths to path
 o.path = o.path .. '**'
