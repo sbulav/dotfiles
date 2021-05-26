@@ -179,7 +179,8 @@ nnoremap <leader>D :bdelete!<cr>
 " Undotree
 nnoremap <leader>u :UndotreeToggle<cr>
 " Reload vim config
-nnoremap <leader>r :source $MYVIMRC<CR>
+" nnoremap <leader>r :source $MYVIMRC<CR>
+nnoremap <leader>r :lua require("plenary.reload").reload_module'$MYVIMRC'<cr> :luafile $MYVIMRC<cr>
 " Use Nredir function to open vim command in split
 nnoremap <leader>R :Nredir <c-f>A
 " Open vimrc
