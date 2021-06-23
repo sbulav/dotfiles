@@ -1,1 +1,0 @@
-/home/sab/dotfiles/tmux/plugins/kube-tmux/
