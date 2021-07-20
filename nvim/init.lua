@@ -35,7 +35,7 @@ require'mappings'
 require'_nvim_tree'
 require'_telescope'
 require'_treesitter'
-
+require'_hop'
 --[[{{{
 " Filetype detection and syntax markup
 """""""""""""""""""""""""""""""""""""""
