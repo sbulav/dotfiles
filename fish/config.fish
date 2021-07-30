@@ -48,6 +48,14 @@ set -gx FZF_ALT_C_COMMAND 'fd --type directory \
   --exclude "Library" \
   --exclude "Music" '
 
+set -gx FZF_CTRL_T_COMMAND 'fd --type file \
+  --exclude ".git" \
+  --exclude "venv*" \
+  --exclude "*node_modules*" \
+  --exclude "*ctags*" \
+  --exclude "Library" \
+  --exclude "Music" '
+
 # Smart fzf preview window
 set -gx FZF_DEFAULT_OPTS "--height 50% -1 --layout=reverse-list --multi \
   --preview='set -l data (file --mime {}); \
