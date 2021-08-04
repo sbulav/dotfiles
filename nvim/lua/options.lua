@@ -46,7 +46,7 @@ local options = {
   showmatch = true,       -- Show Matching parenthesis
   ignorecase = true,      -- case insensitive on search
   smartcase = true,       -- improve searching using '/'
-  hlsearch = false,       -- Highlight search matches as you type
+  hlsearch = true,       -- Highlight search matches as you type
   incsearch = true,       -- Show search matches as you type
   inccommand = "nosplit", -- Show result of substitution immediately
 
