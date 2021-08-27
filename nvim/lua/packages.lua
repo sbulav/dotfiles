@@ -79,7 +79,6 @@ return require('packer').startup(function()
 
   -- Languages
   use {'hashivim/vim-terraform'}             -- Terraform syntax highlight
-  use {'sbulav/vim-helm'}                    -- Helm syntax and compiler
 
   use {'neovim/nvim-lspconfig'}              -- LSP templates and completions
   use {'hrsh7th/nvim-compe'}                 -- completions for nvim-lsp
