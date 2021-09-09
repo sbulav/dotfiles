@@ -1,14 +1,26 @@
 local M = {}
 local api = vim.api
 
-function _G.dump(...)
+_G.dump = function(...)
     local objects = vim.tbl_map(vim.inspect, {...})
     print(unpack(objects))
 end
 
-function _G.reload(modname)
+_G.reload = function(modname)
     package.loaded[modname] = nil
     return require(modname)
+end
+
+_G.prequire = function(plugin, verbose)
+    local present, plug = pcall(require, plugin)
+    if present then
+        return plug
+    end
+    local errmsg = string.format("Could not load %s", plugin)
+    if verbose then
+        errmsg = string.format("%s\nError:%s", plug)
+    end
+    print(errmsg)
 end
 
 -- Taken from https://github.com/norcalli/nvim_utils/blob/master/lua/nvim_utils.lua#L554-L567
@@ -39,5 +51,4 @@ M.map = setmetatable({}, {
                 })
         end
     })
-
 return M

@@ -1,40 +1,14 @@
-local cmd = vim.cmd
-local fn = vim.fn
+-- load packer
+-- local packer = require'utils'.prequire("config.packer")
+local packer = prequire("config.packer")
 
--- Check that packer is installed, try to install otherwise
-local packer_exists = pcall(cmd, [[packadd packer.nvim]])
-
-if not packer_exists then
-  if fn.input("Download Packer? (y for yes)") ~= "y" then
+if not packer then 
     return
-  end
-
-  local directory = string.format(
-    '%s/site/pack/packer/opt/',
-    fn.stdpath('data')
-  )
-
-  fn.mkdir(directory, 'p')
-
-  local out = fn.system(string.format(
-    'git clone %s %s',
-    'https://github.com/wbthomason/packer.nvim',
-    directory .. '/packer.nvim'
-  ))
-
-  print(out)
-  print("Downloading packer.nvim...")
-  print("(Restart and run :PackerSync...)")
-
-  return
 end
 
--- Load packer from pack, requied as packer is opt
-cmd[[packadd! packer.nvim]]
-
-return require('packer').startup(function()
+packer.startup(function(use)
   -- Packer plugin manager
-  use {'wbthomason/packer.nvim', opt = true}
+  use {'wbthomason/packer.nvim'}
 
   -- Interface plugins
   use {'b3nj5m1n/kommentary'}               -- Comment stuff in and out
@@ -63,7 +37,13 @@ return require('packer').startup(function()
       -- {'nvim-telescope/telescope-frecency.nvim'}, -- media preview
     },
   }
-  use {'nvim-treesitter/nvim-treesitter'}
+  -- better text highlighting
+  use {
+      "nvim-treesitter/nvim-treesitter",
+      branch = "0.5-compat",
+      -- event = "BufRead",
+      config = require('config.treesitter')
+  }
   use {'nvim-treesitter/playground'}
   use {                                     -- Tree file manager
     'kyazdani42/nvim-tree.lua',
@@ -90,7 +70,6 @@ return require('packer').startup(function()
   -- Code display
   use {'lifepillar/vim-solarized8', opt = true}
   use {'mhartington/oceanic-next', opt = true}
-
   -- Lua
   use {'tjdevries/nlua.nvim'}
   use {'euclidianAce/BetterLua.vim'}

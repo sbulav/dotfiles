@@ -27,6 +27,7 @@ lua/lsp/keybindings.lua
 
 ]]
 
+require'utils'
 require'packages'
 require'lsp'
 require'options'
@@ -34,18 +35,4 @@ require'autocommands'
 require'mappings'
 require'_nvim_tree'
 require'_telescope'
-require'_treesitter'
 require'_hop'
---[[{{{
-" Filetype detection and syntax markup
-"""""""""""""""""""""""""""""""""""""""
-" execute buffer for various languages
-" augroup makeCmd
-"   autocmd!
-"   au FileType go         call SetComp ('go', 'go run %')
-"   au FileType python     call SetComp ('', 'python %')
-"   au FileType terraform  call SetComp ('', 'terraform plan -no-color')
-"   au FileType sh         call SetComp ('', 'bash %')
-"   au FileType helm       call SetComp ('helm', 'helm lint')
-" augroup ENDw
-]]--}}}
