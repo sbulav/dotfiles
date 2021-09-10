@@ -18,8 +18,8 @@
 
 - Global keymappings
 after/plugin/keymap.vim
-- LSP keymappings
-lua/lsp/keybindings.lua
+- LSP settings and keymappings
+lua/lspnew.lua
 - Plugins
 ~/.local/share/nvim/site/pack/packer/
 - Undo, logs, swap
@@ -32,4 +32,4 @@ require'packages'
 require'options'
 require'autocommands'
 require'mappings'
-
+require'nvim_help'

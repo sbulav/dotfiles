@@ -18,7 +18,7 @@ packer.startup(function(use)
   use {'mbbill/undotree'}                   -- Undotree
   use {'mhinz/vim-startify'}                -- Startup screen
   use {'phaazon/hop.nvim',                  -- Easymotion in lua
-    config = require('config.hop') ,
+    config = function() require('config.hop') end,
   }
 
   --[[ use {'sbulav/nredir.nvim',                -- Redirect output to scratch buffer
@@ -38,15 +38,17 @@ packer.startup(function(use)
       -- {'nvim-telescope/telescope-media-files.nvim'}, -- media preview
       -- {'nvim-telescope/telescope-frecency.nvim'}, -- media preview
     },
-      config = function() require('config.telescope') end,
+    config = function() require('config.telescope') end,
   }
   -- better text highlighting
+      -- better text highlighting
   use {
-      "nvim-treesitter/nvim-treesitter",
-      branch = "0.5-compat",
-      config = function() require('config.treesitter') end,
+    'nvim-treesitter/nvim-treesitter',
+    event = 'BufRead',
+    config = function() require('config.treesitter') end,
+    run = ':TSUpdate',
   }
-  use {'nvim-treesitter/playground'}
+  -- use 'nvim-treesitter/playground'
   use {                                     -- Tree file manager
     'kyazdani42/nvim-tree.lua',
     requires = {
@@ -75,13 +77,14 @@ packer.startup(function(use)
   -- completion engine
   use {
       'hrsh7th/nvim-cmp',
+      event = "BufRead",
       requires = {
-          { 'hrsh7th/cmp-buffer' },
-          { 'hrsh7th/cmp-nvim-lua' },
-          { 'hrsh7th/cmp-nvim-lsp' },
-          { 'saadparwaiz1/cmp_luasnip' },
+          { 'hrsh7th/cmp-buffer', after = 'nvim-cmp', },
+          { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp', },
+          { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp', },
+          { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip', },
       },
-      config = require('config.cmp')
+      config = function() require('config.cmp') end,
   }
 
   -- snippets
@@ -89,17 +92,19 @@ packer.startup(function(use)
       'L3MON4D3/LuaSnip',
       after = 'nvim-cmp',
   }
-
   -- LSP
   -- lsp configuration
   use {
       'neovim/nvim-lspconfig',
-      config = require('lspnew')
+      after = 'cmp-nvim-lsp',
+      config = function() require('lspnew') end,
   }
+
   -- great ui for lsp
   use {
       'glepnir/lspsaga.nvim',
-      config = 'config.lspsaga',
+      after = 'nvim-lspconfig',
+      config = function() require('config.saga') end,
   }
 
 
