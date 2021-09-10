@@ -1,5 +1,7 @@
-vim.cmd[[packadd nvim-tree.lua]]
-
+--[[ local nvimtree = prequire("nvim-tree.lua")
+if not nvimtree then
+  return
+end ]]
 -- File explorer config
 vim.g.nvim_tree_width = 40
 vim.g.nvim_tree_auto_open = 1
@@ -29,4 +31,4 @@ vim.g.nvim_tree_side = 'left'
     prev_git_item = '[c',
     next_git_item = ']c',
 } ]]
-vim.api.nvim_set_keymap('n', '<F3>', ':NvimTreeToggle<cr><paste>', { noremap = true, silent = false })
+-- vim.api.nvim_set_keymap('n', '<F3>', ':NvimTreeToggle<cr><paste>', { noremap = true, silent = false })

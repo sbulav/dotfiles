@@ -1,8 +1,7 @@
 -- load packer
--- local packer = require'utils'.prequire("config.packer")
 local packer = prequire("config.packer")
 
-if not packer then 
+if not packer then
     return
 end
 
@@ -18,11 +17,14 @@ packer.startup(function(use)
   use {'romainl/vim-qf'}                    -- Better work with quickfix
   use {'mbbill/undotree'}                   -- Undotree
   use {'mhinz/vim-startify'}                -- Startup screen
-  use {'phaazon/hop.nvim'}                  -- Easymotion in lua
-  use {'sbulav/nredir.nvim',                -- Redirect output to scratch buffer
+  use {'phaazon/hop.nvim',                  -- Easymotion in lua
+    config = require('config.hop') ,
+  }
+
+  --[[ use {'sbulav/nredir.nvim',                -- Redirect output to scratch buffer
     opt = true,
     cmd = 'Nredir'
-  }
+  } ]]
   use {'glepnir/indent-guides.nvim'}        -- Indentation highlighs
   use {                                     -- Telescope fuzzy finder
     'nvim-telescope/telescope.nvim',
@@ -36,21 +38,21 @@ packer.startup(function(use)
       -- {'nvim-telescope/telescope-media-files.nvim'}, -- media preview
       -- {'nvim-telescope/telescope-frecency.nvim'}, -- media preview
     },
+      config = function() require('config.telescope') end,
   }
   -- better text highlighting
   use {
       "nvim-treesitter/nvim-treesitter",
       branch = "0.5-compat",
-      -- event = "BufRead",
-      config = require('config.treesitter')
+      config = function() require('config.treesitter') end,
   }
   use {'nvim-treesitter/playground'}
   use {                                     -- Tree file manager
     'kyazdani42/nvim-tree.lua',
-    opt = true,
     requires = {
       {'kyazdani42/nvim-web-devicons', opt = true}
     },
+    config = function() require('config.nvim-tree') end,
   }
 
   -- Version Control Plugins
@@ -59,13 +61,6 @@ packer.startup(function(use)
 
   -- Languages
   use {'hashivim/vim-terraform'}             -- Terraform syntax highlight
-
-  use {'neovim/nvim-lspconfig'}              -- LSP templates and completions
-  use {'hrsh7th/nvim-compe'}                 -- completions for nvim-lsp
-  use {'glepnir/lspsaga.nvim'}               -- LSP templates and completions
-  if vim.fn.has("unix") == 1 and vim.fn.has("mac") ~=1 then 
-    use 'lspcontainers/lspcontainers.nvim'   -- Lang servers in containers
-  end
 
   -- Code display
   use {'lifepillar/vim-solarized8', opt = true}
@@ -77,4 +72,38 @@ packer.startup(function(use)
   -- Tests
   use {'janko/vim-test'}
 
+  -- completion engine
+  use {
+      'hrsh7th/nvim-cmp',
+      requires = {
+          { 'hrsh7th/cmp-buffer' },
+          { 'hrsh7th/cmp-nvim-lua' },
+          { 'hrsh7th/cmp-nvim-lsp' },
+          { 'saadparwaiz1/cmp_luasnip' },
+      },
+      config = require('config.cmp')
+  }
+
+  -- snippets
+  use {
+      'L3MON4D3/LuaSnip',
+      after = 'nvim-cmp',
+  }
+
+  -- LSP
+  -- lsp configuration
+  use {
+      'neovim/nvim-lspconfig',
+      config = require('lspnew')
+  }
+  -- great ui for lsp
+  use {
+      'glepnir/lspsaga.nvim',
+      config = 'config.lspsaga',
+  }
+
+
+  if vim.fn.has("unix") == 1 and vim.fn.has("mac") ~=1 then
+    use { 'lspcontainers/lspcontainers.nvim' }   -- Lang servers in containers
+  end
 end)

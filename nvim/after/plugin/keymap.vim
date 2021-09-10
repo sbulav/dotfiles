@@ -28,7 +28,7 @@ set pastetoggle=<F2>
 
 " Use netrw as file Explorer
 " Moved to LUA
-" map <silent> <F3> :call ToggleVExplorer()<CR>
+map <silent> <F3> :NvimTreeToggle<CR>
 
 " Show/unshow Numbers on F4
 nnoremap <F4> :set relativenumber!<CR>
@@ -147,8 +147,8 @@ nnoremap <leader>fm <cmd>lua require('telescope.builtin').keymaps()<cr>
 nnoremap <leader>fe <cmd>lua require('telescope.builtin').registers()<cr>
 nnoremap <leader>fs <cmd>lua require('telescope.builtin').git_files()<cr>
 nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
-nnoremap <leader>fv <cmd>lua require('_telescope.myfunctions').search_vimfiles()<cr>
-nnoremap <leader>fd <cmd>lua require('_telescope.myfunctions').search_vimfiles()<cr>
+nnoremap <leader>fv <cmd>lua require('config.telescope_myfunctions').search_vimfiles()<cr>
+nnoremap <leader>fd <cmd>lua require('config.telescope_myfunctions').search_dotfiles()<cr>
 nnoremap <leader>fp <cmd>lua require'telescope'.extensions.project.project{ change_dir = true }<cr>
 nnoremap <leader>fr <cmd>lua require'telescope'.extensions.gh.run{}<cr>
 

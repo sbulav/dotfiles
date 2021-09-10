@@ -29,10 +29,7 @@ lua/lsp/keybindings.lua
 
 require'utils'
 require'packages'
-require'lsp'
 require'options'
 require'autocommands'
 require'mappings'
-require'_nvim_tree'
-require'_telescope'
-require'_hop'
+
