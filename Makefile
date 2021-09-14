@@ -1,7 +1,7 @@
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 NEOVIM ?= /usr/local/bin/nvim
-TERRAFORM_VERSION ?= 0.13.3
-GH_VERSION ?= 1.9.2
+TERRAFORM_VERSION ?= 1.0.3
+GH_VERSION ?= 1.13.1
 FZF_VERSION ?= 0.24.2
 HOST ?= one-ingress.tst.k8s.ecom.ahold.nl
 .DEFAULT: help
@@ -99,7 +99,7 @@ symlinks:
 
 ## /tmp/nvim.appimage  : Download nightly nvim appimage
 /tmp/nvim.appimage:
-	@curl -s -S -L -f https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -z $@ -o $@
+	@curl -s -S -L -f https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage -z $@ -o $@
 
 ## /tmp/fzf.tgz        : Download latest fzf release
 /tmp/fzf.tgz:
