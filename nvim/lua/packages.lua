@@ -16,7 +16,10 @@ packer.startup(function(use)
   use {'justinmk/vim-sneak'}                -- Jump to location specified by two characters
   use {'romainl/vim-qf'}                    -- Better work with quickfix
   use {'mbbill/undotree'}                   -- Undotree
-  use {'mhinz/vim-startify'}                -- Startup screen
+  use {'goolord/alpha-nvim',                -- Startup screen
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function() require('config.alpha') end,
+  }
   use {'phaazon/hop.nvim',                  -- Easymotion in lua
     config = function() require('config.hop') end,
   }
@@ -52,7 +55,7 @@ packer.startup(function(use)
   use {                                     -- Tree file manager
     'kyazdani42/nvim-tree.lua',
     requires = {
-      {'kyazdani42/nvim-web-devicons', opt = true}
+      {'kyazdani42/nvim-web-devicons'}
     },
     config = function() require('config.nvim-tree') end,
   }
