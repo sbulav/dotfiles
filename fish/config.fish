@@ -1,11 +1,11 @@
+# Append paths
+set -a PATH "$HOME/bin/" "$HOME/.local/bin" "/opt/homebrew/bin"
+
 # Initialize FZF keybindings
 fzf_key_bindings
 
 # Set terminal
 set -g TERM screen-256color
-
-# Append paths
-set -a PATH "$HOME/bin/" "$HOME/.local/bin"
 
 # Set correct locale
 set -x LANG en_US.UTF-8
