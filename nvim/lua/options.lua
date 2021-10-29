@@ -67,7 +67,7 @@ local options = {
   -- autoread = true,            -- Reload the file if changed from the outside
   switchbuf = "uselast",       -- If opening a file from :ls, :buffers, :files, etc. jump to open version
                               -- of the file, if one exists
-  clipboard = "unnamed",      -- Use * and + registers to access system clipboard(i.e. tmux)
+  clipboard = "unnamedplus",  -- Use * and + registers to access system clipboard(i.e. tmux)
   confirm = true,             -- Dialog foor unsaved changes
   splitright = true,          -- Go to right pane by default (Needed for quickmenu)
   shortmess = "csa",          -- Disable some hit-enter messages}}}
