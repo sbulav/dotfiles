@@ -26,4 +26,6 @@
 [mergetool "nvimdiff"]
     cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [init]
-    templatedir = ~/.git_template
+	templatedir = ~/.git_template
+[pull]
+	rebase = false
