@@ -105,7 +105,7 @@ packer.startup(function(use)
 
   -- great ui for lsp
   use {
-      'glepnir/lspsaga.nvim',
+      'tami5/lspsaga.nvim',
       after = 'nvim-lspconfig',
       config = function() require('config.saga') end,
   }
