@@ -24,10 +24,10 @@ packer.startup(function(use)
     config = function() require('config.hop') end,
   }
 
-  --[[ use {'sbulav/nredir.nvim',                -- Redirect output to scratch buffer
+  use {'sbulav/nredir.nvim',                -- Redirect output to scratch buffer
     opt = true,
     cmd = 'Nredir'
-  } ]]
+  }
   use {'glepnir/indent-guides.nvim'}        -- Indentation highlighs
   use {                                     -- Telescope fuzzy finder
     'nvim-telescope/telescope.nvim',
@@ -44,7 +44,6 @@ packer.startup(function(use)
     config = function() require('config.telescope') end,
   }
   -- better text highlighting
-      -- better text highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
     event = 'BufRead',
@@ -61,7 +60,14 @@ packer.startup(function(use)
   }
 
   -- Version Control Plugins
-  use {'mhinz/vim-signify'}                  -- Git line status
+  use {
+  'lewis6991/gitsigns.nvim',
+  requires = {
+    'nvim-lua/plenary.nvim'
+  },
+  config = function() require('gitsigns').setup() end,
+    -- tag = 'release' -- To use the latest release
+}
   use {'tpope/vim-fugitive'}                 -- Git combine
 
   -- Languages
@@ -109,7 +115,6 @@ packer.startup(function(use)
       after = 'nvim-lspconfig',
       config = function() require('config.saga') end,
   }
-
 
   if vim.fn.has("unix") == 1 and vim.fn.has("mac") ~=1 then
     use { 'lspcontainers/lspcontainers.nvim' }   -- Lang servers in containers
