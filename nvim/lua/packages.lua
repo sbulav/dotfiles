@@ -13,7 +13,6 @@ packer.startup(function(use)
   use {'b3nj5m1n/kommentary'}               -- Comment stuff in and out
   use {'tpope/vim-eunuch'}                  -- Integration with UNIX shell
   use {'machakann/vim-sandwich'}            -- Surround objects with any character e.g. saiw|sdb|srb"
-  use {'justinmk/vim-sneak'}                -- Jump to location specified by two characters
   use {'romainl/vim-qf'}                    -- Better work with quickfix
   use {'mbbill/undotree'}                   -- Undotree
   use {'goolord/alpha-nvim',                -- Startup screen
