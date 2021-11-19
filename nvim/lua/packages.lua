@@ -10,7 +10,12 @@ packer.startup(function(use)
   use {'wbthomason/packer.nvim'}
 
   -- Interface plugins
-  use {'b3nj5m1n/kommentary'}               -- Comment stuff in and out
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+  }
   use {'tpope/vim-eunuch'}                  -- Integration with UNIX shell
   use {'machakann/vim-sandwich'}            -- Surround objects with any character e.g. saiw|sdb|srb"
   use {'romainl/vim-qf'}                    -- Better work with quickfix
