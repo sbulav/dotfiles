@@ -32,3 +32,14 @@ local opts = { noremap = true, silent = true }
 keymap('n', 'K', '<CMD>lua Show_documentation()<CR>', opts)
 keymap('n', '<Space>to', '<cmd>lua require"lspsaga.floaterm".open_float_terminal()<CR>', opts)
 keymap('t', '<Space>tc', '<C-\\><C-n> :lua require"lspsaga.floaterm".close_float_terminal()<CR>', opts)
+
+--- luasnip keymappings
+keymap("i", "<c-n>", "<cmd>lua require'luasnip'.change_choice(1)<CR>", opts)
+keymap("s", "<c-n>", "<cmd>lua require'luasnip'.change_choice(1)<CR>", opts)
+keymap("i", "<c-p>", "<cmd>lua require'luasnip'.change_choice(-1)<CR>", opts)
+keymap("s", "<c-p>", "<cmd>lua require'luasnip'.change_choice(-1)<CR>", opts)
+
+keymap("i", "<c-j>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
+keymap("s", "<c-j>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
+keymap("i", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
+keymap("s", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)

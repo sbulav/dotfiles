@@ -102,16 +102,17 @@ packer.startup(function(use)
 
   -- tabnine AI Assistant
   use {
-    'tzachar/cmp-tabnine',
-    after = 'nvim-cmp',
-    run = "./install.sh",
-    config = function() require('config.cmp_tabnine') end,
+      'tzachar/cmp-tabnine',
+      after = 'nvim-cmp',
+      run = "./install.sh",
+      config = function() require('config.cmp_tabnine') end,
   }
 
   -- snippets
   use {
       'L3MON4D3/LuaSnip',
       after = 'nvim-cmp',
+      config = function() require('config.snippets') end,
   }
   -- LSP
   -- lsp configuration
