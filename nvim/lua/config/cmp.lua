@@ -2,6 +2,7 @@ local cmp = prequire("cmp")
 if not cmp then
     return
 end
+
 local lsp_symbols = {
     Text = "   (Text) ",
     Method = "   (Method)",
@@ -35,6 +36,9 @@ cmp.setup({
     sources = {
         { name = "buffer" },
         { name = "nvim_lsp" },
+        { name = 'cmp_tabnine' },
+        { name = 'treesitter' },
+        { name = 'nvim_lua' },
         { name = "path" },
         { name = "luasnip" },
     },
@@ -47,9 +51,11 @@ cmp.setup({
         format = function(entry, item)
             item.kind = lsp_symbols[item.kind]
             item.menu = ({
-                nvim_lsp = "[LSP]",
                 buffer = "[Buffer]",
-                nvim_lua = "[Nvim]",
+                cmp_tabnine = "[T9]",
+                nvim_lsp = "[LSP]",
+                nvim_lua = "[NLUA]",
+                treesitter = "[TS]",
                 path = "[Path]",
                 luasnip = "[Snippet]",
             })[entry.source.name]
