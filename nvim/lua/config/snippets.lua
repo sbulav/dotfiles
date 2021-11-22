@@ -7,7 +7,7 @@ ls.config.set_config({
   -- minimal increase in priority.
   ext_prio_increase = 1,
   enable_autosnippets = false,
-  store_selection_keys = '<tab>',
+  store_selection_keys = '<c-s>',
 })
 
 -- some shorthands...
@@ -128,7 +128,7 @@ ls.snippets = {
         }),
     },
     markdown = {
-        -- Select link, press Tab, enter link to receive snippet
+        -- Select link, press C-s, enter link to receive snippet
         snip({
           trig = "link",
           namr = "markdown_link",
