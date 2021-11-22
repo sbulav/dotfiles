@@ -77,6 +77,12 @@ cmp.setup({
     formatting = {
         format = function(entry, item)
             item.kind = lsp_symbols[item.kind]
+            if entry.source.name == 'cmp_tabnine' then
+              item.kind = '   (TabNine)'
+              if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
+                item.kind = '   (' .. entry.completion_item.data.detail .. ')'
+              end
+            end
             item.menu = ({
                 buffer = "[Buffer]",
                 cmp_tabnine = "[T9]",
@@ -86,7 +92,6 @@ cmp.setup({
                 path = "[Path]",
                 luasnip = "[Snippet]",
             })[entry.source.name]
-
             return item
         end,
     },
