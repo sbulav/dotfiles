@@ -1,4 +1,12 @@
 local ls = require("luasnip")
+-- some shorthands...
+local snip = ls.snippet
+local node = ls.snippet_node
+local text = ls.text_node
+local insert = ls.insert_node
+local func = ls.function_node
+local choice = ls.choice_node
+local dynamicn = ls.dynamic_node
 
 ls.config.set_config({
   history = true,
@@ -10,14 +18,6 @@ ls.config.set_config({
   store_selection_keys = '<c-s>',
 })
 
--- some shorthands...
-local snip = ls.snippet
-local node = ls.snippet_node
-local text = ls.text_node
-local insert = ls.insert_node
-local func = ls.function_node
-local choice = ls.choice_node
-local dynamicn = ls.dynamic_node
 
 local date = function() return {os.date('%Y-%m-%d')} end
 -- Make sure to not pass an invalid command, as io.popen() may write over nvim-text.
@@ -186,9 +186,10 @@ ls.snippets = {
             "title: "}), insert(1, "note_title"), text({"", 
             "author: "}), insert(2, "author"), text({"", 
             "date: "}), func(date, {}), text({"",
-            "cathegories: "}), insert(3, "cathegories"), text({"]",
+            "cathegories: ["}), insert(3, ""), text({"]",
             "lastmod: "}), func(date, {}), text({"",
             "tags: ["}), insert(4), text({"]",
+            "comments: true",
             "---", ""}),
             insert(0)
           }),
