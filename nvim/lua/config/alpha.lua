@@ -1,9 +1,9 @@
-local alpha = prequire("alpha")
+local alpha = prequire "alpha"
 if not alpha then
     return
 end
 
-local startify = require'alpha.themes.startify'
+local startify = require "alpha.themes.startify"
 
 startify.section.header.val = {
     [[                                   __                ]],
@@ -27,9 +27,9 @@ startify.nvim_web_devicons.enabled = true
 -- startify.nvim_web_devicons.highlight = 'Keyword'
 --]]
 startify.section.bottom_buttons.val = {
-    startify.button( "c", "Edit init.lua" , ":edit $MYVIMRC<CR>"),
-    startify.button( "u", "Update packages" , ":PackerSync<CR>"),
-    startify.button( "q", "Quit NVIM" , ":qa<CR>"),
+    startify.button("c", "Edit init.lua", ":edit $MYVIMRC<CR>"),
+    startify.button("u", "Update packages", ":PackerSync<CR>"),
+    startify.button("q", "Quit NVIM", ":qa<CR>"),
 }
 startify.section.footer = {
     { type = "text", val = "footer" },

@@ -6,10 +6,10 @@ local api = vim.api
 
 -- Open help vertically and press q to exit
 function help_tab()
-    if vim.bo.buftype == 'help' then
-        cmd('wincmd L')
+    if vim.bo.buftype == "help" then
+        cmd "wincmd L"
         local nr = api.nvim_get_current_buf()
         api.nvim_buf_set_keymap(nr, "", "q", ":q<CR>", { noremap = true, silent = true })
     end
 end
-cmd("au BufEnter *.txt lua help_tab()")
+cmd "au BufEnter *.txt lua help_tab()"
