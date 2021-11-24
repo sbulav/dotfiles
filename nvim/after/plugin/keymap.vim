@@ -211,7 +211,8 @@ function! s:save_and_exec() abort
     :source %
   elseif &filetype == 'lua'
     :silent! write
-    :lua require("plenary.reload").reload_module'%'
+    :lua require("plenary.reload").reload_module'init'
+    :lua require("plenary.reload").reload_module'lua'
     :luafile %
   endif
 
