@@ -1,20 +1,20 @@
 -- try to import lspconfig
 local lspconfig = prequire "lspconfig"
 if not lspconfig then
-  return
+    return
 end
 
 -- tell lsp about nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-  print "Initializing langservers in containers"
-  require("lspconfig").pyright.setup {
+print "Initializing langservers in containers"
+require("lspconfig").pyright.setup {
     before_init = function(params)
         params.processId = vim.NIL
     end,
-    on_init = require('lsp.utils').custom_on_init,
-    on_attach = require('lsp.utils').on_attach,
+    on_init = require("lsp.utils").custom_on_init,
+    on_attach = require("lsp.utils").on_attach,
     capabilites = capabilities,
     cmd = require("lspcontainers").command "pyright",
     root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
@@ -28,29 +28,29 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
             }
         end,
     },
-  }
+}
 
-  require("lspconfig").terraformls.setup {
-    on_init = require('lsp.utils').custom_on_init,
-    on_attach = require('lsp.utils').on_attach,
+require("lspconfig").terraformls.setup {
+    on_init = require("lsp.utils").custom_on_init,
+    on_attach = require("lsp.utils").on_attach,
     cmd = require("lspcontainers").command "terraformls",
     filetypes = { "hcl", "tf", "terraform", "tfvars" },
     capabilites = capabilities,
-  }
+}
 
-  require("lspconfig").tsserver.setup {
+require("lspconfig").tsserver.setup {
     before_init = function(params)
         params.processId = vim.NIL
     end,
-    on_init = require('lsp.utils').custom_on_init,
-    on_attach = require('lsp.utils').on_attach,
+    on_init = require("lsp.utils").custom_on_init,
+    on_attach = require("lsp.utils").on_attach,
     capabilites = capabilities,
     cmd = require("lspcontainers").command "tsserver",
     root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
-  }
-  require("nlua.lsp.nvim").setup(require "lspconfig", {
-    on_init = require('lsp.utils').custom_on_init,
-    on_attach = require('lsp.utils').on_attach,
+}
+require("nlua.lsp.nvim").setup(require "lspconfig", {
+    on_init = require("lsp.utils").custom_on_init,
+    on_attach = require("lsp.utils").on_attach,
     capabilites = capabilities,
     -- Include globals you want to tell the LSP are real :)
     globals = {
@@ -61,5 +61,4 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
         "g",
         "s",
     },
-  })
-
+})
