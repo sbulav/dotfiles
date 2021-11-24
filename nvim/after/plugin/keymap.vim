@@ -39,13 +39,14 @@ nmap <F6> :set spell!<CR>
 " Show TS Playground
 nnoremap <F8> :TSPlaygroundToggle<CR>
 " Show lsp log
-nnoremap <F9> :lua require'nredir'.nredir("!tail -100 " .. vim.lsp.get_log_path())<cr>
+nnoremap <F9> <cmd>lua require('nredir').nredir("!tail -100 " .. vim.lsp.get_log_path())<cr>
 
 " Show lsp status
 nnoremap <F10> :lua print(vim.inspect(vim.lsp.buf_get_clients()))<cr>
+" nnoremap <F10> <cmd>lua require('nredir').nredir(vim.inspect(vim.lsp.buf_get_clients()))<cr>
 
 " Stop all lsp clients
-nnoremap <F12> :lua vim.lsp.stop_client(vim.lsp.get_active_clients())<cr>
+nnoremap <F12> <cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<cr>
 
 " Space toggle fold
 " nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>

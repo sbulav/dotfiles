@@ -33,6 +33,8 @@ keymap("n", "<Space>to", '<cmd>lua require"lspsaga.floaterm".open_float_terminal
 keymap("t", "<Space>tc", '<C-\\><C-n> :lua require"lspsaga.floaterm".close_float_terminal()<CR>', opts)
 
 --- luasnip keymappings
+keymap("i", "<c-x>", "<cmd>lua require'luasnip'.expand_or_jump()<CR>", opts)
+keymap("s", "<c-x>", "<cmd>lua require'luasnip'.expand_or_jump()<CR>", opts)
 keymap("i", "<c-n>", "<cmd>lua require'luasnip'.change_choice(1)<CR>", opts)
 keymap("s", "<c-n>", "<cmd>lua require'luasnip'.change_choice(1)<CR>", opts)
 keymap("i", "<c-p>", "<cmd>lua require'luasnip'.change_choice(-1)<CR>", opts)
