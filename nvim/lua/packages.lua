@@ -141,7 +141,14 @@ packer.startup(function(use)
         "neovim/nvim-lspconfig",
         after = "cmp-nvim-lsp",
         config = function()
-            require "lspnew"
+            require "lsp"
+        end,
+    }
+    use {
+        "jose-elias-alvarez/null-ls.nvim",
+        after = "nvim-lspconfig",
+        config = function()
+            require "lsp.null-ls"
         end,
     }
 
