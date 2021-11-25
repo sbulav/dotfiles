@@ -1,5 +1,5 @@
 # Append paths
-set -a PATH "$HOME/bin/" "$HOME/.local/bin" "/opt/homebrew/bin"
+set -a PATH "$HOME/bin/" "$HOME/.local/bin" "/opt/homebrew/bin" "$HOME/./go/bin/"
 
 # Initialize FZF keybindings
 fzf_key_bindings

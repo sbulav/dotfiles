@@ -51,3 +51,9 @@ lspconfig.tsserver.setup {
     on_attach = require("lsp.utils").on_attach,
     capabilites = capabilities,
 }
+
+lspconfig.gopls.setup {
+    on_init = require("lsp.utils").custom_on_init,
+    on_attach = require("lsp.utils").on_attach,
+    capabilites = capabilities,
+}

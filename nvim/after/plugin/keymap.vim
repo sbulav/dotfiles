@@ -13,6 +13,7 @@ augroup pscbindings
   autocmd FileType helm nnoremap <buffer> <F6> :Nredir !helm template . <cr>
   " autocmd FileType python nnoremap <buffer> <F5> :Nredir !pytest --kube-config=$KUBECONFIG<cr>
   autocmd FileType python nnoremap <buffer> <F5> :Nredir !python %<cr>
+  autocmd FileType go nnoremap <buffer> <F5> :Nredir !go run %<cr>
   autocmd FileType terraform nnoremap <buffer> <F5> :Nredir !terraform plan -no-color<cr>
   autocmd FileType terraform nnoremap <buffer> <F6> :Nredir !terraform apply --auto-approve<cr>
   autocmd FileType typescript nnoremap <buffer> <F5> :Nredir !npm run build && npm run test && npm run lint<cr>

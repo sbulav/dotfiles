@@ -44,9 +44,10 @@ function M.on_attach(client, bufnr)
     -- end
 
     -- Disable formatting with other LSPs because we're handling formatting via null-ls
-    -- if client.name ~= "null-ls" then
-    --     client.resolved_capabilities.document_formatting = false
-    -- end
+    -- Otherwise you'll be prompted to Select a language server
+    if client.name ~= "null-ls" then
+        client.resolved_capabilities.document_formatting = false
+    end
 end
 
 function M.formatDocument()
