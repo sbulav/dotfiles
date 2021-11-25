@@ -36,8 +36,8 @@ packer.startup(function(use)
 
     use {
         "sbulav/nredir.nvim", -- Redirect output to scratch buffer
-        opt = true,
-        cmd = "Nredir",
+        -- opt = true,
+        -- cmd = "Nredir",
     }
     use { "glepnir/indent-guides.nvim" } -- Indentation highlighs
     use { -- Telescope fuzzy finder
