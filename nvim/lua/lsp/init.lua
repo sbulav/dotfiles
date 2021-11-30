@@ -18,4 +18,6 @@ if vim.fn.has "mac" == 1 then
     require "lsp.servers-mac"
 elseif vim.fn.has "unix" == 1 then
     require "lsp.servers-linux"
+else
+    print "Unable to start LSP, unsupported platform"
 end
