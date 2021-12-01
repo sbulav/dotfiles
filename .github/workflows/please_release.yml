@@ -18,8 +18,6 @@ jobs:
 
       - uses: GoogleCloudPlatform/release-please-action@v2
         id: release
-        if: |
-          github.repository_owner == 'ptarmiganlabs'
         with:
           release-type: simple
 
