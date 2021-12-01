@@ -25,6 +25,7 @@ vim.g.loaded_gzip = 1
 vim.g.loaded_2html_plugin = 1
 vim.g.did_install_default_menus = 1
 vim.g.did_install_syntax_menu = 1
+vim.g.did_load_filetypes = 1
 
 -- Providers
 vim.g.loaded_python_provider = 0

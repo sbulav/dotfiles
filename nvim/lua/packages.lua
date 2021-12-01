@@ -16,6 +16,7 @@ packer.startup(function(use)
             require("Comment").setup()
         end,
     }
+    use { "nathom/filetype.nvim" } -- speed up filetype detection
     use { "tpope/vim-eunuch" } -- Integration with UNIX shell
     use { "machakann/vim-sandwich" } -- Surround objects with any character e.g. saiw|sdb|srb"
     use { "romainl/vim-qf" } -- Better work with quickfix
@@ -33,11 +34,8 @@ packer.startup(function(use)
             require "config.hop"
         end,
     }
-
     use {
         "sbulav/nredir.nvim", -- Redirect output to scratch buffer
-        -- opt = true,
-        -- cmd = "Nredir",
     }
     use { "glepnir/indent-guides.nvim" } -- Indentation highlighs
     use { -- Telescope fuzzy finder
@@ -95,6 +93,7 @@ packer.startup(function(use)
     -- Code display
     use { "lifepillar/vim-solarized8", opt = true }
     use { "mhartington/oceanic-next", opt = true }
+
     -- Lua
     use { "tjdevries/nlua.nvim" }
     use { "euclidianAce/BetterLua.vim" }
