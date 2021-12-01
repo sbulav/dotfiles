@@ -14,7 +14,7 @@ local apply_options = function(opts)
 end
 
 -- Set theme
-vim.g.colors_name = "OceanicNext"
+vim.cmd [[colorscheme OceanicNext]]
 
 -- Deactivate plugins I don't use
 vim.g.loaded_netrwPlugin = 1

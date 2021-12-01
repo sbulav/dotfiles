@@ -24,8 +24,8 @@ function M.on_attach(client, bufnr)
     -- show line diagnostic
     keymap("n", "gd", '<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>', opts)
     -- jump diagnostic
-    keymap("n", "[e", '<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()<CR>', opts)
-    keymap("n", "]e", '<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_next()<CR>', opts)
+    keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
+    keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
     -- manage git worktree
     keymap("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
     keymap("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)

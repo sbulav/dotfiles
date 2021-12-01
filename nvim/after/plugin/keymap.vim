@@ -48,7 +48,10 @@ nnoremap <F10> :lua print(vim.inspect(vim.lsp.buf_get_clients()))<cr>
 " nnoremap <F10> <cmd>lua require('nredir').nredir(vim.inspect(vim.lsp.buf_get_clients()))<cr>
 
 " Stop all lsp clients
-nnoremap <F12> <cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<cr>
+nnoremap <F12> :LspStart<CR>
+" Stop all lsp clients
+nnoremap <c-F12> :LspStop<CR>
+" nnoremap <c-F12> <cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<cr>
 
 " Space toggle fold
 " nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
