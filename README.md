@@ -1,6 +1,7 @@
 # My configuration files
 
 [![GitGuardian scan](https://github.com/sbulav/dotfiles/actions/workflows/gitguardian.yml/badge.svg)](https://github.com/sbulav/dotfiles/actions/workflows/gitguardian.yml)
+[![Linters](https://github.com/sbulav/dotfiles/actions/workflows/commit_validate.yml/badge.svg?branch=master)](https://github.com/sbulav/dotfiles/actions/workflows/commit_validate.yml)
 
 ## Tools installation
 
