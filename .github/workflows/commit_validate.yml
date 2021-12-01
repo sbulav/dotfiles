@@ -1,0 +1,12 @@
+name: Linters
+
+on: [push, pull_request]
+
+jobs:
+  validate-commits:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Commitsar check
+        uses: aevea/commitsar@v0.17.0
