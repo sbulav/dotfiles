@@ -191,6 +191,8 @@ nnoremap <leader>u :UndotreeToggle<cr>
 nnoremap <leader>r :lua require("plenary.reload").reload_module'$MYVIMRC'<cr> :luafile $MYVIMRC<cr>
 " Use Nredir function to open vim command in split
 nnoremap <leader>R :Nredir <c-f>A
+nnoremap <leader>h <cmd>lua require('nredir').nredir(require("utils").cheatSheetCommand(), vim.bo.filetype)<cr>
+nnoremap <leader>H <cmd>lua require('nredir').nredir(require("utils").cheatSheetCommand(false), vim.bo.filetype)<cr>
 " Open vimrc
 nnoremap <leader>rc :edit $MYVIMRC<CR>
 " Global replace word under cursor

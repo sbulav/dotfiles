@@ -36,6 +36,38 @@ function M.nvim_create_augroups(definitions)
     end
 end
 
+function M.cheatSheetCommand(detect_language)
+    detect_language = (detect_language == nil and true) or detect_language
+    local input = "[cht.sh] "
+    local language = ""
+    local wordList = {}
+    local begin = 2
+    if detect_language and vim.bo.filetype then
+        language = vim.bo.filetype
+        input = vim.fn.input(input .. language .. "/")
+        begin = 1
+    else
+        -- The first word is the language of choice
+        input = vim.fn.input(input)
+        language = vim.split(input, " ")[1]
+    end
+    wordList = vim.split(input, " ")
+    if input ~= nil then
+        local searchPhrase = wordList[begin]
+        if begin ~= #wordList then
+            for i = begin + 1, #wordList do
+                searchPhrase = searchPhrase .. "+" .. wordList[i]
+            end
+        end
+
+        local command = language .. "/" .. searchPhrase
+        return ("!curl -s cht.sh/" .. command)
+    else
+        print "Error. No input or Wrong input"
+        return "messages"
+    end
+end
+
 M.map = setmetatable({}, {
     __index = function(_, mode)
         return setmetatable({}, {
