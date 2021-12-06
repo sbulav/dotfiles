@@ -219,6 +219,8 @@ function! s:save_and_exec() abort
     :lua require("plenary.reload").reload_module'init'
     :lua require("plenary.reload").reload_module'lua'
     :luafile %
+  else
+    :edit %
   endif
 
   return
