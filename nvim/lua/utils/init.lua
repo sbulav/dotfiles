@@ -41,30 +41,26 @@ function M.cheatSheetCommand(detect_language)
     local input = "[cht.sh] "
     local language = ""
     local wordList = {}
-    local counter = 2
+    local begin = 2
     if detect_language and vim.bo.filetype then
         language = vim.bo.filetype
         input = vim.fn.input(input .. language .. "/")
-        counter = 1
+        begin = 1
     else
         -- The first word is the language of choice
-        input = vim.fn.input(input .. "<L>/")
-        language = wordList[1]
+        input = vim.fn.input(input)
+        language = vim.split(input, " ")[1]
     end
     wordList = vim.split(input, " ")
     if input ~= nil then
-        local searchPharse = ""
-        local numberOfWords = table.getn(wordList)
-        while counter <= numberOfWords do
-            if counter ~= numberOfWords then
-                searchPharse = searchPharse .. wordList[counter] .. "+"
-            else
-                searchPharse = searchPharse .. wordList[counter]
+        local searchPhrase = wordList[begin]
+        if begin ~= #wordList then
+            for i = begin + 1, #wordList do
+                searchPhrase = searchPhrase .. "+" .. wordList[i]
             end
-            counter = counter + 1
         end
 
-        local command = language .. "/" .. searchPharse
+        local command = language .. "/" .. searchPhrase
         return ("!curl -s cht.sh/" .. command)
     else
         print "Error. No input or Wrong input"
