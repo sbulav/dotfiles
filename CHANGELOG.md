@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/sbulav/dotfiles/compare/v1.0.0...v1.1.0) (2021-12-06)
+
+
+### Features
+
+* **nvim:** add cheat sh wrapper ([658bd72](https://www.github.com/sbulav/dotfiles/commit/658bd72af47e843bd48eb794f3bc967fa7bd7316))
+
 ## 1.0.0 (2021-12-01)
 
 
