@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://www.github.com/sbulav/dotfiles/compare/v1.1.0...v1.2.0) (2021-12-06)
+
+
+### Features
+
+* **nvim:** add go snippets ([0dabd39](https://www.github.com/sbulav/dotfiles/commit/0dabd397ca572f4a4e354fac5f0e161936c189df))
+
 ## [1.1.0](https://www.github.com/sbulav/dotfiles/compare/v1.0.0...v1.1.0) (2021-12-06)
 
 
