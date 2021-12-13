@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.2.1](https://www.github.com/sbulav/dotfiles/compare/v1.2.0...v1.2.1) (2021-12-13)
+
+
+### Bug Fixes
+
+* use new null-ls syntax ([3c6bb96](https://www.github.com/sbulav/dotfiles/commit/3c6bb9622c29fbdced24c248ef54852ffd248827))
+
 ## [1.2.0](https://www.github.com/sbulav/dotfiles/compare/v1.1.0...v1.2.0) (2021-12-06)
 
 
