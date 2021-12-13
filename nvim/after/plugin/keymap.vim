@@ -15,6 +15,7 @@ augroup pscbindings
   autocmd FileType python nnoremap <buffer> <F5> :Nredir !python %<cr>
   " autocmd FileType go nnoremap <buffer> <F5> :execute Nredir !go run "%"<CR>
   autocmd FileType go nnoremap <buffer> <F5> <cmd>lua require('nredir').nredir("!go run " .. vim.fn.bufname())<cr>
+  autocmd FileType go nnoremap <buffer> <F6> <cmd>lua require('nredir').nredir("!go test -bench=.")<cr>
   autocmd FileType terraform nnoremap <buffer> <F5> :Nredir !terraform plan -no-color<cr>
   autocmd FileType terraform nnoremap <buffer> <F6> :Nredir !terraform apply --auto-approve<cr>
   autocmd FileType typescript nnoremap <buffer> <F5> :Nredir !npm run build && npm run test && npm run lint<cr>

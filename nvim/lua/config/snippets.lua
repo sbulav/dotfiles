@@ -201,7 +201,7 @@ ls.snippets = {
             insert(0),
             text { "", "}" },
         }),
-        snip("tyi", {
+        snip("typei", {
             text "type ",
             insert(1, "Name"),
             text { " interface {", "" },
@@ -209,7 +209,7 @@ ls.snippets = {
             insert(0),
             text { "", "}" },
         }),
-        snip("tys", {
+        snip("types", {
             text "type ",
             insert(1, "Name"),
             text { " struct {", "" },
