@@ -15,10 +15,7 @@ local sources = {
     b.formatting.terraform_fmt,
 }
 
-null_ls.config {
+null_ls.setup {
     sources = sources,
-}
-
-require("lspconfig")["null-ls"].setup {
     on_attach = require("lsp.utils").on_attach,
 }
