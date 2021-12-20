@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://www.github.com/sbulav/dotfiles/compare/v1.2.1...v1.3.0) (2021-12-20)
+
+
+### Features
+
+* **nvim:** use nvim-notify ([09e4c3c](https://www.github.com/sbulav/dotfiles/commit/09e4c3cfd9f9c290263045c30f9d61cf033a6b60))
+
 ### [1.2.1](https://www.github.com/sbulav/dotfiles/compare/v1.2.0...v1.2.1) (2021-12-13)
 
 
