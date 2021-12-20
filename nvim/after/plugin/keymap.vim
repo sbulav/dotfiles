@@ -206,7 +206,11 @@ nnoremap <leader>o :w <bar> %bd <bar> e# <bar> bd# <CR>
 nnoremap <leader>tO :terminal<cr>A
 " Exit terminal insert mode
 if has("nvim")
-  au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+  augroup Terminal
+    autocmd!
+    autocmd TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+    autocmd TermOpen * set nonumber norelativenumber
+  augroup end
 endif
 " Open command window on ;
 nnoremap ; q:A
