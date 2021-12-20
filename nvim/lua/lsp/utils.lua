@@ -1,4 +1,5 @@
 local M = {}
+local utils = require "utils"
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -60,7 +61,8 @@ function M.formatDocument()
 end
 
 function M.custom_on_init()
-    print "Language Server Protocol started!"
+    -- print "Language Server Protocol started!"
+    utils.info("Language Server Protocol started!", "LSP")
 end
 
 function M.has_formatter(ft)

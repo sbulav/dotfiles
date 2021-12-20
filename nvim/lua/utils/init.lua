@@ -20,7 +20,7 @@ _G.prequire = function(plugin, verbose)
     if verbose then
         errmsg = string.format("%s\nError:%s", plug)
     end
-    print(errmsg)
+    M.error(errmsg, "Prequire failed")
 end
 
 -- Taken from https://github.com/norcalli/nvim_utils/blob/master/lua/nvim_utils.lua#L554-L567
@@ -64,6 +64,7 @@ function M.cheatSheetCommand(detect_language)
         return ("!curl -s cht.sh/" .. command)
     else
         print "Error. No input or Wrong input"
+        M.warn("Error. No input or Wrong input", "Cht.sh curl failed")
         return "messages"
     end
 end
@@ -86,4 +87,23 @@ M.map = setmetatable({}, {
         })
     end,
 })
+
+function M.log(msg, hl, name)
+    name = name or "Neovim"
+    hl = hl or "Todo"
+    vim.api.nvim_echo({ { name .. ": ", hl }, { msg } }, true, {})
+end
+
+function M.warn(msg, name)
+    vim.notify(msg, vim.log.levels.WARN, { title = name })
+end
+
+function M.error(msg, name)
+    vim.notify(msg, vim.log.levels.ERROR, { title = name })
+end
+
+function M.info(msg, name)
+    vim.notify(msg, vim.log.levels.INFO, { title = name })
+end
+
 return M

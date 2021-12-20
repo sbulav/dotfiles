@@ -29,6 +29,13 @@ packer.startup(function(use)
         end,
     }
     use {
+        "rcarriga/nvim-notify",
+        event = "VimEnter",
+        config = function()
+            vim.notify = require "notify"
+        end,
+    }
+    use {
         "phaazon/hop.nvim", -- Easymotion in lua
         config = function()
             require "config.hop"
