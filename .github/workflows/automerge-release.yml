@@ -15,6 +15,5 @@ jobs:
         uses: squalrus/merge-bot@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          labels: "autorelease: pending", autorelease
+          labels: ${{format('autorelease{0} pending', ':')}}, autorelease
           reviewers: false
-...
