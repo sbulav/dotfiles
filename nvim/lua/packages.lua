@@ -80,6 +80,14 @@ packer.startup(function(use)
             require "config.nvim-tree"
         end,
     }
+    -- prevent select and visual mode from overwriting the clipboard
+    use {
+        "kevinhwang91/nvim-hclipboard",
+        event = "InsertCharPre",
+        config = function()
+            require("hclipboard").start()
+        end,
+    }
 
     -- Version Control Plugins
     use {
