@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.3.2](https://www.github.com/sbulav/dotfiles/compare/v1.3.1...v1.3.2) (2021-12-22)
+
+
+### Bug Fixes
+
+* **nvim:** correctly remap goto definition ([2a70038](https://www.github.com/sbulav/dotfiles/commit/2a70038dc3cddf1ed133d8a7c889712ee3a24cef))
+
 ### [1.3.1](https://www.github.com/sbulav/dotfiles/compare/v1.3.0...v1.3.1) (2021-12-22)
 
 
