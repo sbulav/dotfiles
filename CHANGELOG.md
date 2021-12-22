@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.3.1](https://www.github.com/sbulav/dotfiles/compare/v1.3.0...v1.3.1) (2021-12-22)
+
+
+### Bug Fixes
+
+* **nvim:** no numbers in terminal ([9d120d2](https://www.github.com/sbulav/dotfiles/commit/9d120d2a18ccb5363bb096b9c67d6bdabbadbefb))
+
 ## [1.3.0](https://www.github.com/sbulav/dotfiles/compare/v1.2.1...v1.3.0) (2021-12-20)
 
 
