@@ -22,8 +22,10 @@ function M.on_attach(client, bufnr)
     keymap("n", "gD", '<cmd>lua require"lspsaga.provider".preview_definition()<CR>', opts)
     -- go to implementation
     keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    -- go to definition
+    keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
     -- show line diagnostic
-    keymap("n", "gd", '<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>', opts)
+    keymap("n", "ge", '<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>', opts)
     -- jump diagnostic
     keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
     keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
