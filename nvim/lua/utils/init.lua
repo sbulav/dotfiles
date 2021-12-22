@@ -61,9 +61,11 @@ function M.cheatSheetCommand(detect_language)
         end
 
         local command = language .. "/" .. searchPhrase
+
+        M.info("cht.sh/" .. command, "Cheat Sheet Query")
         return ("!curl -s cht.sh/" .. command)
     else
-        print "Error. No input or Wrong input"
+        -- print "Error. No input or Wrong input"
         M.warn("Error. No input or Wrong input", "Cht.sh curl failed")
         return "messages"
     end
