@@ -18,11 +18,11 @@ tools: neovim fzf ripgrep k9s terraform gh
 .PHONY : neovim
 neovim: /tmp/nvim.appimage
 	@echo "----Making Tool Neovim-----"
-	# @sudo cp /tmp/nvim.appimage $(NEOVIM)
-	# @sudo chmod u+x $(NEOVIM)
-	# @curl -s https://github.com/neovim/neovim/commits/master | grep Merge |  cut -d '"' -f2 | cut -d '"' -f1 | grep Merge
-	@sudo dnf install neovim -y
-	@nvim --version | head -1
+	@sudo cp /tmp/nvim.appimage $(NEOVIM)
+	@sudo chmod +x $(NEOVIM)
+	#curl -s https://github.com/neovim/neovim/commits/master | grep Merge |  cut -d '"' -f2 | cut -d '"' -f1 | grep Merge
+	# @sudo dnf install neovim -y
+	# @nvim --version | head -1
 
 ## fzf                 : Update fzf to nightly version
 .PHONY : fzf
@@ -100,7 +100,7 @@ symlinks:
 
 ## /tmp/nvim.appimage  : Download nightly nvim appimage
 /tmp/nvim.appimage:
-	@curl -s -S -L -f https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage -z $@ -o $@
+	@curl -s -S -L -f https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -z $@ -o $@
 
 ## /tmp/fzf.tgz        : Download latest fzf release
 /tmp/fzf.tgz:
