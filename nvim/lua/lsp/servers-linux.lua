@@ -3,12 +3,13 @@ local lspconfig = prequire "lspconfig"
 if not lspconfig then
     return
 end
+local utils = require "utils"
 
 -- tell lsp about nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-print "Initializing langservers in containers"
+utils.info("Initilizing LSP server in containers", "LSP")
 require("lspconfig").pyright.setup {
     before_init = function(params)
         params.processId = vim.NIL
