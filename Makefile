@@ -1,7 +1,7 @@
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 NEOVIM ?= /usr/local/bin/nvim
 TERRAFORM_VERSION ?= 1.0.3
-GH_VERSION ?= 1.13.1
+GH_VERSION ?= 2.4.0
 FZF_VERSION ?= 0.24.2
 HOST ?= one-ingress.tst.k8s.ecom.ahold.nl
 .DEFAULT: help
