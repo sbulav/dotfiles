@@ -82,6 +82,8 @@ vnoremap <silent> zx :HopWord<cr>
 " Surround current work with quotes
 vmap " sa"
 vmap ' sa'
+nmap \ viw"
+
 
 " Bindings that came from Eunich
 " :Delete: Delete a buffer and the file on disk simultaneously.
