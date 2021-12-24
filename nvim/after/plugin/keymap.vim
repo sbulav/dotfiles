@@ -79,6 +79,10 @@ vnoremap <leader>p "_dP
 nnoremap <silent> zx :HopWord<cr>
 vnoremap <silent> zx :HopWord<cr>
 
+" Surround current work with quotes
+vmap " sa"
+vmap ' sa'
+
 " Bindings that came from Eunich
 " :Delete: Delete a buffer and the file on disk simultaneously.
 " :Move: Rename a buffer and the file on disk simultaneously.
