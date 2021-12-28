@@ -59,6 +59,14 @@ terraform: /tmp/terraform.zip
 	@unzip -o /tmp/terraform.zip -d /home/sab/bin
 	@terraform version
 
+## stylua              : Update stylua to latest release
+.PHONY : stylua
+stylua: /tmp/stylua.zip
+	@echo "----Making Tool stylua-----"
+	@unzip -o /tmp/stylua.zip -d /home/sab/bin
+	@chmod +x /home/sab/bin/stylua
+	@stylua -V
+
 ## dotfiles            : Update dotfiles to latest version
 .PHONY : dotfiles
 dotfiles:
@@ -121,3 +129,7 @@ symlinks:
 ## /tmp/terraform.zip  : Download latest terraform release
 /tmp/terraform.zip:
 	@curl -s -S -L -f https://releases.hashicorp.com/terraform/$(TERRAFORM_VERSION)/terraform_$(TERRAFORM_VERSION)_linux_amd64.zip -z $@ -o $@
+
+## /tmp/stylua.zip     : Download latest stylua release
+/tmp/stylua.zip:
+	@curl -s -S -L -f https://github.com/JohnnyMorganz/StyLua/releases/download/v0.11.2/stylua-0.11.2-linux.zip -z $@ -o $@
