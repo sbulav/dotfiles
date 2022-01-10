@@ -1,4 +1,4 @@
-vim.lsp.set_log_level "info"
+vim.lsp.set_log_level "warn"
 
 -- try to import lspconfig
 -- local lspconfig = prequire "lspconfig"
