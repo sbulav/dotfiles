@@ -166,6 +166,7 @@ nnoremap <leader>fp <cmd>lua require'telescope'.extensions.project.project{ chan
 nnoremap <leader>gr <cmd>lua require'telescope'.extensions.gh.run{}<cr>
 nnoremap <leader>gp <cmd>lua require'telescope'.extensions.gh.pull_request{}<cr>
 nnoremap <leader>gi <cmd>lua require'telescope'.extensions.gh.gist{}<cr>
+nnoremap <leader>gs <cmd>lua require'telescope'.extensions.gh.secret{}<cr>
 
 " Populate quickfix with current buffers with <c-q><c-q>
 nnoremap <C-q> :lua require('telescope.builtin').buffers()<Cr>
