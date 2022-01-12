@@ -1,8 +1,9 @@
 local actions = require "telescope.actions"
+local telescope = require "telescope"
 
 -- Global remapping
 ------------------------------
-require("telescope").setup {
+telescope.setup {
     defaults = {
         mappings = {
             i = {
@@ -45,3 +46,7 @@ require("telescope").setup {
         },
     },
 }
+
+telescope.load_extension "gh"
+telescope.load_extension "project"
+telescope.load_extension "env"
