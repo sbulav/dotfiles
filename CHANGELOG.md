@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.6.0](https://www.github.com/sbulav/dotfiles/compare/v1.5.0...v1.6.0) (2022-01-13)
+
+
+### Features
+
+* **nvim:** Add lightbulb to hl code_action ([2fc4174](https://www.github.com/sbulav/dotfiles/commit/2fc41740523b01deaef1d3a7a9e48c29536cc5f5))
+
+
+### Bug Fixes
+
+* **nvim:** Remove null-ls code_action ([87467a0](https://www.github.com/sbulav/dotfiles/commit/87467a0a84843fef83c8498bca5b4496fd81f9b2))
+
 ## [1.5.0](https://www.github.com/sbulav/dotfiles/compare/v1.4.0...v1.5.0) (2022-01-12)
 
 
