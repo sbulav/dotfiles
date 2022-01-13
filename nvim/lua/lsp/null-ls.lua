@@ -4,7 +4,6 @@ local b = null_ls.builtins
 local sources = {
     -- formatting
     b.formatting.stylua,
-    b.code_actions.gitsigns,
     b.formatting.gofmt,
     --   conditional enabling
     --   b.formatting.stylua.with({
