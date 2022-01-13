@@ -13,7 +13,9 @@ function M.on_attach(client, bufnr)
     -- lsp provider to find the cursor word definition and reference
     keymap("n", "gh", '<cmd>lua require"lspsaga.provider".lsp_finder()<CR>', opts)
     -- code action
-    keymap("n", "gA", '<cmd>lua require"lspsaga.codeaction".code_action()<CR>', opts)
+    keymap("n", "ga", '<cmd>lua require"lspsaga.codeaction".code_action()<CR>', opts)
+    keymap("n", "gA", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+
     -- show function signature help
     keymap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
     -- rename
@@ -34,6 +36,7 @@ function M.on_attach(client, bufnr)
     keymap("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
     keymap("n", "<leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
     keymap("n", "<leader>so", [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
+    keymap("n", "<leader>sr", [[<cmd>lua require('telescope.builtin').lsp_buf_references()<CR>]], opts)
 
     vim.cmd 'command! Format :lua require("lsp.utils").formatDocument()'
     -- client.resolved_capabilities.document_formatting = enable
@@ -43,6 +46,7 @@ function M.on_attach(client, bufnr)
           augroup LspFormat
             autocmd BufWritePre <buffer> lua require("lsp.utils").formatDocument()
           augroup END
+          autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
         ]]
     -- end
 

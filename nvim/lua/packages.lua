@@ -176,6 +176,11 @@ packer.startup(function(use)
         end,
     }
 
+    use {
+        "kosayoda/nvim-lightbulb",
+        after = "nvim-lspconfig",
+    }
+
     if vim.fn.has "unix" == 1 and vim.fn.has "mac" ~= 1 then
         use { "lspcontainers/lspcontainers.nvim" } -- Lang servers in containers
     end
