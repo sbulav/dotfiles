@@ -51,8 +51,9 @@ packer.startup(function(use)
             { "nvim-lua/popup.nvim" },
             { "nvim-lua/plenary.nvim" },
             { "nvim-telescope/telescope-project.nvim" },
-            { "sbulav/telescope-github.nvim" },
-            -- { "nvim-telescope/telescope-github.nvim" },
+            { "nvim-telescope/telescope-github.nvim" },
+            { "LinArcX/telescope-env.nvim" },
+            { "kosayoda/nvim-lightbulb" },
             -- { "/Users/sab/git_priv/telescope-github.nvim" },
             -- {'nvim-telescope/telescope-fzy-native.nvim'}, -- fast finder
             -- {'nvim-telescope/telescope-media-files.nvim'}, -- media preview
