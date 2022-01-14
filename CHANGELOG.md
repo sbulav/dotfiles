@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.6.1](https://www.github.com/sbulav/dotfiles/compare/v1.6.0...v1.6.1) (2022-01-14)
+
+
+### Bug Fixes
+
+* install missing plugins ([7400a36](https://www.github.com/sbulav/dotfiles/commit/7400a3600993269bf6649b380d84e376364e57a5))
+
 ## [1.6.0](https://www.github.com/sbulav/dotfiles/compare/v1.5.0...v1.6.0) (2022-01-13)
 
 
