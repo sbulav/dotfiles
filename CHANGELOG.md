@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://www.github.com/sbulav/dotfiles/compare/v1.6.1...v1.7.0) (2022-01-18)
+
+
+### Features
+
+* **kitty:** add kitty config ([1550db4](https://www.github.com/sbulav/dotfiles/commit/1550db41b10144818aba2a9424bd771f966b048b))
+
 ### [1.6.1](https://www.github.com/sbulav/dotfiles/compare/v1.6.0...v1.6.1) (2022-01-14)
 
 
