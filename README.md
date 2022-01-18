@@ -26,7 +26,7 @@ Run make and specify tool to install:
 
 ```bash
 > make
- tools               : Install neovim, rg, fzf, etc..
+ tools               : Install neovim, rg, fzf, stylua, etc..
  neovim              : Update neovim to nightly version
  fzf                 : Update fzf to nightly version
  k9s                 : Update k9s to nightly version
