@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.7.1](https://www.github.com/sbulav/dotfiles/compare/v1.7.0...v1.7.1) (2022-01-18)
+
+
+### Bug Fixes
+
+* escape backquotes in workflows ([c1b0b5d](https://www.github.com/sbulav/dotfiles/commit/c1b0b5d18e08eb45b936b87959846e4998c165b3))
+
 ## [1.7.0](https://www.github.com/sbulav/dotfiles/compare/v1.6.1...v1.7.0) (2022-01-18)
 
 
