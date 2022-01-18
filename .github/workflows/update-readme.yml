@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  markscribe:
+  auto-readme-update:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +26,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.RELEASE_PLEASE_PAT }}
         with:
           commit_message: "doc: Update generated README"
-          branch: main
+          branch: master
           commit_user_name: sbulavs readme-update 🤖
           commit_user_email: actions@github.com
           commit_author: auto-readme-update 🤖 <actions@github.com>
