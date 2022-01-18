@@ -11,8 +11,8 @@ HOST ?= one-ingress.tst.k8s.ecom.ahold.nl
 help : Makefile
 	@sed -n 's/^##//p' $<
 
-## tools               : Install neovim, rg, fzf, etc..
-tools: neovim fzf ripgrep k9s terraform gh
+## tools               : Install neovim, rg, fzf, stylua, etc..
+tools: neovim fzf ripgrep k9s terraform gh stylua
 
 ## neovim              : Update neovim to nightly version
 .PHONY : neovim
