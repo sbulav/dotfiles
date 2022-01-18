@@ -18,7 +18,7 @@ jobs:
         run: |
           cat templates/README.md > README.md
           make >> README.md
-          echo "```" >>README.md
+          echo "\`\`\`" >>README.md
 
 
       - uses: stefanzweifel/git-auto-commit-action@v4
