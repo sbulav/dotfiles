@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://www.github.com/sbulav/dotfiles/compare/v1.7.1...v1.8.0) (2022-01-20)
+
+
+### Features
+
+* **nvim:** move to base16-oceanicnext colorscheme ([82bc8f0](https://www.github.com/sbulav/dotfiles/commit/82bc8f0c72144ce3b4c868361dfb5c1d7576e4bf))
+
 ### [1.7.1](https://www.github.com/sbulav/dotfiles/compare/v1.7.0...v1.7.1) (2022-01-18)
 
 
