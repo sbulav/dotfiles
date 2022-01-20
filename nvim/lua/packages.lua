@@ -54,7 +54,10 @@ packer.startup(function(use)
             { "nvim-telescope/telescope-github.nvim" },
             { "LinArcX/telescope-env.nvim" },
             { "kosayoda/nvim-lightbulb" },
+            { "sbulav/telescope-terraform.nvim" },
             -- { "/Users/sab/git_priv/telescope-github.nvim" },
+            -- { "/Users/sab/git_priv/OpenSource/telescope-github.nvim" },
+            -- { "/Users/sab/git_priv/telescope-terraform.nvim" },
             -- {'nvim-telescope/telescope-fzy-native.nvim'}, -- fast finder
             -- {'nvim-telescope/telescope-media-files.nvim'}, -- media preview
             -- {'nvim-telescope/telescope-frecency.nvim'}, -- media preview
@@ -110,6 +113,7 @@ packer.startup(function(use)
     -- Code display
     use { "lifepillar/vim-solarized8", opt = true }
     use { "mhartington/oceanic-next", opt = true }
+    use { "tami5/mybase16" }
 
     -- Lua
     use { "tjdevries/nlua.nvim" }
