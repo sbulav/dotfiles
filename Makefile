@@ -1,4 +1,5 @@
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+OS_NAME := $(shell uname -s | tr A-Z a-z)
 NEOVIM ?= /usr/local/bin/nvim
 TERRAFORM_VERSION ?= 1.1.3
 GH_VERSION ?= 2.4.0
@@ -106,6 +107,18 @@ symlinks:
 	rm -rf /home/sab/.config/fish || true
 	ln -s /home/sab/dotfiles/fish /home/sab/.config/fish || true
 
+## fonts               : Install nerd-fonts
+.PHONY : fonts
+fonts:
+ifeq ($(OS_NAME),darwin)
+	echo "Installing CaskaydiaCove Nerd Font via Brew"
+	brew install homebrew/cask-fonts/font-caskaydia-cove-nerd-font
+else
+	echo "Installing CaskaydiaCove Nerd Font via curl"
+	mkdir -p ~/.local/share/fonts
+	cd ~/.local/share/fonts && curl -fLo "Caskaydia Cove Regular Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/CascadiaCode/Regular/complete/Caskaydia%20Cove%20Regular%20Nerd%20Font%20Complete.otfendif
+endif
+
 ## /tmp/nvim.appimage  : Download nightly nvim appimage
 /tmp/nvim.appimage:
 	@curl -s -S -L -f https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -z $@ -o $@
@@ -133,3 +146,4 @@ symlinks:
 ## /tmp/stylua.zip     : Download latest stylua release
 /tmp/stylua.zip:
 	@curl -s -S -L -f https://github.com/JohnnyMorganz/StyLua/releases/download/v0.11.2/stylua-0.11.2-linux.zip -z $@ -o $@
+
