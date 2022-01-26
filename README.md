@@ -40,6 +40,7 @@ Run make and specify tool to install:
  kk-tools            : Run tools containers in current cluster
  colemak             : Install colemak-dhm
  symlinks            : Create symliks to configs
+ fonts               : Install nerd-fonts
  /tmp/nvim.appimage  : Download nightly nvim appimage
  /tmp/fzf.tgz        : Download latest fzf release
  /tmp/k9s.tgz        : Download latest k9s release
