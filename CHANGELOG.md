@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.9.0](https://www.github.com/sbulav/dotfiles/compare/v1.8.0...v1.9.0) (2022-01-26)
+
+
+### Features
+
+* new keymap for Telescope branches ([8e3bf8f](https://www.github.com/sbulav/dotfiles/commit/8e3bf8fa76719e1c31c601a7d49c02ab656d30e7))
+* use patched font in Kitty ([26dad92](https://www.github.com/sbulav/dotfiles/commit/26dad926ff7f53ace8169a5b5b3b1a1fb8def4cb))
+
 ## [1.8.0](https://www.github.com/sbulav/dotfiles/compare/v1.7.1...v1.8.0) (2022-01-20)
 
 
