@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.9.1](https://www.github.com/sbulav/dotfiles/compare/v1.9.0...v1.9.1) (2022-01-26)
+
+
+### Bug Fixes
+
+* tune notify timeout to 1000 ([a712b70](https://www.github.com/sbulav/dotfiles/commit/a712b70be74db405ef20fc55da089f6ed283a7c3))
+
 ## [1.9.0](https://www.github.com/sbulav/dotfiles/compare/v1.8.0...v1.9.0) (2022-01-26)
 
 
