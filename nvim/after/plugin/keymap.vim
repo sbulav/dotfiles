@@ -80,9 +80,9 @@ nnoremap <silent> zx :HopWord<cr>
 vnoremap <silent> zx :HopWord<cr>
 
 " Surround current work with quotes
-vmap " sa"
-vmap ' sa'
-nmap \ viw"
+vmap " s"
+vmap ' s'
+nmap \ viws"
 
 
 " Bindings that came from Eunich
