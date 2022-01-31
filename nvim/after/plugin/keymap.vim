@@ -217,16 +217,6 @@ nnoremap <leader>% :%s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap <leader>c :lcd %:p:h<cr>
 " Close all buffers except currnent one
 nnoremap <leader>o :w <bar> %bd <bar> e# <bar> bd# <CR>
-" Open terminal
-nnoremap <leader>tO :terminal<cr>A
-" Exit terminal insert mode
-if has("nvim")
-  augroup Terminal
-    autocmd!
-    autocmd TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
-    autocmd TermOpen * set nonumber norelativenumber
-  augroup end
-endif
 " Open command window on ;
 nnoremap ; q:A
 " Escape works in command window

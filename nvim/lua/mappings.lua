@@ -5,11 +5,11 @@ local fn = vim.fn
 
 -- URL handling
 if vim.fn.has "mac" == 1 then
-  map[""].gx = { '<Cmd>call jobstart(["open", expand("<cfile>")], {"detach": v:true})<CR>' }
+    map[""].gx = { '<Cmd>call jobstart(["open", expand("<cfile>")], {"detach": v:true})<CR>' }
 elseif vim.fn.has "unix" == 1 then
-  map[""].gx = { '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>' }
+    map[""].gx = { '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>' }
 else
-  map[""].gx = { '<Cmd>lua print("Error: gx is not supported on this OS!")<CR>' }
+    map[""].gx = { '<Cmd>lua print("Error: gx is not supported on this OS!")<CR>' }
 end
 
 --- Commands to troubleshoot LSP{{{
@@ -20,17 +20,15 @@ end
 --- vim.lsp.set_log_level("debug")}}}
 
 function Show_documentation()
-  if fn.index({ "vim", "help" }, vim.bo.filetype) >= 0 then
-    cmd("h " .. vim.fn.expand "<cword>")
-  else
-    cmd 'lua require"lspsaga.hover".render_hover_doc()'
-  end
+    if fn.index({ "vim", "help" }, vim.bo.filetype) >= 0 then
+        cmd("h " .. vim.fn.expand "<cword>")
+    else
+        cmd 'lua require"lspsaga.hover".render_hover_doc()'
+    end
 end
 
 local opts = { noremap = true, silent = true }
 keymap("n", "K", "<CMD>lua Show_documentation()<CR>", opts)
-keymap("n", "<Space>to", '<cmd>lua require"lspsaga.floaterm".open_float_terminal()<CR>', opts)
-keymap("t", "<Space>tc", '<C-\\><C-n> :lua require"lspsaga.floaterm".close_float_terminal()<CR>', opts)
 
 --- luasnip keymappings
 keymap("i", "<c-x>", "<cmd>lua require'luasnip'.expand_or_jump()<CR>", opts)

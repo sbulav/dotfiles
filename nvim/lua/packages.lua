@@ -53,6 +53,12 @@ packer.startup(function(use)
     use {
         "sbulav/nredir.nvim", -- Redirect output to scratch buffer
     }
+    use {
+        "akinsho/toggleterm.nvim",
+        config = function()
+            require "config.toggleterm"
+        end,
+    }
     use { "glepnir/indent-guides.nvim" } -- Indentation highlighs
     use { -- Telescope fuzzy finder
         "nvim-telescope/telescope.nvim",
