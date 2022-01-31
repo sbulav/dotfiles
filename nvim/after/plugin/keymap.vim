@@ -7,12 +7,12 @@ map <Space> <Leader>
 
 augroup pscbindings
   autocmd!
-  autocmd FileType yaml nnoremap <buffer> <F5> :Nredir !kubectl apply --dry-run -o yaml -f %<cr>
-  autocmd FileType yaml nnoremap <buffer> <F6> :Nredir !kubectl apply -f %<cr>
+  autocmd FileType yaml nnoremap <buffer> <F5> <cmd>lua require('nredir').nredir("!kubectl apply -f " .. vim.fn.bufname() .. " --dry-run -o yaml")<cr>
+  autocmd FileType yaml nnoremap <buffer> <F6> <cmd>lua require('nredir').nredir("!kubectl apply -f " .. vim.fn.bufname()")<cr>
   autocmd FileType helm nnoremap <buffer> <F5> :Nredir !helm install . --dry-run --debug --generate-name <cr>
   autocmd FileType helm nnoremap <buffer> <F6> :Nredir !helm template . <cr>
   " autocmd FileType python nnoremap <buffer> <F5> :Nredir !pytest --kube-config=$KUBECONFIG<cr>
-  autocmd FileType python nnoremap <buffer> <F5> :Nredir !python %<cr>
+  autocmd FileType python nnoremap <buffer> <F5> <cmd>lua require('nredir').nredir("!python " .. vim.fn.bufname())<cr>
   " autocmd FileType go nnoremap <buffer> <F5> :execute Nredir !go run "%"<CR>
   autocmd FileType go nnoremap <buffer> <F5> <cmd>lua require('nredir').nredir("!go run " .. vim.fn.bufname())<cr>
   autocmd FileType go nnoremap <buffer> <F6> <cmd>lua require('nredir').nredir("!go test -bench=.")<cr>
