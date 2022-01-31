@@ -29,6 +29,11 @@ set -gx FISH_KUBECTL_COMPLETION_COMPLETE_CRDS 0
 # Load ssh keys into ssh-agent
 load_keys
 
+# Load env credentials
+if begin; test -f ~/.ssh/env-credentials;end
+posix-source ~/.ssh/env-credentials
+end
+
 # git_prompt
 # number of untracked files, dirty files, unpushed/unpulled commits, and more.
 set -g __fish_git_prompt_show_informative_status 1
