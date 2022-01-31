@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.10.0](https://www.github.com/sbulav/dotfiles/compare/v1.9.1...v1.10.0) (2022-01-31)
+
+
+### Features
+
+* **nvim:** "migrate" to surround.nvim ([3a6140f](https://www.github.com/sbulav/dotfiles/commit/3a6140f67f5d9123a04bbe3360846b7f085c2df5))
+* **nvim:** Use toggleterm ([e09d55f](https://www.github.com/sbulav/dotfiles/commit/e09d55f22d845ba9844004096bab987ce1dcd5ef))
+
+
+### Bug Fixes
+
+* missing link to kube-tmux ([83a1eff](https://www.github.com/sbulav/dotfiles/commit/83a1effb29000c0698515c40f8e4e01de25d4dd4))
+* **nvim:** add filetypes disabled with nathom plug ([16c52a7](https://www.github.com/sbulav/dotfiles/commit/16c52a791741215f646a648f08ebf87c12363e50))
+* **nvim:** fix f5-6 commands expand ([c345593](https://www.github.com/sbulav/dotfiles/commit/c345593461ab500c61d499a1b34024002ecbaaa8))
+
 ### [1.9.1](https://www.github.com/sbulav/dotfiles/compare/v1.9.0...v1.9.1) (2022-01-26)
 
 
