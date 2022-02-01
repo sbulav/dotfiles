@@ -8,17 +8,16 @@ map <Space> <Leader>
 augroup pscbindings
   autocmd!
   autocmd FileType yaml nnoremap <buffer> <F5> <cmd>lua require('nredir').nredir("!kubectl apply -f " .. vim.fn.bufname() .. " --dry-run -o yaml")<cr>
-  autocmd FileType yaml nnoremap <buffer> <F6> <cmd>lua require('nredir').nredir("!kubectl apply -f " .. vim.fn.bufname()")<cr>
+  autocmd FileType yaml nnoremap <buffer> <F6> <cmd>lua require('nredir').nredir("!kubectl apply -f " .. vim.fn.bufname())<cr>
   autocmd FileType helm nnoremap <buffer> <F5> :Nredir !helm install . --dry-run --debug --generate-name <cr>
   autocmd FileType helm nnoremap <buffer> <F6> :Nredir !helm template . <cr>
-  " autocmd FileType python nnoremap <buffer> <F5> :Nredir !pytest --kube-config=$KUBECONFIG<cr>
   autocmd FileType python nnoremap <buffer> <F5> <cmd>lua require('nredir').nredir("!python " .. vim.fn.bufname())<cr>
-  " autocmd FileType go nnoremap <buffer> <F5> :execute Nredir !go run "%"<CR>
   autocmd FileType go nnoremap <buffer> <F5> <cmd>lua require('nredir').nredir("!go run " .. vim.fn.bufname())<cr>
   autocmd FileType go nnoremap <buffer> <F6> <cmd>lua require('nredir').nredir("!go test -bench=.")<cr>
   autocmd FileType terraform nnoremap <buffer> <F5> :Nredir !terraform plan -no-color<cr>
   autocmd FileType terraform nnoremap <buffer> <F6> :Nredir !terraform apply --auto-approve<cr>
   autocmd FileType typescript nnoremap <buffer> <F5> :Nredir !npm run build && npm run test && npm run lint<cr>
+  autocmd FileType dockerfile nnoremap <buffer> <F5> <cmd>lua require('nredir').nredir("!hadolint " .. vim.fn.bufname())<cr>
 augroup end
 
 " Draw a visual line in any mode on F1
