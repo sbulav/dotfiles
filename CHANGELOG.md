@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.11.0](https://www.github.com/sbulav/dotfiles/compare/v1.10.0...v1.11.0) (2022-02-01)
+
+
+### Features
+
+* **fish:** source env creds ([dda0686](https://www.github.com/sbulav/dotfiles/commit/dda0686de7ba3e321e45b0c0947e041bf372747e))
+* **nvim:** vertical term on c-\,float on | ([fce5d0c](https://www.github.com/sbulav/dotfiles/commit/fce5d0c60c01d5204d565f872b4938203c0f0cc3))
+
+
+### Bug Fixes
+
+* **nvim:** fix nredir mappings ([5142eea](https://www.github.com/sbulav/dotfiles/commit/5142eea6d27d35ea4370ecfe05bcfedd8481d947))
+
 ## [1.10.0](https://www.github.com/sbulav/dotfiles/compare/v1.9.1...v1.10.0) (2022-01-31)
 
 
