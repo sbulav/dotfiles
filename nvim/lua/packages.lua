@@ -11,6 +11,13 @@ packer.startup(function(use)
 
     -- Interface plugins
     use {
+        "nvim-lualine/lualine.nvim",
+        config = function()
+            require "config.lualine"
+        end,
+    }
+
+    use {
         "numToStr/Comment.nvim",
         config = function()
             require("Comment").setup()
@@ -84,7 +91,7 @@ packer.startup(function(use)
     -- better text highlighting
     use {
         "nvim-treesitter/nvim-treesitter",
-        event = "BufRead",
+        -- event = "BufRead",
         config = function()
             require "config.treesitter"
         end,
@@ -199,6 +206,15 @@ packer.startup(function(use)
     use {
         "kosayoda/nvim-lightbulb",
         after = "nvim-lspconfig",
+    }
+    -- Lua
+    use {
+        "SmiteshP/nvim-gps",
+        requires = "nvim-treesitter/nvim-treesitter",
+        wants = "nvim-treesitter",
+        config = function()
+            require("nvim-gps").setup { separator = " " }
+        end,
     }
 
     if vim.fn.has "unix" == 1 and vim.fn.has "mac" ~= 1 then
