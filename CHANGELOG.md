@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.0](https://www.github.com/sbulav/dotfiles/compare/v1.11.0...v1.12.0) (2022-02-02)
+
+
+### Features
+
+* **nvim:** Use lualine for statusline ([a486b18](https://www.github.com/sbulav/dotfiles/commit/a486b182ed3a7fc425cd4237d5b71dfeeef0b567))
+
 ## [1.11.0](https://www.github.com/sbulav/dotfiles/compare/v1.10.0...v1.11.0) (2022-02-01)
 
 
