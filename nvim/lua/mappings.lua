@@ -29,9 +29,10 @@ end
 
 local opts = { noremap = true, silent = true }
 keymap("n", "K", "<CMD>lua Show_documentation()<CR>", opts)
+keymap("n", "_", "<CMD>lua _K9S_TOGGLE()<CR>", opts)
+keymap("t", "_", "<CMD>lua _K9S_TOGGLE()<CR>", opts)
 keymap("n", "|", "<cmd>ToggleTerm direction=float<CR>", opts)
 keymap("t", "|", "<cmd>ToggleTerm<CR>", opts)
-keymap("n", "<c->", "<cmd>ToggleTerm direction=vertical<CR>", opts)
 
 --- luasnip keymappings
 keymap("i", "<c-x>", "<cmd>lua require'luasnip'.expand_or_jump()<CR>", opts)
