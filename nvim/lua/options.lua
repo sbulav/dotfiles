@@ -16,6 +16,9 @@ end
 -- Set theme
 vim.cmd [[colorscheme base16-oceanicnext]]
 
+-- Fix vim sandwitch overriding sentence text object
+vim.g.textobj_sandwich_no_default_key_mappings = 1
+
 -- Deactivate plugins I don't use
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_tutor_mode_plugin = 1

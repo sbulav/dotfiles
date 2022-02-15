@@ -25,12 +25,7 @@ packer.startup(function(use)
     }
     use { "nathom/filetype.nvim" } -- speed up filetype detection
     use { "tpope/vim-eunuch" } -- Integration with UNIX shell
-    use {
-        "blackCauldron7/surround.nvim",
-        config = function()
-            require("surround").setup { mappings_style = "sandwich" }
-        end,
-    }
+    use { "machakann/vim-sandwich" } -- Surround objects with any character e.g. saiw|sdb|srb"
     use { "romainl/vim-qf" } -- Better work with quickfix
     use { "mbbill/undotree" } -- Undotree
     use {
