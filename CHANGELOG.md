@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.13.0](https://www.github.com/sbulav/dotfiles/compare/v1.12.0...v1.13.0) (2022-02-15)
+
+
+### Features
+
+* **nvim:** add new startup mapping ([1243e3c](https://www.github.com/sbulav/dotfiles/commit/1243e3c2c6f510b5ee28b914dad102adcb7a75ad))
+
+
+### Bug Fixes
+
+* **nvim:** pin tami5 to get my colorscheme ([e840ee2](https://www.github.com/sbulav/dotfiles/commit/e840ee20461e07f277ef44856cbae9066468040e))
+
 ## [1.12.0](https://www.github.com/sbulav/dotfiles/compare/v1.11.0...v1.12.0) (2022-02-02)
 
 
