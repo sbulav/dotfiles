@@ -135,7 +135,7 @@ packer.startup(function(use)
     -- Code display
     use { "lifepillar/vim-solarized8", opt = true }
     use { "mhartington/oceanic-next", opt = true }
-    use { "tami5/mybase16" }
+    use { "tami5/mybase16", commit = "35d2778cc00d08bf5ae6326683d3ce3b37098741" }
 
     -- Lua
     use { "tjdevries/nlua.nvim" }
