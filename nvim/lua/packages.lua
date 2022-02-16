@@ -128,9 +128,7 @@ packer.startup(function(use)
     use { "hashivim/vim-terraform" } -- Terraform syntax highlight
 
     -- Code display
-    use { "lifepillar/vim-solarized8", opt = true }
-    use { "mhartington/oceanic-next", opt = true }
-    use { "tami5/mybase16", commit = "35d2778cc00d08bf5ae6326683d3ce3b37098741" }
+    use { "sbulav/base16" } --base16 colorchemes
 
     -- Lua
     use { "tjdevries/nlua.nvim" }
