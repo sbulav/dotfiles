@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.14.0](https://www.github.com/sbulav/dotfiles/compare/v1.13.0...v1.14.0) (2022-02-16)
+
+
+### Features
+
+* **fish:** Update fish plugins ([213b51b](https://www.github.com/sbulav/dotfiles/commit/213b51b808521f9ab3500c336c318f686535ec17))
+* use my fork of base16 coloschemes ([2cb565b](https://www.github.com/sbulav/dotfiles/commit/2cb565b984d3bd82ad314abf20be33be30898652))
+
 ## [1.13.0](https://www.github.com/sbulav/dotfiles/compare/v1.12.0...v1.13.0) (2022-02-15)
 
 
