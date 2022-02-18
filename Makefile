@@ -116,7 +116,7 @@ ifeq ($(OS_NAME),darwin)
 else
 	echo "Installing CaskaydiaCove Nerd Font via curl"
 	mkdir -p ~/.local/share/fonts
-	cd ~/.local/share/fonts && curl -fLo "Caskaydia Cove Regular Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/CascadiaCode/Regular/complete/Caskaydia%20Cove%20Regular%20Nerd%20Font%20Complete.otfendif
+	cd ~/.local/share/fonts && curl -fLo "Caskaydia Cove Regular Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/CascadiaCode/Regular/complete/Caskaydia%20Cove%20Regular%20Nerd%20Font%20Complete.otf
 endif
 
 ## /tmp/nvim.appimage  : Download nightly nvim appimage
