@@ -1,5 +1,14 @@
 # Changelog
 
+### [1.14.1](https://www.github.com/sbulav/dotfiles/compare/v1.14.0...v1.14.1) (2022-02-18)
+
+
+### Bug Fixes
+
+* fix Makefile fonts for linux ([52f1d50](https://www.github.com/sbulav/dotfiles/commit/52f1d50f6b2dafa40d9f4ee4ddbe6f2ca0288655))
+* **nvim:** change k9s mapping to allow usage of _ ([37187b9](https://www.github.com/sbulav/dotfiles/commit/37187b963a4508877933c71554558fc7f36355f3))
+* **nvim:** fix alt-e command triggering toggleterm ([d07d8ec](https://www.github.com/sbulav/dotfiles/commit/d07d8ece5f46abeb1bcae922ff110b776eca3689))
+
 ## [1.14.0](https://www.github.com/sbulav/dotfiles/compare/v1.13.0...v1.14.0) (2022-02-16)
 
 
