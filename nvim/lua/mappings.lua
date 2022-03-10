@@ -29,8 +29,8 @@ end
 
 local opts = { noremap = true, silent = true }
 keymap("n", "K", "<CMD>lua Show_documentation()<CR>", opts)
-keymap("n", "<leader>t9", "<CMD>lua _K9S_TOGGLE()<CR>", opts)
-keymap("t", "<leader>t9", "<CMD>lua _K9S_TOGGLE()<CR>", opts)
+keymap("n", "<space>t9", "<CMD>lua _K9S_TOGGLE()<CR>", opts)
+keymap("t", "<space>t9", "<CMD>lua _K9S_TOGGLE()<CR>", opts)
 keymap("n", "<M-\\>", "<cmd>ToggleTerm direction=float<CR>", opts)
 keymap("t", "<M-\\>", "<cmd>ToggleTerm<CR>", opts)
 
