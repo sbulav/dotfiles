@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.14.2](https://www.github.com/sbulav/dotfiles/compare/v1.14.1...v1.14.2) (2022-03-10)
+
+
+### Bug Fixes
+
+* cmp path completions ([7599e4e](https://www.github.com/sbulav/dotfiles/commit/7599e4eeeb6c682ea0e0af6cffac49c4daec02c3))
+* k9s mappings ([8fc01c1](https://www.github.com/sbulav/dotfiles/commit/8fc01c16946034c237fb678c40379cf11c3921a4))
+
 ### [1.14.1](https://www.github.com/sbulav/dotfiles/compare/v1.14.0...v1.14.1) (2022-02-18)
 
 
