@@ -5,7 +5,6 @@ end ]]
 -- File explorer config
 require("nvim-tree").setup {
     open_on_setup = true,
-    auto_close = true,
     update_cwd = true,
     ignore_ft_on_setup = { "startify", "dashboard", "alpha" },
     view = {
