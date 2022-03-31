@@ -127,6 +127,8 @@ packer.startup(function(use)
     -- Languages
     use { "hashivim/vim-terraform" } -- Terraform syntax highlight
 
+    use { "ckipp01/nvim-jenkinsfile-linter", requires = { "nvim-lua/plenary.nvim" } }
+
     -- Code display
     use { "sbulav/base16" } --base16 colorchemes
 
