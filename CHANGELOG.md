@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.15.0](https://www.github.com/sbulav/dotfiles/compare/v1.14.2...v1.15.0) (2022-03-31)
+
+
+### Features
+
+* **nvim:** add nvim-jenkinsfile-linter ([45affcd](https://www.github.com/sbulav/dotfiles/commit/45affcd0b5ba82952689dd12b5feb19dd5f46bec))
+
+
+### Bug Fixes
+
+* remove obsolete nvim-tree auto-close ([9846ba9](https://www.github.com/sbulav/dotfiles/commit/9846ba912c98accadd93233671863ad5443a40ae))
+
 ### [1.14.2](https://www.github.com/sbulav/dotfiles/compare/v1.14.1...v1.14.2) (2022-03-10)
 
 
