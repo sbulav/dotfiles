@@ -212,6 +212,11 @@ packer.startup(function(use)
             require("nvim-gps").setup { separator = " " }
         end,
     }
+    -- Parenthesis highlighting
+    use {
+        "p00f/nvim-ts-rainbow",
+        after = "nvim-treesitter",
+    }
 
     if vim.fn.has "unix" == 1 and vim.fn.has "mac" ~= 1 then
         use { "lspcontainers/lspcontainers.nvim" } -- Lang servers in containers
