@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.0](https://www.github.com/sbulav/dotfiles/compare/v1.15.0...v1.16.0) (2022-04-04)
+
+
+### Features
+
+* **nvim:** add color parenthesis ([085ac7f](https://www.github.com/sbulav/dotfiles/commit/085ac7f0540568e21f73a87cf3fe115bf3b75a63))
+
 ## [1.15.0](https://www.github.com/sbulav/dotfiles/compare/v1.14.2...v1.15.0) (2022-03-31)
 
 
