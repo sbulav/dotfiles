@@ -36,8 +36,10 @@ packer.startup(function(use)
                         [".clang*"] = "yaml",
                         [".*%.env.*"] = "sh",
                         [".*ignore"] = "conf",
+                        [".*enkinsfile.*"] = "groovy",
                     },
                     extensions = {
+                        fish = "fish",
                         tf = "terraform",
                         tfvars = "terraform",
                         tfstate = "json",
