@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.17.0](https://www.github.com/sbulav/dotfiles/compare/v1.16.0...v1.17.0) (2022-04-06)
+
+
+### Features
+
+* add copilot.lua ([96fe7e2](https://www.github.com/sbulav/dotfiles/commit/96fe7e2238b2109f82be48bc1727ed40a56aec95))
+
+
+### Bug Fixes
+
+* **nvim:** correct tf filetype detection ([1c2314c](https://www.github.com/sbulav/dotfiles/commit/1c2314c370700280bf952a3a2a4976cb152f9fa6))
+* **nvim:** move detection to filetype.nvim ([fea9104](https://www.github.com/sbulav/dotfiles/commit/fea9104bb71eb878a3fed8f30dd39dc5335402da))
+* **nvim:** vim-terraform replaced by ts+null-ls ([474df61](https://www.github.com/sbulav/dotfiles/commit/474df612f16a53c256f9bb11890253fe244085fa))
+
 ## [1.16.0](https://www.github.com/sbulav/dotfiles/compare/v1.15.0...v1.16.0) (2022-04-04)
 
 
