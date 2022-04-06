@@ -23,7 +23,32 @@ packer.startup(function(use)
             require("Comment").setup()
         end,
     }
-    use { "nathom/filetype.nvim" } -- speed up filetype detection
+    use {
+        "nathom/filetype.nvim", -- speed up filetype detection
+        config = function()
+            require("filetype").setup {
+                overrides = {
+                    literal = {
+                        ["kitty.conf"] = "kitty",
+                        [".gitignore"] = "conf",
+                    },
+                    complex = {
+                        [".clang*"] = "yaml",
+                        [".*%.env.*"] = "sh",
+                        [".*ignore"] = "conf",
+                    },
+                    extensions = {
+                        tf = "terraform",
+                        tfvars = "terraform",
+                        tfstate = "json",
+                        eslintrc = "json",
+                        prettierrc = "json",
+                        mdx = "markdown",
+                    },
+                },
+            }
+        end,
+    }
     use { "tpope/vim-eunuch" } -- Integration with UNIX shell
     use { "machakann/vim-sandwich" } -- Surround objects with any character e.g. saiw|sdb|srb"
     use { "romainl/vim-qf" } -- Better work with quickfix
