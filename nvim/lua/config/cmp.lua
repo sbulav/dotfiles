@@ -55,6 +55,8 @@ cmp.setup {
         ["<cr>"] = cmp.mapping.confirm(),
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
+        ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
         ["<Tab>"] = cmp.mapping(function(fallback)
             local luasnip = require "luasnip"
             if cmp.visible() then
@@ -109,5 +111,14 @@ cmp.setup {
             end
             luasnip.lsp_expand(args.body)
         end,
+    },
+    documentation = {
+        border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+        winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+        scrollbar = "║",
+    },
+    experimental = {
+        native_menu = false,
+        ghost_text = true,
     },
 }
