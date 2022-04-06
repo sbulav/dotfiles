@@ -31,7 +31,7 @@ local function bash(_, _, command)
     return res
 end
 
-ls.snippets = {
+ls.add_snippets(nil, {
     all = {
         snip({
             trig = "date",
@@ -261,4 +261,4 @@ ls.snippets = {
             text { "", "}" },
         }),
     },
-}
+})
