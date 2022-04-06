@@ -188,6 +188,20 @@ packer.startup(function(use)
             require "config.cmp_tabnine"
         end,
     }
+    -- Github copilot
+    use {
+        "zbirenbaum/copilot.lua",
+        event = "InsertEnter",
+        config = function()
+            vim.schedule(function()
+                require("copilot").setup()
+            end)
+        end,
+    }
+    use {
+        "zbirenbaum/copilot-cmp",
+        after = { "copilot.lua", "nvim-cmp" },
+    }
 
     -- snippets
     use {

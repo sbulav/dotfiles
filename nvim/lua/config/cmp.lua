@@ -49,6 +49,7 @@ cmp.setup {
         { name = "nvim_lua" },
         { name = "path" },
         { name = "luasnip" },
+        { name = "copilot" },
     },
     mapping = {
         ["<cr>"] = cmp.mapping.confirm(),
@@ -95,6 +96,7 @@ cmp.setup {
                 treesitter = "[TS]",
                 path = "[Path]",
                 luasnip = "[Snippet]",
+                copilot = "[CoPilot]",
             })[entry.source.name]
             return item
         end,
