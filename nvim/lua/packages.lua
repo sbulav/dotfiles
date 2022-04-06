@@ -23,7 +23,34 @@ packer.startup(function(use)
             require("Comment").setup()
         end,
     }
-    use { "nathom/filetype.nvim" } -- speed up filetype detection
+    use {
+        "nathom/filetype.nvim", -- speed up filetype detection
+        config = function()
+            require("filetype").setup {
+                overrides = {
+                    literal = {
+                        ["kitty.conf"] = "kitty",
+                        [".gitignore"] = "conf",
+                    },
+                    complex = {
+                        [".clang*"] = "yaml",
+                        [".*%.env.*"] = "sh",
+                        [".*ignore"] = "conf",
+                        [".*enkinsfile.*"] = "groovy",
+                    },
+                    extensions = {
+                        fish = "fish",
+                        tf = "terraform",
+                        tfvars = "terraform",
+                        tfstate = "json",
+                        eslintrc = "json",
+                        prettierrc = "json",
+                        mdx = "markdown",
+                    },
+                },
+            }
+        end,
+    }
     use { "tpope/vim-eunuch" } -- Integration with UNIX shell
     use { "machakann/vim-sandwich" } -- Surround objects with any character e.g. saiw|sdb|srb"
     use { "romainl/vim-qf" } -- Better work with quickfix
@@ -71,7 +98,7 @@ packer.startup(function(use)
             { "nvim-telescope/telescope-github.nvim" },
             { "LinArcX/telescope-env.nvim" },
             { "kosayoda/nvim-lightbulb" },
-            { "sbulav/telescope-terraform.nvim" },
+            -- { "sbulav/telescope-terraform.nvim" },
             -- { "/Users/sab/git_priv/telescope-github.nvim" },
             -- { "/Users/sab/git_priv/OpenSource/telescope-github.nvim" },
             -- { "/Users/sab/git_priv/telescope-terraform.nvim" },
@@ -124,9 +151,6 @@ packer.startup(function(use)
     }
     use { "tpope/vim-fugitive" } -- Git combine
 
-    -- Languages
-    use { "hashivim/vim-terraform" } -- Terraform syntax highlight
-
     use { "ckipp01/nvim-jenkinsfile-linter", requires = { "nvim-lua/plenary.nvim" } }
 
     -- Code display
@@ -163,6 +187,20 @@ packer.startup(function(use)
         config = function()
             require "config.cmp_tabnine"
         end,
+    }
+    -- Github copilot
+    use {
+        "zbirenbaum/copilot.lua",
+        event = "InsertEnter",
+        config = function()
+            vim.schedule(function()
+                require("copilot").setup()
+            end)
+        end,
+    }
+    use {
+        "zbirenbaum/copilot-cmp",
+        after = { "copilot.lua", "nvim-cmp" },
     }
 
     -- snippets

@@ -16,8 +16,6 @@ local autocmds = {
         },
     },
     add_filetypes = {
-        { "BufNewFile,BufRead", "*.fish", "set filetype=fish commentstring=#%s" },
-        { "BufNewFile,BufRead", "*enkinsfile*", "set filetype=groovy" },
         { "BufWritePre", "*enkinsfile*", "lua require'jenkinsfile_linter'.validate()" },
     },
 }
