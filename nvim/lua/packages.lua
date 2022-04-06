@@ -96,7 +96,7 @@ packer.startup(function(use)
             { "nvim-telescope/telescope-github.nvim" },
             { "LinArcX/telescope-env.nvim" },
             { "kosayoda/nvim-lightbulb" },
-            { "sbulav/telescope-terraform.nvim" },
+            -- { "sbulav/telescope-terraform.nvim" },
             -- { "/Users/sab/git_priv/telescope-github.nvim" },
             -- { "/Users/sab/git_priv/OpenSource/telescope-github.nvim" },
             -- { "/Users/sab/git_priv/telescope-terraform.nvim" },
@@ -148,9 +148,6 @@ packer.startup(function(use)
         -- tag = 'release' -- To use the latest release
     }
     use { "tpope/vim-fugitive" } -- Git combine
-
-    -- Languages
-    use { "hashivim/vim-terraform" } -- Terraform syntax highlight
 
     use { "ckipp01/nvim-jenkinsfile-linter", requires = { "nvim-lua/plenary.nvim" } }
 
