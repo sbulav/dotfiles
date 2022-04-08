@@ -191,7 +191,8 @@ packer.startup(function(use)
     -- Github copilot
     use {
         "zbirenbaum/copilot.lua",
-        event = "InsertEnter",
+        after = "nvim-cmp",
+        -- event = "InsertEnter",
         config = function()
             vim.schedule(function()
                 require("copilot").setup()
