@@ -195,7 +195,9 @@ packer.startup(function(use)
         -- event = "InsertEnter",
         config = function()
             vim.schedule(function()
-                require("copilot").setup()
+                require("copilot").setup {
+                    ft_disable = { "markdown" },
+                }
             end)
         end,
     }
