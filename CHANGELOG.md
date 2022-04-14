@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.17.1](https://www.github.com/sbulav/dotfiles/compare/v1.17.0...v1.17.1) (2022-04-14)
+
+
+### Bug Fixes
+
+* **nvim:** disable copilot for markdown ([a7f9b2f](https://www.github.com/sbulav/dotfiles/commit/a7f9b2f86a2892b403655a0ce4eb8c36ef65767e))
+
 ## [1.17.0](https://www.github.com/sbulav/dotfiles/compare/v1.16.0...v1.17.0) (2022-04-06)
 
 
