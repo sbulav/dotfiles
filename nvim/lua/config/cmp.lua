@@ -112,10 +112,20 @@ cmp.setup {
             luasnip.lsp_expand(args.body)
         end,
     },
-    documentation = {
-        border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-        winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-        scrollbar = "║",
+    window = {
+        completion = {
+            border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+            scrollbar = "║",
+            autocomplete = {
+                require("cmp.types").cmp.TriggerEvent.InsertEnter,
+                require("cmp.types").cmp.TriggerEvent.TextChanged,
+            },
+        },
+        documentation = {
+            border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+            winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+            scrollbar = "║",
+        },
     },
     experimental = {
         native_menu = false,
