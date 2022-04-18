@@ -4,90 +4,109 @@ local utils = require "utils"
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 function M.on_attach(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    -- Enable completion triggered by <c-x><c-o>
+    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  local opts = { noremap = true, silent = true }
-  local keymap = vim.api.nvim_set_keymap
+    local attach_opts = { silent = true, buffer = bufnr }
 
-  -- lsp provider to find the cursor word definition and reference
-  keymap("n", "gh", '<cmd>lua require"lspsaga.provider".lsp_finder()<CR>', opts)
-  -- code action
-  keymap("n", "ga", '<cmd>lua require"lspsaga.codeaction".code_action()<CR>', opts)
-  keymap("n", "gA", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+    -- lsp provider to find the cursor word definition and reference
+    vim.keymap.set("n", "gh", function()
+        require("lspsaga.provider").lsp_finder()
+    end, attach_opts)
+    -- show function signature help
+    vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, attach_opts)
+    -- rename
+    vim.keymap.set("n", "gr", function()
+        require("lspsaga.rename").rename()
+    end, attach_opts)
+    -- preview definition
+    vim.keymap.set("n", "gD", function()
+        require("lspsaga.provider").preview_definition()
+    end, attach_opts)
+    -- go to implementation
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, attach_opts)
+    -- go to definition
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, attach_opts)
+    -- show line diagnostic
+    vim.keymap.set("n", "ge", function()
+        require("lspsaga.diagnostic").show_line_diagnostics()
+    end, attach_opts)
+    -- jump diagnostic
+    vim.keymap.set("n", "]e", function()
+        require("lspsaga.diagnostic").navigate "next"
+    end, attach_opts)
+    vim.keymap.set("n", "[e", function()
+        require("lspsaga.diagnostic").navigate "prev"
+    end, attach_opts)
+    vim.keymap.set("n", "<leader>so", function()
+        require("telescope.builtin").lsp_document_symbols()
+    end, attach_opts)
+    vim.keymap.set("n", "<leader>sr", function()
+        require("telescope.builtin").lsp_buf_references()
+    end, attach_opts)
 
-  -- show function signature help
-  keymap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  -- rename
-  keymap("n", "gr", '<cmd>lua require"lspsaga.rename".rename()<CR>', opts)
-  -- preview definition
-  keymap("n", "gD", '<cmd>lua require"lspsaga.provider".preview_definition()<CR>', opts)
-  -- go to implementation
-  keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  -- go to definition
-  keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  -- show line diagnostic
-  keymap("n", "ge", '<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>', opts)
-  -- jump diagnostic
-  keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
-  keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
-  -- manage git worktree
-  keymap("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-  keymap("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-  keymap("n", "<leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-  keymap("n", "<leader>so", [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
-  keymap("n", "<leader>sr", [[<cmd>lua require('telescope.builtin').lsp_buf_references()<CR>]], opts)
+    vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
 
-  vim.cmd 'command! Format :lua require("lsp.utils").formatDocument()'
-  -- client.resolved_capabilities.document_formatting = enable
-  --   -- format on save
-  --   if client.resolved_capabilities.document_formatting then
-  vim.cmd [[
-          augroup LspFormat
-            autocmd BufWritePre <buffer> lua require("lsp.utils").formatDocument()
-          augroup END
-          autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
-        ]]
-  -- end
+    -- Disable formatting with other LSPs because we're handling formatting via null-ls
+    -- Otherwise you'll be prompted to Select a language server
+    if client.name ~= "null-ls" then
+        client.resolved_capabilities.document_formatting = false
+    end
+    if client.resolved_capabilities.document_highlight then
+        vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+        vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
+        vim.api.nvim_create_autocmd("CursorHold", {
+            callback = vim.lsp.buf.document_highlight,
+            buffer = bufnr,
+            group = "lsp_document_highlight",
+            desc = "Document Highlight",
+        })
+        vim.api.nvim_create_autocmd("CursorMoved", {
+            callback = vim.lsp.buf.clear_references,
+            buffer = bufnr,
+            group = "lsp_document_highlight",
+            desc = "Clear All the References",
+        })
+    end
 
-  -- Disable formatting with other LSPs because we're handling formatting via null-ls
-  -- Otherwise you'll be prompted to Select a language server
-  if client.name ~= "null-ls" then
-    client.resolved_capabilities.document_formatting = false
-  end
-  -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
-    vim.api.nvim_exec(
-      [[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]],
-      false
-    )
-  end
-end
+    if client.resolved_capabilities.code_action then
+        vim.keymap.set("n", "<leader>ga", function()
+            require("lspsaga.codeaction").code_action()
+        end, { buffer = bufnr, desc = "Code Actions" })
+        vim.keymap.set("v", "<leader>ga", function()
+            require("lspsaga.codeaction").range_code_action()
+        end, { buffer = bufnr, desc = "Range Code Actions" })
+        vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+            callback = function()
+                require("nvim-lightbulb").update_lightbulb()
+            end,
+            buffer = bufnr,
+            desc = "Update the LightBulb",
+        })
+    end
 
-function M.formatDocument()
-  -- check if LSP is attached
-  if (#vim.lsp.buf_get_clients()) < 1 then
-    return
-  end
-
-  vim.lsp.buf.formatting_sync(nil, 1500)
+    if client.resolved_capabilities.document_formatting then
+        vim.api.nvim_create_augroup("LspFormat", { clear = true })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            callback = function()
+                utils.info("Formatting file via lsp", "LSP")
+                vim.lsp.buf.formatting()
+            end,
+            group = "LspFormat",
+            desc = "Format document on save with LSP",
+        })
+    end
 end
 
 function M.custom_on_init()
-  -- print "Language Server Protocol started!"
-  utils.info("Language Server Protocol started!", "LSP")
+    -- print "Language Server Protocol started!"
+    utils.info("Language Server Protocol started!", "LSP")
 end
 
 function M.has_formatter(ft)
-  local sources = require "null-ls.sources"
-  local available = sources.get_available(ft, "NULL_LS_FORMATTING")
-  return #available > 0
+    local sources = require "null-ls.sources"
+    local available = sources.get_available(ft, "NULL_LS_FORMATTING")
+    return #available > 0
 end
 
 return M

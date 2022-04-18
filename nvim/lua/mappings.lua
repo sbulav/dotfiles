@@ -1,15 +1,19 @@
-local map = require("utils").map
-local keymap = vim.api.nvim_set_keymap
-local cmd = vim.cmd
-local fn = vim.fn
-
+local attach_opts = { silent = true }
+-- lsp provider to find the cursor word definition and reference
 -- URL handling
 if vim.fn.has "mac" == 1 then
-    map[""].gx = { '<Cmd>call jobstart(["open", expand("<cfile>")], {"detach": v:true})<CR>' }
+    vim.keymap.set("n", "gx", '<Cmd>call jobstart(["open", expand("<cfile>")], {"detach": v:true})<CR>', attach_opts)
 elseif vim.fn.has "unix" == 1 then
-    map[""].gx = { '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>' }
+    vim.keymap.set(
+        "n",
+        "gx",
+        '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>',
+        attach_opts
+    )
 else
-    map[""].gx = { '<Cmd>lua print("Error: gx is not supported on this OS!")<CR>' }
+    vim.keymap.set("n", "gx", function()
+        print "Error: gx is not supported on this OS!"
+    end, attach_opts)
 end
 
 --- Commands to troubleshoot LSP{{{
@@ -20,29 +24,34 @@ end
 --- vim.lsp.set_log_level("debug")}}}
 
 function Show_documentation()
-    if fn.index({ "vim", "help" }, vim.bo.filetype) >= 0 then
-        cmd("h " .. vim.fn.expand "<cword>")
+    if vim.fn.index({ "vim", "help" }, vim.bo.filetype) >= 0 then
+        vim.cmd("h " .. vim.fn.expand "<cword>")
     else
-        cmd 'lua require"lspsaga.hover".render_hover_doc()'
+        require("lspsaga.hover").render_hover_doc()
     end
 end
 
-local opts = { noremap = true, silent = true }
-keymap("n", "K", "<CMD>lua Show_documentation()<CR>", opts)
-keymap("n", "<space>t9", "<CMD>lua _K9S_TOGGLE()<CR>", opts)
-keymap("t", "<space>t9", "<CMD>lua _K9S_TOGGLE()<CR>", opts)
-keymap("n", "<M-\\>", "<cmd>ToggleTerm direction=float<CR>", opts)
-keymap("t", "<M-\\>", "<cmd>ToggleTerm<CR>", opts)
+vim.keymap.set("n", "K", function()
+    Show_documentation()
+end, attach_opts)
+vim.keymap.set({ "n", "t" }, "<leader>t9", function()
+    _K9S_TOGGLE()
+end, attach_opts)
+vim.keymap.set({ "n", "t" }, "<M-\\>", "<cmd>ToggleTerm direction=float<CR>", attach_opts)
 
 --- luasnip keymappings
-keymap("i", "<c-x>", "<cmd>lua require'luasnip'.expand_or_jump()<CR>", opts)
-keymap("s", "<c-x>", "<cmd>lua require'luasnip'.expand_or_jump()<CR>", opts)
-keymap("i", "<c-n>", "<cmd>lua require'luasnip'.change_choice(1)<CR>", opts)
-keymap("s", "<c-n>", "<cmd>lua require'luasnip'.change_choice(1)<CR>", opts)
-keymap("i", "<c-p>", "<cmd>lua require'luasnip'.change_choice(-1)<CR>", opts)
-keymap("s", "<c-p>", "<cmd>lua require'luasnip'.change_choice(-1)<CR>", opts)
-
-keymap("i", "<c-j>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
-keymap("s", "<c-j>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
-keymap("i", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
-keymap("s", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
+vim.keymap.set({ "i", "s" }, "<c-x>", function()
+    require("luasnip").expand_or_jump()
+end, attach_opts)
+vim.keymap.set({ "i", "s" }, "<c-n>", function()
+    require("luasnip").change_choice(1)
+end, attach_opts)
+vim.keymap.set({ "i", "s" }, "<c-p>", function()
+    require("luasnip").change_choice(-1)
+end, attach_opts)
+vim.keymap.set({ "i", "s" }, "<c-j>", function()
+    require("luasnip").jump(1)
+end, attach_opts)
+vim.keymap.set({ "i", "s" }, "<c-k>", function()
+    require("luasnip").jump(-1)
+end, attach_opts)

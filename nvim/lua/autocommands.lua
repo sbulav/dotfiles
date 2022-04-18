@@ -2,7 +2,7 @@ local utils = require "utils"
 
 vim.api.nvim_create_augroup("Highlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-    command = "silent! lua vim.highlight.on_yank() {higroup='IncSearch', timeout=1500}",
+    command = "silent! lua vim.highlight.on_yank({higroup='IncSearch', timeout=1500, on_visual = true})",
     group = "Highlight",
     desc = "Highlight yanked text",
 })
@@ -34,7 +34,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
     desc = "Return to last known cursor position",
     group = "RestoreCursorPosition",
-    pattern = "*enkinsfile*",
 })
 vim.api.nvim_create_augroup("ValidateJenkinsfiles", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -44,66 +43,5 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
     group = "ValidateJenkinsfiles",
     desc = "Validate Jenkins files on save",
+    pattern = "*enkinsfile*",
 })
--- vim.api.nvim_create_autocmd("CursorHold,CursorHoldI", {
---   callback = require("nvim-lightbulb").update_lightbulb,
--- })
---
-
--- highlight-symbol-on-cursor-hold
--- vim.api.nvim_create_augroup('cursor_hold_word', { clear = true })
--- vim.api.nvim_create_autocmd( 'CursorHold',
---     {
---         group = 'cursor_hold_word',
---         pattern = '*',
---         --buffer = 0,
---         callback = function()
---             if vim.lsp.buf_is_attached() then
---                 vim.lsp.buf.document_highlight()
---             end
---         end
---     }
--- )
--- vim.api.nvim_create_autocmd( 'CursorMoved',
---     {
---         group = 'cursor_hold_word',
---         --buffer = 0,
---         pattern = '*',
---         callback = vim.lsp.buf.clear_references
---     }
--- )
---
--- disable number line on terminal
--- vim.api.nvim_create_autocmd("TermOpen", {
--- 	group = termaug,
--- 	callback = function()
--- 		vim.opt.number = false
--- 		vim.opt.relativenumber = false
--- 	end,
--- })
---
--- vim.api.nvim_create_augroup('NeovimTerminal', { clear = true })
---
--- vim.api.nvim_create_autocmd('TermOpen', {
---   group = 'NeovimTerminal',
---   pattern = 'term://*',
---   command = "lua require('utils').set_terminal_keymaps()",
--- })
---
--- vim.api.nvim_create_autocmd('TermOpen', {
---   group = 'NeovimTerminal',
---   pattern = '*',
---   command = 'startinsert',
--- })
---
--- vim.api.nvim_create_autocmd('TermOpen', {
---   group = 'NeovimTerminal',
---   pattern = '*',
---   command = 'set nonumber norelativenumber nobuflisted',
--- })
---
--- vim.api.nvim_create_autocmd('TermOpen', {
---   group = 'NeovimTerminal',
---   pattern = '*',
---   command = 'nnoremap <buffer> <C-c> i<C-c>',
--- })
