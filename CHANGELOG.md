@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.18.0](https://www.github.com/sbulav/dotfiles/compare/v1.17.1...v1.18.0) (2022-04-18)
+
+
+### Features
+
+* **nvim:** first autocommands to 0.7 syntax ([16df934](https://www.github.com/sbulav/dotfiles/commit/16df9346dd6583f2c42182b1cfd7b02aadb580a4))
+* **nvim:** second wave of updated autocommands ([200989e](https://www.github.com/sbulav/dotfiles/commit/200989ef6d0455ca3eb136d0295b25425118aecd))
+
 ### [1.17.1](https://www.github.com/sbulav/dotfiles/compare/v1.17.0...v1.17.1) (2022-04-14)
 
 
