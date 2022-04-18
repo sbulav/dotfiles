@@ -1,15 +1,14 @@
--- Currently, there is no interface to create user commands in Lua. It is planned, though:
--- PR: https://github.com/neovim/neovim/pull/12378
-
-local cmd = vim.cmd
-local api = vim.api
-
 -- Open help vertically and press q to exit
-function help_tab()
-  if vim.bo.buftype == "help" then
-    cmd "wincmd L"
-    local nr = api.nvim_get_current_buf()
-    api.nvim_buf_set_keymap(nr, "", "q", ":q<CR>", { noremap = true, silent = true })
-  end
-end
-cmd "au BufEnter *.txt lua help_tab()"
+vim.api.nvim_create_augroup("Help", { clear = true })
+vim.api.nvim_create_autocmd("BufEnter", {
+    callback = function()
+        if vim.bo.buftype == "help" then
+            local bufnr = vim.api.nvim_get_current_buf()
+            vim.cmd "wincmd L"
+            vim.keymap.set("n", "q", ":q<CR>", { silent = true, buffer = bufnr })
+        end
+    end,
+    group = "Help",
+    desc = "Format document on save with LSP",
+    pattern = "*.txt",
+})
