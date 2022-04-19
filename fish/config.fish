@@ -26,6 +26,9 @@ set -gx PATH $PATH $HOME/.krew/bin
 # Do not complete CRD, to speed things up
 set -gx FISH_KUBECTL_COMPLETION_COMPLETE_CRDS 0
 
+# Set GPG_TTY for commit signing
+set -gx GPG_TTY $(tty)
+
 # Load ssh keys into ssh-agent
 load_keys
 
