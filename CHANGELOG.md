@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.20.0](https://www.github.com/sbulav/dotfiles/compare/v1.19.0...v1.20.0) (2022-04-19)
+
+
+### Features
+
+* **git:** sign commits with GPG ([b644dd4](https://www.github.com/sbulav/dotfiles/commit/b644dd4f0dfe16d149c7a0dc32a0cac154fc37f2))
+* **gpg:** configure gpg agent compatible with nvim ([5e75873](https://www.github.com/sbulav/dotfiles/commit/5e758735481391247be3cb5a8a91e023f84df826))
+
+
+### Bug Fixes
+
+* **gpg:** tty is not required for loopback ([ddda3e3](https://www.github.com/sbulav/dotfiles/commit/ddda3e33a3d6b51bff05a97427171806cf98fa15))
+
 ## [1.19.0](https://www.github.com/sbulav/dotfiles/compare/v1.18.0...v1.19.0) (2022-04-19)
 
 
