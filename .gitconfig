@@ -30,7 +30,5 @@
 	templatedir = ~/.git_template
 [pull]
 	rebase = false
-[gpg]
-	program = gpg
 [commit]
   gpgsign = true
