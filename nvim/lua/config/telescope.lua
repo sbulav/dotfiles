@@ -48,6 +48,6 @@ telescope.setup {
 }
 
 telescope.load_extension "gh"
-telescope.load_extension "project"
-telescope.load_extension "env"
+-- telescope.load_extension "project"
+-- telescope.load_extension "env"
 -- telescope.load_extension "terraform"

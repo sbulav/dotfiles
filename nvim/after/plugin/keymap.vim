@@ -166,11 +166,11 @@ nnoremap <leader>gr <cmd>lua require'telescope'.extensions.gh.run{}<cr>
 nnoremap <leader>gp <cmd>lua require'telescope'.extensions.gh.pull_request{}<cr>
 nnoremap <leader>gi <cmd>lua require'telescope'.extensions.gh.gist{}<cr>
 nnoremap <leader>gs <cmd>lua require'telescope'.extensions.gh.secret{}<cr>
-nnoremap <leader>tp <cmd>lua require'telescope'.extensions.terraform.plan{}<cr>
-nnoremap <leader>tP <cmd>lua require'telescope'.extensions.terraform.plan_targeted{}<cr>
-nnoremap <leader>ta <cmd>lua require'telescope'.extensions.terraform.apply{}<cr>
-nnoremap <leader>ti <cmd>lua require'telescope'.extensions.terraform.init{}<cr>
-nnoremap <leader>td <cmd>lua require'telescope'.extensions.terraform.destroy{}<cr>
+" nnoremap <leader>tp <cmd>lua require'telescope'.extensions.terraform.plan{}<cr>
+" nnoremap <leader>tP <cmd>lua require'telescope'.extensions.terraform.plan_targeted{}<cr>
+" nnoremap <leader>ta <cmd>lua require'telescope'.extensions.terraform.apply{}<cr>
+" nnoremap <leader>ti <cmd>lua require'telescope'.extensions.terraform.init{}<cr>
+" nnoremap <leader>td <cmd>lua require'telescope'.extensions.terraform.destroy{}<cr>
 
 " Populate quickfix with current buffers with <c-q><c-q>
 nnoremap <C-q> :lua require('telescope.builtin').buffers()<Cr>

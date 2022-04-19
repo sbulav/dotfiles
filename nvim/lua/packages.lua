@@ -94,17 +94,17 @@ packer.startup(function(use)
         requires = {
             { "nvim-lua/popup.nvim" },
             { "nvim-lua/plenary.nvim" },
-            { "nvim-telescope/telescope-project.nvim" },
             { "nvim-telescope/telescope-github.nvim" },
-            { "LinArcX/telescope-env.nvim" },
             { "kosayoda/nvim-lightbulb" },
-            -- { "sbulav/telescope-terraform.nvim" },
-            -- { "/Users/sab/git_priv/telescope-github.nvim" },
             -- { "/Users/sab/git_priv/OpenSource/telescope-github.nvim" },
+            -- { "/Users/sab/git_priv/telescope-github.nvim" },
             -- { "/Users/sab/git_priv/telescope-terraform.nvim" },
+            -- { "LinArcX/telescope-env.nvim" },
+            -- { "nvim-telescope/telescope-project.nvim" },
+            -- { "sbulav/telescope-terraform.nvim" },
+            -- {'nvim-telescope/telescope-frecency.nvim'}, -- media preview
             -- {'nvim-telescope/telescope-fzy-native.nvim'}, -- fast finder
             -- {'nvim-telescope/telescope-media-files.nvim'}, -- media preview
-            -- {'nvim-telescope/telescope-frecency.nvim'}, -- media preview
         },
         config = function()
             require "config.telescope"
