@@ -42,15 +42,27 @@ local lsp_symbols = {
 cmp.setup {
     confirmation = { default_behaviour = cmp.ConfirmBehavior.Replace },
     sources = {
-        { name = "buffer" },
-        { name = "nvim_lsp" },
-        { name = "cmp_tabnine" },
-        { name = "treesitter" },
-        { name = "nvim_lua" },
-        { name = "path" },
-        { name = "luasnip" },
-        { name = "copilot" },
+        { name = "nvim_lsp", priority = 8 },
+        { name = "cmp_tabnine", priority = 8, max_item_count = 3 },
+        { name = "treesitter", priority = 7 },
+        { name = "buffer", priority = 7, keyword_length = 5 },
+        { name = "nvim_lua", priority = 5 },
+        { name = "luasnip", priority = 5 },
+        { name = "copilot", priority = 5, max_item_count = 3 },
+        { name = "path", priority = 4 },
     },
+
+    sorting = {
+        priority_weight = 1.0,
+        comparators = {
+            cmp.config.compare.locality,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.score,
+            cmp.config.compare.offset,
+            cmp.config.compare.order,
+        },
+    },
+
     mapping = {
         ["<cr>"] = cmp.mapping.confirm(),
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
