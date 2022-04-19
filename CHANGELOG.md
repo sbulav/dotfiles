@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.19.0](https://www.github.com/sbulav/dotfiles/compare/v1.18.0...v1.19.0) (2022-04-19)
+
+
+### Features
+
+* **nvim:** add terraform_doc and mappings ([943f201](https://www.github.com/sbulav/dotfiles/commit/943f201cce3836b4cd38a51598eab8886a644f1c))
+* **nvim:** add treesitter cmp source ([9b18f29](https://www.github.com/sbulav/dotfiles/commit/9b18f296550e33e22eff989766bf4d368164ede8))
+* **nvim:** set up cmp suggestions sorting ([4225a27](https://www.github.com/sbulav/dotfiles/commit/4225a27417f377a0e62cf5b6094845f058e4eb9b))
+
 ## [1.18.0](https://www.github.com/sbulav/dotfiles/compare/v1.17.1...v1.18.0) (2022-04-18)
 
 
