@@ -166,6 +166,7 @@ nnoremap <leader>gr <cmd>lua require'telescope'.extensions.gh.run{}<cr>
 nnoremap <leader>gp <cmd>lua require'telescope'.extensions.gh.pull_request{}<cr>
 nnoremap <leader>gi <cmd>lua require'telescope'.extensions.gh.gist{}<cr>
 nnoremap <leader>gs <cmd>lua require'telescope'.extensions.gh.secret{}<cr>
+nnoremap <leader>td <cmd>:Telescope terraform_doc full_name=hashicorp/aws version=3.74.0<cr>
 " nnoremap <leader>tp <cmd>lua require'telescope'.extensions.terraform.plan{}<cr>
 " nnoremap <leader>tP <cmd>lua require'telescope'.extensions.terraform.plan_targeted{}<cr>
 " nnoremap <leader>ta <cmd>lua require'telescope'.extensions.terraform.apply{}<cr>

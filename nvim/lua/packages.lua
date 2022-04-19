@@ -96,7 +96,7 @@ packer.startup(function(use)
             { "nvim-lua/plenary.nvim" },
             { "nvim-telescope/telescope-github.nvim" },
             { "kosayoda/nvim-lightbulb" },
-            -- { "/Users/sab/git_priv/OpenSource/telescope-github.nvim" },
+            { "sbulav/telescope-terraform-doc.nvim" },
             -- { "/Users/sab/git_priv/telescope-github.nvim" },
             -- { "/Users/sab/git_priv/telescope-terraform.nvim" },
             -- { "LinArcX/telescope-env.nvim" },

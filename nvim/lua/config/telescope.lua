@@ -48,6 +48,17 @@ telescope.setup {
 }
 
 telescope.load_extension "gh"
--- telescope.load_extension "project"
+-- require("telescope").setup {
+--     extensions = {
+--         terraform_doc = {
+--             url_open_command = "xdg-open",
+--             latest_provider_symbol = "  ",
+--             version = "3.74.0",
+--             wincmd = "rightbelow new",
+--             wrap = "nowrap",
+--         },
+--     },
+-- }
+telescope.load_extension "terraform_doc"
 -- telescope.load_extension "env"
 -- telescope.load_extension "terraform"
