@@ -42,7 +42,7 @@ function M.on_attach(client, bufnr)
         require("telescope.builtin").lsp_document_symbols()
     end, attach_opts)
     vim.keymap.set("n", "<leader>sr", function()
-        require("telescope.builtin").lsp_buf_references()
+        require("telescope.builtin").lsp_references()
     end, attach_opts)
 
     vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
@@ -50,9 +50,14 @@ function M.on_attach(client, bufnr)
     -- Disable formatting with other LSPs because we're handling formatting via null-ls
     -- Otherwise you'll be prompted to Select a language server
     if client.name ~= "null-ls" then
-        client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.documentFormattingProvider = false
     end
-    if client.resolved_capabilities.document_highlight then
+
+    -- Server capabilities spec:
+    -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#serverCapabilities
+    -- print(dump(client.server_capabilities))
+
+    if client.server_capabilities.documentHighlightProvider then
         vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
         vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
         vim.api.nvim_create_autocmd("CursorHold", {
@@ -69,7 +74,7 @@ function M.on_attach(client, bufnr)
         })
     end
 
-    if client.resolved_capabilities.code_action then
+    if client.server_capabilities.codeActionProvider then
         vim.keymap.set("n", "<leader>ga", function()
             require("lspsaga.codeaction").code_action()
         end, { buffer = bufnr, desc = "Code Actions" })
@@ -85,7 +90,7 @@ function M.on_attach(client, bufnr)
         })
     end
 
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.documentFormattingProvider then
         vim.api.nvim_create_augroup("LspFormat", { clear = true })
         vim.api.nvim_create_autocmd("BufWritePre", {
             callback = function()
