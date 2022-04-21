@@ -10,21 +10,68 @@ packer.startup(function(use)
     use { "wbthomason/packer.nvim" }
 
     -- Interface plugins
+    -- Statusline in Lua
     use {
         "nvim-lualine/lualine.nvim",
         config = function()
             require "config.lualine"
         end,
     }
+    -- Notifications in popup window
+    use {
+        "rcarriga/nvim-notify",
+        event = "VimEnter",
+        config = function()
+            vim.notify = require "notify"
+            require "config.notify"
+        end,
+    }
+    -- Startup screen
+    use {
+        "goolord/alpha-nvim",
+        requires = { "kyazdani42/nvim-web-devicons" },
+        config = function()
+            require "config.alpha"
+        end,
+    }
+    -- Redirect output to scratch buffer
+    use {
+        "sbulav/nredir.nvim",
+    }
+    -- Smart handling of terminal
+    use {
+        "akinsho/toggleterm.nvim",
+        config = function()
+            require "config.toggleterm"
+        end,
+    }
 
+    -- Indentation highlights
+    use {
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("indent").setup()
+        end,
+    }
+    -- use { "glepnir/indent-guides.nvim" } -- Indentation highlighs
+    -- Easymotion in Lua
+    use {
+        "phaazon/hop.nvim",
+        config = function()
+            require "config.hop"
+        end,
+    }
+    -- Commentary
     use {
         "numToStr/Comment.nvim",
         config = function()
             require("Comment").setup()
         end,
     }
+    -- Speed up filetype detection
+    -- Included in nvim0.7, not enabled by default
     use {
-        "nathom/filetype.nvim", -- speed up filetype detection
+        "nathom/filetype.nvim",
         config = function()
             require("filetype").setup {
                 overrides = {
@@ -55,40 +102,7 @@ packer.startup(function(use)
     use { "machakann/vim-sandwich" } -- Surround objects with any character e.g. saiw|sdb|srb"
     use { "romainl/vim-qf" } -- Better work with quickfix
     use { "mbbill/undotree" } -- Undotree
-    use {
-        "goolord/alpha-nvim", -- Startup screen
-        requires = { "kyazdani42/nvim-web-devicons" },
-        config = function()
-            require "config.alpha"
-        end,
-    }
-    use {
-        "rcarriga/nvim-notify",
-        event = "VimEnter",
-        -- config = function()
-        --     vim.notify = require "notify"
-        -- end,
-        config = function()
-            vim.notify = require "notify"
-            require "config.notify"
-        end,
-    }
-    use {
-        "phaazon/hop.nvim", -- Easymotion in lua
-        config = function()
-            require "config.hop"
-        end,
-    }
-    use {
-        "sbulav/nredir.nvim", -- Redirect output to scratch buffer
-    }
-    use {
-        "akinsho/toggleterm.nvim",
-        config = function()
-            require "config.toggleterm"
-        end,
-    }
-    use { "glepnir/indent-guides.nvim" } -- Indentation highlighs
+    ---
     use { -- Telescope fuzzy finder
         "nvim-telescope/telescope.nvim",
         requires = {
@@ -110,7 +124,8 @@ packer.startup(function(use)
             require "config.telescope"
         end,
     }
-    -- better text highlighting
+    --- Treesitter
+    --- better text highlighting
     use {
         "nvim-treesitter/nvim-treesitter",
         -- event = "BufRead",
@@ -118,6 +133,12 @@ packer.startup(function(use)
             require "config.treesitter"
         end,
         run = ":TSUpdate",
+    }
+
+    -- Parenthesis highlighting
+    use {
+        "p00f/nvim-ts-rainbow",
+        after = "nvim-treesitter",
     }
     -- use 'nvim-treesitter/playground'
     use { -- Tree file manager
@@ -253,11 +274,6 @@ packer.startup(function(use)
         config = function()
             require("nvim-gps").setup { separator = " " }
         end,
-    }
-    -- Parenthesis highlighting
-    use {
-        "p00f/nvim-ts-rainbow",
-        after = "nvim-treesitter",
     }
 
     if vim.fn.has "unix" == 1 and vim.fn.has "mac" ~= 1 then
