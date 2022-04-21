@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.21.0](https://www.github.com/sbulav/dotfiles/compare/v1.20.0...v1.21.0) (2022-04-21)
+
+
+### Features
+
+* **nvim:** migrate to indent-blankline ([b6009d4](https://www.github.com/sbulav/dotfiles/commit/b6009d404576a8931fdb73d6dd3bf1cde72234fd))
+* **nvim:** reorder plugins ([01ef0f1](https://www.github.com/sbulav/dotfiles/commit/01ef0f1c82f8ed8f4556017803552ffed79fa97e))
+
 ## [1.20.0](https://www.github.com/sbulav/dotfiles/compare/v1.19.0...v1.20.0) (2022-04-19)
 
 
