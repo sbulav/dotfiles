@@ -55,7 +55,6 @@ local options = {
     relativenumber = true, -- Always show relative numbers
     cursorline = true, -- Change current line background
     scrolloff = 8, -- Keep 8 lines above and under current line
-    laststatus = 2, -- Always enable statusline
     showtabline = 1, -- Show tabline when more than 1 tab}}}
 
     -- Files & Buffers{{{
