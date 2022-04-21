@@ -50,10 +50,9 @@ packer.startup(function(use)
     use {
         "lukas-reineke/indent-blankline.nvim",
         config = function()
-            require("indent").setup()
+            require "config.indent"
         end,
     }
-    -- use { "glepnir/indent-guides.nvim" } -- Indentation highlighs
     -- Easymotion in Lua
     use {
         "phaazon/hop.nvim",
