@@ -188,9 +188,9 @@ packer.startup(function(use)
     } --}}}
     -- Lua{{{
     use { "tjdevries/nlua.nvim" }
-    use { "euclidianAce/BetterLua.vim" }--}}}
+    use { "euclidianAce/BetterLua.vim" } --}}}
     -- Tests{{{
-    use { "janko/vim-test" }--}}}
+    use { "janko/vim-test" } --}}}
     -- Code completion{{{
     -- completion engine
     use {
@@ -242,7 +242,7 @@ packer.startup(function(use)
         config = function()
             require "config.snippets"
         end,
-    }--}}}
+    } --}}}
     -- LSP{{{
     -- lsp configuration
     use {
@@ -274,7 +274,7 @@ packer.startup(function(use)
         after = "nvim-lspconfig",
     }
     -- Lint Jenkins files
-    use { "ckipp01/nvim-jenkinsfile-linter", requires = { "nvim-lua/plenary.nvim" } }--}}}
+    use { "ckipp01/nvim-jenkinsfile-linter", requires = { "nvim-lua/plenary.nvim" } } --}}}
 
     if vim.fn.has "unix" == 1 and vim.fn.has "mac" ~= 1 then
         use { "lspcontainers/lspcontainers.nvim" } -- Lang servers in containers
