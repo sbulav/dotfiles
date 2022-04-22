@@ -25,6 +25,22 @@ local globals = {
 -- Add current path and subpaths to path
 vim.o.path = vim.o.path .. "**"
 
+-- File extensions to append on file jump gf
+vim.opt.suffixesadd:append {
+    ".c",
+    ".html",
+    ".json",
+    ".yaml",
+    ".md",
+    ".py",
+    ".md",
+    ".groovy",
+    ".lua",
+    ".vim",
+    ".tf",
+    "/init.lua",
+}
+
 local options = {
     -- Visual customizations{{{
     termguicolors = true, -- truecolours for better experience
