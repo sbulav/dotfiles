@@ -22,6 +22,15 @@ _G.prequire = function(plugin, verbose)
     M.error(errmsg, "Prequire failed")
 end
 
+function M.trim_trailing_whitespaces()
+    if not vim.o.binary and vim.o.filetype ~= "diff" and not vim.o.readonly then
+        local current_view = vim.fn.winsaveview()
+        vim.cmd [[keeppatterns %s/\s\+$//e]] --remove trailing whitespace
+        vim.cmd [[keeppatterns %s/\($\n\s*\)\+\%$//]] --remove empty lines at end of file
+        vim.fn.winrestview(current_view)
+    end
+end
+
 function M.cheatSheetCommand(detect_language)
     detect_language = (detect_language == nil and true) or detect_language
     local input = "[cht.sh] "
@@ -74,5 +83,4 @@ end
 function M.info(msg, name)
     vim.notify(msg, vim.log.levels.INFO, { title = name })
 end
-
 return M

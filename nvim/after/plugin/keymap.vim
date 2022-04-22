@@ -188,7 +188,7 @@ nnoremap <leader><leader>g :!git add . && git commit -m "fixup" && gpo<cr>
 " Simply run a make command
 nnoremap <leader>m :make<cr>
 " Run a function to strip trailing whitespaces
-nnoremap <leader>s :call StripTrailingWhitespace()<cr>
+nnoremap <leader>s <cmd>lua require("utils").trim_trailing_whitespaces()<cr>
 " Switch to last edited buffer
 nnoremap <leader>le :b#<cr>
 " Close current buffer
