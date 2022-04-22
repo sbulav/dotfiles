@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.22.0](https://www.github.com/sbulav/dotfiles/compare/v1.21.0...v1.22.0) (2022-04-22)
+
+
+### Features
+
+* **nvim:** Enable global statusline ([d8d0c63](https://www.github.com/sbulav/dotfiles/commit/d8d0c63ea871f1b23b84ecfd4a771ab1e7c0d3ee))
+* **nvim:** migrate strip_trailing_spaces to lua ([29eb110](https://www.github.com/sbulav/dotfiles/commit/29eb110e614356ee3de152197808a95aab4ae1bf))
+* **nvim:** migrate suffixes to lua ([af59250](https://www.github.com/sbulav/dotfiles/commit/af59250947884e0187505e939714ad92a013ef70))
+* **nvim:** migrate to stevearc/qf_helper.nvim ([9bc07f3](https://www.github.com/sbulav/dotfiles/commit/9bc07f35bff0c0e3ba9a1c66c84264dc28b3e84a))
+* **nvim:** migrate wildmenu opts to lua ([163334f](https://www.github.com/sbulav/dotfiles/commit/163334fa6caf21573dc47e0ea85c2c77f163d0f5))
+* **nvim:** optimize cmp, select 1 entry on cr ([4aa4934](https://www.github.com/sbulav/dotfiles/commit/4aa4934490c31d55ca28db85cadf7866d1a6037c))
+
 ## [1.21.0](https://www.github.com/sbulav/dotfiles/compare/v1.20.0...v1.21.0) (2022-04-21)
 
 
