@@ -101,14 +101,12 @@ nmap \ viw"
 " ----------------------------------------------------------------------------
 " Quickfix
 " ----------------------------------------------------------------------------
-nnoremap ]q :cnext<cr>zz        " Quickfix next
-nnoremap [q :cprev<cr>zz        " Quickfix previous
+nnoremap ]q :QNext<cr>zz        " Quickfix next
+nnoremap [q :QPrev<cr>zz        " Quickfix previous
 nnoremap ]Q :cnewer<cr>zz       " Open newer quickfix results
 nnoremap [Q :colder<cr>zz       " Open older quickfix results
-nnoremap ]l :lnext<cr>zz        " Location next
-nnoremap [l :lprev<cr>zz        " Location previous
-nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR> " Open/Close location
-nmap <silent> <leader>q :call ToggleList("Quickfix List", 'c')<CR> " Open/Close quickfix
+nnoremap <silent> <leader>q <cmd>QFToggle<CR>
+nnoremap <silent> <leader>l <cmd>LLToggle<CR>
 
 " ----------------------------------------------------------------------------
 " Buffers
@@ -160,7 +158,7 @@ nnoremap <leader>fs <cmd>lua require('telescope.builtin').git_files()<cr>
 nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fv <cmd>lua require('config.telescope_myfunctions').search_vimfiles()<cr>
 nnoremap <leader>fd <cmd>lua require('config.telescope_myfunctions').search_dotfiles()<cr>
-nnoremap <leader>fp <cmd>lua require'telescope'.extensions.project.project{ change_dir = true }<cr>
+nnoremap <leader>fp <cmd>lua require'telescope'.extensions.project.project{}<cr>
 nnoremap <leader>gb <cmd>lua require('telescope.builtin').git_branches()<cr>
 nnoremap <leader>gr <cmd>lua require'telescope'.extensions.gh.run{}<cr>
 nnoremap <leader>gp <cmd>lua require'telescope'.extensions.gh.pull_request{}<cr>
