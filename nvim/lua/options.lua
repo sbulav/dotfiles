@@ -1,44 +1,63 @@
-local cmd = vim.api.nvim_command
-local o = vim.o
-
-local apply_options = function(opts)
-    for k, v in pairs(opts) do
-        if v == true then
-            cmd("set " .. k)
-        elseif v == false then
-            cmd(string.format("set no%s", k))
-        else
-            cmd(string.format("set %s=%s", k, v))
-        end
-    end
-end
-
 -- Set theme
 vim.cmd [[colorscheme base16-oceanicnext]]
 
--- Fix vim sandwitch overriding sentence text object
-vim.g.textobj_sandwich_no_default_key_mappings = 1
-
--- Deactivate plugins I don't use
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_tutor_mode_plugin = 1
-vim.g.loaded_tarPlugin = 1
-vim.g.loaded_zipPlugin = 1
-vim.g.loaded_gzip = 1
-vim.g.loaded_2html_plugin = 1
-vim.g.did_install_default_menus = 1
-vim.g.did_install_syntax_menu = 1
-vim.g.did_load_filetypes = 1
-
--- Providers
-vim.g.loaded_python_provider = 0
-vim.g.loaded_python3_provider = 0
-vim.g.loaded_node_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_ruby_provider = 0
+local globals = {
+    -- Fix vim sandwitch overriding sentence text object
+    textobj_sandwich_no_default_key_mappings = 1,
+    -- Deactivate plugins I don't use
+    loaded_netrwPlugin = 1,
+    loaded_tutor_mode_plugin = 1,
+    loaded_tarPlugin = 1,
+    loaded_zipPlugin = 1,
+    loaded_gzip = 1,
+    loaded_2html_plugin = 1,
+    did_install_default_menus = 1,
+    did_install_syntax_menu = 1,
+    did_load_filetypes = 1,
+    -- Providers
+    loaded_python_provider = 0,
+    loaded_python3_provider = 0,
+    loaded_node_provider = 0,
+    loaded_perl_provider = 0,
+    loaded_ruby_provider = 0,
+}
 
 -- Add current path and subpaths to path
-o.path = o.path .. "**"
+vim.o.path = vim.o.path .. "**"
+
+-- File extensions to append on file jump gf
+vim.opt.suffixesadd:append {
+    ".c",
+    ".html",
+    ".json",
+    ".yaml",
+    ".md",
+    ".py",
+    ".md",
+    ".groovy",
+    ".lua",
+    ".vim",
+    ".tf",
+    "/init.lua",
+}
+
+-- Wildmenu completion : exclude some files
+vim.opt.wildignore:append {
+    "*.hg,*.git,*.svn", -- Version Controls
+    "*.aux,*.out,*.toc", -- Latex Indermediate files
+    "*.jpg,*.bmp,*.gif,*.png,*.jpeg", -- Binary Imgs
+    "*.tar,*.tar.gz,*.xz", -- Archives
+    "*.rpm,*.pkg,", -- Packages
+    "*.o,*.obj,*.exe,*.dll,*.manifest", -- Compiled Object files
+    "*.spl", -- Compiled speolling world list
+    "*.sw?", -- Vim swap files
+    "*.DS_Store", -- OSX SHIT
+    "*.luac", -- Lua byte code
+    "*.pyc", -- Python Object codes
+    "*.orig", -- Merge resolution files
+    "*.class", -- java/scala class files
+    "*/target/*", -- sbt target dires `,`. You can use space
+}
 
 local options = {
     -- Visual customizations{{{
@@ -55,7 +74,6 @@ local options = {
     relativenumber = true, -- Always show relative numbers
     cursorline = true, -- Change current line background
     scrolloff = 8, -- Keep 8 lines above and under current line
-    laststatus = 2, -- Always enable statusline
     showtabline = 1, -- Show tabline when more than 1 tab}}}
 
     -- Files & Buffers{{{
@@ -86,7 +104,7 @@ local options = {
     -- copyindent = true,          -- Enable autoindent
     shiftround = true, -- Use n shiftwidth when indenting with <,>
     smarttab = true, -- Use smart removal when using tabs
-    nojoinspaces = true, -- one space after joining lines with puncutation}}}
+    joinspaces = true, -- one space after joining lines with puncutation}}}
 
     -- Folding{{{
     foldmethod = "marker", -- foldmethod using marker
@@ -94,17 +112,23 @@ local options = {
 
     -- Trailings / tabs{{{
     list = true, -- display listchars
-    fillchars = "vert:│,eob:\\ ", -- make vertical split sign better
-    listchars = "eol:↲,tab:»\\ ", -- set listchars
-    -- listchars="tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+" -- my old listchars}}}
-
-    -- Better vimdiff{{{
+    fillchars = { vert = "│", eob = " " }, -- make vertical split sign better
+    listchars = { eol = "↲", tab = "» " }, -- set listchars
+    --
+    -- -- Better vimdiff{{{
     diffopt = "internal,algorithm:patience,indent-heuristic", --}}}
     --
     -- Completion{{{
     pumheight = 10, -- limit completion items
     timeoutlen = 400, -- faster timeout wait time
     updatetime = 100, -- set faster update time ]]}}}
+    wildmode = "list:longest,full",
 }
 
-apply_options(options)
+for k, v in pairs(options) do
+    vim.opt[k] = v
+end
+
+for k, v in pairs(globals) do
+    vim.g[k] = v
+end

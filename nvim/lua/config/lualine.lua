@@ -74,6 +74,7 @@ local oceanic_my = {
 require("lualine").setup {
     options = {
         theme = oceanic_my,
+        globalstatus = true,
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
     },

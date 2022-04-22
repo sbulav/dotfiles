@@ -131,7 +131,12 @@ packer.startup(function(use)
     -- Surround objects with any character e.g. saiw|sdb|srb"
     use { "machakann/vim-sandwich" }
     -- Better work with quickfix
-    use { "romainl/vim-qf" }
+    use {
+        "stevearc/qf_helper.nvim",
+        config = function()
+            require("qf_helper").setup()
+        end,
+    }
     -- Undotree
     use { "mbbill/undotree" }
     -- Prevent select and visual mode from overwriting the clipboard
