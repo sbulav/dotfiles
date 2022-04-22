@@ -41,6 +41,24 @@ vim.opt.suffixesadd:append {
     "/init.lua",
 }
 
+-- Wildmenu completion : exclude some files
+vim.opt.wildignore:append {
+    "*.hg,*.git,*.svn", -- Version Controls
+    "*.aux,*.out,*.toc", -- Latex Indermediate files
+    "*.jpg,*.bmp,*.gif,*.png,*.jpeg", -- Binary Imgs
+    "*.tar,*.tar.gz,*.xz", -- Archives
+    "*.rpm,*.pkg,", -- Packages
+    "*.o,*.obj,*.exe,*.dll,*.manifest", -- Compiled Object files
+    "*.spl", -- Compiled speolling world list
+    "*.sw?", -- Vim swap files
+    "*.DS_Store", -- OSX SHIT
+    "*.luac", -- Lua byte code
+    "*.pyc", -- Python Object codes
+    "*.orig", -- Merge resolution files
+    "*.class", -- java/scala class files
+    "*/target/*", -- sbt target dires `,`. You can use space
+}
+
 local options = {
     -- Visual customizations{{{
     termguicolors = true, -- truecolours for better experience
@@ -104,6 +122,7 @@ local options = {
     pumheight = 10, -- limit completion items
     timeoutlen = 400, -- faster timeout wait time
     updatetime = 100, -- set faster update time ]]}}}
+    wildmode = "list:longest,full",
 }
 
 for k, v in pairs(options) do
