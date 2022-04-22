@@ -174,9 +174,6 @@ nnoremap <leader>td <cmd>:Telescope terraform_doc full_name=hashicorp/aws versio
 " Populate quickfix with current buffers with <c-q><c-q>
 nnoremap <C-q> :lua require('telescope.builtin').buffers()<Cr>
 
-" Quickly go to custom Grep
-" nnoremap <leader>g :Grep<space>
-
 " GIT - add all modified files to staging
 nnoremap <leader>ga :Git add .<cr>
 " GIT - run Gdiffsplit against current file and HEAD
