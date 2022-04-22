@@ -1,5 +1,4 @@
 local M = {}
-local api = vim.api
 
 _G.dump = function(...)
     local objects = vim.tbl_map(vim.inspect, { ... })
