@@ -33,10 +33,10 @@ function M.on_attach(client, bufnr)
     end, attach_opts)
     -- jump diagnostic
     vim.keymap.set("n", "]e", function()
-        require("lspsaga.diagnostic").navigate "next"
+        require("lspsaga.diagnostic").navigate("next")()
     end, attach_opts)
     vim.keymap.set("n", "[e", function()
-        require("lspsaga.diagnostic").navigate "prev"
+        require("lspsaga.diagnostic").navigate("prev")()
     end, attach_opts)
     vim.keymap.set("n", "<leader>so", function()
         require("telescope.builtin").lsp_document_symbols()
