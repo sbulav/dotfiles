@@ -59,6 +59,8 @@ vim.opt.wildignore:append {
     "*/target/*", -- sbt target dires `,`. You can use space
 }
 
+vim.opt.formatoptions:remove "o" -- O and o, don't continue comments
+
 local options = {
     -- Visual customizations{{{
     termguicolors = true, -- truecolours for better experience
