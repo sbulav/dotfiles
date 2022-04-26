@@ -47,7 +47,7 @@ vim.opt.wildignore:append {
     "*.aux,*.out,*.toc", -- Latex Indermediate files
     "*.jpg,*.bmp,*.gif,*.png,*.jpeg", -- Binary Imgs
     "*.tar,*.tar.gz,*.xz", -- Archives
-    "*.rpm,*.pkg,", -- Packages
+    "*.rpm,*.pkg", -- Packages
     "*.o,*.obj,*.exe,*.dll,*.manifest", -- Compiled Object files
     "*.spl", -- Compiled speolling world list
     "*.sw?", -- Vim swap files
