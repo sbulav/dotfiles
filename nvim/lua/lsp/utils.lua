@@ -51,6 +51,7 @@ function M.on_attach(client, bufnr)
     -- Otherwise you'll be prompted to Select a language server
     if client.name ~= "null-ls" then
         client.server_capabilities.documentFormattingProvider = false
+        client.resolved_capabilities.document_formatting = false
     end
 
     -- Server capabilities spec:
@@ -94,7 +95,6 @@ function M.on_attach(client, bufnr)
         vim.api.nvim_create_augroup("LspFormat", { clear = true })
         vim.api.nvim_create_autocmd("BufWritePre", {
             callback = function()
-                utils.info("Formatting file via lsp", "LSP")
                 vim.lsp.buf.formatting()
             end,
             group = "LspFormat",
