@@ -1,6 +1,6 @@
 local saga = prequire "lspsaga"
 if not saga then
-  return
+    return
 end
 
 saga.init_lsp_saga()
