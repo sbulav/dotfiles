@@ -11,7 +11,6 @@ require("nvim-tree").setup {
         width = 40,
         height = 30,
         side = "left",
-        auto_resize = false,
         mappings = {
             custom_only = false,
             list = {},
