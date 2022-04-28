@@ -128,8 +128,8 @@ nnoremap [j <c-o>
 " ----------------------------------------------------------------------------
 " <tab> / <s-tab> | Circular windows navigation
 " ----------------------------------------------------------------------------
-nnoremap <tab>   <c-w>w
-nnoremap <S-tab> <c-w>W
+" nnoremap <tab>   <c-w>w
+" nnoremap <S-tab> <c-w>W
 
 " ----------------------------------------------------------------------------
 " Managing files with shortcuts, leader mapped to <SPACE>
@@ -185,8 +185,6 @@ nnoremap <leader>g :Git<cr>
 " GIT - create fixup commit and push it
 nnoremap <leader><leader>g :!git add . && git commit -m "fixup" && gpo<cr>
 
-" Simply run a make command
-nnoremap <leader>m :make<cr>
 " Run a function to strip trailing whitespaces
 nnoremap <leader>s <cmd>lua require("utils").trim_trailing_whitespaces()<cr>
 " Switch to last edited buffer
@@ -213,6 +211,18 @@ nnoremap <leader>c :lcd %:p:h<cr>
 nnoremap <leader>o :w <bar> %bd <bar> e# <bar> bd# <CR>
 " Open command window on ;
 nnoremap ; q:A
+
+" Simply run a make command
+nnoremap <leader>m :Telescope marks<CR>
+nnoremap <C-N> `N
+nnoremap <C-E> `E
+" nnoremap <C-I> `I
+nnoremap <TAB> `I
+nnoremap <C-O> `O
+nnoremap <A-n> mN
+nnoremap <A-e> mE
+nnoremap <A-i> mI
+nnoremap <A-o> mO
 " Escape works in command window
 autocmd CmdwinEnter * nnoremap <buffer> <Esc> <C-c>
 " Execute this file

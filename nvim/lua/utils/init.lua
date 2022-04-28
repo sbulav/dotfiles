@@ -1,3 +1,5 @@
+require("utils.marks").setup()
+
 local M = {}
 
 _G.dump = function(...)
