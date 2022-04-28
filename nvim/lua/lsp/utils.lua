@@ -95,7 +95,7 @@ function M.on_attach(client, bufnr)
         vim.api.nvim_create_augroup("LspFormat", { clear = true })
         vim.api.nvim_create_autocmd("BufWritePre", {
             callback = function()
-                vim.lsp.buf.formatting()
+                vim.lsp.buf.formatting_sync()
             end,
             group = "LspFormat",
             desc = "Format document on save with LSP",
