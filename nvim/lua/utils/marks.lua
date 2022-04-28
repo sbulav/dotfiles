@@ -43,7 +43,7 @@ end
 local function add_global_marks()
     local global_marks = vim.fn.getmarklist()
     for _, v in ipairs(global_marks) do
-        if vim.fn.expand(v.file) == vim.fn.bufname() then
+        if vim.fn.expand(v.file) == vim.api.nvim_buf_get_name(0) then
             local name = v.mark:sub(2, 3)
             local lnum = v.pos[2]
             if is_upper(name) then
@@ -76,9 +76,8 @@ function M.setup(user_config)
             config[k] = user_config[k] or Defaults[k]
         end
     end
-    local bufnr = vim.api.nvim_get_current_buf()
     vim.api.nvim_create_augroup("marks_hl", { clear = true })
-    vim.api.nvim_create_autocmd("BufWinEnter", {
+    vim.api.nvim_create_autocmd("BufEnter", {
         callback = require("utils.marks").refresh,
         group = "marks_hl",
         desc = "Document Highlight",

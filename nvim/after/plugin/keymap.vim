@@ -214,15 +214,18 @@ nnoremap ; q:A
 
 " Simply run a make command
 nnoremap <leader>m :Telescope marks<CR>
-nnoremap <C-N> `N
-nnoremap <C-E> `E
-" nnoremap <C-I> `I
-nnoremap <TAB> `I
-nnoremap <C-O> `O
-nnoremap <A-n> mN
-nnoremap <A-e> mE
-nnoremap <A-i> mI
-nnoremap <A-o> mO
+nnoremap <A-n> `N
+nnoremap <A-e> `E
+nnoremap <A-i> `I
+nnoremap <A-o> `O
+nnoremap <BS>n mN <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap <BS>e mE <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap <BS>i mI <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap <BS>o mO <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap mn mN <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap me mE <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap mi mI <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap mo mO <bar>:lua require("utils.marks").refresh()<CR>
 " Escape works in command window
 autocmd CmdwinEnter * nnoremap <buffer> <Esc> <C-c>
 " Execute this file
