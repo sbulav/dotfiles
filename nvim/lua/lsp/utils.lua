@@ -33,10 +33,10 @@ function M.on_attach(client, bufnr)
     end, attach_opts)
     -- jump diagnostic
     vim.keymap.set("n", "]e", function()
-        require("lspsaga.diagnostic").navigate "next"
+        require("lspsaga.diagnostic").navigate "next"()
     end, attach_opts)
     vim.keymap.set("n", "[e", function()
-        require("lspsaga.diagnostic").navigate "prev"
+        require("lspsaga.diagnostic").navigate "prev"()
     end, attach_opts)
     vim.keymap.set("n", "<leader>so", function()
         require("telescope.builtin").lsp_document_symbols()
@@ -51,6 +51,7 @@ function M.on_attach(client, bufnr)
     -- Otherwise you'll be prompted to Select a language server
     if client.name ~= "null-ls" then
         client.server_capabilities.documentFormattingProvider = false
+        client.resolved_capabilities.document_formatting = false
     end
 
     -- Server capabilities spec:
@@ -94,8 +95,7 @@ function M.on_attach(client, bufnr)
         vim.api.nvim_create_augroup("LspFormat", { clear = true })
         vim.api.nvim_create_autocmd("BufWritePre", {
             callback = function()
-                utils.info("Formatting file via lsp", "LSP")
-                vim.lsp.buf.formatting()
+                vim.lsp.buf.formatting_sync()
             end,
             group = "LspFormat",
             desc = "Format document on save with LSP",

@@ -128,8 +128,8 @@ nnoremap [j <c-o>
 " ----------------------------------------------------------------------------
 " <tab> / <s-tab> | Circular windows navigation
 " ----------------------------------------------------------------------------
-nnoremap <tab>   <c-w>w
-nnoremap <S-tab> <c-w>W
+" nnoremap <tab>   <c-w>w
+" nnoremap <S-tab> <c-w>W
 
 " ----------------------------------------------------------------------------
 " Managing files with shortcuts, leader mapped to <SPACE>
@@ -185,8 +185,6 @@ nnoremap <leader>g :Git<cr>
 " GIT - create fixup commit and push it
 nnoremap <leader><leader>g :!git add . && git commit -m "fixup" && gpo<cr>
 
-" Simply run a make command
-nnoremap <leader>m :make<cr>
 " Run a function to strip trailing whitespaces
 nnoremap <leader>s <cmd>lua require("utils").trim_trailing_whitespaces()<cr>
 " Switch to last edited buffer
@@ -213,6 +211,21 @@ nnoremap <leader>c :lcd %:p:h<cr>
 nnoremap <leader>o :w <bar> %bd <bar> e# <bar> bd# <CR>
 " Open command window on ;
 nnoremap ; q:A
+
+" Simply run a make command
+nnoremap <leader>m :Telescope marks<CR>
+nnoremap <A-n> `N
+nnoremap <A-e> `E
+nnoremap <A-i> `I
+nnoremap <A-o> `O
+nnoremap <BS>n mN <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap <BS>e mE <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap <BS>i mI <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap <BS>o mO <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap mn mN <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap me mE <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap mi mI <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap mo mO <bar>:lua require("utils.marks").refresh()<CR>
 " Escape works in command window
 autocmd CmdwinEnter * nnoremap <buffer> <Esc> <C-c>
 " Execute this file

@@ -4,7 +4,13 @@ if not alpha then
 end
 
 local startify = require "alpha.themes.startify"
-
+local function footer()
+    local plugins = #vim.tbl_keys(packer_plugins)
+    local v = vim.version()
+    local datetime = os.date " %d-%m-%Y   %H:%M:%S"
+    local platform = vim.fn.has "win32" == 1 and "" or ""
+    return string.format("       %d   v%d.%d.%d %s  %s", plugins, v.major, v.minor, v.patch, platform, datetime)
+end
 startify.section.header.val = {
     [[                                   __                ]],
     [[      ___     ___    ___   __  __ /\_\    ___ ___    ]],
@@ -13,7 +19,9 @@ startify.section.header.val = {
     [[    \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
     [[     \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
     [[-----------------------------------------------------]],
+    footer(),
 }
+
 --[[ startify.section.top_buttons.val = {
     startify.button( "e", "  New file" , ":ene <BAR> startinsert <CR>"),
 }
@@ -31,9 +39,6 @@ startify.section.bottom_buttons.val = {
     startify.button("p", "Edit packages.lua", ":edit ~/dotfiles/nvim/lua/packages.lua<CR>"),
     startify.button("u", "Update packages", ":PackerSync<CR>"),
     startify.button("q", "Quit NVIM", ":qa<CR>"),
-}
-startify.section.footer = {
-    { type = "text", val = "footer" },
 }
 
 alpha.setup(startify.opts)

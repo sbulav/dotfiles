@@ -1,3 +1,5 @@
+require("utils.marks").setup()
+
 local M = {}
 
 _G.dump = function(...)
@@ -26,7 +28,7 @@ function M.trim_trailing_whitespaces()
     if not vim.o.binary and vim.o.filetype ~= "diff" and not vim.o.readonly then
         local current_view = vim.fn.winsaveview()
         vim.cmd [[keeppatterns %s/\s\+$//e]] --remove trailing whitespace
-        vim.cmd [[keeppatterns %s/\($\n\s*\)\+\%$//]] --remove empty lines at end of file
+        vim.cmd [[keeppatterns %s/\($\n\s*\)\+\%$//e]] --remove empty lines at end of file
         vim.fn.winrestview(current_view)
     end
 end

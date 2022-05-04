@@ -21,6 +21,21 @@ local function lsp_progress(_, is_active)
     return table.concat(status, "  ") .. " " .. spinners[frame + 1]
 end
 
+local function lsp_client_names()
+    -- Get all active clients in the buffer
+    local clients = vim.lsp.buf_get_clients()
+    local client_names = "["
+
+    for _, client in pairs(clients) do
+        client_names = client_names .. string.upper(string.sub(client.name, 1, 1)) .. ":"
+    end
+    if string.len(client_names) > 1 then
+        return string.gsub(client_names, ".$", "]")
+    else
+        return "[NO_LSP]"
+    end
+end
+
 vim.cmd "au User LspProgressUpdate let &ro = &ro"
 
 local function my_progress()
@@ -97,7 +112,12 @@ require("lualine").setup {
                 color = { fg = colors.blue },
             },
         },
-        lualine_x = { lsp_progress, { "diagnostics", sources = { "nvim_diagnostic" } }, "filetype" },
+        lualine_x = {
+            lsp_client_names,
+            lsp_progress,
+            { "diagnostics", sources = { "nvim_diagnostic" } },
+            "filetype",
+        },
         lualine_y = { my_progress },
         lualine_z = { my_percent },
     },
