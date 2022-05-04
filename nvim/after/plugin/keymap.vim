@@ -214,6 +214,8 @@ nnoremap ; q:A
 
 " Simply run a make command
 nnoremap <leader>m :Telescope marks<CR>
+nnoremap <leader>md :delmarks!<CR> <bar> :delmarks A-Z <CR> <bar> :lua require("utils.marks").refresh()<CR>
+nnoremap mo mO <bar>:lua require("utils.marks").refresh()<CR>
 nnoremap <A-n> `N
 nnoremap <A-e> `E
 nnoremap <A-i> `I
