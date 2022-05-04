@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.23.0](https://www.github.com/sbulav/dotfiles/compare/v1.22.0...v1.23.0) (2022-05-04)
+
+
+### Features
+
+* **nvim:** add opt to don't continue comments ([f006451](https://www.github.com/sbulav/dotfiles/commit/f006451f7871a0026d627fce4cea7197e3f9beff))
+* **nvim:** add packages status to alpha ([0cf540d](https://www.github.com/sbulav/dotfiles/commit/0cf540d31bfda6f267a8b010389f86866b6c1fd7))
+* **nvim:** display attached LSP clients ([c5728eb](https://www.github.com/sbulav/dotfiles/commit/c5728eb9529b60ad694fd6b1715340c4ca7d5314))
+* **nvim:** try to improve work with marks ([c434c4a](https://www.github.com/sbulav/dotfiles/commit/c434c4a2fa85e104b633d4822f86f3d14540d468))
+
+
+### Bug Fixes
+
+* **nvim:** don't trigger err if no emply eof ([ed1c9a9](https://www.github.com/sbulav/dotfiles/commit/ed1c9a926650c72b440686e4d32cbee807d363c3))
+* **nvim:** fix gf broken by wildignore ([51252b8](https://www.github.com/sbulav/dotfiles/commit/51252b8595789c980b1c1d1fcfb2ae7cad657b79))
+* **nvim:** sync autoformat to avoid double save ([62af92c](https://www.github.com/sbulav/dotfiles/commit/62af92ce3c95bf7999237706926e9c6c5197f300))
+* **nvim:** use correct diag mapping ([9532eae](https://www.github.com/sbulav/dotfiles/commit/9532eae55e8a8abe9dcab2647682ddf678cdb2a3))
+* **nvim:** use only null-ls for formatting ([f28174b](https://www.github.com/sbulav/dotfiles/commit/f28174b24567750d8752f8e590f14a0d663938e3))
+
 ## [1.22.0](https://www.github.com/sbulav/dotfiles/compare/v1.21.0...v1.22.0) (2022-04-22)
 
 
