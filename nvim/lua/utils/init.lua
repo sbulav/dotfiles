@@ -7,6 +7,10 @@ _G.dump = function(...)
     print(unpack(objects))
 end
 
+_G.pp = function(...)
+    vim.pretty_print(...)
+end
+
 _G.reload = function(modname)
     package.loaded[modname] = nil
     return require(modname)
