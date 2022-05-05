@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.24.0](https://www.github.com/sbulav/dotfiles/compare/v1.23.0...v1.24.0) (2022-05-05)
+
+
+### Features
+
+* **nvim:** add delete marks shortcut ([152e352](https://www.github.com/sbulav/dotfiles/commit/152e3529706004ac8dfd20cc5e39cedf39fe4704))
+* **nvim:** add pp alias to new vim.pretty_print ([59bfbc5](https://www.github.com/sbulav/dotfiles/commit/59bfbc51f42b55a92d2984d6c6a6243f7fc47acd))
+
 ## [1.23.0](https://www.github.com/sbulav/dotfiles/compare/v1.22.0...v1.23.0) (2022-05-04)
 
 
