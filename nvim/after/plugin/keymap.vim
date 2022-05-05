@@ -128,8 +128,8 @@ nnoremap [j <c-o>
 " ----------------------------------------------------------------------------
 " <tab> / <s-tab> | Circular windows navigation
 " ----------------------------------------------------------------------------
-" nnoremap <tab>   <c-w>w
-" nnoremap <S-tab> <c-w>W
+nnoremap <tab>   <c-w>w
+nnoremap <S-tab> <c-w>W
 
 " ----------------------------------------------------------------------------
 " Managing files with shortcuts, leader mapped to <SPACE>
