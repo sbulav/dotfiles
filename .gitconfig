@@ -32,3 +32,7 @@
 	rebase = false
 [commit]
   gpgsign = true
+[includeIf "gitdir:~/git_pagaya/"]
+  path = .gitconfig-pagaya
+[includeIf "hasconfig:remote.*.url:*pagaya/*"]
+  path = .gitconfig-pagaya
