@@ -11,7 +11,7 @@ local sources = {
     --         return utils.root_has_file("stylua.toml")
     --     end,
     -- }),
-    b.formatting.terraform_fmt,
+    -- b.formatting.terraform_fmt,
     b.formatting.goimports,
 }
 
