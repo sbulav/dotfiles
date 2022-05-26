@@ -49,16 +49,16 @@ function M.on_attach(client, bufnr)
 
     -- Disable formatting with other LSPs because we're handling formatting via null-ls
     -- Otherwise you'll be prompted to Select a language server
-    if client.name ~= "null-ls" then
-        client.server_capabilities.documentFormattingProvider = false
-        client.resolved_capabilities.document_formatting = false
-    end
+    -- if client.name ~= "null-ls" then
+    --     client.server_capabilities.documentFormattingProvider = false
+    --     client.resolved_capabilities.document_formatting = false
+    -- end
 
     -- Server capabilities spec:
     -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#serverCapabilities
     -- print(dump(client.server_capabilities))
 
-    if client.server_capabilities.documentHighlightProvider then
+    if client.supports_method "textDocument/documentHighlight" then
         vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
         vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
         vim.api.nvim_create_autocmd("CursorHold", {
@@ -75,7 +75,7 @@ function M.on_attach(client, bufnr)
         })
     end
 
-    if client.server_capabilities.codeActionProvider then
+    if client.supports_method "textDocument/codeAction" then
         vim.keymap.set("n", "<leader>ga", function()
             require("lspsaga.codeaction").code_action()
         end, { buffer = bufnr, desc = "Code Actions" })
@@ -91,7 +91,7 @@ function M.on_attach(client, bufnr)
         })
     end
 
-    if client.server_capabilities.documentFormattingProvider then
+    if client.supports_method "textDocument/formatting" then
         vim.api.nvim_create_augroup("LspFormat", { clear = true })
         vim.api.nvim_create_autocmd("BufWritePre", {
             callback = function()
