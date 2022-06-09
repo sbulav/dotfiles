@@ -82,6 +82,7 @@ vnoremap <silent> zx :HopWord<cr>
 vmap " sa"
 vmap ' sa'
 nmap \ viw"
+nmap ' viw'
 
 " Bindings that came from Eunich
 " :Delete: Delete a buffer and the file on disk simultaneously.
