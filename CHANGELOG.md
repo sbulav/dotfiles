@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.25.0](https://www.github.com/sbulav/dotfiles/compare/v1.24.0...v1.25.0) (2022-06-09)
+
+
+### Features
+
+* **git:** use work email and sign it ([fbdbf3a](https://www.github.com/sbulav/dotfiles/commit/fbdbf3a7ea5c483e7307a369b58a57061b230261))
+* **nvim:** allow CR to next line w/o completion ([f981724](https://www.github.com/sbulav/dotfiles/commit/f9817245f174991ad8e652f00dd468a059b53872))
+* **nvim:** use terraform-ls for formatting ([4315c61](https://www.github.com/sbulav/dotfiles/commit/4315c6121be58377f9e6776f9a65745f5553f7c4))
+* use proper function to detect client capabilities ([930cc95](https://www.github.com/sbulav/dotfiles/commit/930cc95c5f5efa6d5ac0a0da1f3045152df17c58))
+
+
+### Bug Fixes
+
+* **nvim:** add mappings to surround on ' ([20cbeb9](https://www.github.com/sbulav/dotfiles/commit/20cbeb94fd4b46e110d6cebc6c3ad3fe8b3724c1))
+* **nvim:** re-enable tab to swap windows ([24d5cc2](https://www.github.com/sbulav/dotfiles/commit/24d5cc28612b8a3c244d014c828bb9e9ff080b5f))
+
 ## [1.24.0](https://www.github.com/sbulav/dotfiles/compare/v1.23.0...v1.24.0) (2022-05-05)
 
 
