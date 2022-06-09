@@ -49,6 +49,7 @@ function M.on_attach(client, bufnr)
 
     -- Disable formatting with other LSPs because we're handling formatting via null-ls
     -- Otherwise you'll be prompted to Select a language server
+    -- Update when on the 0.8 https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts#neovim-08
     -- if client.name ~= "null-ls" then
     --     client.server_capabilities.documentFormattingProvider = false
     --     client.resolved_capabilities.document_formatting = false

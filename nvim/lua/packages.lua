@@ -76,6 +76,7 @@ packer.startup(function(use)
             { "nvim-lua/plenary.nvim" },
             { "nvim-telescope/telescope-github.nvim" },
             { "kosayoda/nvim-lightbulb" },
+            { "antoinemadec/FixCursorHold.nvim" },
             { "ANGkeith/telescope-terraform-doc.nvim" },
             -- { "/Users/sab/git_priv/telescope-github.nvim" },
             -- { "/Users/sab/git_priv/telescope-terraform.nvim" },
