@@ -46,7 +46,6 @@ cmp.setup {
         { name = "buffer", priority = 7, keyword_length = 5 },
         { name = "nvim_lua", priority = 5 },
         { name = "luasnip", priority = 5 },
-        { name = "copilot", priority = 5, max_item_count = 3 },
         { name = "path", priority = 4 },
     },
 
@@ -118,7 +117,6 @@ cmp.setup {
                 treesitter = "[TS]",
                 path = "[Path]",
                 luasnip = "[Snippet]",
-                copilot = "[CoPilot]",
             })[entry.source.name]
             return item
         end,

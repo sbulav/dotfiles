@@ -223,24 +223,6 @@ packer.startup(function(use)
             require "config.cmp_tabnine"
         end,
     }
-    -- Github copilot
-    use {
-        "zbirenbaum/copilot.lua",
-        after = "nvim-cmp",
-        -- event = "InsertEnter",
-        config = function()
-            vim.schedule(function()
-                require("copilot").setup {
-                    ft_disable = { "markdown" },
-                }
-            end)
-        end,
-    }
-    -- Copilot completion source
-    use {
-        "zbirenbaum/copilot-cmp",
-        after = { "copilot.lua", "nvim-cmp" },
-    }
     -- Snippets
     use {
         "L3MON4D3/LuaSnip",
