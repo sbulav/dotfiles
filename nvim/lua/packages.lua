@@ -95,7 +95,7 @@ packer.startup(function(use)
     -- better text highlighting
     use {
         "nvim-treesitter/nvim-treesitter",
-        -- event = "BufRead",
+        event = "InsertEnter",
         config = function()
             require "config.treesitter"
         end,
@@ -230,7 +230,7 @@ packer.startup(function(use)
     -- lsp configuration
     use {
         "neovim/nvim-lspconfig",
-        after = "cmp-nvim-lsp",
+        -- after = "cmp-nvim-lsp",
         config = function()
             require "lsp"
         end,
