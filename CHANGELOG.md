@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.26.0](https://www.github.com/sbulav/dotfiles/compare/v1.25.0...v1.26.0) (2022-07-25)
+
+
+### Features
+
+* **nvim:** migrate from nvim-gps to nvim-navic ([4c1d6fa](https://www.github.com/sbulav/dotfiles/commit/4c1d6fa8ce5bdbb9e401f6e341dc1a7df952df14))
+* **nvim:** remove copilot ([3043f21](https://www.github.com/sbulav/dotfiles/commit/3043f21f1c0a631341d66fa6586ed27b4d4d6d1f))
+
+
+### Bug Fixes
+
+* **fish:** check if tmux is run from interactive ([46de25c](https://www.github.com/sbulav/dotfiles/commit/46de25c7ef7846a3c0836cb4455ae316b86d73a5))
+
 ## [1.25.0](https://www.github.com/sbulav/dotfiles/compare/v1.24.0...v1.25.0) (2022-06-09)
 
 
