@@ -101,14 +101,9 @@ packer.startup(function(use)
         end,
         run = ":TSUpdate",
     }
-    -- Show Treesitter node
+    -- Show current code context
     use {
-        "SmiteshP/nvim-gps",
-        requires = "nvim-treesitter/nvim-treesitter",
-        wants = "nvim-treesitter",
-        config = function()
-            require("nvim-gps").setup { separator = " " }
-        end,
+        "SmiteshP/nvim-navic",
     }
     -- Parenthesis highlighting
     use {

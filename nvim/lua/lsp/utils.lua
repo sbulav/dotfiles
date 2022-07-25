@@ -1,11 +1,16 @@
 local M = {}
 local utils = require "utils"
+local navic = require "nvim-navic"
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 function M.on_attach(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+    if client.supports_method "textDocument/documentSymbols" then
+        navic.attach(client, bufnr)
+    end
 
     local attach_opts = { silent = true, buffer = bufnr }
 
