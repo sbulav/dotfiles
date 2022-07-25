@@ -101,14 +101,9 @@ packer.startup(function(use)
         end,
         run = ":TSUpdate",
     }
-    -- Show Treesitter node
+    -- Show current code context
     use {
-        "SmiteshP/nvim-gps",
-        requires = "nvim-treesitter/nvim-treesitter",
-        wants = "nvim-treesitter",
-        config = function()
-            require("nvim-gps").setup { separator = " " }
-        end,
+        "SmiteshP/nvim-navic",
     }
     -- Parenthesis highlighting
     use {
@@ -222,24 +217,6 @@ packer.startup(function(use)
         config = function()
             require "config.cmp_tabnine"
         end,
-    }
-    -- Github copilot
-    use {
-        "zbirenbaum/copilot.lua",
-        after = "nvim-cmp",
-        -- event = "InsertEnter",
-        config = function()
-            vim.schedule(function()
-                require("copilot").setup {
-                    ft_disable = { "markdown" },
-                }
-            end)
-        end,
-    }
-    -- Copilot completion source
-    use {
-        "zbirenbaum/copilot-cmp",
-        after = { "copilot.lua", "nvim-cmp" },
     }
     -- Snippets
     use {

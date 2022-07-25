@@ -102,12 +102,12 @@ require("lualine").setup {
             { "diff" },
             {
                 function()
-                    local gps = require "nvim-gps"
-                    return gps.get_location()
+                    local navic = require "nvim-navic"
+                    return navic.get_location()
                 end,
                 cond = function()
-                    local gps = require "nvim-gps"
-                    return pcall(require, "nvim-treesitter.parsers") and gps.is_available()
+                    local ok, navic = pcall(require, "nvim-navic")
+                    return ok and navic.is_available() and navic.get_location() ~= ""
                 end,
                 color = { fg = colors.blue },
             },
