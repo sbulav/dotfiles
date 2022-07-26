@@ -21,6 +21,11 @@ ls.config.set_config {
 local date = function()
     return { os.date "%Y-%m-%d" }
 end
+
+local filename = function()
+    return { vim.fn.expand "%:p" }
+end
+
 -- Make sure to not pass an invalid command, as io.popen() may write over nvim-text.
 local function bash(_, _, command)
     local file = io.popen(command, "r")
@@ -45,7 +50,14 @@ ls.add_snippets(nil, {
             namr = "PWD",
             dscr = "Path to current working directory",
         }, {
-            func(bash, {}, "pwd"),
+            func(bash, {}, { user_args = { "pwd" } }),
+        }),
+        snip({
+            trig = "filename",
+            namr = "Filename",
+            dscr = "Absolute path to file",
+        }, {
+            func(filename, {}),
         }),
         snip({
             trig = "signature",
