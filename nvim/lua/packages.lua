@@ -145,34 +145,7 @@ packer.startup(function(use)
     }
     -- Speed up filetype detection
     -- Included in nvim0.7, not enabled by default
-    use {
-        "nathom/filetype.nvim",
-        config = function()
-            require("filetype").setup {
-                overrides = {
-                    literal = {
-                        ["kitty.conf"] = "kitty",
-                        [".gitignore"] = "conf",
-                    },
-                    complex = {
-                        [".clang*"] = "yaml",
-                        [".*%.env.*"] = "sh",
-                        [".*ignore"] = "conf",
-                        [".*enkinsfile.*"] = "groovy",
-                    },
-                    extensions = {
-                        fish = "fish",
-                        tf = "terraform",
-                        tfvars = "terraform",
-                        tfstate = "json",
-                        eslintrc = "json",
-                        prettierrc = "json",
-                        mdx = "markdown",
-                    },
-                },
-            }
-        end,
-    } --}}}
+    --}}}
     -- Version Control Plugins{{{
     -- Fugitive!
     use { "tpope/vim-fugitive" }
