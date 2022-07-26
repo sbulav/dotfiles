@@ -95,7 +95,7 @@ packer.startup(function(use)
     -- better text highlighting
     use {
         "nvim-treesitter/nvim-treesitter",
-        event = "InsertEnter",
+        -- event = "BufRead"",
         config = function()
             require "config.treesitter"
         end,
