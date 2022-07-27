@@ -1,20 +1,20 @@
 local attach_opts = { silent = true }
--- lsp provider to find the cursor word definition and reference
--- URL handling
-if vim.fn.has "mac" == 1 then
-    vim.keymap.set("n", "gx", '<Cmd>call jobstart(["open", expand("<cfile>")], {"detach": v:true})<CR>', attach_opts)
-elseif vim.fn.has "unix" == 1 then
-    vim.keymap.set(
-        "n",
-        "gx",
-        '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>',
-        attach_opts
-    )
-else
-    vim.keymap.set("n", "gx", function()
-        print "Error: gx is not supported on this OS!"
-    end, attach_opts)
+
+local function url_repo()
+    local cursorword = vim.fn.expand "<cfile>"
+    if string.find(cursorword, "^[a-zA-Z0-9.-]*/[a-zA-Z0-9.-]*$") then
+        cursorword = "https://github.com/" .. cursorword
+    end
+    return cursorword or ""
 end
+
+local open_command = "xdg-open"
+if vim.fn.has "mac" == 1 then
+    open_command = "open"
+end
+vim.keymap.set("n", "gx", function()
+    vim.fn.jobstart({ open_command, url_repo() }, { detach = true })
+end, attach_opts)
 
 --- Commands to troubleshoot LSP{{{
 --- :lua print(vim.inspect(vim.lsp.buf_get_clients()))
