@@ -30,9 +30,9 @@ map gc cd ~/.config
 map gp cd ~/git_pagaya/
 map gt cd ~/git_pagaya/sb-tools/
 
-Tips
+# Tips
 
-notice:
+# notice:
 # nerd-fonts must be installed for icons
 # image preview does not work in tmux
 # image preview require ImageMagick
