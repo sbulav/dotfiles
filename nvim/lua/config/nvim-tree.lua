@@ -9,7 +9,6 @@ require("nvim-tree").setup {
     ignore_ft_on_setup = { "startify", "dashboard", "alpha" },
     view = {
         width = 40,
-        height = 30,
         side = "left",
         mappings = {
             custom_only = false,
