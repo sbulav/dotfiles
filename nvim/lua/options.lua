@@ -13,7 +13,8 @@ local globals = {
     loaded_2html_plugin = 1,
     did_install_default_menus = 1,
     did_install_syntax_menu = 1,
-    did_load_filetypes = 1,
+    did_load_filetypes = 0,
+    do_filetype_lua = 1,
     -- Providers
     loaded_python_provider = 0,
     loaded_python3_provider = 0,
