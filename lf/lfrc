@@ -1,0 +1,39 @@
+set previewer ~/.config/lf/lf_kitty_preview
+set cleaner ~/.config/lf/lf_kitty_clean
+set icons on
+
+# Custom Functions
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir -p $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+map . set hidden!
+map <enter> open
+map mf mkfile
+map md mkdir
+
+
+# Movement
+map c cd ~/
+map gd cd ~/Documents
+map gD cd ~/Downloads
+map gp cd ~/Pictures
+map gc cd ~/.config
+map gp cd ~/git_pagaya/
+map gt cd ~/git_pagaya/sb-tools/
+
+Tips
+
+notice:
+# nerd-fonts must be installed for icons
+# image preview does not work in tmux
+# image preview require ImageMagick
+# https://github.com/gokcehan/lf/wiki/Tips
