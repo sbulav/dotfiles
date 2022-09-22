@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.27.0](https://www.github.com/sbulav/dotfiles/compare/v1.26.0...v1.27.0) (2022-09-22)
+
+
+### Features
+
+* **lf:** try to use lf file manager ([1caa897](https://www.github.com/sbulav/dotfiles/commit/1caa8972020cfc5bcc8bbfc0d1032fe2f1c59b84))
+* **nvim:** rework gx to open git repos ([a0baeb8](https://www.github.com/sbulav/dotfiles/commit/a0baeb87a82f3f61f72da99c6725526feb8d717f))
+* **nvim:** start LSP on InsertEnter ([ba51e73](https://www.github.com/sbulav/dotfiles/commit/ba51e73b0456ee677bb5a972132ff3e6ad9e9e6d))
+* **nvim:** use native filetype detection ([722086d](https://www.github.com/sbulav/dotfiles/commit/722086ddd866619295a9d0584ffb615a2a03f433))
+
+
+### Bug Fixes
+
+* **lf:** comment the comments if the lf ([60a90f5](https://www.github.com/sbulav/dotfiles/commit/60a90f547d8946410e313c8a920eec63cbddf79f))
+* **nvim:** always start treesitter ([acae014](https://www.github.com/sbulav/dotfiles/commit/acae01404c7f21cef68915cf34e5aa3e6c283560))
+* **nvim:** fix pwd snip, add filename ([a0dfcc0](https://www.github.com/sbulav/dotfiles/commit/a0dfcc0978c1eddf032aadadda05e2cfb422c2fb))
+* **nvim:** lsp capabilities for linux ([b00bb38](https://www.github.com/sbulav/dotfiles/commit/b00bb38fd987f7561f393c9f616aa0a2f8131390))
+
 ## [1.26.0](https://www.github.com/sbulav/dotfiles/compare/v1.25.0...v1.26.0) (2022-07-25)
 
 
