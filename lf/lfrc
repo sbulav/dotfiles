@@ -45,6 +45,7 @@ map md mkdir
 map <tab> toggle
 map DD trash
 map R reload
+map Q quit
 
 # Movement
 map c cd ~/
