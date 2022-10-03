@@ -32,6 +32,7 @@ packer.startup(function(use)
     use {
         "goolord/alpha-nvim",
         requires = { "kyazdani42/nvim-web-devicons" },
+        commit = "6af3b19",
         config = function()
             require "config.alpha"
         end,
