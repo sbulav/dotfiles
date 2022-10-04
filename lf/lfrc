@@ -45,6 +45,7 @@ map md mkdir
 map <tab> toggle
 map DD trash
 map R reload
+map G !nvim +Git
 map Q quit
 
 # Movement
