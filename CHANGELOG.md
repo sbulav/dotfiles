@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.28.0](https://www.github.com/sbulav/dotfiles/compare/v1.27.0...v1.28.0) (2022-10-12)
+
+
+### Features
+
+* **lf:** add more commands ([8e0bb0d](https://www.github.com/sbulav/dotfiles/commit/8e0bb0d1b2a43639fcccbd8738f911b749ea7b90))
+* **lf:** use G to open nvim Fugitive ([0b0817e](https://www.github.com/sbulav/dotfiles/commit/0b0817e069ed39b241ed6ac297eda2f27d57b1e2))
+* **nvim:** switch to vim.lsp.buf.format ([a493269](https://www.github.com/sbulav/dotfiles/commit/a4932690e97b35df17a6b1d8d4bd1743afd00928))
+* **nvim:** use default filetype detect in 0.8 ([0e3b7ab](https://www.github.com/sbulav/dotfiles/commit/0e3b7abc2d6f934b95ea7de9f32307ffb9dbb073))
+* **nvim:** use jsonpath in lualine for json ([4e216e0](https://www.github.com/sbulav/dotfiles/commit/4e216e04a26121fa119ac94a225224e25a020916))
+
+
+### Bug Fixes
+
+* **lf:** add more mappings ([0dede7d](https://www.github.com/sbulav/dotfiles/commit/0dede7df1975489761d5e976d0f40a0182d6911c))
+* **nvim:** add more words to spell ([b221be3](https://www.github.com/sbulav/dotfiles/commit/b221be3b23b45a8a127395290ed9e04998d9f9d6))
+* **nvim:** pin alpha to have MRU starting at 0 ([2ec394f](https://www.github.com/sbulav/dotfiles/commit/2ec394f256e9909d3a13efbc8a54ca203aa02e76))
+
 ## [1.27.0](https://www.github.com/sbulav/dotfiles/compare/v1.26.0...v1.27.0) (2022-09-22)
 
 
