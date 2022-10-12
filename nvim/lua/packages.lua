@@ -106,6 +106,11 @@ packer.startup(function(use)
     use {
         "SmiteshP/nvim-navic",
     }
+    -- Show JSON path
+    use {
+        "phelipetls/jsonpath.nvim",
+        ft = { "json" },
+    }
     -- Parenthesis highlighting
     use {
         "p00f/nvim-ts-rainbow",

@@ -102,10 +102,16 @@ require("lualine").setup {
             { "diff" },
             {
                 function()
-                    local navic = require "nvim-navic"
-                    return navic.get_location()
+                    if vim.o.filetype == "json" then
+                        return require("jsonpath").get()
+                    end
+                    return require("navic").get_location()
                 end,
                 cond = function()
+                    if vim.o.filetype == "json" then
+                        local ok = pcall(require, "jsonpath")
+                        return ok
+                    end
                     local ok, navic = pcall(require, "nvim-navic")
                     return ok and navic.is_available() and navic.get_location() ~= ""
                 end,
