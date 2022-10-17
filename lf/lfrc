@@ -47,6 +47,7 @@ map DD trash
 map R reload
 map G !nvim +Git
 map Q quit
+map <f-3> quit
 
 # Movement
 map c cd ~/

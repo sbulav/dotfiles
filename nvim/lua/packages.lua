@@ -120,13 +120,7 @@ packer.startup(function(use)
     -- use 'nvim-treesitter/playground'
     -- Tree file manager
     use {
-        "kyazdani42/nvim-tree.lua",
-        requires = {
-            { "kyazdani42/nvim-web-devicons" },
-        },
-        config = function()
-            require "config.nvim-tree"
-        end,
+        "lmburns/lf.nvim",
     }
     -- Integration with UNIX shell
     use { "tpope/vim-eunuch" }

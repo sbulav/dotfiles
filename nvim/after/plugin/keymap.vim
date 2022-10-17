@@ -30,7 +30,7 @@ set pastetoggle=<F2>
 
 " Use netrw as file Explorer
 " Moved to LUA
-map <silent> <F3> :NvimTreeToggle<CR>
+" map <silent> <F3> :NvimTreeToggle<CR>
 
 " Show/unshow Numbers on F4
 nnoremap <F4> :set relativenumber!<CR>
