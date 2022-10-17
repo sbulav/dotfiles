@@ -50,7 +50,7 @@ function M.on_attach(client, bufnr)
         require("telescope.builtin").lsp_references()
     end, attach_opts)
 
-    vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
+    vim.api.nvim_create_user_command("Format", vim.lsp.buf.format, { async = true })
 
     -- Disable formatting with other LSPs because we're handling formatting via null-ls
     -- Otherwise you'll be prompted to Select a language server
