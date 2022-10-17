@@ -135,16 +135,6 @@ packer.startup(function(use)
     }
     -- Undotree
     use { "mbbill/undotree" }
-    -- Prevent select and visual mode from overwriting the clipboard
-    use {
-        "kevinhwang91/nvim-hclipboard",
-        event = "InsertCharPre",
-        config = function()
-            require("hclipboard").start()
-        end,
-    }
-    -- Speed up filetype detection
-    -- Included in nvim0.7, not enabled by default
     --}}}
     -- Version Control Plugins{{{
     -- Fugitive!
