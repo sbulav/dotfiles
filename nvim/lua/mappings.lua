@@ -34,7 +34,7 @@ end
 vim.keymap.set("n", "K", function()
     Show_documentation()
 end, attach_opts)
-vim.keymap.set({ "n", "t" }, "<leader>t9", function()
+vim.keymap.set({ "n", "t" }, "<Space>t9", function()
     _K9S_TOGGLE()
 end, attach_opts)
 vim.keymap.set({ "n", "t" }, "<M-\\>", "<cmd>ToggleTerm direction=float<CR>", attach_opts)
@@ -55,3 +55,15 @@ end, attach_opts)
 vim.keymap.set({ "i", "s" }, "<c-k>", function()
     require("luasnip").jump(-1)
 end, attach_opts)
+
+vim.keymap.set("n", "<F3>", function()
+    require("lf").start {
+        -- Pass options (if any) that you would like
+        -- dir = ".", -- directory where `lf` starts ('gwd' is git-working-directory)
+        direction = "float", -- window type: float horizontal vertical
+        border = "double", -- border kind: single double shadow curved
+        height = 0.80, -- height of the *floating* window
+        width = 0.85, -- width of the *floating* window
+        mappings = false, -- whether terminal buffer mapping is enabled
+    }
+end, { noremap = true, silent = true })
