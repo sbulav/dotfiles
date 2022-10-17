@@ -2,7 +2,7 @@ local attach_opts = { silent = true }
 
 local function url_repo()
     local cursorword = vim.fn.expand "<cfile>"
-    if string.find(cursorword, "^[a-zA-Z0-9.-_]*/[a-zA-Z0-9.-_]*$") then
+    if string.find(cursorword, "^[a-zA-Z0-9-_.]*/[a-zA-Z0-9-_.]*$") then
         cursorword = "https://github.com/" .. cursorword
     end
     return cursorword or ""
