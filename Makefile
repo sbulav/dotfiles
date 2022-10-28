@@ -2,8 +2,8 @@ ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 OS_NAME := $(shell uname -s | tr A-Z a-z)
 NEOVIM ?= /usr/local/bin/nvim
 TERRAFORM_VERSION ?= 1.1.3
-GH_VERSION ?= 2.4.0
-FZF_VERSION ?= 0.29.0
+GH_VERSION ?= 2.18.1
+FZF_VERSION ?= 0.34.0
 HOST ?= one-ingress.tst.k8s.ecom.ahold.nl
 .DEFAULT: help
 
@@ -93,19 +93,29 @@ kk-tools:
 ## colemak             : Install colemak-dhm
 .PHONY : colemak
 colemak:
-	git clone git@github.com:DreymaR/BigBagKbdTrixXKB.git /home/sab/git_priv
-	sudo bash /home/sav/git_priv/install-dreymar-xmod.sh -ox
+	rm -rf /home/sab/git_priv/BigBagKbdTrixXKB || true
+	git clone git@github.com:DreymaR/BigBagKbdTrixXKB.git /home/sab/git_priv/BigBagKbdTrixXKB
+	cd /home/sab/git_priv/BigBagKbdTrixXKB
+	sudo bash ./install-dreymar-xmod.sh -ox
 	echo "Now reboot"
 	echo "After reboot, go to settings->keyboard and pick english(us)->colemak[ed],Curl-DH"
 
 ## symlinks            : Create symliks to configs
 .PHONY : symlinks
 symlinks:
+	rm -rf /home/sab/.config/nvim || true
 	ln -s /home/sab/dotfiles/nvim/ /home/sab/.config/nvim || true
-	ln -s /home/sab/dotfiles/tmux/.tmux.conf .tmux.conf || true
-	ln -s /home/sab/dotfiles/tmux/plugins/kube-tmux/ .tmux || true
+	ln -s /home/sab/dotfiles/.gitconfig /home/sab/.gitconfig || true
+	ln -s /home/sab/dotfiles/.gitconfig-pagaya /home/sab/.gitconfig-pagaya || true
+	ln -s /home/sab/dotfiles/.gitignore /home/sab/.gitignore || true
+	ln -s /home/sab/dotfiles/tmux/.tmux.conf /home/sab/.tmux.conf || true
+	ln -s /home/sab/dotfiles/tmux/plugins/kube-tmux/ /home/sab/.tmux || true
 	rm -rf /home/sab/.config/fish || true
 	ln -s /home/sab/dotfiles/fish /home/sab/.config/fish || true
+	rm -rf /home/sab/.config/kitty || true
+	ln -s /home/sab/dotfiles/kitty /home/sab/.config/kitty || true
+	rm -rf /home/sab/.config/lf || true
+	ln -s /home/sab/dotfiles/lf /home/sab/.config/lf || true
 
 ## fonts               : Install nerd-fonts
 .PHONY : fonts
@@ -116,8 +126,7 @@ ifeq ($(OS_NAME),darwin)
 else
 	echo "Installing CaskaydiaCove Nerd Font via curl"
 	mkdir -p ~/.local/share/fonts
-	cd ~/.local/share/fonts && curl -fLo "Caskaydia Cove Regular Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/CascadiaCode/Regular/complete/Caskaydia%20Cove%20Regular%20Nerd%20Font%20Complete.otf
-endif
+	cd ~/.local/share/fonts && curl -fLo "Caskaydia Cove Nerd Font Complete Regular.otf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/CascadiaCode/Regular/complete/Caskaydia%21Cove%20Nerd%20Font%20Complete%20Regular.otf
 
 ## /tmp/nvim.appimage  : Download nightly nvim appimage
 /tmp/nvim.appimage:
