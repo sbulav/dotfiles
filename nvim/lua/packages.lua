@@ -234,8 +234,4 @@ packer.startup(function(use)
     use { "ckipp01/nvim-jenkinsfile-linter", requires = { "nvim-lua/plenary.nvim" } } --}}}
     -- jsonls schemas
     use { "b0o/schemastore.nvim" }
-
-    if vim.fn.has "unix" == 1 and vim.fn.has "mac" ~= 1 then
-        use { "lspcontainers/lspcontainers.nvim" } -- Lang servers in containers
-    end
 end)
