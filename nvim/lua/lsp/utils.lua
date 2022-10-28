@@ -100,8 +100,10 @@ function M.on_attach(client, bufnr)
     if client.supports_method "textDocument/formatting" then
         vim.api.nvim_create_augroup("LspFormat", { clear = true })
         vim.api.nvim_create_autocmd("BufWritePre", {
+
             callback = function()
-                vim.lsp.buf.format { async = true }
+                -- vim.lsp.buf.format { async = true }
+                vim.lsp.buf.format {}
             end,
             group = "LspFormat",
             desc = "Format document on save with LSP",
@@ -114,10 +116,10 @@ function M.custom_on_init()
     utils.info("Language Server Protocol started!", "LSP")
 end
 
-function M.has_formatter(ft)
-    local sources = require "null-ls.sources"
-    local available = sources.get_available(ft, "NULL_LS_FORMATTING")
-    return #available > 0
-end
+-- function M.has_formatter(ft)
+--     local sources = require "null-ls.sources"
+--     local available = sources.get_available(ft, "NULL_LS_FORMATTING")
+--     return #available > 0
+-- end
 
 return M
