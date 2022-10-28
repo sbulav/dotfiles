@@ -45,3 +45,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     desc = "Validate Jenkins files on save",
     pattern = "*enkinsfile*",
 })
+
+vim.api.nvim_create_augroup("ConfugureLuaBo", { clear = true })
+vim.api.nvim_create_autocmd("BufRead", {
+    callback = function()
+        vim.bo.include = [[\v<((do|load)file|require)[^''"]*[''"]\zs[^''"]+]]
+        vim.bo.includeexpr = "v:lua.require'utils'.include_expr(v:fname)"
+    end,
+    group = "ConfugureLuaBo",
+    desc = "Configure Lua Buffer opts on Read",
+    pattern = "*.lua",
+})

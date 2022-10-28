@@ -8,6 +8,40 @@ local function url_repo()
     return cursorword or ""
 end
 
+local keyword_program = function(word)
+    local original_iskeyword = vim.bo.iskeyword
+
+    vim.bo.iskeyword = vim.bo.iskeyword .. ",."
+    word = word or vim.fn.expand "<cword>"
+
+    vim.bo.iskeyword = original_iskeyword
+
+    if string.find(word, "vim.api") then
+        local _, finish = string.find(word, "vim.api.")
+        local api_function = string.sub(word, finish + 1)
+
+        vim.cmd(string.format("help %s", api_function))
+        return
+    elseif string.find(word, "vim.fn") then
+        local _, finish = string.find(word, "vim.fn.")
+        local api_function = string.sub(word, finish + 1) .. "()"
+
+        vim.cmd(string.format("help %s", api_function))
+        return
+    else
+        local ok = pcall(vim.cmd, string.format("help %s", word))
+
+        if not ok then
+            local split_word = vim.split(word, ".", true)
+            ok = pcall(vim.cmd, string.format("help %s", split_word[#split_word]))
+        end
+
+        if not ok then
+            vim.lsp.buf.hover()
+        end
+    end
+end
+
 local open_command = "xdg-open"
 if vim.fn.has "mac" == 1 then
     open_command = "open"
@@ -26,6 +60,8 @@ end, attach_opts)
 function Show_documentation()
     if vim.fn.index({ "vim", "help" }, vim.bo.filetype) >= 0 then
         vim.cmd("h " .. vim.fn.expand "<cword>")
+    elseif vim.fn.index({ "lua" }, vim.bo.filetype) >= 0 then
+        keyword_program()
     else
         require("lspsaga.hover").render_hover_doc()
     end
