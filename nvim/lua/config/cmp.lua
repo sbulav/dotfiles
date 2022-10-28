@@ -113,7 +113,6 @@ cmp.setup {
                 buffer = "[Buffer]",
                 cmp_tabnine = "[T9]",
                 nvim_lsp = "[LSP]",
-                nvim_lua = "[NLUA]",
                 treesitter = "[TS]",
                 path = "[Path]",
                 luasnip = "[Snippet]",

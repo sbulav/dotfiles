@@ -2,10 +2,44 @@ local attach_opts = { silent = true }
 
 local function url_repo()
     local cursorword = vim.fn.expand "<cfile>"
-    if string.find(cursorword, "^[a-zA-Z0-9.-]*/[a-zA-Z0-9.-]*$") then
+    if string.find(cursorword, "^[a-zA-Z0-9-_.]*/[a-zA-Z0-9-_.]*$") then
         cursorword = "https://github.com/" .. cursorword
     end
     return cursorword or ""
+end
+
+local keyword_program = function(word)
+    local original_iskeyword = vim.bo.iskeyword
+
+    vim.bo.iskeyword = vim.bo.iskeyword .. ",."
+    word = word or vim.fn.expand "<cword>"
+
+    vim.bo.iskeyword = original_iskeyword
+
+    if string.find(word, "vim.api") then
+        local _, finish = string.find(word, "vim.api.")
+        local api_function = string.sub(word, finish + 1)
+
+        vim.cmd(string.format("help %s", api_function))
+        return
+    elseif string.find(word, "vim.fn") then
+        local _, finish = string.find(word, "vim.fn.")
+        local api_function = string.sub(word, finish + 1) .. "()"
+
+        vim.cmd(string.format("help %s", api_function))
+        return
+    else
+        local ok = pcall(vim.cmd, string.format("help %s", word))
+
+        if not ok then
+            local split_word = vim.split(word, ".", true)
+            ok = pcall(vim.cmd, string.format("help %s", split_word[#split_word]))
+        end
+
+        if not ok then
+            vim.lsp.buf.hover()
+        end
+    end
 end
 
 local open_command = "xdg-open"
@@ -26,6 +60,8 @@ end, attach_opts)
 function Show_documentation()
     if vim.fn.index({ "vim", "help" }, vim.bo.filetype) >= 0 then
         vim.cmd("h " .. vim.fn.expand "<cword>")
+    elseif vim.fn.index({ "lua" }, vim.bo.filetype) >= 0 then
+        keyword_program()
     else
         require("lspsaga.hover").render_hover_doc()
     end
@@ -34,7 +70,7 @@ end
 vim.keymap.set("n", "K", function()
     Show_documentation()
 end, attach_opts)
-vim.keymap.set({ "n", "t" }, "<leader>t9", function()
+vim.keymap.set({ "n", "t" }, "<Space>t9", function()
     _K9S_TOGGLE()
 end, attach_opts)
 vim.keymap.set({ "n", "t" }, "<M-\\>", "<cmd>ToggleTerm direction=float<CR>", attach_opts)
@@ -55,3 +91,15 @@ end, attach_opts)
 vim.keymap.set({ "i", "s" }, "<c-k>", function()
     require("luasnip").jump(-1)
 end, attach_opts)
+
+vim.keymap.set("n", "<F3>", function()
+    require("lf").start {
+        -- Pass options (if any) that you would like
+        -- dir = ".", -- directory where `lf` starts ('gwd' is git-working-directory)
+        direction = "float", -- window type: float horizontal vertical
+        border = "double", -- border kind: single double shadow curved
+        height = 0.80, -- height of the *floating* window
+        width = 0.85, -- width of the *floating* window
+        mappings = false, -- whether terminal buffer mapping is enabled
+    }
+end, { noremap = true, silent = true })

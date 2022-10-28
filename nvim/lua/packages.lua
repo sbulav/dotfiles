@@ -120,13 +120,7 @@ packer.startup(function(use)
     -- use 'nvim-treesitter/playground'
     -- Tree file manager
     use {
-        "kyazdani42/nvim-tree.lua",
-        requires = {
-            { "kyazdani42/nvim-web-devicons" },
-        },
-        config = function()
-            require "config.nvim-tree"
-        end,
+        "lmburns/lf.nvim",
     }
     -- Integration with UNIX shell
     use { "tpope/vim-eunuch" }
@@ -141,16 +135,6 @@ packer.startup(function(use)
     }
     -- Undotree
     use { "mbbill/undotree" }
-    -- Prevent select and visual mode from overwriting the clipboard
-    use {
-        "kevinhwang91/nvim-hclipboard",
-        event = "InsertCharPre",
-        config = function()
-            require("hclipboard").start()
-        end,
-    }
-    -- Speed up filetype detection
-    -- Included in nvim0.7, not enabled by default
     --}}}
     -- Version Control Plugins{{{
     -- Fugitive!
@@ -166,9 +150,6 @@ packer.startup(function(use)
         end,
         -- tag = 'release' -- To use the latest release
     } --}}}
-    -- Lua{{{
-    use { "tjdevries/nlua.nvim" }
-    use { "euclidianAce/BetterLua.vim" } --}}}
     -- Tests{{{
     use { "janko/vim-test" } --}}}
     -- Code completion{{{
@@ -222,6 +203,20 @@ packer.startup(function(use)
             require "lsp.null-ls"
         end,
     }
+    use {
+        "williamboman/mason.nvim",
+        config = function()
+            require "lsp.mason"
+        end,
+    }
+    use { "williamboman/mason-lspconfig.nvim" }
+    use {
+        "jayp0521/mason-null-ls.nvim",
+        after = "null-ls.nvim",
+        config = function()
+            require "lsp.mason-null-ls"
+        end,
+    }
     -- Ui for lsp, tami5 has maintained fork
     use {
         "tami5/lspsaga.nvim",
@@ -237,6 +232,8 @@ packer.startup(function(use)
     }
     -- Lint Jenkins files
     use { "ckipp01/nvim-jenkinsfile-linter", requires = { "nvim-lua/plenary.nvim" } } --}}}
+    -- jsonls schemas
+    use { "b0o/schemastore.nvim" }
 
     if vim.fn.has "unix" == 1 and vim.fn.has "mac" ~= 1 then
         use { "lspcontainers/lspcontainers.nvim" } -- Lang servers in containers

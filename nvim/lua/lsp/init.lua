@@ -1,4 +1,4 @@
-vim.lsp.set_log_level "warn"
+vim.lsp.set_log_level "error"
 
 -- try to import lspconfig
 -- local lspconfig = prequire "lspconfig"
@@ -14,10 +14,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
     update_in_insert = true,
 })
 
-if vim.fn.has "mac" == 1 then
-    require "lsp.servers-mac"
-elseif vim.fn.has "unix" == 1 then
-    require "lsp.servers-linux"
-else
-    print "Unable to start LSP, unsupported platform"
-end
+-- require("neodev").setup {}
+
+require "lsp.servers"
+-- if vim.fn.has "mac" == 1 then
+--     require "lsp.servers-mac"
+-- elseif vim.fn.has "unix" == 1 then
+--     require "lsp.servers-linux"
+-- else
+--     print "Unable to start LSP, unsupported platform"
+-- end
