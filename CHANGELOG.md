@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.29.1](https://www.github.com/sbulav/dotfiles/compare/v1.29.0...v1.29.1) (2022-10-28)
+
+
+### Bug Fixes
+
+* Makefile missing endif ([e529c23](https://www.github.com/sbulav/dotfiles/commit/e529c23751e5843ef2a664b97b2328c7e28c774e))
+
 ## [1.29.0](https://www.github.com/sbulav/dotfiles/compare/v1.28.0...v1.29.0) (2022-10-28)
 
 
