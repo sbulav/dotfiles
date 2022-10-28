@@ -127,6 +127,7 @@ else
 	echo "Installing CaskaydiaCove Nerd Font via curl"
 	mkdir -p ~/.local/share/fonts
 	cd ~/.local/share/fonts && curl -fLo "Caskaydia Cove Nerd Font Complete Regular.otf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/CascadiaCode/Regular/complete/Caskaydia%21Cove%20Nerd%20Font%20Complete%20Regular.otf
+endif
 
 ## /tmp/nvim.appimage  : Download nightly nvim appimage
 /tmp/nvim.appimage:
@@ -155,4 +156,3 @@ else
 ## /tmp/stylua.zip     : Download latest stylua release
 /tmp/stylua.zip:
 	@curl -s -S -L -f https://github.com/JohnnyMorganz/StyLua/releases/download/v0.11.2/stylua-0.11.2-linux.zip -z $@ -o $@
-
