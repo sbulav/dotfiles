@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.29.0](https://www.github.com/sbulav/dotfiles/compare/v1.28.0...v1.29.0) (2022-10-28)
+
+
+### Features
+
+* bump apps vers, fix fonts/colemak, symlinks ([aede110](https://www.github.com/sbulav/dotfiles/commit/aede1108a017795b903a407e8501ac963c7fb535))
+* switch to lf.nvim ([4e9aee0](https://www.github.com/sbulav/dotfiles/commit/4e9aee07607e6b9c6cb91e98e5900b197012820f))
+
+
+### Bug Fixes
+
+* correct custom filetype detection ([9a8a0b0](https://www.github.com/sbulav/dotfiles/commit/9a8a0b0563cecd345140b38ee08efec487720626))
+* K9S mappings ([5929d30](https://www.github.com/sbulav/dotfiles/commit/5929d30fea13b1a33f60bcdc4ed4aba2d04aa58b))
+* lua docs and includes ([ef1280d](https://www.github.com/sbulav/dotfiles/commit/ef1280dae37240384a70927817b9b73019550a61))
+* **nvim:** fix nvim urlopen search string ([34cd639](https://www.github.com/sbulav/dotfiles/commit/34cd6393021ba4f1db682f91f2f6519efd2a1ff2))
+* **nvim:** Format command use vim.lsp.buf.format ([9d35a5c](https://www.github.com/sbulav/dotfiles/commit/9d35a5c4b19b9ed2349244da2c95f49d0da2ac6a))
+* **nvim:** open urls with _ in repo name ([1e599b6](https://www.github.com/sbulav/dotfiles/commit/1e599b61807ea32ac22e157f921b1b7dc1c94948))
+* user acync ([a9af3ed](https://www.github.com/sbulav/dotfiles/commit/a9af3edb53b7887e6f0c9563fdb8c349306d104b))
+
 ## [1.28.0](https://www.github.com/sbulav/dotfiles/compare/v1.27.0...v1.28.0) (2022-10-12)
 
 
