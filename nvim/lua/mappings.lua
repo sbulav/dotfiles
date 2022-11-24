@@ -1,4 +1,5 @@
 local attach_opts = { silent = true }
+local utils = require "utils"
 
 local function url_repo()
     local cursorword = vim.fn.expand "<cfile>"
@@ -103,3 +104,9 @@ vim.keymap.set("n", "<F3>", function()
         mappings = false, -- whether terminal buffer mapping is enabled
     }
 end, { noremap = true, silent = true })
+
+vim.keymap.set("n", "<Space>fn", function()
+    local filename = vim.fn.expand "%:p"
+    utils.info("Yanking current filename: " .. filename, "INFO")
+    vim.fn.setreg("+", filename)
+end, attach_opts)
