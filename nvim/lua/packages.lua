@@ -55,6 +55,13 @@ packer.startup(function(use)
             require "config.indent"
         end,
     }
+    -- Indentation line and textobj ii/ai
+    use {
+        "echasnovski/mini.indentscope",
+        config = function()
+            require "config.indentscope"
+        end,
+    }
     -- Easymotion in Lua
     use {
         "phaazon/hop.nvim",
@@ -117,7 +124,7 @@ packer.startup(function(use)
         after = "nvim-treesitter",
     } --}}}
     -- Utilities{{{
-    -- use 'nvim-treesitter/playground'
+    use "nvim-treesitter/playground"
     -- Tree file manager
     use {
         "lmburns/lf.nvim",
