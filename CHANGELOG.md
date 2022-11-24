@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.30.0](https://www.github.com/sbulav/dotfiles/compare/v1.29.1...v1.30.0) (2022-11-24)
+
+
+### Features
+
+* **git:** add autoSetupRemote ([f81ed0f](https://www.github.com/sbulav/dotfiles/commit/f81ed0fec9df0e5ced85f83785a9a4692f95ab39))
+* **kubectl:** add k wrapper for kubectl ([50729d5](https://www.github.com/sbulav/dotfiles/commit/50729d517a615e9a34e8dee2e854be2cacc8af12))
+* **nvim:** add function to yank current filename ([6a12403](https://www.github.com/sbulav/dotfiles/commit/6a12403642b2597db44cc0d9c282eb69d572e078))
+* **nvim:** add indentscope for hl and textobj ([0597981](https://www.github.com/sbulav/dotfiles/commit/0597981d9b6b4b3af77fae572542001f7fd41f19))
+
+
+### Bug Fixes
+
+* disable indentoscope some filetypes ([229992d](https://www.github.com/sbulav/dotfiles/commit/229992de8c1ba3ac8a80bb411030861d5c1eca87))
+* remove lspcontainers, use mason ([217f078](https://www.github.com/sbulav/dotfiles/commit/217f078b1c3771fa4b16a0bf48e99b9659253b8d))
+
 ### [1.29.1](https://www.github.com/sbulav/dotfiles/compare/v1.29.0...v1.29.1) (2022-10-28)
 
 
