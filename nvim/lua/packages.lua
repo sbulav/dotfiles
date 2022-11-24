@@ -55,6 +55,13 @@ packer.startup(function(use)
             require "config.indent"
         end,
     }
+    -- Indentation line and textobj ii/ai
+    use {
+        "echasnovski/mini.indentscope",
+        config = function()
+            require "config.indentscope"
+        end,
+    }
     -- Easymotion in Lua
     use {
         "phaazon/hop.nvim",
@@ -117,7 +124,7 @@ packer.startup(function(use)
         after = "nvim-treesitter",
     } --}}}
     -- Utilities{{{
-    -- use 'nvim-treesitter/playground'
+    use "nvim-treesitter/playground"
     -- Tree file manager
     use {
         "lmburns/lf.nvim",
@@ -234,8 +241,4 @@ packer.startup(function(use)
     use { "ckipp01/nvim-jenkinsfile-linter", requires = { "nvim-lua/plenary.nvim" } } --}}}
     -- jsonls schemas
     use { "b0o/schemastore.nvim" }
-
-    if vim.fn.has "unix" == 1 and vim.fn.has "mac" ~= 1 then
-        use { "lspcontainers/lspcontainers.nvim" } -- Lang servers in containers
-    end
 end)

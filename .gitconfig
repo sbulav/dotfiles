@@ -11,6 +11,7 @@
   hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 [push]
   default = simple
+  autoSetupRemote = true
 [core]
     pager = bat
 [merge]
