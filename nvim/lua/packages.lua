@@ -241,4 +241,6 @@ packer.startup(function(use)
     use { "ckipp01/nvim-jenkinsfile-linter", requires = { "nvim-lua/plenary.nvim" } } --}}}
     -- jsonls schemas
     use { "b0o/schemastore.nvim" }
+    -- Encode/decode base64 strings
+    use { "sbulav/base64.nvim" }
 end)
