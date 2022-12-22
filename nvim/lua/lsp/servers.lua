@@ -29,6 +29,7 @@ local servers = {
         },
     },
     pyright = {},
+    terraformls = {},
     yamlls = {
         settings = {
             yaml = {
