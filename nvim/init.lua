@@ -21,16 +21,16 @@ after/plugin/keymap.vim
 - LSP settings and keymappings
 lua/lsp
 - Plugins
-~/.local/share/nvim/site/pack/packer/
+~/.local/share/nvim/lazy/
 - Undo, logs, swap
 ~/.local/share/nvim/
 
 ]]
 
 require "utils"
-require "packages"
-require "options"
-require "autocommands"
-require "mappings"
-require "nvim_help"
-require "filetype"
+require "config.options"
+require "config.lazy"
+require "config.autocommands"
+require "config.mappings"
+require "config.nvim_help"
+require "config.filetype"

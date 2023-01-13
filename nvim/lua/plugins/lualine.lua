@@ -1,4 +1,3 @@
--- thanks to folke
 local function lsp_progress(_, is_active)
     if not is_active then
         return
@@ -86,54 +85,67 @@ local oceanic_my = {
     },
 }
 
-require("lualine").setup {
-    options = {
-        theme = oceanic_my,
-        globalstatus = true,
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
+return {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    dependencies = { -- Show current code context
+        "SmiteshP/nvim-navic",
+
+        -- Show JSON path
+        { "phelipetls/jsonpath.nvim", ft = { "json" } },
     },
 
-    sections = {
-        lualine_a = { "mode" },
-        lualine_b = { "branch" },
-        lualine_c = {
-            { "filename", path = 1, symbols = { modified = "  ", readonly = "[RO]" } },
-            { "diff" },
-            {
-                function()
-                    if vim.o.filetype == "json" then
-                        return require("jsonpath").get()
-                    end
-                    return require("navic").get_location()
-                end,
-                cond = function()
-                    if vim.o.filetype == "json" then
-                        local ok = pcall(require, "jsonpath")
-                        return ok
-                    end
-                    local ok, navic = pcall(require, "nvim-navic")
-                    return ok and navic.is_available() and navic.get_location() ~= ""
-                end,
-                color = { fg = colors.blue },
+    config = function()
+        require("lualine").setup {
+            options = {
+                theme = oceanic_my,
+                globalstatus = true,
+                component_separators = { left = "", right = "" },
+                section_separators = { left = "", right = "" },
             },
-        },
-        lualine_x = {
-            lsp_client_names,
-            lsp_progress,
-            { "diagnostics", sources = { "nvim_diagnostic" } },
-            "filetype",
-        },
-        lualine_y = { my_progress },
-        lualine_z = { my_percent },
-    },
-    inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { "filename" },
-        lualine_x = {},
-        lualine_y = { my_progress },
-        lualine_z = { my_percent },
-    },
-    extensions = {},
+
+            sections = {
+                lualine_a = { "mode" },
+                lualine_b = { "branch" },
+                lualine_c = {
+                    { "filename", path = 1, symbols = { modified = "  ", readonly = "[RO]" } },
+                    { "diff" },
+                    {
+                        function()
+                            if vim.o.filetype == "json" then
+                                return require("jsonpath").get()
+                            end
+                            return require("navic").get_location()
+                        end,
+                        cond = function()
+                            if vim.o.filetype == "json" then
+                                local ok = pcall(require, "jsonpath")
+                                return ok
+                            end
+                            local ok, navic = pcall(require, "nvim-navic")
+                            return ok and navic.is_available() and navic.get_location() ~= ""
+                        end,
+                        color = { fg = colors.blue },
+                    },
+                },
+                lualine_x = {
+                    lsp_client_names,
+                    lsp_progress,
+                    { "diagnostics", sources = { "nvim_diagnostic" } },
+                    "filetype",
+                },
+                lualine_y = { my_progress },
+                lualine_z = { my_percent },
+            },
+            inactive_sections = {
+                lualine_a = {},
+                lualine_b = {},
+                lualine_c = { "filename" },
+                lualine_x = {},
+                lualine_y = { my_progress },
+                lualine_z = { my_percent },
+            },
+            extensions = {},
+        }
+    end,
 }

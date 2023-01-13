@@ -2,9 +2,20 @@ local M = {}
 local utils = require "utils"
 local navic = require "nvim-navic"
 
+---@param on_attach fun(client, buffer)
+function M.on_attach(on_attach)
+    vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+            local buffer = args.buf
+            local client = vim.lsp.get_client_by_id(args.data.client_id)
+            on_attach(client, buffer)
+        end,
+    })
+end
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-function M.on_attach(client, bufnr)
+function M.custom_on_attach(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -96,29 +107,11 @@ function M.on_attach(client, bufnr)
             desc = "Update the LightBulb",
         })
     end
-
-    if client.supports_method "textDocument/formatting" then
-        vim.api.nvim_create_augroup("LspFormat", { clear = true })
-        vim.api.nvim_create_autocmd("BufWritePre", {
-
-            callback = function()
-                vim.lsp.buf.format {}
-            end,
-            group = "LspFormat",
-            desc = "Format document on save with LSP",
-        })
-    end
 end
 
 function M.custom_on_init()
     -- print "Language Server Protocol started!"
     utils.info("Language Server Protocol started!", "LSP")
 end
-
--- function M.has_formatter(ft)
---     local sources = require "null-ls.sources"
---     local available = sources.get_available(ft, "NULL_LS_FORMATTING")
---     return #available > 0
--- end
 
 return M

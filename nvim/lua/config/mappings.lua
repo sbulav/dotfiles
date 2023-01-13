@@ -110,3 +110,12 @@ vim.keymap.set("n", "<Space>fn", function()
     utils.info("Yanking current filename: " .. filename, "INFO")
     vim.fn.setreg("+", filename)
 end, attach_opts)
+
+-- Use Visual mode for Multiline, selection is kind flacky
+vim.keymap.set({ "n", "v" }, "[6", function()
+    require("base64.command").encode()
+end, attach_opts)
+
+vim.keymap.set({ "n", "v" }, "]6", function()
+    require("base64.command").decode()
+end, attach_opts)
