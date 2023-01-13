@@ -1,5 +1,4 @@
--- Set theme
-vim.cmd [[colorscheme base16-oceanicnext]]
+vim.g.mapleader = " "
 
 local globals = {
     -- Fix vim sandwitch overriding sentence text object
