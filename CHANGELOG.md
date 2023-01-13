@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.31.0](https://www.github.com/sbulav/dotfiles/compare/v1.30.0...v1.31.0) (2023-01-13)
+
+
+### Features
+
+* add base64 plugin and mappings ([1ba1a20](https://www.github.com/sbulav/dotfiles/commit/1ba1a201b09e19ff03fe265bad8863df5385aa6e))
+
+
+### Bug Fixes
+
+* **nvim:** add terraformls to LSP servers ([2c90e4f](https://www.github.com/sbulav/dotfiles/commit/2c90e4fcadbede8a918fd7afb1ec7243fa9153b8))
+* **nvim:** update spell list ([ab653bd](https://www.github.com/sbulav/dotfiles/commit/ab653bdba9110800dae294b7970d169504adc102))
+
 ## [1.30.0](https://www.github.com/sbulav/dotfiles/compare/v1.29.1...v1.30.0) (2022-11-24)
 
 
