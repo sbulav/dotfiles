@@ -70,3 +70,5 @@ ArgoCD
 OKTA
 SSO
 DevOps
+SecurityContext
+PodSecurityContext

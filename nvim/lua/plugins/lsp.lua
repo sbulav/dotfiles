@@ -43,7 +43,7 @@ return {
                         yaml = {
                             schemas = {
                                 ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-                                ["https://kubernetesjsonschema.dev/v1.14.0/deployment-apps-v1.json"] = {
+                                ["https://kubernetesjsonschema.dev/v1.18.0/deployment-apps-v1.json"] = {
                                     "*pod*.yaml",
                                     "*deploy*.yaml",
                                     "*service*.yaml",
