@@ -58,7 +58,7 @@ end, attach_opts)
 --- Set log level to debug:
 --- vim.lsp.set_log_level("debug")}}}
 
-function Show_documentation()
+local function Show_documentation()
     if vim.fn.index({ "vim", "help" }, vim.bo.filetype) >= 0 then
         vim.cmd("h " .. vim.fn.expand "<cword>")
     elseif vim.fn.index({ "lua" }, vim.bo.filetype) >= 0 then
@@ -71,9 +71,11 @@ end
 vim.keymap.set("n", "K", function()
     Show_documentation()
 end, attach_opts)
+
 vim.keymap.set({ "n", "t" }, "<Space>t9", function()
     _K9S_TOGGLE()
 end, attach_opts)
+
 vim.keymap.set({ "n", "t" }, "<M-\\>", "<cmd>ToggleTerm direction=float<CR>", attach_opts)
 
 --- luasnip keymappings
@@ -109,6 +111,21 @@ vim.keymap.set("n", "<Space>fn", function()
     local filename = vim.fn.expand "%:p"
     utils.info("Yanking current filename: " .. filename, "INFO")
     vim.fn.setreg("+", filename)
+end, attach_opts)
+
+local function yank_nodepath()
+    local ft = vim.bo.ft
+    if ft == "json" then
+        return require("jsonpath").get()
+    elseif ft == "yaml" or ft == "helm" then
+        return require("utils.yaml").statusline()
+    end
+end
+
+vim.keymap.set("n", "<Space>fp", function()
+    local path = yank_nodepath()
+    utils.info("Yanking current " .. vim.bo.ft .. "path: " .. path, "INFO")
+    vim.fn.setreg("+", path)
 end, attach_opts)
 
 -- Use Visual mode for Multiline, selection is kind flacky

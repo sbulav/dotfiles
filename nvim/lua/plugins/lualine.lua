@@ -112,14 +112,21 @@ return {
                     { "diff" },
                     {
                         function()
-                            if vim.o.filetype == "json" then
+                            local ft = vim.bo.ft
+                            if ft == "json" then
                                 return require("jsonpath").get()
+                            elseif ft == "yaml" then
+                                return require("utils.yaml").statusline()
                             end
                             return require("navic").get_location()
                         end,
                         cond = function()
-                            if vim.o.filetype == "json" then
+                            if ft == "json" then
                                 local ok = pcall(require, "jsonpath")
+                                return ok
+                            end
+                            if ft == "yaml" then
+                                local ok = pcall(require, "utils.yaml")
                                 return ok
                             end
                             local ok, navic = pcall(require, "nvim-navic")

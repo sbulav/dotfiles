@@ -46,6 +46,7 @@ return {
                                 ["https://kubernetesjsonschema.dev/v1.18.0/deployment-apps-v1.json"] = {
                                     "*pod*.yaml",
                                     "*deploy*.yaml",
+                                    "*statefulset*.yaml",
                                     "*service*.yaml",
                                     "*ingress*.yaml",
                                 },
