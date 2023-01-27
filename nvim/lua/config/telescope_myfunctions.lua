@@ -7,6 +7,13 @@ M.search_dotfiles = function()
     }
 end
 
+M.search_plugins = function()
+    require("telescope.builtin").find_files {
+        prompt_title = "< Find nVim plugins >",
+        cwd = "$HOME/dotfiles/nvim/lua/plugins/",
+    }
+end
+
 M.search_vimfiles = function()
     require("telescope.builtin").find_files {
         prompt_title = "< Find Vimfiles >",
