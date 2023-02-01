@@ -89,10 +89,18 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     dependencies = { -- Show current code context
-        "SmiteshP/nvim-navic",
-
-        -- Show JSON path
-        { "phelipetls/jsonpath.nvim", ft = { "json" } },
+        {
+            "glepnir/lspsaga.nvim",
+            config = function()
+                require("lspsaga").setup {
+                    symbol_in_winbar = {
+                        enable = false,
+                        show_file = false,
+                        hide_keyword = true,
+                    },
+                }
+            end,
+        },
     },
 
     config = function()
@@ -112,25 +120,7 @@ return {
                     { "diff" },
                     {
                         function()
-                            local ft = vim.bo.ft
-                            if ft == "json" then
-                                return require("jsonpath").get()
-                            elseif ft == "yaml" then
-                                return require("utils.yaml").statusline()
-                            end
-                            return require("navic").get_location()
-                        end,
-                        cond = function()
-                            if ft == "json" then
-                                local ok = pcall(require, "jsonpath")
-                                return ok
-                            end
-                            if ft == "yaml" then
-                                local ok = pcall(require, "utils.yaml")
-                                return ok
-                            end
-                            local ok, navic = pcall(require, "nvim-navic")
-                            return ok and navic.is_available() and navic.get_location() ~= ""
+                            return require("lspsaga.symbolwinbar"):get_winbar()
                         end,
                         color = { fg = colors.blue },
                     },

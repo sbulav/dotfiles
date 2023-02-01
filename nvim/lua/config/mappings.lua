@@ -115,9 +115,7 @@ end, attach_opts)
 
 local function yank_nodepath()
     local ft = vim.bo.ft
-    if ft == "json" then
-        return require("jsonpath").get()
-    elseif ft == "yaml" or ft == "helm" then
+    if ft == "yaml" or ft == "helm" then
         return require("utils.yaml").statusline()
     else
         return "Not in YAML or JSON!"
