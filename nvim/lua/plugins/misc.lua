@@ -8,7 +8,7 @@ return {
     -- Fugitive!
     {
         "tpope/vim-fugitive",
-        cmd = { "Git", "GBranches", "Gdiff", "Gvdiffsplit", "Git blame" },
+        cmd = { "Git", "Gread", "Gwrite", "GBranches", "Gdiff", "Gvdiffsplit", "Git blame" },
     },
     { "janko/vim-test", cmd = { "TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit" } },
 
