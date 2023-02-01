@@ -18,9 +18,6 @@ return {
     -- Redirect output to scratch buffer
     "sbulav/nredir.nvim",
 
-    -- Show a lightbulb when code action are available
-    "kosayoda/nvim-lightbulb",
-
     -- Lint Jenkins files
     { "ckipp01/nvim-jenkinsfile-linter", dependencies = { "nvim-lua/plenary.nvim" }, ft = "groovy" },
 

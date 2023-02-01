@@ -69,19 +69,7 @@ function M.custom_on_attach(client, bufnr)
     end
 
     if client.supports_method "textDocument/codeAction" then
-        vim.keymap.set("n", "<leader>ga", function()
-            require("lspsaga.codeaction").code_action()
-        end, { buffer = bufnr, desc = "Code Actions" })
-        vim.keymap.set("v", "<leader>ga", function()
-            require("lspsaga.codeaction").range_code_action()
-        end, { buffer = bufnr, desc = "Range Code Actions" })
-        vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-            callback = function()
-                require("nvim-lightbulb").update_lightbulb()
-            end,
-            buffer = bufnr,
-            desc = "Update the LightBulb",
-        })
+        vim.keymap.set("n", "<leader>ga", "<cmd>Lspsaga code_action<CR>")
     end
 end
 
