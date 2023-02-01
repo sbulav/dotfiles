@@ -119,11 +119,14 @@ local function yank_nodepath()
         return require("jsonpath").get()
     elseif ft == "yaml" or ft == "helm" then
         return require("utils.yaml").statusline()
+    else
+        return "Not in YAML or JSON!"
     end
 end
 
 vim.keymap.set("n", "<Space>fp", function()
     local path = yank_nodepath()
+    print(path)
     utils.info("Yanking current " .. vim.bo.ft .. "path: " .. path, "INFO")
     vim.fn.setreg("+", path)
 end, attach_opts)

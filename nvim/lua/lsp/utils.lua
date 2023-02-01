@@ -1,6 +1,11 @@
 local M = {}
 local utils = require "utils"
 local navic = require "nvim-navic"
+require("lspsaga").setup {
+    -- symbol_in_winbar = {
+    --     enable = false,
+    -- },
+}
 
 ---@param on_attach fun(client, buffer)
 function M.on_attach(on_attach)
@@ -26,9 +31,10 @@ function M.custom_on_attach(client, bufnr)
     local attach_opts = { silent = true, buffer = bufnr }
 
     -- lsp provider to find the cursor word definition and reference
-    vim.keymap.set("n", "gh", function()
-        require("lspsaga.provider").lsp_finder()
-    end, attach_opts)
+    -- vim.keymap.set("n", "gh", function()
+    --     require("lspsaga.provider").lsp_finder()
+    -- end, attach_opts)
+    vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
     -- show function signature help
     vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, attach_opts)
     -- rename
@@ -42,7 +48,8 @@ function M.custom_on_attach(client, bufnr)
     -- go to implementation
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, attach_opts)
     -- go to definition
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, attach_opts)
+    -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, attach_opts)
+    vim.keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>")
     -- show line diagnostic
     vim.keymap.set("n", "ge", function()
         require("lspsaga.diagnostic").show_line_diagnostics()

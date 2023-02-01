@@ -8,7 +8,7 @@ return {
             "hrsh7th/cmp-nvim-lsp",
             -- jsonls schemas
             "b0o/schemastore.nvim",
-            "tami5/lspsaga.nvim",
+            "glepnir/lspsaga.nvim",
         },
         ---@class PluginLspOpts
         opts = {
