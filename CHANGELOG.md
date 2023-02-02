@@ -1,5 +1,25 @@
 # Changelog
 
+## [2.1.0](https://www.github.com/sbulav/dotfiles/compare/v2.0.0...v2.1.0) (2023-02-02)
+
+
+### Features
+
+* add marksman language server ([6ba07ed](https://www.github.com/sbulav/dotfiles/commit/6ba07ed3debc92a0d30727f9b076e24b31a26ca9))
+* migrate to glepnir's lsp saga ([19e96e2](https://www.github.com/sbulav/dotfiles/commit/19e96e26d0fff523a905271690dba4c8e4945cc8))
+* **nvim:** add k8s snippets ([95a2fe0](https://www.github.com/sbulav/dotfiles/commit/95a2fe07c1ab1a8af5b4e986caf48ec015a8d372))
+* **nvim:** use code actions provided by lspsaga ([e04f9fe](https://www.github.com/sbulav/dotfiles/commit/e04f9fe12d602699f5a79e1def8d675d212e25e3))
+* **nvim:** use jsonstore to load yaml schemas ([4f77cf3](https://www.github.com/sbulav/dotfiles/commit/4f77cf34c3ee88f22a9526341fb812aec72534dd))
+* **nvim:** use lspsaga in statusline ([51da9c3](https://www.github.com/sbulav/dotfiles/commit/51da9c375a3711414bf5a04f18aa9e6b7d7e39f4))
+* yaml path and mappings ([b595178](https://www.github.com/sbulav/dotfiles/commit/b595178a82a8e3470c7049a11ba196ed9ef6f34e))
+
+
+### Bug Fixes
+
+* alpha edit plugins hotkey ([d33595f](https://www.github.com/sbulav/dotfiles/commit/d33595fa6bd9219caae2ee28dd335b626fb90f25))
+* **nvim:** add more fugitive commands on load ([8927ffb](https://www.github.com/sbulav/dotfiles/commit/8927ffb602e9c9b6c80bff6532ae872eb8d8684b))
+* **nvim:** bump k8s schema ([abaeda7](https://www.github.com/sbulav/dotfiles/commit/abaeda7a21f843a69bc80315fd37c15225d5accb))
+
 ## [2.0.0](https://www.github.com/sbulav/dotfiles/compare/v1.30.0...v2.0.0) (2023-01-13)
 
 
