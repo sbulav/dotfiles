@@ -38,7 +38,7 @@ return {
         startify.section.bottom_buttons.val = {
             startify.button("c", "Edit init.lua", ":edit $MYVIMRC<CR>"),
             startify.button("h", "Check healthe", ":checkhealth<CR>"),
-            startify.button("p", "Edit plugins", ":edit ~/dotfiles/nvim/lua/packages.lua<CR>"),
+            startify.button("p", "Edit plugins", ":lua require('config.telescope_myfunctions').search_plugins()<cr>"),
             startify.button("u", "Update plugins", ":Lazy update<CR>"),
             startify.button("q", "Quit NVIM", ":qa<CR>"),
         }

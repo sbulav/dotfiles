@@ -159,7 +159,6 @@ nnoremap <leader>fs <cmd>lua require('telescope.builtin').git_files()<cr>
 nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fv <cmd>lua require('config.telescope_myfunctions').search_vimfiles()<cr>
 nnoremap <leader>fd <cmd>lua require('config.telescope_myfunctions').search_dotfiles()<cr>
-nnoremap <leader>fp <cmd>lua require'telescope'.extensions.project.project{}<cr>
 nnoremap <leader>gb <cmd>lua require('telescope.builtin').git_branches()<cr>
 nnoremap <leader>gr <cmd>lua require'telescope'.extensions.gh.run{}<cr>
 nnoremap <leader>gp <cmd>lua require'telescope'.extensions.gh.pull_request{}<cr>
@@ -185,6 +184,8 @@ nnoremap <leader>G :Gcd<cr>
 nnoremap <leader>g :Git<cr>
 " GIT - create fixup commit and push it
 nnoremap <leader><leader>g :!git add . && git commit -m "fixup" && gpo<cr>
+" Git stage current file
+nnoremap <leader><leader>s :Gwrite<cr>
 
 " Run a function to strip trailing whitespaces
 nnoremap <leader>s <cmd>lua require("utils").trim_trailing_whitespaces()<cr>

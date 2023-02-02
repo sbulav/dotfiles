@@ -8,7 +8,6 @@ return {
             "hrsh7th/cmp-nvim-lsp",
             -- jsonls schemas
             "b0o/schemastore.nvim",
-            "tami5/lspsaga.nvim",
         },
         ---@class PluginLspOpts
         opts = {
@@ -39,16 +38,18 @@ return {
 
                 terraformls = {},
                 yamlls = {
+                    -- lazy-load schemastore when needed
+                    on_new_config = function(new_config)
+                        new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+                        vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+                    end,
                     settings = {
                         yaml = {
                             schemas = {
-                                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-                                ["https://kubernetesjsonschema.dev/v1.14.0/deployment-apps-v1.json"] = {
-                                    "*pod*.yaml",
-                                    "*deploy*.yaml",
-                                    "*service*.yaml",
-                                    "*ingress*.yaml",
+                                format = {
+                                    enable = true,
                                 },
+                                validate = { enable = true },
                             },
                         },
                     },
@@ -75,6 +76,7 @@ return {
                         },
                     },
                 },
+                marksman = {},
             },
             -- you can do any additional lsp server setup here
             -- return true if you don't want this server to be setup with lspconfig
@@ -148,20 +150,21 @@ return {
         cmd = "Mason",
         opts = {
             ensure_installed = {
-                "flake8",
                 "black",
-                "isort",
-                "shellcheck",
-                "shfmt",
-                "prettierd",
                 "eslint_d",
+                "flake8",
                 "goimports",
                 "gopls",
+                "isort",
                 "jq",
                 "json-lsp",
                 "jsonnet-language-server",
                 "lua-language-server",
+                "marksman",
+                "prettierd",
                 "pyright",
+                "shellcheck",
+                "shfmt",
                 "stylua",
                 "terraform-ls",
                 "yaml-language-server",
