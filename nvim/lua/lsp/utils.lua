@@ -22,6 +22,8 @@ function M.custom_on_attach(client, bufnr)
 
     -- lsp provider to find the cursor word definition and reference
     vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
+    -- lsp outline window with symbols
+    vim.keymap.set("n", "<F7>", "<cmd>Lspsaga outline<CR>")
     -- show function signature help
     vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, attach_opts)
     -- rename
