@@ -74,9 +74,6 @@ vnoremap K :m '<-2<CR>gv=gv
 " Delete current visual selection to blackhole buffer and paste from clipboard
 vnoremap <leader>p "_dP
 
-" Show Hop on with easy move
-nnoremap <silent> zx :HopWord<cr>
-vnoremap <silent> zx :HopWord<cr>
 
 " Surround current work with quotes
 vmap " sa"

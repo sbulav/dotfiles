@@ -54,7 +54,7 @@ return {
                         },
                     },
                 },
-                sumneko_lua = {
+                lua_ls = {
                     settings = {
                         Lua = {
                             -- make the language server recognize "vim" global

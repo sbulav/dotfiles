@@ -18,8 +18,8 @@ cmd mkfile ${{
 
 cmd open ${{
     case $(file --mime-type $f -b) in
-        text/*) $EDITOR $fx;;
-        *) for f in $fx; do open $f > /dev/null 2> /dev/null & done;;
+        text/*) $EDITOR "$fx";;
+        *) for f in "$fx"; do open $f > /dev/null 2> /dev/null & done;;
     esac
 }}
 
@@ -31,10 +31,10 @@ cmd edit_config :{{
 cmd trash ${{
     set -f
     if gio trash 2>/dev/null; then
-        gio trash $fx
+        gio trash "$fx"
     else
         mkdir -p /tmp/trash
-        mv -- $fx /tmp/trash
+        mv -- "$fx" /tmp/trash
     fi
 }}
 

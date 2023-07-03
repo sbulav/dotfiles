@@ -10,6 +10,7 @@ local globals = {
     loaded_zipPlugin = 1,
     loaded_gzip = 1,
     loaded_2html_plugin = 1,
+    markdown_recommended_style = 0,
     did_install_default_menus = 1,
     did_install_syntax_menu = 1,
     -- Providers

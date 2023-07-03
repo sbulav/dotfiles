@@ -101,8 +101,8 @@ vim.keymap.set("n", "<F3>", function()
         -- dir = ".", -- directory where `lf` starts ('gwd' is git-working-directory)
         direction = "float", -- window type: float horizontal vertical
         border = "double", -- border kind: single double shadow curved
-        height = 0.80, -- height of the *floating* window
-        width = 0.85, -- width of the *floating* window
+        height = 52, -- height of the *floating* window
+        width = 150, -- width of the *floating* window
         mappings = false, -- whether terminal buffer mapping is enabled
     }
 end, { noremap = true, silent = true })
