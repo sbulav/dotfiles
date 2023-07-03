@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.2.0](https://www.github.com/sbulav/dotfiles/compare/v2.1.0...v2.2.0) (2023-07-03)
+
+
+### Features
+
+* add treesj plugin ([66d0a4d](https://www.github.com/sbulav/dotfiles/commit/66d0a4dfb383014011b39fe69e01c0951c03ba20))
+* **nvim:** add lspsaga outline keymap ([851869c](https://www.github.com/sbulav/dotfiles/commit/851869c35f45d4f3f6693eb9e2335fb21db6e3fd))
+* **nvim:** switch to maintained HiPhish/nvim-ts-rainbow2 ([6e5b74e](https://www.github.com/sbulav/dotfiles/commit/6e5b74e5e77189b71e8fef4c22e69ae3a205c92d))
+* replace hop with flash.nvim ([2d727b3](https://www.github.com/sbulav/dotfiles/commit/2d727b319d5ce4c34405d9a080af94e37fb7d709))
+
+
+### Bug Fixes
+
+* disable jenkinsfile linker for now ([f90b6bf](https://www.github.com/sbulav/dotfiles/commit/f90b6bf7cfb25bdfa1ac5c23e921728afcc7c397))
+* I prefer 2 chars for markdown ([09480b5](https://www.github.com/sbulav/dotfiles/commit/09480b52c0ad67e2ceb350b2d89b6bae62ebb2ec))
+* **lf:** work on files with speces ([bf89f0b](https://www.github.com/sbulav/dotfiles/commit/bf89f0b5ffd5a0ff2c44e5b7bef7bddecfb4bca7))
+* new lf.nvim width/height ([3a25349](https://www.github.com/sbulav/dotfiles/commit/3a2534986aa1250230e0aa9a60ace424dfbc561f))
+* **nvim:** tabnine setup call ([b3a11e3](https://www.github.com/sbulav/dotfiles/commit/b3a11e3a587920bfd883e8f57e976598c26ad277))
+
 ## [2.1.0](https://www.github.com/sbulav/dotfiles/compare/v2.0.0...v2.1.0) (2023-02-02)
 
 
