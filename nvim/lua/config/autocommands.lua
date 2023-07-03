@@ -35,16 +35,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     desc = "Return to last known cursor position",
     group = "RestoreCursorPosition",
 })
-vim.api.nvim_create_augroup("ValidateJenkinsfiles", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePre", {
-    callback = function()
-        utils.info("Validating Jenkinsfile", "LSP")
-        require("jenkinsfile_linter").validate()
-    end,
-    group = "ValidateJenkinsfiles",
-    desc = "Validate Jenkins files on save",
-    pattern = "*enkinsfile*",
-})
+-- vim.api.nvim_create_augroup("ValidateJenkinsfiles", { clear = true })
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--     callback = function()
+--         utils.info("Validating Jenkinsfile", "LSP")
+--         require("jenkinsfile_linter").validate()
+--     end,
+--     group = "ValidateJenkinsfiles",
+--     desc = "Validate Jenkins files on save",
+--     pattern = "*enkinsfile*",
+-- })
 
 vim.api.nvim_create_augroup("ConfugureLuaBo", { clear = true })
 vim.api.nvim_create_autocmd("BufRead", {
