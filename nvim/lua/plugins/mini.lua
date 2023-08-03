@@ -42,5 +42,19 @@ return {
             -- Which character to use for drawing scope indicator
             symbol = "╎",
         }
+
+        local hipatterns = require "mini.hipatterns"
+        hipatterns.setup {
+            highlighters = {
+                -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
+                fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "lualine_a_visual" },
+                hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "lualine_a_replace" },
+                todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "lualine_a_normal" },
+                note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "lualine_a_normal" },
+
+                -- Highlight hex color strings (`#rrggbb`) using that color
+                hex_color = hipatterns.gen_highlighter.hex_color(),
+            },
+        }
     end,
 }
