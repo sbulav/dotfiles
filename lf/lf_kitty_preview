@@ -6,7 +6,7 @@ x=$4
 y=$5
 
 if [[ "$( file -Lb --mime-type "$file")" =~ ^image ]]; then
-    kitty +icat --silent --transfer-mode file --place "${w}x${h}@${x}x${y}" "$file"
+    kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$file" < /dev/null > /dev/tty
     exit 1
 elif [[ "$( file -Lb --mime-type "$file")" =~ ^video ]]; then
     thumb_dir="$HOME/.cache/ffmpegthumbnailer" 
@@ -15,8 +15,9 @@ elif [[ "$( file -Lb --mime-type "$file")" =~ ^video ]]; then
     fi
     
     thumb_file="$thumb_dir/$(realpath $file | md5).jpg"
-    ffmpegthumbnailer -i "$file" -o "$thumb_file" -s0 -t15
-    kitty +icat --silent --transfer-mode file --place "${w}x${h}@${x}x${y}" "$thumb_file"
+    # ffmpegthumbnailer -i "$file" -o "$thumb_file" -s0 -t15
+    ffmpeg -ss 00:00:15.000 -i "$file" -vframes 1 "$thumb_file" 
+    kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$thumb_file" < /dev/null > /dev/tty
     exit 1
 fi
 
