@@ -90,7 +90,7 @@ return {
     event = "VeryLazy",
     dependencies = { -- Show current code context
         {
-            "glepnir/lspsaga.nvim",
+            "nvimdev/lspsaga.nvim",
             config = function()
                 require("lspsaga").setup {
                     symbol_in_winbar = {

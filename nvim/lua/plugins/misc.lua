@@ -1,7 +1,4 @@
 return {
-    -- Surround objects with any character e.g. saiw|sdb|srb"
-    { "machakann/vim-sandwich", event = "VeryLazy" },
-
     -- Undotree
     { "mbbill/undotree", cmd = { "UndotreeToggle" } },
 

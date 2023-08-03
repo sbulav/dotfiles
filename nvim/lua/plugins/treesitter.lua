@@ -22,7 +22,6 @@ return {
                     "fish",
                     "gitignore",
                     "go",
-                    "help",
                     "html",
                     "http",
                     "javascript",

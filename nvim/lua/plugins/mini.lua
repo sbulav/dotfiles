@@ -1,5 +1,6 @@
 return {
-    "echasnovski/mini.indentscope",
+    "echasnovski/mini.nvim",
+    version = false,
     event = "BufRead",
     config = function()
         require("mini.indentscope").setup {
@@ -41,5 +42,37 @@ return {
             -- Which character to use for drawing scope indicator
             symbol = "╎",
         }
+
+        local hipatterns = require "mini.hipatterns"
+        hipatterns.setup {
+            highlighters = {
+                -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
+                fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "lualine_a_visual" },
+                hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "lualine_a_replace" },
+                todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "lualine_a_normal" },
+                note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "lualine_a_normal" },
+
+                -- Highlight hex color strings (`#rrggbb`) using that color
+                hex_color = hipatterns.gen_highlighter.hex_color(),
+            },
+        }
+
+        require("mini.splitjoin").setup {
+            -- Module mappings. Use `''` (empty string) to disable one.
+            -- Created for both Normal and Visual modes.
+            mappings = {
+                toggle = "gJ",
+                split = "",
+                join = "",
+            },
+        }
+        require("mini.surround").setup {
+            -- Duration (in ms) of highlight when calling `MiniSurround.highlight()`
+            highlight_duration = 900,
+
+            -- Number of lines within which surrounding is searched
+            n_lines = 50,
+        }
+        require("mini.trailspace").setup()
     end,
 }
