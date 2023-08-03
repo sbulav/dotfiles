@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.3.0](https://www.github.com/sbulav/dotfiles/compare/v2.2.0...v2.3.0) (2023-08-03)
+
+
+### Features
+
+* add mini.hipatterns to highlight words/hex colors ([0c32fdc](https://www.github.com/sbulav/dotfiles/commit/0c32fdce48f9acd94fa6bb9c4bdea15ae8c3365c))
+* migrate to mini.surround ([cd51466](https://www.github.com/sbulav/dotfiles/commit/cd51466aef08506978fede48704cec9de3f03c06))
+* migrate to mini.trailspace ([d460f6a](https://www.github.com/sbulav/dotfiles/commit/d460f6abf164a7242c1c9e66e54b8addba303c12))
+* move to mini.splitjoin ([4f1686c](https://www.github.com/sbulav/dotfiles/commit/4f1686c61a087011d43964fd9c8f3bc7f2d5b5f7))
+* **nvim:** switch to use main mini repo ([3396b27](https://www.github.com/sbulav/dotfiles/commit/3396b27069d794276f18ea049a9a9240e5c54974))
+
+
+### Bug Fixes
+
+* **lf:** update icons to new format ([bd937a8](https://www.github.com/sbulav/dotfiles/commit/bd937a8a058930861ef25d19e8b454c3087e7929))
+* **nvim:** small fixes to yamlls ([b07a1ed](https://www.github.com/sbulav/dotfiles/commit/b07a1edb6891e63bdc80de4b6beb6d96c4c99276))
+* remove help filetype from treesitter ([3ffa533](https://www.github.com/sbulav/dotfiles/commit/3ffa533c090bcf74e09577ad353c3de00b2d5fc7))
+* use correct autocommand name to avoid conflicts ([179e58a](https://www.github.com/sbulav/dotfiles/commit/179e58a03a890e6af094e909df9cd025a9e6c33d))
+
 ## [2.2.0](https://www.github.com/sbulav/dotfiles/compare/v2.1.0...v2.2.0) (2023-07-03)
 
 
