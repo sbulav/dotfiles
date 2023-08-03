@@ -1,5 +1,6 @@
 return {
-    "echasnovski/mini.indentscope",
+    "echasnovski/mini.nvim",
+    version = false,
     event = "BufRead",
     config = function()
         require("mini.indentscope").setup {
