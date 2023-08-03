@@ -56,5 +56,15 @@ return {
                 hex_color = hipatterns.gen_highlighter.hex_color(),
             },
         }
+
+        require("mini.splitjoin").setup {
+            -- Module mappings. Use `''` (empty string) to disable one.
+            -- Created for both Normal and Visual modes.
+            mappings = {
+                toggle = "gJ",
+                split = "",
+                join = "",
+            },
+        }
     end,
 }
