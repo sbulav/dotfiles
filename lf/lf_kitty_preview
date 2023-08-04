@@ -13,10 +13,9 @@ elif [[ "$( file -Lb --mime-type "$file")" =~ ^video ]]; then
     if [[ ! -d "$thumb_dir" ]]; then
         mkdir -p $thumb_dir
     fi
-    
-    thumb_file="$thumb_dir/$(realpath $file | md5).jpg"
-    # ffmpegthumbnailer -i "$file" -o "$thumb_file" -s0 -t15
-    ffmpeg -ss 00:00:15.000 -i "$file" -vframes 1 "$thumb_file" 
+    md5sum=$(echo $file | md5)
+    thumb_file="$thumb_dir/$md5sum.jpg"
+    ffmpeg -ss 00:00:05.000 -i "$file" -vframes 1 "$thumb_file" 
     kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$thumb_file" < /dev/null > /dev/tty
     exit 1
 fi
