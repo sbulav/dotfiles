@@ -98,6 +98,13 @@ return {
                         show_file = false,
                         hide_keyword = true,
                     },
+                    beacon = {
+                        enable = false,
+                    },
+                    lightbulb = {
+                        enable = true,
+                        sign = false,
+                    },
                 }
             end,
         },
