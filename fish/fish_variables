@@ -6,8 +6,9 @@ SETUVAR _fish_abbr_ks:kubens
 SETUVAR _fish_abbr_kx:kubectx
 SETUVAR _fisher_danhper_2F_fish_2D_ssh_2D_agent_files:/Users/sab/\x2econfig/fish/functions/__ssh_agent_is_started\x2efish\x1e/Users/sab/\x2econfig/fish/functions/__ssh_agent_start\x2efish\x1e/Users/sab/\x2econfig/fish/conf\x2ed/fish\x2dssh\x2dagent\x2efish
 SETUVAR _fisher_evanlucas_2F_fish_2D_kubectl_2D_completions_files:/Users/sab/\x2econfig/fish/completions/kubectl\x2efish
-SETUVAR _fisher_jorgebucaran_2F_fisher_files:/Users/sab/\x2econfig/fish/functions/fisher\x2efish\x1e/Users/sab/\x2econfig/fish/completions/fisher\x2efish
+SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_plugins:jorgebucaran/fisher\x1eevanlucas/fish\x2dkubectl\x2dcompletions\x1edanhper/fish\x2dssh\x2dagent
+SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:005fd7
