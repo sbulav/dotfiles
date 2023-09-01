@@ -137,3 +137,7 @@ end, attach_opts)
 vim.keymap.set({ "n", "v" }, "]6", function()
     require("base64.command").decode()
 end, attach_opts)
+
+-- Paste before/after linewise
+vim.keymap.set({ "n", "x" }, "[p", '<Cmd>exe "put! " . v:register<CR>', { desc = "Paste Above" })
+vim.keymap.set({ "n", "x" }, "]p", '<Cmd>exe "put "  . v:register<CR>', { desc = "Paste Below" })
