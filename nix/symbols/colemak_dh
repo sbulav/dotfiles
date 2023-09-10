@@ -1,0 +1,22 @@
+default partial alphanumeric_keys
+
+// overwrite some keys with the Mod-DH config
+xkb_symbols "dh" {
+	// get the base colemak layout
+	include "us(colemak)"
+	// use AltGr as a 3rd modifier
+	include "level3(ralt_switch)"
+//AB lowest row, see https://www.charvolant.org/doug/xkb/html/node5.html
+//12345678
+//zxcdvkh,
+    key <AB01> { [             z,             Z,               U0292,               U01B7 ] }; // QWE Z Cmk zZ ʒƷ
+    key <AB02> { [             x,             X,              dagger,        doubledagger ] }; // QWE X Cmk xX †‡
+    key <AB03> { [             c,             C,           copyright,                cent ] }; // QWE C Cmk cC ©¢
+    key <AB04> { [             d,             D,                 eth,                 ETH ] }; // QWE/Cmk V
+    key <AB05> { [             v,             V,            division,         Greek_gamma ] }; // QWE/Cmk B
+    key <AB06> { [             k,             K,            ccedilla,            Ccedilla ] }; // QWE N Cmk kK çÇ
+    key <AB07> { [             h,             H,             hstroke,             Hstroke ] }; // QWE/Cmk M
+    key <AC05> { [             g,             G,                 eng,                 ENG ] }; // QWE G Cmk D
+    key <AC06> { [             m,             M,            multiply,           downarrow ] }; // QWE/Cmk H
+    key <AD05> { [             b,             B,  enfilledcircbullet,          Greek_beta ] }; // QWE T Cmk G
+};
