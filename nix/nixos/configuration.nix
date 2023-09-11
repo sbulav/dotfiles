@@ -99,6 +99,12 @@
 
     xkbOptions = "grp:shift_caps_toggle,grp_led:caps,caps:escape,terminate:ctrl_alt_bksp";
   };
+  services.dbus.enable = true;
+  xdg.portal = { 
+    enable = true; 
+    wlr.enable= true;
+    # extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
+  };
   # Enable CUPS to print documents.
   services.printing.enable = false;
 

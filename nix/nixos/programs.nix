@@ -2,6 +2,7 @@
 
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
+  programs.dconf.enable = true;
 
   programs.fish = {
     enable = true;
@@ -27,17 +28,14 @@
       # nodejs_20
       bat
       curl
-      fd
-      fzf
       gcc
       gnome.gnome-tweaks
       home-manager
+      pamixer
       gnumake
       jq
       kitty
       lf
-      neofetch
-      ripgrep
       unzip
       wget
     ];

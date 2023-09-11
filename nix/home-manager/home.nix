@@ -8,7 +8,7 @@
     # inputs.nix-colors.homeManagerModule
 
     # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
+    ./waybar.nix
   ];
 
   nixpkgs = {
@@ -40,7 +40,17 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
+  home.packages = with pkgs; [
+    awscli2
+    azure-cli
+    fd
+    fzf
+    gh
+    k9s
+    kubectl
+    neofetch
+    ripgrep
+  ];
 
   # Enable home-manager and git
   #programs.git.enable = true;
@@ -49,6 +59,7 @@
     enable = true;
     package = pkgs.firefox-bin;
   };
+
   programs.rofi = {
     enable = true;
     extraConfig = {
@@ -67,6 +78,9 @@
       terminal = "kitty";
     };
     #  theme = "catppuccin-macchiato";
+  };
+  services.mako = {
+    enable = true;
   };
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
