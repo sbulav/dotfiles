@@ -77,7 +77,7 @@
       sidebar-mode = true;
       terminal = "kitty";
     };
-    #  theme = "catppuccin-macchiato";
+    # theme = "android_notification";
   };
   services.mako = {
     enable = true;

@@ -98,7 +98,8 @@
     layout = "us,ru,dh";
     #xkbVariant = "";
 
-    xkbOptions = "grp:shift_caps_toggle,grp_led:caps,caps:escape,terminate:ctrl_alt_bksp";
+    # xkbOptions = "grp:shift_caps_toggle,grp_led:caps,terminate:ctrl_alt_bksp";
+    xkbOptions = "grp:caps_toggle,caps:none,terminate:ctrl_alt_bksp";
   };
   services.dbus.enable = true;
   # XDG Portals
@@ -112,11 +113,6 @@
       ];
     };
   };
-  # xdg.portal = { 
-  #   enable = true; 
-  #   # wlr.enable= true;
-  #   # extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
-  # };
   # Enable CUPS to print documents.
   services.printing.enable = false;
 
