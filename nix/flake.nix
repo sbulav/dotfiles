@@ -11,7 +11,6 @@
 
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
-
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
@@ -28,6 +27,10 @@
       };
     };
 
+    imports = [
+      # Import home-manager's NixOS module
+      inputs.home-manager.nixosModules.home-manager
+    ];
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {

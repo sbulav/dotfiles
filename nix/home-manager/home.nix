@@ -43,9 +43,31 @@
   # home.packages = with pkgs; [ steam ];
 
   # Enable home-manager and git
-  programs.home-manager.enable = true;
   #programs.git.enable = true;
 
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox-bin;
+  };
+  programs.rofi = {
+    enable = true;
+    extraConfig = {
+      disable-history = false;
+      display-Network = " 󰤨  Network";
+      display-drun = "   Apps ";
+      display-run = "   Run ";
+      display-window = " 﩯  Window";
+      drun-display-format = "{icon} {name}";
+      hide-scrollbar = true;
+      icon-theme = "Oranchelo";
+      location = 0;
+      modi = "run,drun,window";
+      show-icons = true;
+      sidebar-mode = true;
+      terminal = "kitty";
+    };
+    #  theme = "catppuccin-macchiato";
+  };
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
