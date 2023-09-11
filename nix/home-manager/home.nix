@@ -55,10 +55,10 @@
   # Enable home-manager and git
   #programs.git.enable = true;
 
-  programs.firefox = {
-    enable = true;
-    package = pkgs.firefox-bin;
-  };
+  # programs.firefox = {
+  #   enable = true;
+  #   package = pkgs.firefox-bin;
+  # };
 
   programs.rofi = {
     enable = true;

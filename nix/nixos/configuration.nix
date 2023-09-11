@@ -91,7 +91,8 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.wayland = true;
+  # services.xserver.desktopManager.gnome.enable = true;
   # Configure keymap in X11
   services.xserver = {
     layout = "us,ru,dh";
@@ -100,11 +101,22 @@
     xkbOptions = "grp:shift_caps_toggle,grp_led:caps,caps:escape,terminate:ctrl_alt_bksp";
   };
   services.dbus.enable = true;
-  xdg.portal = { 
-    enable = true; 
-    wlr.enable= true;
-    # extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
+  # XDG Portals
+  xdg = {
+    autostart.enable = true;
+    portal = {
+      enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal
+        pkgs.xdg-desktop-portal-gtk
+      ];
+    };
   };
+  # xdg.portal = { 
+  #   enable = true; 
+  #   # wlr.enable= true;
+  #   # extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
+  # };
   # Enable CUPS to print documents.
   services.printing.enable = false;
 

@@ -2,8 +2,6 @@
 
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
-  programs.dconf.enable = true;
-
   programs.fish = {
     enable = true;
     shellAliases = {
@@ -22,6 +20,20 @@
     enableSSHSupport = true;
   };
 
+environment.sessionVariables = {
+    POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+    GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
+    XDG_SESSION_TYPE = "wayland";
+    NIXOS_OZONE_WL = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+    SDL_VIDEODRIVER = "wayland";
+    CLUTTER_BACKEND = "wayland";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+    GTK_USE_PORTAL = "1";
+    NIXOS_XDG_OPEN_USE_PORTAL = "1";
+  };
+
   environment.systemPackages = with pkgs;
     [
       # cargo
@@ -31,13 +43,28 @@
       gcc
       gnome.gnome-tweaks
       home-manager
-      pamixer
       gnumake
       jq
       kitty
       lf
       unzip
       wget
+    hyprland-protocols
+    hyprpicker
+    swayidle
+    polkit_gnome
+    swaylock
+    xdg-desktop-portal-hyprland
+    hyprpaper
+    firefox-wayland
+    xdg-utils
+    xdg-desktop-portal
+    xdg-desktop-portal-gtk
+    qt5.qtwayland
+    qt6.qmake
+    qt6.qtwayland
+    adwaita-qt
+    adwaita-qt6
     ];
 
   fonts.fonts = with pkgs; [
