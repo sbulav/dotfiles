@@ -36,7 +36,7 @@ return {
                     },
                 },
                 -- pyright = {},
-                 rnix = {},
+                -- nil = {},
 
                 -- terraformls = {},
                 yamlls = {

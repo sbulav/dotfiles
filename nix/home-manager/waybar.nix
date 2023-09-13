@@ -11,6 +11,7 @@ in
   ];
 
   programs.wlogout.enable = true;
+
   programs.waybar = {
     enable = true;
 
@@ -43,9 +44,9 @@ in
             "hyprland/language"
             "cpu"
             "memory"
-            "cpu"
             "temperature"
             "pulseaudio"
+            "network"
             "tray"
             "battery"
             "custom/power"
@@ -85,7 +86,7 @@ in
             format-alt = "{:%Y-%m-%d}";
           };
           "temperature" = {
-            thermal-zone = 6;
+            thermal-zone = 0;
             critical-threshold = 80;
             format = "{icon} {temperatureC}°C";
             format-icons = [ ""  ""  ""  ""  "" ];
@@ -95,12 +96,12 @@ in
             format = " {}";
             exec = "uname -r";
           };
-          "network" = {
-            format-wifi = " {signalStrength}%";
-            format-ethernet = "";
-            tooltip-format = "{ifname} via {gwaddr}";
-            format-linked = "{ifname} (No IP)";
-            format-disconnected = "";
+          network = {
+              format-wifi = "󰖩";
+              format-ethernet = "{ifname}: {ipaddr}/{cidr} 󰈀";
+              format-linked = "{ifname} (No IP) 󰈀";
+              format-disconnected = "󰖪";
+              format-alt = "{ifname}: {ipaddr}/{cidr}";
           };
           "pulseaudio" = {
             format = "{icon} {volume}% {format_source}";
@@ -124,7 +125,7 @@ in
 
           };
             "battery" = {
-              on-click = "cpupower-gui";
+              # on-click = "cpupower-gui";
               bat = "BAT0";
               states = {
                 "good" = 95;

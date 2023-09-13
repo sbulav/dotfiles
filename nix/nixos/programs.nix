@@ -51,9 +51,7 @@ environment.sessionVariables = {
       wget
     hyprland-protocols
     hyprpicker
-    swayidle
     polkit_gnome
-    swaylock
     xdg-desktop-portal-hyprland
     hyprpaper
     firefox-wayland
