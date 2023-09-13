@@ -65,10 +65,11 @@ environment.sessionVariables = {
     qt6.qtwayland
     adwaita-qt
     adwaita-qt6
+    pamixer
     ];
 
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "CascadiaCode" "FiraCode"]; })
   ];
 
   environment.gnome.excludePackages = (with pkgs; [

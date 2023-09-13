@@ -43,6 +43,7 @@
   home.packages = with pkgs; [
     awscli2
     azure-cli
+    cargo
     fd
     fzf
     gh

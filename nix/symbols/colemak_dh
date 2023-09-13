@@ -5,7 +5,7 @@ xkb_symbols "dh" {
 	// get the base colemak layout
 	include "us(colemak)"
 	// use AltGr as a 3rd modifier
-	include "level3(ralt_switch)"
+//include "level3(ralt_switch)"
 //AB lowest row, see https://www.charvolant.org/doug/xkb/html/node5.html
 //12345678
 //zxcdvkh,
@@ -19,4 +19,10 @@ xkb_symbols "dh" {
     key <AC05> { [             g,             G,                 eng,                 ENG ] }; // QWE G Cmk D
     key <AC06> { [             m,             M,            multiply,           downarrow ] }; // QWE/Cmk H
     key <AD05> { [             b,             B,  enfilledcircbullet,          Greek_beta ] }; // QWE T Cmk G
+//    key <CAPS> {
+//      type[Group1] = "ONE_LEVEL",
+//      symbols[Group1] = [ Caps_Lock ],
+//      actions[Group1] = [ NoAction() ]
+//    };
+    key <CAPS> { [    Escape,    Escape,       Escape,        Escape ] };
 };

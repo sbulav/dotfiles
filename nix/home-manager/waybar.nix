@@ -10,88 +10,140 @@ in
     pkgs.networkmanagerapplet # For nm-applet icons
   ];
 
+  programs.wlogout.enable = true;
   programs.waybar = {
     enable = true;
 
     package = pkgs.waybar;
 
     systemd = {
-      enable = true;
+      enable = false;
       target = "hyprland-session.target";
     };
 
-    style = builtins.readFile "${pkgs.waybar}/etc/xdg/waybar/style.css" + ''
-      * {
-        font-family: Hack Nerd Font Mono, FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-      }
-    '';
+    style = pkgs.substituteAll {
+      src = ./waybar/waybar.css;
+    };
 
     settings = {
-      mainBar = {
-        layer = "top";
-        position = "top";
-        modules-left = [ "hyprland/workspaces" ];
-        modules-center = [ "hyprland/window" ];
-        modules-right = [ "custom/weather" "hyprland/language" "backlight" "battery" "pulseaudio" "bluetooth" "tray" "clock" ];
+        mainBar = {
+          layer = "top";
+          position = "top";
+          margin = "10 10 0 10";
 
-        clock = {
-          interval = 1;
-          tooltip = true;
-          format = "{:%Y-%m-%d\n %H:%M:%S}";
-        };
-        pulseaudio = {
-          scroll-step = 1; # %, can be a float
-          format = "🔊{volume}% {icon} {format_source}";
-          format-bluetooth = "{volume}% {icon} {format_source}";
-          format-bluetooth-muted = " {icon} {format_source}";
-          format-muted = " {format_source}";
-          format-source = "{volume}% ";
-          format-source-muted = "";
-          format-icons = {
-            headphone = "";
-            hands-free = "";
-            headset = "";
-            phone = "";
-            portable = "";
-            car = "";
-            default = [ "" "" "" ];
+        modules-left = [
+          "hyprland/workspaces"
+          "hyprland/window"
+        ];
+
+          modules-center = [
+          "clock"
+          ];
+          modules-right = [
+            "hyprland/language"
+            "cpu"
+            "memory"
+            "cpu"
+            "temperature"
+            "pulseaudio"
+            "tray"
+            "battery"
+            "custom/power"
+          ];
+
+      "hyprland/workspaces" = {
+            format = "{icon}";
+            on-click = "activate";
+            all-outputs = true;
+            format-icons = {
+              "urgent" = " ";
+              "active" = " ";
+              "default" = " ";
+            };
+      };
+
+      "hyprland/window" = {
+        max-length = 25;
+        separate-outputs = true;
+      };
+          "cpu" = {
+            format = "󰌢 {load}";
+            tooltip = false;
+            on-click = "gnome-system-monitor"; 
           };
-          on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
-        };
-        backlight = {
-          format = "{percent}%💡";
-        };
-        battery = {
-          interval = 5;
-          full-at = 85;
-          format = "🔋{capacity}% {power}w";
-        };
-        bluetooth = {
-          format = "  {status} ";
-          format-disabled = "";
-          format-connected = " {num_connections} connected";
-          tooltip-format = "{controller_alias}\t{controller_address}";
-          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
-          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
-        };
-        tray = {
-          icon-size = 24;
-          spacing = 5;
-        };
-        "custom/weather" = {
-          exec = "${pkgs.curl}/bin/curl -L \"wttr.in/Stockholm?format=%f+%p\"";
-          format = "{}";
-          interval = 3600;
-          #signal = 1;
-        };
-        "hyprland/language" = {
-          format = " KB: {} ";
-          format-en = "EN";
-          format-ru = "RU";
-          format-dh = "DH";
-          on-click = "${hyprctl} switchxkblayout at-translated-set-2-keyboard next";
+          "memory" = {
+            format = " {}%";
+          };
+          "disk" = {
+            interval = 600;
+            format = " {percentage_used}%";
+            path = "/";
+          };
+          "clock" = {
+            format = "  {:%b %d %H:%M}";
+            tooltip-format = "<b><big>{:%Y %B}</big></b>\n\n<tt>{calendar}</tt>";
+            format-alt = "{:%Y-%m-%d}";
+          };
+          "temperature" = {
+            thermal-zone = 6;
+            critical-threshold = 80;
+            format = "{icon} {temperatureC}°C";
+            format-icons = [ ""  ""  ""  ""  "" ];
+          };
+          "custom/kernel" = {
+            interval = "once";
+            format = " {}";
+            exec = "uname -r";
+          };
+          "network" = {
+            format-wifi = " {signalStrength}%";
+            format-ethernet = "";
+            tooltip-format = "{ifname} via {gwaddr}";
+            format-linked = "{ifname} (No IP)";
+            format-disconnected = "";
+          };
+          "pulseaudio" = {
+            format = "{icon} {volume}% {format_source}";
+            format-muted = " {format_source}";
+            format-source = "";
+            format-source-muted = "";
+            format-icons = { "default" = [ "" "" "" ]; };
+            scroll-step = 1;
+            tooltip-format = "{desc}; {volume}%";
+            # on-click = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
+            on-click = "${pkgs.pamixer}/bin/pamixer -t";
+            on-click-right = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+            on-click-middle = "pavucontrol";
+          };
+          "hyprland/language" = {
+            # "format-dh" = " dh";
+            "format-en" = "  dh";
+            "format-ru" = "  ru";
+            "keyboard-name" = "at-translated-set-2-keyboard";
+            on-click = "${hyprctl} switchxkblayout at-translated-set-2-keyboard next";
+
+          };
+            "battery" = {
+              on-click = "cpupower-gui";
+              bat = "BAT0";
+              states = {
+                "good" = 95;
+                "warning" = 30;
+                "critical" = 15;
+              };
+              format = "{icon} {capacity}%";
+              format-charging = " {capacity}%";
+              format-plugged = " {capacity}%";
+              format-alt = "{time} {icon}";
+              format-icons = [ " " " " " " " " " " ];
+            };
+          "tray" = { spacing = 10; };
+          "custom/power" = {
+            format = "";
+            on-click = "wlogout -p layer-shell";
+          };
         };
       };
-    };
+        # @import "${configHome}/colors.css";
   };
 }

@@ -99,7 +99,7 @@
     #xkbVariant = "";
 
     # xkbOptions = "grp:shift_caps_toggle,grp_led:caps,terminate:ctrl_alt_bksp";
-    xkbOptions = "grp:caps_toggle,caps:none,terminate:ctrl_alt_bksp";
+    xkbOptions = "terminate:ctrl_alt_bksp";
   };
   services.dbus.enable = true;
   # XDG Portals
