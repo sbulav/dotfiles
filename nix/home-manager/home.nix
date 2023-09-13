@@ -51,6 +51,7 @@
     kubectl
     neofetch
     ripgrep
+    wl-clipboard
   ];
 
   # Enable home-manager and git
@@ -134,6 +135,11 @@
   };
 
   services.mako = {
+    enable = true;
+  };
+
+  
+  services.copyq = {
     enable = true;
   };
   # Nicely reload system units when changing configs
