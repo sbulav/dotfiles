@@ -3,7 +3,7 @@
     enable = true;
     package = pkgs.swaylock-effects;
     settings = {
-      #image = "$HOME/.config/wall";
+      image = "$HOME/Pictures/wallpaper.png";
       color = "000000ff";
       font-size = "24";
       indicator-idle-visible = true;

@@ -7,7 +7,7 @@
     description = "Sergei";
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
-      # firefox
+      firefox
       #  thunderbird
     ];
   };

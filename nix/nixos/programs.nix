@@ -53,7 +53,7 @@
     polkit_gnome
     xdg-desktop-portal-hyprland
     hyprpaper
-    firefox-wayland
+    # firefox-wayland
     xdg-utils
     xdg-desktop-portal
     xdg-desktop-portal-gtk
