@@ -1,7 +1,7 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 
-{ inputs, lib, config, pkgs, ... }: {
+{ inputs, pkgs, ... }: {
   # You can import other home-manager modules here
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
@@ -52,6 +52,7 @@
     neofetch
     ripgrep
     wl-clipboard
+    swayidle
   ];
 
   # Enable home-manager and git
@@ -131,7 +132,7 @@
       kb-row-select = "Control+Super+space";
       matching = "fuzzy";
     };
-    theme = ./rofi/blurry.rasi;
+    theme = ./rofi/catppuccin-frappe.rasi;
   };
 
   services.mako = {

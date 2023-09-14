@@ -64,6 +64,7 @@ environment.sessionVariables = {
     adwaita-qt
     adwaita-qt6
     pamixer
+    vlc
     ];
 
   fonts.packages = with pkgs; [
