@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
   programs.fish = {
@@ -20,7 +19,7 @@
     enableSSHSupport = true;
   };
 
-environment.sessionVariables = {
+  environment.sessionVariables = {
     POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
     GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
     XDG_SESSION_TYPE = "wayland";
@@ -34,21 +33,21 @@ environment.sessionVariables = {
     NIXOS_XDG_OPEN_USE_PORTAL = "1";
   };
 
-  environment.systemPackages = with pkgs;
-    [
-      # cargo
-      # nodejs_20
-      bat
-      curl
-      gcc
-      gnome.gnome-tweaks
-      home-manager
-      gnumake
-      jq
-      kitty
-      lf
-      unzip
-      wget
+  environment.systemPackages = with pkgs; [
+    # cargo
+    # nodejs_20
+    alejandra
+    bat
+    curl
+    gcc
+    gnome.gnome-tweaks
+    home-manager
+    gnumake
+    jq
+    kitty
+    lf
+    unzip
+    wget
     hyprland-protocols
     hyprpicker
     polkit_gnome
@@ -65,28 +64,30 @@ environment.sessionVariables = {
     adwaita-qt6
     pamixer
     vlc
-    ];
-
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "CascadiaCode" "FiraCode"]; })
   ];
 
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-photos
-    gnome-tour
-  ]) ++ (with pkgs.gnome; [
-    cheese # webcam tool
-    gnome-music
-    gedit # text editor
-    epiphany # web browser
-    geary # email reader
-    gnome-characters
-    tali # poker game
-    iagno # go game
-    hitori # sudoku game
-    atomix # puzzle game
-    yelp # Help view
-    gnome-contacts
-    gnome-initial-setup
-  ]);
+  fonts.packages = with pkgs; [
+    (nerdfonts.override {fonts = ["CascadiaCode" "FiraCode"];})
+  ];
+
+  environment.gnome.excludePackages =
+    (with pkgs; [
+      gnome-photos
+      gnome-tour
+    ])
+    ++ (with pkgs.gnome; [
+      cheese # webcam tool
+      gnome-music
+      gedit # text editor
+      epiphany # web browser
+      geary # email reader
+      gnome-characters
+      tali # poker game
+      iagno # go game
+      hitori # sudoku game
+      atomix # puzzle game
+      yelp # Help view
+      gnome-contacts
+      gnome-initial-setup
+    ]);
 }

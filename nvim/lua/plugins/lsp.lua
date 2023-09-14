@@ -153,6 +153,7 @@ return {
             return {
                 sources = {
                     nls.builtins.diagnostics.flake8,
+                    nls.builtins.formatting.alejandra,
                     nls.builtins.formatting.gofmt,
                     nls.builtins.formatting.goimports,
                     nls.builtins.formatting.stylua,
