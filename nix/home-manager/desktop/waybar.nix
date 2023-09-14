@@ -1,20 +1,12 @@
-{ inputs
-, pkgs
+{ pkgs
 , ...
 }:
 let
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
 in
 {
-  home.packages = [
-    pkgs.networkmanagerapplet # For nm-applet icons
-  ];
-
-  programs.wlogout.enable = true;
-
   programs.waybar = {
     enable = true;
-
     package = pkgs.waybar;
 
     systemd = {
@@ -145,6 +137,5 @@ in
           };
         };
       };
-        # @import "${configHome}/colors.css";
   };
 }
