@@ -51,6 +51,12 @@
     # Making legacy nix commands consistent as well, awesome!
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
+      # Perform garbage collection weekly to maintain low disk usage
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 1w";
+    };
     settings = {
       # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
