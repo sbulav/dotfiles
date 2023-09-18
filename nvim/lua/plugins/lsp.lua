@@ -116,7 +116,6 @@ return {
             require("lsp.utils").on_attach(function(client, buffer)
                 require("lsp.utils").custom_on_init()
                 require("lsp.utils").custom_on_attach(client, buffer)
-                require("lsp.formatting").custom_on_attach(client, buffer)
             end)
 
             local servers = opts.servers
@@ -139,26 +138,6 @@ return {
                     end
                     require("lspconfig")[server].setup(server_opts)
                 end,
-            }
-        end,
-    },
-
-    -- -- formatters
-    {
-        "jose-elias-alvarez/null-ls.nvim",
-        event = "BufReadPre",
-        dependencies = { "mason.nvim" },
-        opts = function()
-            local nls = require "null-ls"
-            return {
-                sources = {
-                    nls.builtins.diagnostics.flake8,
-                    nls.builtins.formatting.alejandra,
-                    nls.builtins.formatting.gofmt,
-                    nls.builtins.formatting.goimports,
-                    nls.builtins.formatting.stylua,
-                },
-                on_attach = require("lsp.utils").custom_on_attach,
             }
         end,
     },
