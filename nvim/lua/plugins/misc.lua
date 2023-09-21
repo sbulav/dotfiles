@@ -10,7 +10,15 @@ return {
     { "janko/vim-test", cmd = { "TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit" } },
 
     -- Tree file manager
-    { "lmburns/lf.nvim", commit = "6f9c27c" },
+    {
+        "lmburns/lf.nvim",
+        config = function()
+            require("lf").setup {
+                escape_quit = false,
+                border = "rounded",
+            }
+        end,
+    },
 
     -- Redirect output to scratch buffer
     "sbulav/nredir.nvim",
