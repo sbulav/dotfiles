@@ -107,7 +107,7 @@ vim.keymap.set("n", "<F3>", function()
     }
 end, { noremap = true, silent = true })
 
-vim.keymap.set("n", "<Space>fn", function()
+vim.keymap.set("n", "<Space>yn", function()
     local filename = vim.fn.expand "%:p"
     utils.info("Yanking current filename: " .. filename, "INFO")
     vim.fn.setreg("+", filename)
@@ -122,7 +122,7 @@ local function yank_nodepath()
     end
 end
 
-vim.keymap.set("n", "<Space>fp", function()
+vim.keymap.set("n", "<Space>yp", function()
     local path = yank_nodepath()
     print(path)
     utils.info("Yanking current " .. vim.bo.ft .. "path: " .. path, "INFO")

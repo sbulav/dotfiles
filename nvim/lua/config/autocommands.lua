@@ -1,5 +1,3 @@
-local utils = require "utils"
-
 vim.api.nvim_create_augroup("Highlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
     command = "silent! lua vim.highlight.on_yank({higroup='IncSearch', timeout=1500, on_visual = true})",
