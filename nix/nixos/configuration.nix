@@ -102,7 +102,7 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us,ru,dh";
+    layout = "dh,ru";
     #xkbVariant = "";
 
     # xkbOptions = "grp:shift_caps_toggle,grp_led:caps,terminate:ctrl_alt_bksp";

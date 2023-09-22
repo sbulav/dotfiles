@@ -55,12 +55,12 @@ in {
 
     settings = {
       background = {
-        path = "/home/sab/Pictures/wallpaper.png";
+        path = /home/sab/Pictures/wallpaper.png;
         fit = "Cover";
       };
       GTK = {
         cursor_theme_name = "Bibata-Modern-Classic";
-        font_name = "Lexend 12";
+        font_name = "FiraCode Nerd Font Regular 12";
         icon_theme_name = "Papirus-Dark";
         theme_name = "Catppuccin-Mocha-Compact-Mauve-dark";
       };
