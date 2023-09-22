@@ -1,0 +1,38 @@
+{pkgs}:
+with pkgs; [
+  alejandra
+  ipfetch
+  bat
+  fish
+  tmux
+  gh
+  cmake
+  ctags
+  ffmpeg
+  kitty
+  fzf
+  fd
+  stylua
+  lf
+  unzip
+  ripgrep
+  k9s
+  kubectx
+  kubectl
+  krew
+  jq
+  mtr
+  rsync
+  yq
+  yamllint
+  iftop
+  tree
+  tree-sitter
+  wget
+  kubernetes-helm
+  helm-docs
+  gcc
+  neovim
+  go
+  gnupg
+]
