@@ -36,8 +36,6 @@ return {
                     },
                 },
                 -- pyright = {},
-                -- nil = {},
-
                 -- terraformls = {},
                 yamlls = {
                     -- lazy-load schemastore when needed
@@ -95,7 +93,6 @@ return {
                         },
                     },
                 },
-                marksman = {},
             },
             -- you can do any additional lsp server setup here
             -- return true if you don't want this server to be setup with lspconfig
@@ -122,7 +119,8 @@ return {
             local capabilities =
                 require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-            require("mason-lspconfig").setup { ensure_installed = vim.tbl_keys(servers) }
+            require("mason-lspconfig").setup {}
+            -- require("mason-lspconfig").setup { ensure_installed = vim.tbl_keys(servers) }
             require("mason-lspconfig").setup_handlers {
                 function(server)
                     local server_opts = servers[server] or {}
@@ -138,6 +136,9 @@ return {
                     end
                     require("lspconfig")[server].setup(server_opts)
                 end,
+                -- manually configured servers
+                require("lspconfig")["rnix"].setup {},
+                require("lspconfig")["marksman"].setup { cmd = { "marksman", "server" } },
             }
         end,
     },
