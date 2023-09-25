@@ -100,4 +100,6 @@ in {
     #   remapCapsLockToControl = true;
     # };
   };
+  # Enable sudo authentication with Touch ID.
+  security.pam.enableSudoTouchIdAuth = true;
 }
