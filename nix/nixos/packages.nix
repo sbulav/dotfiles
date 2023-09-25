@@ -6,6 +6,7 @@
       adwaita-qt6
       gnome.gnome-tweaks
       gnumake
+      file
       home-manager
       hyprland-protocols
       hyprpaper

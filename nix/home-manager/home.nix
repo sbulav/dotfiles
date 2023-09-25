@@ -12,6 +12,7 @@
 
     # You can also split up your configuration and import pieces of it here:
     ./desktop/mako.nix
+    ./desktop/rofi.nix
     ./desktop/swaylock.nix
     ./desktop/waybar.nix
   ];
