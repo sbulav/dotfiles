@@ -23,7 +23,7 @@
     };
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
+    home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # Nix formatter
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";

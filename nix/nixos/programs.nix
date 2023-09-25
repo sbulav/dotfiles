@@ -33,39 +33,6 @@
     NIXOS_XDG_OPEN_USE_PORTAL = "1";
   };
 
-  environment.systemPackages = with pkgs; [
-    # cargo
-    # nodejs_20
-    alejandra
-    bat
-    curl
-    gcc
-    gnome.gnome-tweaks
-    home-manager
-    gnumake
-    jq
-    kitty
-    lf
-    unzip
-    wget
-    hyprland-protocols
-    hyprpicker
-    polkit_gnome
-    xdg-desktop-portal-hyprland
-    hyprpaper
-    # firefox-wayland
-    xdg-utils
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
-    qt5.qtwayland
-    qt6.qmake
-    qt6.qtwayland
-    adwaita-qt
-    adwaita-qt6
-    pamixer
-    vlc
-  ];
-
   fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = ["CascadiaCode" "FiraCode"];})
   ];

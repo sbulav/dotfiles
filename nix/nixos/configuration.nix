@@ -19,6 +19,7 @@
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ./programs.nix
+    ./packages.nix
     ./greetd.nix
   ];
 
@@ -51,7 +52,7 @@
     # Making legacy nix commands consistent as well, awesome!
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
-      # Perform garbage collection weekly to maintain low disk usage
+    # Perform garbage collection weekly to maintain low disk usage
     gc = {
       automatic = true;
       dates = "weekly";

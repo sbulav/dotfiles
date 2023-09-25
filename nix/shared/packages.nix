@@ -1,38 +1,43 @@
 {pkgs}:
 with pkgs; [
   alejandra
-  ipfetch
   bat
-  fish
-  tmux
-  gh
   cmake
   ctags
-  ffmpeg
-  kitty
-  fzf
+  curl
   fd
-  stylua
-  lf
-  unzip
-  ripgrep
-  k9s
-  kubectx
-  kubectl
-  krew
-  jq
-  mtr
-  rsync
-  yq
-  yamllint
+  ffmpeg
+  fish
+  fzf
+  gcc
+  gh
+  gnupg
+  go
+  helm-docs
+  home-manager
   iftop
+  ipfetch
+  jq
+  k9s
+  kitty
+  krew
+  kubectl
+  kubectx
+  kubernetes-helm
+  lf
+  mtr
+  neovim
+  ripgrep
+  rsync
+  rnix-lsp # LSP for nix
+  marksman # LSP for markdown
+  lua-language-server # LSP for lua
+  stylua
+  tmux
   tree
   tree-sitter
+  unzip
   wget
-  kubernetes-helm
-  helm-docs
-  gcc
-  neovim
-  go
-  gnupg
+  yamllint
+  yq
 ]
