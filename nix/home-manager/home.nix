@@ -64,6 +64,8 @@
     papirus-icon-theme
     ripgrep
     slack
+    pcmanfm
+    brightnessctl
     swayidle
     xdg-utils
     wl-clipboard
