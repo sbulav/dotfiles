@@ -70,6 +70,7 @@
   networking.hostName = "nz"; # Define your hostname.
   networking.enableIPv6 = false;
   networking.networkmanager.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -123,10 +124,10 @@
       enable = true;
       extraPortals = [
         pkgs.xdg-desktop-portal
-        pkgs.xdg-desktop-portal-gtk
       ];
     };
   };
+
   # Enable CUPS to print documents.
   services.printing.enable = false;
 

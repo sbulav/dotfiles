@@ -11,7 +11,9 @@
     # inputs.nix-colors.homeManagerModule
 
     # You can also split up your configuration and import pieces of it here:
+    ./desktop/hyprpaper.nix
     ./desktop/mako.nix
+    ./mime.nix
     ./desktop/rofi.nix
     ./desktop/swaylock.nix
     ./desktop/waybar.nix
@@ -50,7 +52,9 @@
     awscli2
     azure-cli
     cargo
+    imv
     fd
+    glib # required for mime
     fzf
     gh
     k9s
@@ -59,10 +63,13 @@
     networkmanagerapplet
     papirus-icon-theme
     ripgrep
+    slack
     swayidle
+    xdg-utils
     wl-clipboard
   ];
 
+  programs.firefox.enable = true;
   programs.wlogout.enable = true;
 
   services.copyq = {

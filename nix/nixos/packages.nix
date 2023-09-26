@@ -18,7 +18,6 @@
       qt6.qtwayland
       vlc
       xdg-desktop-portal
-      xdg-desktop-portal-gtk
       xdg-desktop-portal-hyprland
       xdg-utils
       zathura # PDF viewer
