@@ -33,7 +33,9 @@ return {
             },
             scope = {
                 enabled = true,
-                show_start = false,
+                show_start = true,
+                show_end = true,
+                highlight = { "Function", "Label" },
             },
         }
     end,
