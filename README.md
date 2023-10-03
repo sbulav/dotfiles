@@ -1,6 +1,7 @@
 # My configuration files
 
-[![Always wip](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrgUjNod0ETGyHau0Tkn-WAnFjXLP493ryUQ&usqp=CAU)]
+![Always wip](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrgUjNod0ETGyHau0Tkn-WAnFjXLP493ryUQ&usqp=CAU)
+
 [![GitGuardian scan](https://github.com/sbulav/dotfiles/actions/workflows/gitguardian.yml/badge.svg)](https://github.com/sbulav/dotfiles/actions/workflows/gitguardian.yml)
 [![release-please](https://github.com/sbulav/dotfiles/actions/workflows/please_release.yml/badge.svg)](https://github.com/sbulav/dotfiles/actions/workflows/please_release.yml)
 
