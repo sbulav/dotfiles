@@ -1,5 +1,56 @@
 # Changelog
 
+## [3.0.0](https://www.github.com/sbulav/dotfiles/compare/v2.3.0...v3.0.0) (2023-10-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate darwin to nix
+
+### Features
+
+* add nix autoclean ([2a9c993](https://www.github.com/sbulav/dotfiles/commit/2a9c9930476a040391a79766020e04bea998c857))
+* **fish:** add mysql bin to PATH ([bed12d8](https://www.github.com/sbulav/dotfiles/commit/bed12d82f103e4295b9184c97118d4612c9c2343))
+* **kitty:** allow window closing ([f16eec5](https://www.github.com/sbulav/dotfiles/commit/f16eec5dd1a3ac382af5135ebfab37a385cd840e))
+* migrate darwin to nix ([620d0cd](https://www.github.com/sbulav/dotfiles/commit/620d0cd3678328afd1292703aae5c40db1b2eca8))
+* **nix:** add build scripts ([29814df](https://www.github.com/sbulav/dotfiles/commit/29814df4da227d95db9cb82b6c695e79008c0fcc))
+* **nix:** add copyq ([99d36fc](https://www.github.com/sbulav/dotfiles/commit/99d36fcc58874728b99dd1eb5061e2a9ff2f7b65))
+* **nix:** add file manager, XF86 mic key ([a3e1319](https://www.github.com/sbulav/dotfiles/commit/a3e1319b2c02734aeafc8ba7ee44d7c621dad475))
+* **nix:** add home-manager, rofi ([0b07ffc](https://www.github.com/sbulav/dotfiles/commit/0b07ffcf20d4d72d18ff0f153d48db597e0efd6a))
+* **nix:** add swaylock ([a2606bf](https://www.github.com/sbulav/dotfiles/commit/a2606bf5f8dc1e78a5efd606ae73502610150bbf))
+* **nix:** allow sudo via touchID ([01829cb](https://www.github.com/sbulav/dotfiles/commit/01829cb1b11e9b92083f804c17a4e6ec76ffe00f))
+* **nix:** fix hidpi scaling, add swayidle ([561fbef](https://www.github.com/sbulav/dotfiles/commit/561fbef29cdb353c0874c5476bf9e83e74adea9f))
+* **nix:** fix hyprland deps and startup time ([1efc0ee](https://www.github.com/sbulav/dotfiles/commit/1efc0eec6c59b19663884c9e2e20d8ef1285056b))
+* **nix:** fix nixos rofi;add file ([49e436d](https://www.github.com/sbulav/dotfiles/commit/49e436dc33f8e5a48e8bb1f14af2d4c837cbfe08))
+* **nix:** Install alejandro formatter ([12d7fed](https://www.github.com/sbulav/dotfiles/commit/12d7fedff82aecfd2363e3c786f9d54d23ab624c))
+* **nixos:** work on packages ([1160744](https://www.github.com/sbulav/dotfiles/commit/1160744dc8d766775e73a246a23bdf7a1deb4b2b))
+* **nix:** reorganize file structure ([d3e9cfb](https://www.github.com/sbulav/dotfiles/commit/d3e9cfbbdfc29146fbe8e5df7609dd3b59119e1f))
+* **nix:** set up hyprpaper for wallpapers ([98db9a5](https://www.github.com/sbulav/dotfiles/commit/98db9a5ca2aff373c76be8979f1003b20eb7969a))
+* **nix:** start working on waybar ([82323c6](https://www.github.com/sbulav/dotfiles/commit/82323c61861ab8465b64dc7b17892794efc52f65))
+* **nix:** stop using GTK portal; set up mime associations ([58cc62d](https://www.github.com/sbulav/dotfiles/commit/58cc62d37f74d60504169015f3ce13563d295835))
+* **nix:** switch to greetd+regreet ([76ae341](https://www.github.com/sbulav/dotfiles/commit/76ae341cf0e28d63da16def0e950401c02926ea3))
+* **nix:** switch to unstable, add waybar ([b8648cd](https://www.github.com/sbulav/dotfiles/commit/b8648cd72e2b730a1df161aedc4bda0a449c8538))
+* **nix:** use master for home-manager and shared packages ([62befbb](https://www.github.com/sbulav/dotfiles/commit/62befbb0154c5c92a2d9b568488f81024f50f460))
+* **nix:** use nix flakes ([6008a74](https://www.github.com/sbulav/dotfiles/commit/6008a74d2667818e7356cff16e97344975bdd861))
+* **nix:** work on kb switching ([89260e8](https://www.github.com/sbulav/dotfiles/commit/89260e8d76e3ff379c07dbe81cf45e88f2e14a23))
+* **nvim:** add highlight ([075a2da](https://www.github.com/sbulav/dotfiles/commit/075a2da2c1d5212b2a8ab454c86a8a8a800b18d5))
+* **nvim:** add mapping to paste above/below ([595c02e](https://www.github.com/sbulav/dotfiles/commit/595c02e737982e3633055cd5bd67e8a705549ce8))
+* **nvim:** migrate to blankline v3 ([e3d12a4](https://www.github.com/sbulav/dotfiles/commit/e3d12a476cace3bfc3a958882289890d0d8b84b3))
+* **nvim:** migrate to conform for formatting ([91e830e](https://www.github.com/sbulav/dotfiles/commit/91e830eec7c534850a9596c88457d7f0a1aeda2a))
+* **nvim:** remap yanking cmd, add hunk_preview ([0b41a29](https://www.github.com/sbulav/dotfiles/commit/0b41a29ac2b4c0392304645e0a7809d8a7090084))
+* **nvim:** use lsp managed by nix ([0b81336](https://www.github.com/sbulav/dotfiles/commit/0b813368e0b30245044d9781444e586c6b7101df))
+
+
+### Bug Fixes
+
+* fix lf previewer(works in tmux!) ([2b5a86f](https://www.github.com/sbulav/dotfiles/commit/2b5a86f418fbe65ab2dbb62137cc06ee9902e758))
+* **lf:** correct script for the preview ([95959eb](https://www.github.com/sbulav/dotfiles/commit/95959eb08ed46f7fcfc388e163eda48ef6684948))
+* **lf:** fix video preview in lf ([98650e1](https://www.github.com/sbulav/dotfiles/commit/98650e1db85485c18e150df8c24a07ce71d09070))
+* **nvim:** lf now requires setup ([b906e40](https://www.github.com/sbulav/dotfiles/commit/b906e4058aaff0a2517a2eebfbe135b4d0d481af))
+* **nvim:** pin lf.nvim as latest commits broke its start ([345633a](https://www.github.com/sbulav/dotfiles/commit/345633a21d86d702627eedb93b912922143a3d66))
+* **nvim:** remove lightbulb sign as it shakes screen on marksman ([01899d1](https://www.github.com/sbulav/dotfiles/commit/01899d1380d01dba988ff45608b617d108e98c06))
+* **nvim:** use correct lspsaga function for symbols ([6100f96](https://www.github.com/sbulav/dotfiles/commit/6100f9614ed12565f3c9728be812fc58ed8d7e3f))
+
 ## [2.3.0](https://www.github.com/sbulav/dotfiles/compare/v2.2.0...v2.3.0) (2023-08-03)
 
 
