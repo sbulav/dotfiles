@@ -35,9 +35,8 @@ return {
                         },
                     },
                 },
-                pyright = {},
-
-                terraformls = {},
+                -- pyright = {},
+                -- terraformls = {},
                 yamlls = {
                     -- lazy-load schemastore when needed
                     on_new_config = function(new_config)
@@ -94,7 +93,6 @@ return {
                         },
                     },
                 },
-                marksman = {},
             },
             -- you can do any additional lsp server setup here
             -- return true if you don't want this server to be setup with lspconfig
@@ -115,14 +113,14 @@ return {
             require("lsp.utils").on_attach(function(client, buffer)
                 require("lsp.utils").custom_on_init()
                 require("lsp.utils").custom_on_attach(client, buffer)
-                require("lsp.formatting").custom_on_attach(client, buffer)
             end)
 
             local servers = opts.servers
             local capabilities =
                 require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-            require("mason-lspconfig").setup { ensure_installed = vim.tbl_keys(servers) }
+            require("mason-lspconfig").setup {}
+            -- require("mason-lspconfig").setup { ensure_installed = vim.tbl_keys(servers) }
             require("mason-lspconfig").setup_handlers {
                 function(server)
                     local server_opts = servers[server] or {}
@@ -138,25 +136,9 @@ return {
                     end
                     require("lspconfig")[server].setup(server_opts)
                 end,
-            }
-        end,
-    },
-
-    -- -- formatters
-    {
-        "jose-elias-alvarez/null-ls.nvim",
-        event = "BufReadPre",
-        dependencies = { "mason.nvim" },
-        opts = function()
-            local nls = require "null-ls"
-            return {
-                sources = {
-                    nls.builtins.diagnostics.flake8,
-                    nls.builtins.formatting.gofmt,
-                    nls.builtins.formatting.goimports,
-                    nls.builtins.formatting.stylua,
-                },
-                on_attach = require("lsp.utils").custom_on_attach,
+                -- manually configured servers
+                require("lspconfig")["rnix"].setup {},
+                require("lspconfig")["marksman"].setup { cmd = { "marksman", "server" } },
             }
         end,
     },

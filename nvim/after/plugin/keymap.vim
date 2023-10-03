@@ -202,6 +202,8 @@ nnoremap <leader>h <cmd>lua require('nredir').nredir(require("utils").cheatSheet
 nnoremap <leader>H <cmd>lua require('nredir').nredir(require("utils").cheatSheetCommand(false), vim.bo.filetype)<cr>
 " Open vimrc
 nnoremap <leader>rc :edit $MYVIMRC<CR>
+" Open flake
+nnoremap <leader>rf :edit ~/dotfiles/nix/flake.nix<CR>
 " Global replace word under cursor
 nnoremap <leader>% :%s/\<<C-r>=expand('<cword>')<CR>\>/
 " Change project folder to current file's directory for current window

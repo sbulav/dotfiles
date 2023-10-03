@@ -98,6 +98,13 @@ return {
                         show_file = false,
                         hide_keyword = true,
                     },
+                    beacon = {
+                        enable = false,
+                    },
+                    lightbulb = {
+                        enable = true,
+                        sign = false,
+                    },
                 }
             end,
         },
@@ -120,7 +127,7 @@ return {
                     { "diff" },
                     {
                         function()
-                            return require("lspsaga.symbolwinbar"):get_winbar()
+                            return require("lspsaga.symbol.winbar").get_bar()
                         end,
                         color = { fg = colors.blue },
                     },
