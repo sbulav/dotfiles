@@ -4,6 +4,7 @@
     [
       adwaita-qt
       adwaita-qt6
+      blueberry
       gnome.gnome-tweaks
       gnumake
       file

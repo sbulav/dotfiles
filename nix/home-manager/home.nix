@@ -53,6 +53,7 @@
     azure-cli
     cargo
     imv
+    bluez-tools
     fd
     glib # required for mime
     fzf
