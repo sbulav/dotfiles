@@ -5,6 +5,7 @@ with pkgs; [
   cmake
   ctags
   curl
+  dig
   fd
   ffmpeg
   fish
@@ -25,13 +26,13 @@ with pkgs; [
   kubectx
   kubernetes-helm
   lf
+  lua-language-server # LSP for lua
+  marksman # LSP for markdown
   mtr
   neovim
   ripgrep
-  rsync
   rnix-lsp # LSP for nix
-  marksman # LSP for markdown
-  lua-language-server # LSP for lua
+  rsync
   stylua
   tmux
   tree
