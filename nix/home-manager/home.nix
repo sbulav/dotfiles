@@ -51,25 +51,26 @@
   home.packages = with pkgs; [
     awscli2
     azure-cli
-    cargo
-    imv
     bluez-tools
+    brightnessctl
+    cargo
     fd
-    glib # required for mime
     fzf
     gh
+    glib # required for mime
+    imv
     k9s
     kubectl
     neofetch
     networkmanagerapplet
     papirus-icon-theme
+    pcmanfm
     ripgrep
     slack
-    pcmanfm
-    brightnessctl
     swayidle
-    xdg-utils
     wl-clipboard
+    xdg-utils
+    zoom-us
   ];
 
   programs.firefox.enable = true;
