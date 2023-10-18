@@ -5,13 +5,14 @@
       adwaita-qt
       adwaita-qt6
       blueberry
+      file
       gnome.gnome-tweaks
       gnumake
-      file
       home-manager
       hyprland-protocols
       hyprpaper
       hyprpicker
+      nfs-utils
       pamixer
       polkit_gnome
       qt5.qtwayland
