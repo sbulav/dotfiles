@@ -70,7 +70,9 @@
   networking.hostName = "nz"; # Define your hostname.
   networking.enableIPv6 = false;
   networking.networkmanager.enable = true;
+  networking.wireguard.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false;
+  services.wg-netmanager.enable = true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
