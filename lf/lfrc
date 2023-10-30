@@ -34,7 +34,9 @@ cmd trash ${{
         gio trash "$fx"
     else
         mkdir -p /tmp/trash
-        mv -- "$fx" /tmp/trash
+      echo "$fx" | while read line; do 
+        mv -- "$line" /tmp/trash
+      done
     fi
 }}
 
