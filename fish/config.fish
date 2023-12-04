@@ -3,6 +3,10 @@ set -a PATH "$HOME/bin/" "$HOME/.local/bin" "/opt/homebrew/bin" "$HOME/./go/bin/
 
 # Initialize FZF keybindings
 fzf_key_bindings
+if status --is-interactive;
+  atuin init fish --disable-up-arrow | source
+end
+
 
 # Set terminal
 set -g TERM screen-256color

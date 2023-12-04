@@ -33,7 +33,7 @@ in {
       home.packages = pkgs.callPackage ./packages.nix {};
 
       home.stateVersion = "23.05";
-      # programs = {} // import ../shared/home-manager.nix {inherit config pkgs lib;};
+      programs = import ../shared/home-manager.nix {inherit config pkgs lib;};
     };
   };
 }

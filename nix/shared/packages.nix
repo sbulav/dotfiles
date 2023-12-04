@@ -1,6 +1,7 @@
 {pkgs}:
 with pkgs; [
   alejandra
+  atuin
   bat
   cmake
   ctags
