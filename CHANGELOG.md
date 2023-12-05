@@ -1,5 +1,28 @@
 # Changelog
 
+## [3.1.0](https://www.github.com/sbulav/dotfiles/compare/v3.0.0...v3.1.0) (2023-12-05)
+
+
+### Features
+
+* **fish:** load all ssh keys ([793f7ec](https://www.github.com/sbulav/dotfiles/commit/793f7ec91eb1f4ed6a1a089260b122b9c7b042e1))
+* **nix:** add bluetooth manager, service and waybar ([e1961f4](https://www.github.com/sbulav/dotfiles/commit/e1961f4c50183acb522f3e7ff5391fff02372bdb))
+* **nix:** add dig for troubleshooting ([da975fa](https://www.github.com/sbulav/dotfiles/commit/da975fa34599d7b3d6e9f0af1aa863c73c60af0f))
+* **nix:** add grim and slurp for screenshots ([1fce79c](https://www.github.com/sbulav/dotfiles/commit/1fce79c80b54e9bc00fbe2d02b68e9862c9342f3))
+* **nix:** add nfs utils ([6f5f7ee](https://www.github.com/sbulav/dotfiles/commit/6f5f7ee1a015d7fd3d6f6f03b5e38beb4f7e55c9))
+* **nix:** add zoom-us ([3c1fc82](https://www.github.com/sbulav/dotfiles/commit/3c1fc82f13147b406d086293713ec4e27fac0d66))
+* **nix:** auth with fingerprint ([370fb65](https://www.github.com/sbulav/dotfiles/commit/370fb6554856d670f35fe98ec18ad703ea8f762e))
+* **nix:** bump flakes and add atuin ([29f4e8d](https://www.github.com/sbulav/dotfiles/commit/29f4e8d0d44d1e13af13f161cdc80604ab43c6a6))
+* **nix:** enable wireguard ([bec5f20](https://www.github.com/sbulav/dotfiles/commit/bec5f20c6e3f5657e99d1ce4de1438cee2d17ba5))
+* **nvim:** add sg.nvim ([8e8fb6c](https://www.github.com/sbulav/dotfiles/commit/8e8fb6ced628a6eee60a7874dd3505152f5a75d6))
+* **nvim:** correctly detect ansible ft ([a06fa88](https://www.github.com/sbulav/dotfiles/commit/a06fa88478bc1570f4c2e986ae2607adb0fb433a))
+
+
+### Bug Fixes
+
+* **lf:** properly handle deletion files with spaces ([714030a](https://www.github.com/sbulav/dotfiles/commit/714030a97fcd0e0b796b1ed7bc5015e1533d912f))
+* **tmux:** fix shebang for nix k8s status ([73fe2f4](https://www.github.com/sbulav/dotfiles/commit/73fe2f408a1b1c2694b82b29e1c37dc40d0f10dd))
+
 ## [3.0.0](https://www.github.com/sbulav/dotfiles/compare/v2.3.0...v3.0.0) (2023-10-03)
 
 
