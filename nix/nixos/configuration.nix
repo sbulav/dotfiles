@@ -70,7 +70,9 @@
   networking.hostName = "nz"; # Define your hostname.
   networking.enableIPv6 = false;
   networking.networkmanager.enable = true;
+  networking.wireguard.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false;
+  services.wg-netmanager.enable = true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -140,6 +142,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
@@ -154,9 +157,12 @@
     symbolsFile = ../symbols/colemak_dh;
   };
 
+  services.fprintd.enable = true;
+
   security.rtkit.enable = true;
   security.sudo.wheelNeedsPassword = false;
   security.pam.services.swaylock = {};
+  security.pam.services.swaylock.fprintAuth = true;
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.

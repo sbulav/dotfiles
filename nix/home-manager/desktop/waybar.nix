@@ -1,5 +1,6 @@
 {pkgs, ...}: let
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
+  blueberry = "${pkgs.blueberry}/bin/blueberry";
 in {
   programs.waybar = {
     enable = true;
@@ -34,11 +35,22 @@ in {
           "memory"
           "temperature"
           "pulseaudio"
+          "bluetooth"
           "network"
           "tray"
           "battery"
           "custom/power"
         ];
+
+        bluetooth = {
+          "format" = "󰂯";
+          "format-disabled" = "󰂲";
+          "format-connected" = "󰂱";
+          "tooltip-format" = "{controller_alias}\t{controller_address}";
+          "tooltip-format-connected" = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+          "tooltip-format-enumerate-connected" = "{device_alias}\t\t{device_address}";
+          "on-click" = "blueberry";
+        };
 
         "hyprland/workspaces" = {
           format = "{icon}";

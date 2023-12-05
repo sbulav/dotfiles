@@ -4,13 +4,18 @@
     [
       adwaita-qt
       adwaita-qt6
-      gnome.gnome-tweaks
-      gnumake
+      blueberry
       file
+      gnome.gnome-tweaks
+      grim # Screenshot tool for hyprland
+      slurp # Works with grim to screenshot on wayland
+      gnumake
       home-manager
       hyprland-protocols
       hyprpaper
       hyprpicker
+      nfs-utils
+      traceroute
       pamixer
       polkit_gnome
       qt5.qtwayland

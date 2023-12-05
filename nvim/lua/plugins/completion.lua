@@ -78,6 +78,7 @@ return {
                 { name = "nvim_lsp", priority = 8 },
                 { name = "cmp_tabnine", priority = 8, max_item_count = 3 },
                 { name = "treesitter", priority = 7 },
+                { name = "cody", priority = 6 },
                 { name = "buffer", priority = 7, keyword_length = 5 },
                 { name = "nvim_lua", priority = 5 },
                 { name = "luasnip", priority = 5 },
@@ -96,6 +97,13 @@ return {
             },
             mapping = {
                 ["<CR>"] = cmp.mapping.confirm { select = false },
+                ["<c-a>"] = cmp.mapping.complete {
+                    config = {
+                        sources = {
+                            { name = "cody" },
+                        },
+                    },
+                },
                 ["<C-d>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-f>"] = cmp.mapping.scroll_docs(4),
                 ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
@@ -148,6 +156,7 @@ return {
                         cmp_tabnine = "[T9]",
                         nvim_lsp = "[LSP]",
                         treesitter = "[TS]",
+                        cody = "[SG]",
                         path = "[Path]",
                         luasnip = "[Snippet]",
                     })[entry.source.name]

@@ -111,12 +111,12 @@ function fzf_key_bindings
   end
 
   bind \ct fzf-file-widget
-  bind \cr fzf-history-widget
+  # bind \cr fzf-history-widget
   bind \ec fzf-cd-widget
 
   if bind -M insert > /dev/null 2>&1
     bind -M insert \ct fzf-file-widget
-    bind -M insert \cr fzf-history-widget
+    # bind -M insert \cr fzf-history-widget
     bind -M insert \ec fzf-cd-widget
   end
 
