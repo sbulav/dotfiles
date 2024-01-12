@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  launchd.user.agents.yabai.serviceConfig = {
+    StandardOutPath = "/tmp/yabai.log";
+    StandardErrorPath = "/tmp/yabai.log";
+  };
   services.yabai = {
     enable = true;
     enableScriptingAddition = true;
@@ -27,9 +31,47 @@
       external_bar = "all:0:26";
     };
     extraConfig = ''
+      for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 6)'); do
+          yabai -m space --destroy 7
+      done
+
+      function setup_space {
+        local idx="$1"
+        local name="$2"
+        local space=
+        echo "setup space $idx : $name"
+
+        space=$(yabai -m query --spaces --space "$idx")
+        if [ -z "$space" ]; then
+          yabai -m space --create
+        fi
+        yabai -m space "$idx" --label "$name"
+      }
+
+      setup_space 1 main
+      setup_space 2 web
+      setup_space 3 code
+      setup_space 4 social
+      setup_space 5 media
+      setup_space 6 other
+
+      yabai -m rule --add app="^Safari$" space=2
+      yabai -m rule --add app="^Firefox$" space=2
+      yabai -m rule --add app="^Kitty$" space=3
+      yabai -m rule --add app="^kitty$" space=3
+      yabai -m rule --add app="^Telegram$" space=1
+      yabai -m rule --add app="^Slack$" space=1
+      yabai -m rule --add app="^Teams$" space=1
+      yabai -m rule --add app="^Mail$" space=4
+      yabai -m rule --add app="^Calendar$" space=4
+      yabai -m rule --add app="^Music$" space=5
+
       # Float system settings
-      yabai -m rule --add app="^System Settings$" manage=off
+      yabai -m rule --add app="^(Terminal|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility)$" manage=off
+      yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
       yabai -m rule --add app="^System Information$" label="^About This Mac$" manage=off
+      yabai -m rule --add app="^Cisco AnyConnect Secure Mobility Client$" manage=off
+      yabai -m rule --add app="^Cisco$" manage=off
 
       # Load scripting addition
       yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
