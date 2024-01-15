@@ -57,8 +57,7 @@ map gd cd ~/Documents
 map gD cd ~/Downloads
 map gp cd ~/Pictures
 map gc cd ~/.config
-map gp cd ~/git_pagaya/
-map gt cd ~/git_pagaya/sb-tools/
+map gn cd ~/dotfiles/nix/
 
 # Tips
 

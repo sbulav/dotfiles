@@ -19,7 +19,7 @@
 
     "audio/*" = ["vlc.desktop"];
     "video/*" = ["vlc.desktop"];
-    "image/*" = ["imv.desktop"];
+    "image/*" = ["feh.desktop"];
     "application/json" = browser;
     "application/pdf" = ["org.pwmt.zathura.desktop.desktop"];
     "x-scheme-handler/tg" = ["telegramdesktop.desktop"];

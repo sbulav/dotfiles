@@ -55,10 +55,10 @@
     brightnessctl
     cargo
     fd
+    feh
     fzf
     gh
     glib # required for mime
-    imv
     k9s
     kubectl
     neofetch
