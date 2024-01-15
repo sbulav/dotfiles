@@ -67,20 +67,22 @@
   };
 
   # Networking
-  networking.hostName = "nz"; # Define your hostname.
-  networking.enableIPv6 = false;
-  networking.networkmanager.enable = true;
-  networking.wireguard.enable = true;
-  networking.hosts = {
-    "10.211.80.175" = ["teleport-c11.pyn.ru"];
+  networking = {
+    hostName = "nz"; # Define your hostname.
+    enableIPv6 = false;
+    networkmanager.enable = true;
+    wireguard.enable = true;
+    hosts = {
+      "10.211.80.175" = ["teleport-c11.pyn.ru"];
+    };
+    # Open ports in the firewall.
+    # networking.firewall.allowedTCPPorts = [ ... ];
+    # networking.firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    firewall.enable = false;
   };
   systemd.services.NetworkManager-wait-online.enable = false;
   services.wg-netmanager.enable = true;
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -178,5 +180,5 @@
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }
