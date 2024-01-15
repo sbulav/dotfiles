@@ -1,5 +1,27 @@
 # Changelog
 
+## [3.2.0](https://www.github.com/sbulav/dotfiles/compare/v3.1.0...v3.2.0) (2024-01-15)
+
+
+### Features
+
+* **fish:** add cdd function ([aca6e0d](https://www.github.com/sbulav/dotfiles/commit/aca6e0d8645e71b43e51e8401891cd88d9d9b3e1))
+* **nix:** add example hosts ([a2fd917](https://www.github.com/sbulav/dotfiles/commit/a2fd91719ed46c1924eb9d519acde1b224977252))
+* **nix:** override default l function in nix ([305d523](https://www.github.com/sbulav/dotfiles/commit/305d523505de8554f358d405451df0e741f7fc83))
+* **nix:** pin yabai apps to spaces ([cf9ee45](https://www.github.com/sbulav/dotfiles/commit/cf9ee451c1b6a67e498c2289bbb83e867605c3a8))
+* **nix:** replace imv with feh ([1b9d333](https://www.github.com/sbulav/dotfiles/commit/1b9d333ceb0cea8028214b3736b8a516b6ea927e))
+* **nix:** yabai ([2175bee](https://www.github.com/sbulav/dotfiles/commit/2175bee3e82c3a38ea320dbb0a5625ec21c865ea))
+* **nvim:** fix sg.nvim setup ([7dfbea7](https://www.github.com/sbulav/dotfiles/commit/7dfbea7789012a5ce7e3241d5397e77a386df919))
+* **nvim:** switch colorscheme to monet.nvim ([a82ca43](https://www.github.com/sbulav/dotfiles/commit/a82ca433e205fc1d69f5b19d077fbd4db102ff1d))
+* **tmux:** enable osc52 yank ([d8c89d9](https://www.github.com/sbulav/dotfiles/commit/d8c89d9bed2e753aa17bc8af4bc2629cae5da3f3))
+
+
+### Bug Fixes
+
+* **nix:** enable 2 ways of auth in swaylock ([ecc0af0](https://www.github.com/sbulav/dotfiles/commit/ecc0af055643c4282f874a71acefdff30bef81eb))
+* **nix:** reorder nixos programs ([1d11306](https://www.github.com/sbulav/dotfiles/commit/1d113068e28ec920f37b2c6aa843f681c17d8db9))
+* **nvim:** don't run treesitter on fugitives ([8664d6f](https://www.github.com/sbulav/dotfiles/commit/8664d6f9ade8470fc05abfaf35a66152c58dcf05))
+
 ## [3.1.0](https://www.github.com/sbulav/dotfiles/compare/v3.0.0...v3.1.0) (2023-12-05)
 
 
