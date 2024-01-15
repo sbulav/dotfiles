@@ -50,15 +50,14 @@
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
     awscli2
-    azure-cli
     bluez-tools
     brightnessctl
     cargo
     fd
+    feh
     fzf
     gh
     glib # required for mime
-    imv
     k9s
     kubectl
     neofetch
@@ -83,5 +82,5 @@
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 }

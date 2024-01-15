@@ -46,6 +46,7 @@ return {
                 auto_install = true,
                 highlight = {
                     enable = true, -- false will disable the whole extension
+                    disable = { "fugitive", "git" }
                 },
                 incremental_selection = {
                     enable = true,

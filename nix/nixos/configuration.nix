@@ -67,17 +67,22 @@
   };
 
   # Networking
-  networking.hostName = "nz"; # Define your hostname.
-  networking.enableIPv6 = false;
-  networking.networkmanager.enable = true;
-  networking.wireguard.enable = true;
+  networking = {
+    hostName = "nz"; # Define your hostname.
+    enableIPv6 = false;
+    networkmanager.enable = true;
+    wireguard.enable = true;
+    hosts = {
+      "10.211.80.175" = ["teleport-c11.pyn.ru"];
+    };
+    # Open ports in the firewall.
+    # networking.firewall.allowedTCPPorts = [ ... ];
+    # networking.firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    firewall.enable = false;
+  };
   systemd.services.NetworkManager-wait-online.enable = false;
   services.wg-netmanager.enable = true;
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -161,8 +166,25 @@
 
   security.rtkit.enable = true;
   security.sudo.wheelNeedsPassword = false;
-  security.pam.services.swaylock = {};
-  security.pam.services.swaylock.fprintAuth = true;
+  # security.pam.services.swaylock.fprintAuth = true;
+  security.pam.services.swaylock.text = ''
+    # Account management.
+    account required pam_unix.so
+
+    # Authentication management.
+
+    # prompt for a password; pressing Enter on a blank field will proceed to fingerprint authentication.
+    auth sufficient pam_unix.so nullok likeauth try_first_pass
+    auth sufficient ${pkgs.fprintd}/lib/security/pam_fprintd.so
+    auth required pam_deny.so
+
+    # Password management.
+    password sufficient pam_unix.so nullok sha512
+
+    # Session management.
+    session required pam_env.so conffile=/etc/pam/environment readenv=0
+    session required pam_unix.so
+  '';
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
@@ -175,5 +197,5 @@
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }

@@ -2,6 +2,9 @@ return {
     "sourcegraph/sg.nvim",
     cmd = { "CodyAsk", "CodyChat", "CodyToggle", "CodyTask", "CodyTaskView" },
     -- event = "VeryLazy",
+    config = function()
+        require("sg").setup {}
+    end,
     keys = {
         {
             "<leader>sF",

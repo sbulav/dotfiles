@@ -6,9 +6,11 @@
   user = "%USER%";
 in {
   imports = [
-    ./home-manager.nix
     ../shared
     ../shared/cachix
+    ./home-manager.nix
+    ./skhd.nix
+    ./yabai.nix
   ];
 
   # Auto upgrade nix package and the daemon service.
