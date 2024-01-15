@@ -50,7 +50,6 @@
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
     awscli2
-    azure-cli
     bluez-tools
     brightnessctl
     cargo
