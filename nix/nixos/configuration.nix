@@ -71,6 +71,9 @@
   networking.enableIPv6 = false;
   networking.networkmanager.enable = true;
   networking.wireguard.enable = true;
+  networking.hosts = {
+    "10.211.80.175" = ["teleport-c11.pyn.ru"];
+  };
   systemd.services.NetworkManager-wait-online.enable = false;
   services.wg-netmanager.enable = true;
   # Open ports in the firewall.
