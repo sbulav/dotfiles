@@ -8,7 +8,6 @@
         nixup = "sudo nixos-rebuild switch --flake ~/dotfiles/nix#nz";
         nixt = "sudo nixos-rebuild test --flake ~/dotfiles/nix#nz";
         nixclean = "sudo nix-collect-garbage -d && sudo nix-store --gc && sudo nix-store --repair --verify --check-contents && sudo nix-store --optimise -vvv";
-        homeup = "home-manager switch --flake ~/dotfiles/nix";
       };
       interactiveShellInit = "source ~/dotfiles/fish/functions/l.fish";
     };
