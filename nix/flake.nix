@@ -42,22 +42,7 @@
     ...
   } @ inputs: let
     user = "sab";
-    systems = ["x86_64-linux" "aarch64-darwin"];
-    forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
-    devShell = system: let
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      default = with pkgs;
-        mkShell {
-          nativeBuildInputs = with pkgs; [bashInteractive git age age-plugin-yubikey];
-          shellHook = with pkgs; ''
-            export EDITOR=vim
-          '';
-        };
-    };
   in {
-    devShells = forAllSystems devShell;
-
     darwinConfigurations = let
       user = "sab";
     in {
