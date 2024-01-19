@@ -44,7 +44,6 @@
     user = "sab";
   in {
     darwinConfigurations = let
-      user = "sab";
     in {
       macos = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
@@ -55,7 +54,7 @@
           {
             nix-homebrew = {
               enable = true;
-              user = "sab";
+              user = "${user}";
               taps = {
                 "homebrew/homebrew-core" = homebrew-core;
                 "homebrew/homebrew-cask" = homebrew-cask;
@@ -71,7 +70,6 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = let
-      user = "sab";
     in {
       nz = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -81,8 +79,6 @@
           home-manager.nixosModules.home-manager
           {
             home-manager = {
-              # useGlobalPkgs = true;
-              useUserPackages = true;
               users.${user} = import ./nixos/home-manager/home.nix;
             };
           }
