@@ -3,7 +3,7 @@
     enable = true;
     extraConfig = {
       combi-hide-mode-prefix = true;
-      combi-modi = "window,drun,calc";
+      combi-modi = "drun,run";
       disable-history = false;
       display-Network = " 󰤨  Network";
       display-drun = "   Apps ";
@@ -13,7 +13,7 @@
       hide-scrollbar = true;
       icon-theme = "Fluent";
       location = 0;
-      modi = "run,drun,window";
+      modi = "combi";
       show-icons = true;
       sidebar-mode = true;
       sorting-method = "fzf";
