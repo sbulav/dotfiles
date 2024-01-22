@@ -17,6 +17,7 @@
     ./desktop/rofi.nix
     ./desktop/swaylock.nix
     ./desktop/waybar.nix
+    ./desktop/rbw.nix
   ];
 
   nixpkgs = {

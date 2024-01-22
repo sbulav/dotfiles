@@ -18,6 +18,8 @@
       traceroute
       pamixer
       polkit_gnome
+      rofi-rbw
+      wtype
       qt5.qtwayland
       qt6.qmake
       qt6.qtwayland
