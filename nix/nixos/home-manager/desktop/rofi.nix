@@ -1,9 +1,12 @@
-{...}: {
+{pkgs, ...}: {
   programs.rofi = {
     enable = true;
+    plugins = with pkgs; [
+      rofi-calc
+    ];
     extraConfig = {
       combi-hide-mode-prefix = true;
-      combi-modi = "drun,run";
+      combi-modi = "drun,run,calc";
       disable-history = false;
       display-Network = " 󰤨  Network";
       display-drun = "   Apps ";
@@ -13,7 +16,7 @@
       hide-scrollbar = true;
       icon-theme = "Fluent";
       location = 0;
-      modi = "combi";
+      modi = "combi,drun,calc,";
       show-icons = true;
       sidebar-mode = true;
       sorting-method = "fzf";
