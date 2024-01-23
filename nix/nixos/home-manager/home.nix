@@ -12,6 +12,7 @@
 
     # You can also split up your configuration and import pieces of it here:
     ./desktop/hyprpaper.nix
+    ./desktop/hyprland.nix
     ./desktop/mako.nix
     ./mime.nix
     ./desktop/rofi.nix
@@ -68,6 +69,7 @@
     ripgrep
     slack
     swayidle
+    cliphist
     wl-clipboard
     xdg-utils
     zoom-us
@@ -76,9 +78,6 @@
   programs.firefox.enable = true;
   programs.wlogout.enable = true;
 
-  services.copyq = {
-    enable = true;
-  };
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
