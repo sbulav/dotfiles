@@ -73,7 +73,7 @@
     networkmanager.enable = true;
     wireguard.enable = true;
     hosts = {
-      "10.211.80.175" = ["teleport-c11.pyn.ru"];
+      "192.168.89.200" = ["truenas.sbulav.gq truenas"];
     };
     # Open ports in the firewall.
     # networking.firewall.allowedTCPPorts = [ ... ];
