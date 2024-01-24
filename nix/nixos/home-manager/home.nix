@@ -15,6 +15,7 @@
     ./desktop/hyprland.nix
     ./desktop/mako.nix
     ./mime.nix
+    ./gtk.nix
     ./desktop/rofi.nix
     ./desktop/swaylock.nix
     ./desktop/waybar.nix
@@ -65,6 +66,7 @@
     neofetch
     networkmanagerapplet
     papirus-icon-theme
+    gnome.adwaita-icon-theme
     pcmanfm
     ripgrep
     slack

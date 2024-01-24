@@ -40,9 +40,9 @@
 
   fonts.fontconfig = {
     defaultFonts = {
-      monospace = ["JetBrainsMono Nerd Font Mono"];
-      sansSerif = ["JetBrainsMono Nerd Font"];
-      serif = ["JetBrainsMono Nerd Font"];
+      monospace = ["CaskaydiaCove Nerd Font Mono"];
+      sansSerif = ["CascadiaCode Nerd Font"];
+      serif = ["CascadiaCode Nerd Font"];
     };
   };
 
