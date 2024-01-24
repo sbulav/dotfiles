@@ -35,8 +35,16 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["CascadiaCode" "FiraCode"];})
+    (nerdfonts.override {fonts = ["JetBrainsMono" "CascadiaCode" "FiraCode"];})
   ];
+
+  fonts.fontconfig = {
+    defaultFonts = {
+      monospace = ["JetBrainsMono Nerd Font Mono"];
+      sansSerif = ["JetBrainsMono Nerd Font"];
+      serif = ["JetBrainsMono Nerd Font"];
+    };
+  };
 
   environment.gnome.excludePackages =
     (with pkgs; [

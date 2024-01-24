@@ -35,6 +35,7 @@ with pkgs; [
   rnix-lsp # LSP for nix
   rsync
   stylua
+  telegram-desktop
   tmux
   tree
   tree-sitter
