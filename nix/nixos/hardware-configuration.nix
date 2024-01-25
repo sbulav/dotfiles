@@ -27,6 +27,12 @@
     fsType = "vfat";
   };
 
+  fileSystems."/mnt/tank" = {
+    device = "truenas.sbulav.gq:/mnt/tank";
+    options = ["x-systemd.automount" "x-systemd.idle-timeout=600" "noauto"];
+    fsType = "nfs";
+  };
+
   swapDevices = [
     {device = "/dev/disk/by-uuid/73002676-c9b2-46e8-a987-5bf002c91cbc";}
   ];
