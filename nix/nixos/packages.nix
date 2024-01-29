@@ -17,6 +17,7 @@
       nfs-utils
       traceroute
       pamixer
+      pavucontrol
       polkit_gnome
       rofi-rbw
       wtype

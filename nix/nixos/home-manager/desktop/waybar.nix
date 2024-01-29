@@ -97,24 +97,24 @@ in {
           exec = "uname -r";
         };
         network = {
-          format-wifi = "󰖩";
+          format-wifi = "󰖩 {signalStrength}%";
           format-ethernet = "{ifname}: {ipaddr}/{cidr} 󰈀";
           format-linked = "{ifname} (No IP) 󰈀";
           format-disconnected = "󰖪";
-          format-alt = "{ifname}: {ipaddr}/{cidr}";
+          format-alt = "  󰜮 {bandwidthDownBytes} 󰜷 {bandwidthUpBytes}";
         };
-        "pulseaudio" = {
-          format = "{icon} {volume}% {format_source}";
-          format-muted = " {format_source}";
-          format-source = "";
-          format-source-muted = "";
-          format-icons = {"default" = ["" "" ""];};
-          scroll-step = 1;
-          tooltip-format = "{desc}; {volume}%";
-          # on-click = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        pulseaudio = {
+          scroll-step = 5;
+          tooltip = true;
+          tooltip-format = "{volume}% {format_source}";
+          on-click-right = "${pkgs.pavucontrol}/bin/pavucontrol";
           on-click = "${pkgs.pamixer}/bin/pamixer -t";
-          on-click-right = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-          on-click-middle = "pavucontrol";
+          format = "{icon} {volume}%";
+          format-bluetooth = "󰂯 {icon} {volume}%";
+          format-muted = "󰝟 0%";
+          format-icons = {
+            default = ["" "" " "];
+          };
         };
         "hyprland/language" = {
           # "format-dh" = " dh";
