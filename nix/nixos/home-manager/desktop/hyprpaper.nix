@@ -1,5 +1,5 @@
 let
-  wallpaper = ./wallpapers/2.jpg;
+  wallpaper = ./wallpapers/cityscape2.jpg;
 in {
   xdg.configFile."hypr/hyprpaper.conf".text = ''
     preload = ${wallpaper}

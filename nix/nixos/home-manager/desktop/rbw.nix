@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       email = "zppfan@gmail.com";
-      lock_timeout = 300;
+      lock_timeout = 14400;
       pinentry = "gnome3";
     };
   };
