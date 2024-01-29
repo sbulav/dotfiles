@@ -18,7 +18,7 @@ ls.config.set_config {
     -- minimal increase in priority.
     ext_prio_increase = 1,
     enable_autosnippets = false,
-    store_selection_keys = "<c-s>",
+    store_selection_keys = "<TAB>",
 }
 
 local function get_line_iter(str)
