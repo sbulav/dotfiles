@@ -18,11 +18,11 @@ in {
       layout = "dh,ru";
       # xkbOptions = "grp:shift_caps_toggle,grp_led:caps,terminate:ctrl_alt_bksp";
       xkbOptions = "terminate:ctrl_alt_bksp";
-    };
-    extraLayouts.dh = {
-      description = "Colemak-DH ergo";
-      languages = ["eng"];
-      symbolsFile = ./symbols/colemak_dh;
+      extraLayouts.dh = {
+        description = "Colemak-DH ergo";
+        languages = ["eng"];
+        symbolsFile = ./symbols/colemak_dh;
+      };
     };
   };
 }
