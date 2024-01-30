@@ -1,0 +1,81 @@
+{
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
+with lib.custom; let
+  cfg = config.custom.desktop.hyprland;
+in {
+  options.custom.desktop.hyprland = with types; {
+    enable = mkBoolOpt false "Whether or not to install Hyprland and dependencies.";
+  };
+
+  config = mkIf cfg.enable {
+    custom.desktop.addons = {
+      # electron-support = enabled;
+      gtk = enabled;
+      hyprpaper = enabled;
+      # hyprpicker = enabled;
+      # nautilus = enabled;
+      rofi = enabled;
+      kitty = enabled;
+      mako = enabled;
+      # thunar = enabled;
+      waybar = enabled;
+      # wlogout = enabled;
+      regreet = enabled;
+      xdg-portal = enabled;
+      # keyring = enabled;
+    };
+
+    home.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
+    # custom.home.configFile."hypr/keybind".source = ./keybind;
+    # custom.home.configFile."hypr/xdg-portal-hyprland".source = ./xdg-portal-hyprland;
+
+    environment.systemPackages = with pkgs; [
+      hyprland
+      hyprland-protocols
+      hyprpaper
+      hyprpicker
+
+      wlroots
+      wl-clipboard
+    ];
+
+    environment.sessionVariables = {
+      POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
+      XDG_SESSION_TYPE = "wayland";
+      NIXOS_OZONE_WL = "1";
+      MOZ_ENABLE_WAYLAND = "1";
+      SDL_VIDEODRIVER = "wayland";
+      CLUTTER_BACKEND = "wayland";
+      XDG_CURRENT_DESKTOP = "Hyprland";
+      XDG_SESSION_DESKTOP = "Hyprland";
+    };
+
+    programs.hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+
+    services.xserver = {
+      enable = true;
+
+      displayManager = {
+        defaultSession = "hyprland";
+
+        # gdm = {
+        #   enable = true;
+        #   wayland = true;
+        # };
+      };
+
+      # Enable touchpad support (enabled default in most desktopManager).
+      libinput.enable = true;
+    };
+  };
+}
