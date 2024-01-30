@@ -9,6 +9,7 @@
       gnome.gnome-tweaks
       grim # Screenshot tool for hyprland
       slurp # Works with grim to screenshot on wayland
+      libnotify
       gnumake
       home-manager
       hyprland-protocols
