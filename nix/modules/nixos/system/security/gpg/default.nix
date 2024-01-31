@@ -47,7 +47,6 @@ in {
     environment.systemPackages = with pkgs; [
       gnupg
       pinentry-curses
-      pinentry-qt
     ];
 
     programs = {

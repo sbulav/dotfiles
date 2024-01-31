@@ -14,6 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    system.security.rbw.enable = true;
     custom = {
       desktop = {
         hyprland = enabled;
@@ -25,6 +26,7 @@ in {
         telegram = enabled;
         vlc = enabled;
         zathura = enabled;
+        pcmanfm = enabled;
       };
     };
   };
