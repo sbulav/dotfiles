@@ -43,6 +43,7 @@ in {
     custom.cli-apps = {
       atuin.enable = true;
       neovim.enable = true;
+      lf.enable = true;
       tmux.enable = true;
     };
   };

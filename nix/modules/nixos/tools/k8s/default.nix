@@ -21,13 +21,11 @@ in {
       kubectl = "kubecolor";
       kc = "kubectx";
       kn = "kubens";
-      ks = "kubeseal";
     };
 
     environment.systemPackages = with pkgs; [
       kubectl
       kubectx
-      kubeseal
       kubecolor
       kubernetes-helm
       helmfile

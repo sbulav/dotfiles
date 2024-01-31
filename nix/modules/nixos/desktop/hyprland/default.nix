@@ -16,19 +16,20 @@ in {
   config = mkIf cfg.enable {
     custom.desktop.addons = {
       # electron-support = enabled;
+      # hyprpicker = enabled;
+      # keyring = enabled;
+      # nautilus = enabled;
+      # thunar = enabled;
       gtk = enabled;
       hyprpaper = enabled;
-      # hyprpicker = enabled;
-      # nautilus = enabled;
-      rofi = enabled;
       kitty = enabled;
       mako = enabled;
-      # thunar = enabled;
-      waybar = enabled;
-      # wlogout = enabled;
       regreet = enabled;
+      rofi = enabled;
+      swaylock = enabled;
+      waybar = enabled;
+      wlogout = enabled;
       xdg-portal = enabled;
-      # keyring = enabled;
     };
 
     home.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
