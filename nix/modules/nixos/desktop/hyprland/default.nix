@@ -58,6 +58,7 @@ in {
       CLUTTER_BACKEND = "wayland";
       XDG_CURRENT_DESKTOP = "Hyprland";
       XDG_SESSION_DESKTOP = "Hyprland";
+      XDG_SCREENSHOTS_DIR = "~/Pictures/Screenshots";
     };
 
     programs.hyprland = {
