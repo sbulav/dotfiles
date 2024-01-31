@@ -24,11 +24,17 @@ in {
       keybindings = {
         "kitty_mod+e" = "kitten hints"; # https://sw.kovidgoyal.net/kitty/kittens/hints/
         "kitty_mod+f" = "toggle_fullscreen";
+        "kitty_mod+c" = "copy_to_clipboard";
       };
+      extraConfig = ''
+        mouse_map right press ungrabbed copy_to_clipboard
+        mouse_map middle release ungrabbed paste_from_clipboard
+      '';
       settings = {
         disable_ligatures = "never";
         macos_option_as_alt = "yes";
         share_connections = "no";
+        kitty_mod = "ctrl+shift";
 
         macos_quit_when_last_window_closed = "no";
         sync_to_monitor = "no";
