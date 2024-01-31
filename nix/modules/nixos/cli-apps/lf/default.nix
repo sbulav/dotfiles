@@ -16,13 +16,13 @@ in {
     environment.systemPackages = with pkgs; [
       lf
     ];
-    home.configFile."lf/lfrc".source = ./lfrc;
-    home.configFile."lf/icons".source = ./icons;
-    home.configFile."lf/lf_kitty_clean" = {
+    home.file.".config/lf/lfrc".source = ./lfrc;
+    home.file.".config/lf/icons".source = ./icons;
+    home.file.".config/lf/lf_kitty_clean" = {
       source = ./lf_kitty_clean;
       executable = true;
     };
-    home.configFile."lf/lf_kitty_preview" = {
+    home.file.".config/lf/lf_kitty_preview" = {
       source = ./lf_kitty_preview;
       executable = true;
     };

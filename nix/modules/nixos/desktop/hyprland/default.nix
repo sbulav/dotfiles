@@ -41,6 +41,7 @@ in {
       hyprpicker
 
       wlroots
+      cliphist
       wl-clipboard
     ];
 

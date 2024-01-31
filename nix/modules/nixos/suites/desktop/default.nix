@@ -18,6 +18,10 @@ in {
       desktop = {
         hyprland = enabled;
       };
+      apps = {
+        firefox = enabled;
+        vlc = enabled;
+      };
     };
   };
 }
