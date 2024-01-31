@@ -76,7 +76,6 @@ in {
         };
         interactiveShellInit = "source ~/dotfiles/fish/functions/l.fish";
       };
-      tmux.enable = true;
     };
     users.users.${cfg.name} =
       {

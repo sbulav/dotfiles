@@ -37,6 +37,12 @@ in {
 
     custom.tools = {
       git.enable = true;
+      http.enable = true;
+      misc.enable = true;
+    };
+    custom.cli-apps = {
+      neovim.enable = true;
+      tmux.enable = true;
     };
   };
 }

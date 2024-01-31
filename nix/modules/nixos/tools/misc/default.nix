@@ -17,13 +17,20 @@ in {
     home.configFile."wgetrc".text = "";
 
     environment.systemPackages = with pkgs; [
-      fzf
-      killall
-      unzip
+      bat
+      dig
+      fd
       file
+      fzf
+      iftop
+      ipfetch
       jq
-      tree
+      killall
       ripgrep
+      rsync
+      tree
+      unzip
+      yq
     ];
   };
 }

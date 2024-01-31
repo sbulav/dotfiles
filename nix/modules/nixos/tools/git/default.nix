@@ -58,6 +58,14 @@ in {
           mergetool = {
             prompt = false;
           };
+          alias = {
+            st = "status -sb";
+            lga = "log --oneline --all --decorate --graph --color";
+            lg = "log --pretty=lg";
+            glg = "log --graph --pretty=lg";
+            slg = "stash list --pretty=reflg";
+            hist = "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short";
+          };
         };
       };
     };
