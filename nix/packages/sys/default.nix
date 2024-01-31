@@ -3,12 +3,12 @@ writeShellScriptBin "sys" ''
 
   cmd_rebuild() {
       echo "🔨 Building system configuration with $REBUILD_COMMAND"
-      $REBUILD_COMMAND switch --flake .#
+      $REBUILD_COMMAND switch --flake ~/dotfiles/nix#
   }
 
   cmd_test() {
       echo "🏗️ Building ephemeral system configuration with $REBUILD_COMMAND"
-      $REBUILD_COMMAND test --fast --flake .#
+      $REBUILD_COMMAND test --fast --flake ~/dotfiles/nix#
   }
 
   # TODO: Make it update a single input

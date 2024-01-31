@@ -15,8 +15,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.zsh.shellAliases = {
+    programs.fish.shellAliases = {
       k = "kubecolor";
+      kk = "kubecolor";
       kubectl = "kubecolor";
       kc = "kubectx";
       kn = "kubens";
@@ -30,6 +31,9 @@ in {
       kubecolor
       kubernetes-helm
       helmfile
+      helm-docs
+      k9s
+      krew
     ];
   };
 }

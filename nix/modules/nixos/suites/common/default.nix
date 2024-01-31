@@ -41,6 +41,7 @@ in {
       misc.enable = true;
     };
     custom.cli-apps = {
+      atuin.enable = true;
       neovim.enable = true;
       tmux.enable = true;
     };

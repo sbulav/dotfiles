@@ -13,6 +13,7 @@
 
   suites.common.enable = true; # Enables the basics, like audio, networking, ssh, etc.
   suites.desktop.enable = true;
+  suites.develop.enable = true;
 
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "23.11";
