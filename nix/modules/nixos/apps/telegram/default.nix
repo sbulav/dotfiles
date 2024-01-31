@@ -14,5 +14,5 @@ in {
   };
 
   config =
-    mkIf cfg.enable {environment.systemPackages = with pkgs.custom; [telegram];};
+    mkIf cfg.enable {environment.systemPackages = with pkgs; [telegram-desktop];};
 }

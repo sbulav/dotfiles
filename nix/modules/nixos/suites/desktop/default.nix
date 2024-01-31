@@ -20,7 +20,11 @@ in {
       };
       apps = {
         firefox = enabled;
+        imv = enabled;
+        slack = enabled;
+        telegram = enabled;
         vlc = enabled;
+        zathura = enabled;
       };
     };
   };
