@@ -30,6 +30,7 @@ with lib.custom; {
       xdg.enable = true;
       xdg.configFile = mkAliasDefinitions options.home.configFile;
       programs = mkAliasDefinitions options.home.programs;
+      services = mkAliasDefinitions options.home.services;
     };
 
     home-manager = {

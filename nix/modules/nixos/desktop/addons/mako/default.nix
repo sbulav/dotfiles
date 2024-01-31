@@ -14,6 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [libnotify];
     home.services.mako = {
       enable = true;
       defaultTimeout = 5000;
