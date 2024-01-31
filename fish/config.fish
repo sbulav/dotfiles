@@ -22,7 +22,7 @@ set -gx VISUAL nvim
 set -gx PATH "/usr/local/opt/python/libexec/bin" $PATH
 
 # Set KUBECONFIG
-set -gx KUBECONFIG "$HOME/.kube/all-merged"
+set -gx KUBECONFIG "$HOME/.kube/config"
 
 # Add krew to path
 set -gx PATH $PATH $HOME/.krew/bin

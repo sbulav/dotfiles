@@ -28,7 +28,7 @@ in {
     ];
 
     nix = let
-      users = ["root" config.user.name];
+      users = ["root" config.custom.user.name];
     in {
       inherit (cfg) package;
 
@@ -43,7 +43,7 @@ in {
           trusted-users = users;
           allowed-users = users;
         }
-        // (lib.optionalAttrs config.apps.tools.direnv.enable {
+        // (lib.optionalAttrs config.custom.tools.direnv.enable {
           keep-outputs = true;
           keep-derivations = true;
         });

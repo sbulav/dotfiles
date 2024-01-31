@@ -7,7 +7,7 @@
 }:
 with lib;
 with lib.custom; let
-  cfg = config.user;
+  cfg = config.custom.user;
   defaultIconFileName = "profile.png";
   defaultIcon = pkgs.stdenvNoCC.mkDerivation {
     name = "default-icon";
@@ -31,18 +31,21 @@ with lib.custom; let
       cp ${cfg.icon} "$target/${cfg.icon.fileName}"
     '';
 in {
-  options.user = with types; {
+  options.custom.user = with types; {
     name = mkOpt str "sab" "The name to use for the user account.";
+    fullName = mkOpt str "Sergei Bulavintsev" "The full name of the user.";
+    email = mkOpt str "bulavintsev.sergey@gmail.com" "The email of the user.";
     initialPassword =
       mkOpt str "password"
       "The initial password to use when the user is first created.";
     icon =
       mkOpt (nullOr package) defaultIcon
       "The profile picture to use for the user.";
+    prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";
     extraGroups = mkOpt (listOf str) [] "Groups for the user to be assigned.";
     extraOptions =
       mkOpt attrs {}
-      "Extra options passed to <option>users.users.<name></option>.";
+      (mdDoc "Extra options passed to `users.users.<name>`.");
   };
 
   config = {
@@ -73,8 +76,8 @@ in {
         };
         interactiveShellInit = "source ~/dotfiles/fish/functions/l.fish";
       };
+      tmux.enable = true;
     };
-    tmux.enable = true;
     users.users.${cfg.name} =
       {
         isNormalUser = true;

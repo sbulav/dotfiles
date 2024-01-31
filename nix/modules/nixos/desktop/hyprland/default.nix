@@ -32,8 +32,6 @@ in {
     };
 
     home.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
-    # custom.home.configFile."hypr/keybind".source = ./keybind;
-    # custom.home.configFile."hypr/xdg-portal-hyprland".source = ./xdg-portal-hyprland;
 
     environment.systemPackages = with pkgs; [
       hyprland

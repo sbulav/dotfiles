@@ -21,7 +21,7 @@ in {
       enable = true;
       extraRules = [
         {
-          users = [config.user.name];
+          users = [config.custom.user.name];
           noPass = true;
           keepEnv = true;
         }
