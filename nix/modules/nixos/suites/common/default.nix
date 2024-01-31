@@ -23,6 +23,7 @@ in {
       xkb.enable = true;
 
       security.doas.enable = false;
+      security.sudo.enable = true;
       security.gpg.enable = true;
     };
 
