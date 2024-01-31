@@ -1,15 +1,14 @@
-# My configuration files
+# My configuration files managed with NixOS flake
 
-![Always wip](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrgUjNod0ETGyHau0Tkn-WAnFjXLP493ryUQ&usqp=CAU)
+![Nix](https://img.shields.io/badge/NIX-5277C3.svg?style=for-the-badge&logo=NixOS&logoColor=white)](https://builtwithnix.org/)
+[![NixOS](https://img.shields.io/badge/NIXOS-5277C3.svg?style=for-the-badge&logo=NixOS&logoColor=white)](https://nixos.org/)
+[![Snowfall](https://img.shields.io/static/v1?logoColor=d8dee9&label=Built%20With&labelColor=5e81ac&message=Snowfall&color=d8dee9&style=for-the-badge)](https://github.com/snowfallorg/lib)
+[![Neovim](https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white)](https://github.com/neovim/neovim)
 
 [![GitGuardian scan](https://github.com/sbulav/dotfiles/actions/workflows/gitguardian.yml/badge.svg)](https://github.com/sbulav/dotfiles/actions/workflows/gitguardian.yml)
 [![release-please](https://github.com/sbulav/dotfiles/actions/workflows/please_release.yml/badge.svg)](https://github.com/sbulav/dotfiles/actions/workflows/please_release.yml)
 
-This file is auto-generated, do not modify it!
-
 ## Nix
-
-I am currently in the process of migration to [Nix](https://nixos.org/)
 
 - MacOS
   - [Nix Flakes](https://nixos.wiki/wiki/Flakes)
@@ -20,10 +19,27 @@ I am currently in the process of migration to [Nix](https://nixos.org/)
   - [Home-Manager](https://nix-community.github.io/home-manager/)
   - [Hyprland](https://wiki.hyprland.org) + Waybar, Swaylock, Rofi, mako, hyprpaper
 
-To trigger a new build both on Mac and Nix, run
+Nix flakes following arbitrary Snowfall lib conventions:
 
-```sh
-./bin/build
+```text
+nix/
+│
+│ Nix flake.
+├─ flake.nix
+│
+│ An optional custom library.
+├─ lib/
+│
+│ An optional set of packages to export.
+├─ packages/
+│
+├─ modules/ (optional modules)
+│
+├─ overlays/ (optional overlays)
+│
+├─ systems/ (optional system configurations)
+│
+└─ homes/ (optional homes configurations)
 ```
 
 Kudos for config inspiration to:
@@ -31,6 +47,7 @@ Kudos for config inspiration to:
 - [Introduction to Nix & NixOS](https://nixos-and-flakes.thiscute.world/introduction/)
 - [Nix for MacOS by dustinlyons](https://github.com/dustinlyons/nixos-config)
 - [Nix starter configs by Misterio77](https://github.com/Misterio76/nix-starter-configs)
+- [Nix configs with snowlake by Jake Hamilton](https://github.com/jakehamilton/config)
 
 You might also want to check out my blog with [#Nix category](https://sbulav.github.io/categories/#nix)
 
@@ -40,6 +57,30 @@ Quickly try out new package in the shell without installing it:
 
 ```sh
 nix shell nixpkgs#glow
+```
+
+List all generations:
+
+```sh
+sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
+```
+
+Rollback to previous generation:
+
+```sh
+sudo nixos-rebuild switch --flake ~/dotfiles/nix#nz --rollback
+```
+
+Rollback to previous generation:
+
+```sh
+sudo nixos-rebuild switch --flake ~/dotfiles/nix#nz --rollback
+```
+
+Activate specific generation:
+
+```sh
+sudo nix-env --profile /nix/var/nix/profiles/system --switch-generation 210
 ```
 
 ## Automated workflows
@@ -55,34 +96,3 @@ I'm using following workflows to automate management of my dotfiles:
   releases based on conventional commits
 - [update-readme.yml](.github/workflows/update-readme.yml) - Workflow to
   generate this README
-
-
-## Tools installation(Obsolete)
-
-Run make and specify tool to install:
-
-```bash
-> make
- tools               : Install neovim, rg, fzf, stylua, etc..
- neovim              : Update neovim to nightly version
- fzf                 : Update fzf to nightly version
- k9s                 : Update k9s to nightly version
- gh                  : Update gh to nightly version
- ripgrep             : Update ripgrep to latest release
- terraform           : Update terraform to latest release
- stylua              : Update stylua to latest release
- dotfiles            : Update dotfiles to latest version
- alpine              : Run alpine container for tests
- nginx-conf          : Get ingress configuration for host
- kk-tools            : Run tools containers in current cluster
- colemak             : Install colemak-dhm
- symlinks            : Create symliks to configs
- fonts               : Install nerd-fonts
- /tmp/nvim.appimage  : Download nightly nvim appimage
- /tmp/fzf.tgz        : Download latest fzf release
- /tmp/k9s.tgz        : Download latest k9s release
- /tmp/gh.tgz         : Download latest gh release
- /tmp/ripgrep.deb    : Download latest ripgrep release
- /tmp/terraform.zip  : Download latest terraform release
- /tmp/stylua.zip     : Download latest stylua release
-```
