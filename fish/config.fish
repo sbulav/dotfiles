@@ -31,7 +31,7 @@ set -gx PATH $PATH $HOME/.krew/bin
 set -gx FISH_KUBECTL_COMPLETION_COMPLETE_CRDS 0
 
 # Load ssh keys into ssh-agent
-load_keys
+#load_keys
 
 # Load env credentials
 if begin; test -f ~/.ssh/env-credentials;end

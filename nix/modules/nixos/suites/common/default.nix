@@ -14,8 +14,17 @@ in {
   };
 
   config = mkIf cfg.enable {
-    system.nix.enable = true;
-    system.security.doas.enable = false;
+    system = {
+      nix.enable = true;
+
+      fonts.enable = true;
+      locale.enable = true;
+      time.enable = true;
+      xkb.enable = true;
+
+      security.doas.enable = false;
+      security.gpg.enable = true;
+    };
 
     hardware.audio.enable = true;
     hardware.networking.enable = true;
@@ -26,12 +35,6 @@ in {
     # add sys custom build package
     environment.systemPackages = [pkgs.custom.sys];
 
-    system = {
-      fonts.enable = true;
-      locale.enable = true;
-      time.enable = true;
-      xkb.enable = true;
-    };
     custom.tools = {
       git.enable = true;
     };
