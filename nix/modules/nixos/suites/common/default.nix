@@ -39,6 +39,7 @@ in {
       git.enable = true;
       http.enable = true;
       misc.enable = true;
+      net.enable = true;
     };
     custom.cli-apps = {
       atuin.enable = true;

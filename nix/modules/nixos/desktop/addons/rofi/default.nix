@@ -15,6 +15,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [rbw rofi-rbw];
     home.programs.rofi = {
       enable = true;
       plugins = with pkgs; [

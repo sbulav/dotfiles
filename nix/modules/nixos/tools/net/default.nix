@@ -7,9 +7,9 @@
 }:
 with lib;
 with lib.custom; let
-  cfg = config.custom.tools.misc;
+  cfg = config.custom.tools.net;
 in {
-  options.custom.tools.misc = with types; {
+  options.custom.tools.net = with types; {
     enable = mkBoolOpt false "Whether or not to enable common utilities.";
   };
 
@@ -17,17 +17,12 @@ in {
     home.configFile."wgetrc".text = "";
 
     environment.systemPackages = with pkgs; [
-      bat
-      fd
-      file
-      fzf
-      jq
-      killall
-      ripgrep
-      rsync
-      tree
-      unzip
-      yq
+      dig
+      iftop
+      ipfetch
+      nfs-utils
+      traceroute
+      mtr
     ];
   };
 }

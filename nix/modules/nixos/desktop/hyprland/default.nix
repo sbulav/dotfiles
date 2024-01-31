@@ -43,6 +43,9 @@ in {
       wlroots
       cliphist
       wl-clipboard
+
+      grim
+      slurp
     ];
 
     environment.sessionVariables = {
