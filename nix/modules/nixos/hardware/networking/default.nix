@@ -2,6 +2,7 @@
   options,
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib;
@@ -29,5 +30,12 @@ in {
     };
     systemd.services.NetworkManager-wait-online.enable = false;
     services.wg-netmanager.enable = true;
+    environment.systemPackages = with pkgs; [networkmanager-l2tp gnome.networkmanager-l2tp];
+    services.strongswan = {
+      enable = true;
+      secrets = [
+        "ipsec.d/ipsec.nm-l2tp.secrets"
+      ];
+    };
   };
 }
