@@ -57,7 +57,7 @@ set -gx FZF_ALT_C_COMMAND 'fd --type directory \
   --exclude "Library" \
   --exclude "Music" '
 
-set -gx FZF_CTRL_T_COMMAND 'fd --type file \
+set -gx FZF_ALT_T_COMMAND 'fd --type file \
   --exclude ".git" \
   --exclude "venv*" \
   --exclude "*node_modules*" \
