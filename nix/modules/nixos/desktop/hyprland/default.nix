@@ -17,7 +17,7 @@ in {
     custom.desktop.addons = {
       # electron-support = enabled;
       # hyprpicker = enabled;
-      # keyring = enabled;
+      keyring = enabled;
       # nautilus = enabled;
       # thunar = enabled;
       gtk = enabled;
