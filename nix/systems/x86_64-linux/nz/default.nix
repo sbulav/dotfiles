@@ -4,7 +4,7 @@
   # Enable Bootloader
   system.boot.efi.enable = true;
   system.battery.enable = true; # Only for laptops, they will still work without it, just improves battery life
-  hardware.fingerprint.enable = true;
+  hardware.fingerprint.enable = false;
   hardware.bluetoothmy.enable = true;
 
   # environment.systemPackages = with pkgs; [
