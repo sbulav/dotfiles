@@ -36,6 +36,7 @@ in {
         share_connections = "no";
         kitty_mod = "ctrl+shift";
         background_opacity = "0.90";
+        confirm_os_window_close = 0;
 
         macos_quit_when_last_window_closed = "no";
         sync_to_monitor = "no";
