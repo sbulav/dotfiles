@@ -23,6 +23,7 @@ in {
         firefox = enabled;
         imv = enabled;
         slack = enabled;
+        zoom-us = enabled;
         telegram = enabled;
         vlc = enabled;
         zathura = enabled;
