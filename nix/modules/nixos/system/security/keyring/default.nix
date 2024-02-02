@@ -18,6 +18,5 @@ in {
       gnome.gnome-keyring
       gnome.libgnome-keyring
     ];
-    security.pam.services.${config.user.name}.enableGnomeKeyring = true;
   };
 }
