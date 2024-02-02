@@ -165,9 +165,11 @@ return {
                 "pyright",
                 "shellcheck",
                 "shfmt",
-                "stylua",
                 "terraform-ls",
                 "yaml-language-server",
+                -- Managed via Nix, DO NOT INSTALL IN MASON
+                -- "stylua",
+                -- "alejandra",
             },
         },
         ---@param opts MasonSettings | {ensure_installed: string[]}
