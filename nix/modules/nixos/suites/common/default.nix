@@ -47,6 +47,7 @@ in {
       neovim.enable = true;
       lf.enable = true;
       tmux.enable = true;
+      yazi.enable = false;
     };
   };
 }
