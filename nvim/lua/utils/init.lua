@@ -52,7 +52,12 @@ function M.cheatSheetCommand(detect_language)
             end
         end
 
-        local command = language .. "/" .. searchPhrase
+        local command = ""
+        if searchPhrase == nil then
+          command = language
+        else
+        command = language .. "/" .. searchPhrase
+    end
 
         M.info("cht.sh/" .. command, "Cheat Sheet Query")
         return ("!curl -s cht.sh/" .. command)
