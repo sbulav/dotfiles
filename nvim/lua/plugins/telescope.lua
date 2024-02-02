@@ -3,8 +3,8 @@ return {
     dependencies = {
         { "nvim-lua/popup.nvim" },
         { "nvim-lua/plenary.nvim" },
-        { "nvim-telescope/telescope-github.nvim" },
-        { "ANGkeith/telescope-terraform-doc.nvim" },
+        -- { "nvim-telescope/telescope-github.nvim" },
+        -- { "ANGkeith/telescope-terraform-doc.nvim" },
     },
     config = function()
         local telescope = require "telescope"
@@ -53,8 +53,8 @@ return {
                 },
             },
         }
-        telescope.load_extension "gh"
-        telescope.load_extension "terraform_doc"
+        -- telescope.load_extension "gh"
+        -- telescope.load_extension "terraform_doc"
         -- telescope.load_extension "env"
         -- telescope.load_extension "terraform"
     end,

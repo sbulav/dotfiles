@@ -148,7 +148,8 @@ nnoremap <leader>fM <cmd>lua require('telescope.builtin').marks()<cr>
 nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fc <cmd>lua require('telescope.builtin').git_commits()<cr>
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fF <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>ff <cmd>lua require('config.telescope_myfunctions').search_in_cwd()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').oldfiles()<cr>
 nnoremap <leader>fm <cmd>lua require('telescope.builtin').keymaps()<cr>
@@ -158,11 +159,11 @@ nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fv <cmd>lua require('config.telescope_myfunctions').search_vimfiles()<cr>
 nnoremap <leader>fd <cmd>lua require('config.telescope_myfunctions').search_dotfiles()<cr>
 nnoremap <leader>gb <cmd>lua require('telescope.builtin').git_branches()<cr>
-nnoremap <leader>gr <cmd>lua require'telescope'.extensions.gh.run{}<cr>
-nnoremap <leader>gp <cmd>lua require'telescope'.extensions.gh.pull_request{}<cr>
-nnoremap <leader>gi <cmd>lua require'telescope'.extensions.gh.gist{}<cr>
-nnoremap <leader>gs <cmd>lua require'telescope'.extensions.gh.secret{}<cr>
-nnoremap <leader>td <cmd>:Telescope terraform_doc full_name=hashicorp/aws version=3.74.0<cr>
+" nnoremap <leader>gr <cmd>lua require'telescope'.extensions.gh.run{}<cr>
+" nnoremap <leader>gp <cmd>lua require'telescope'.extensions.gh.pull_request{}<cr>
+" nnoremap <leader>gi <cmd>lua require'telescope'.extensions.gh.gist{}<cr>
+" nnoremap <leader>gs <cmd>lua require'telescope'.extensions.gh.secret{}<cr>
+" nnoremap <leader>td <cmd>:Telescope terraform_doc full_name=hashicorp/aws version=3.74.0<cr>
 " nnoremap <leader>tp <cmd>lua require'telescope'.extensions.terraform.plan{}<cr>
 " nnoremap <leader>tP <cmd>lua require'telescope'.extensions.terraform.plan_targeted{}<cr>
 " nnoremap <leader>ta <cmd>lua require'telescope'.extensions.terraform.apply{}<cr>

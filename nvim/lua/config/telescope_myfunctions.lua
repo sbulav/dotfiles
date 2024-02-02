@@ -14,6 +14,13 @@ M.search_plugins = function()
     }
 end
 
+M.search_in_cwd = function()
+    require("telescope.builtin").find_files {
+        prompt_title = "< Find in Current Directory >",
+        cwd = vim.fn.expand "%:p:h",
+    }
+end
+
 M.search_vimfiles = function()
     require("telescope.builtin").find_files {
         prompt_title = "< Find Vimfiles >",
