@@ -19,7 +19,8 @@ in {
       portal = {
         enable = true;
         extraPortals = with pkgs; [
-          xdg-desktop-portal
+          # Only one hyprland portal must be enabled, otherwise screen sharing brokes
+          # xdg-desktop-portal
           xdg-desktop-portal-hyprland
         ];
         # gtkUsePortal = true;
