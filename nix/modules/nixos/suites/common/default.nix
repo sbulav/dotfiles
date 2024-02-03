@@ -43,11 +43,11 @@ in {
       net.enable = true;
     };
     custom.cli-apps = {
-      atuin.enable = true;
-      neovim.enable = true;
-      lf.enable = true;
-      tmux.enable = true;
-      yazi.enable = false;
+      atuin.enable = lib.mkDefault true;
+      neovim.enable = lib.mkDefault true;
+      lf.enable = lib.mkDefault true;
+      tmux.enable = lib.mkDefault true;
+      yazi.enable = lib.mkDefault false;
     };
   };
 }

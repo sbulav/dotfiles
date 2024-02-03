@@ -1,5 +1,5 @@
 # Append paths
-set -a PATH "$HOME/bin/" "$HOME/.local/bin" "/opt/homebrew/bin" "$HOME/./go/bin/" "$HOME/Library/Python/3.8/bin/"
+set -a PATH "$HOME/bin/" "$HOME/.local/bin" "/opt/homebrew/bin" "$HOME/./go/bin/"
 
 # Initialize FZF keybindings
 fzf_key_bindings
@@ -57,7 +57,7 @@ set -gx FZF_ALT_C_COMMAND 'fd --type directory \
   --exclude "Library" \
   --exclude "Music" '
 
-set -gx FZF_ALT_T_COMMAND 'fd --type file \
+set -gx FZF_CTRL_T_COMMAND 'fd --type file \
   --exclude ".git" \
   --exclude "venv*" \
   --exclude "*node_modules*" \
