@@ -150,7 +150,6 @@ return {
         cmd = "Mason",
         opts = {
             ensure_installed = {
-                "black",
                 "eslint_d",
                 "flake8",
                 "goimports",
@@ -162,7 +161,6 @@ return {
                 "lua-language-server",
                 "marksman",
                 "prettierd",
-                "pyright",
                 "shellcheck",
                 "shfmt",
                 "terraform-ls",
@@ -170,6 +168,8 @@ return {
                 -- Managed via Nix, DO NOT INSTALL IN MASON
                 -- "stylua",
                 -- "alejandra",
+                -- "pyright",
+                -- "black",
             },
         },
         ---@param opts MasonSettings | {ensure_installed: string[]}
