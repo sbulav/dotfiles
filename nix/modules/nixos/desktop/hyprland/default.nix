@@ -28,6 +28,7 @@ in {
       rofi = enabled;
       swaylock = enabled;
       waybar = enabled;
+      wezterm = enabled;
       wlogout = enabled;
       xdg-portal = enabled;
     };
