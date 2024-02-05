@@ -17,7 +17,7 @@ in {
     environment.systemPackages = with pkgs; [
       eza
       bat
-      nitch
+      neofetch
       zoxide
       starship
     ];
@@ -34,7 +34,6 @@ in {
 
     environment.shellAliases = {
       ".." = "cd ..";
-      neofetch = "nitch";
     };
 
     home.programs.zoxide = {

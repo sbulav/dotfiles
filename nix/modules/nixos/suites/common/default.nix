@@ -45,7 +45,7 @@ in {
     custom.cli-apps = {
       atuin.enable = lib.mkDefault true;
       neovim.enable = lib.mkDefault true;
-      lf.enable = lib.mkDefault true;
+      lf.enable = lib.mkDefault false;
       tmux.enable = lib.mkDefault true;
       yazi.enable = lib.mkDefault false;
     };

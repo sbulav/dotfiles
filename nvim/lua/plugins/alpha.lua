@@ -14,7 +14,7 @@ return {
             local datetime = os.date " %d-%m-%Y   %H:%M:%S"
             local platform = vim.fn.has "win32" == 1 and "" or ""
             return string.format(
-                "       %d   v%d.%d.%d %s  %s",
+                "      󰂔 %d   v%d.%d.%d %s  %s",
                 stats.count,
                 v.major,
                 v.minor,

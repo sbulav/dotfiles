@@ -96,15 +96,8 @@ vim.keymap.set({ "i", "s" }, "<c-k>", function()
 end, attach_opts)
 
 vim.keymap.set("n", "<F3>", function()
-    require("lf").start {
-        -- Pass options (if any) that you would like
-        -- dir = ".", -- directory where `lf` starts ('gwd' is git-working-directory)
-        direction = "float", -- window type: float horizontal vertical
-        border = "double", -- border kind: single double shadow curved
-        height = 52, -- height of the *floating* window
-        width = 150, -- width of the *floating* window
-        mappings = false, -- whether terminal buffer mapping is enabled
-    }
+    -- require("yazi").yazi {}
+    require("tfm").open()
 end, { noremap = true, silent = true })
 
 vim.keymap.set("n", "<Space>yn", function()
