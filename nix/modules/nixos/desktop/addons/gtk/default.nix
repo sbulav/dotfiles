@@ -30,6 +30,11 @@ in {
           name = "Adwaita";
           package = pkgs.gnome.adwaita-icon-theme;
         };
+        cursorTheme = {
+          name = "Adwaita";
+          package = pkgs.gnome.adwaita-icon-theme;
+        };
+
         font.name = "System-ui Regular";
         font.size = 11;
       };
