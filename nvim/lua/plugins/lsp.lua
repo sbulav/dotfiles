@@ -71,28 +71,6 @@ return {
                         },
                     },
                 },
-                lua_ls = {
-                    settings = {
-                        Lua = {
-                            -- make the language server recognize "vim" global
-                            diagnostics = {
-                                globals = { "vim" },
-                            },
-
-                            workspace = {
-                                checkThirdParty = false,
-                            },
-                            library = {
-                                [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-                                [vim.fn.stdpath "config" .. "/lua"] = true,
-                            },
-
-                            completion = {
-                                callSnippet = "Replace",
-                            },
-                        },
-                    },
-                },
             },
             -- you can do any additional lsp server setup here
             -- return true if you don't want this server to be setup with lspconfig
@@ -139,6 +117,29 @@ return {
                 -- manually configured servers
                 require("lspconfig")["rnix"].setup {},
                 require("lspconfig")["marksman"].setup { cmd = { "marksman", "server" } },
+
+                require("lspconfig")["lua_ls"].setup {
+                    settings = {
+                        Lua = {
+                            -- make the language server recognize "vim" global
+                            diagnostics = {
+                                globals = { "vim" },
+                            },
+
+                            workspace = {
+                                checkThirdParty = false,
+                            },
+                            library = {
+                                [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                                [vim.fn.stdpath "config" .. "/lua"] = true,
+                            },
+
+                            completion = {
+                                callSnippet = "Replace",
+                            },
+                        },
+                    },
+                },
             }
         end,
     },
@@ -158,10 +159,7 @@ return {
                 "jq",
                 "json-lsp",
                 "jsonnet-language-server",
-                "lua-language-server",
-                "marksman",
                 "prettierd",
-                "shellcheck",
                 "shfmt",
                 "terraform-ls",
                 "yaml-language-server",
@@ -170,6 +168,8 @@ return {
                 -- "alejandra",
                 -- "pyright",
                 -- "black",
+                -- "marksman",
+                "lua-language-server",
             },
         },
         ---@param opts MasonSettings | {ensure_installed: string[]}
