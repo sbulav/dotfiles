@@ -2,44 +2,16 @@
 --
 local wezterm = require "wezterm"
 local act = wezterm.action
-local window = wezterm.window
 local config = {}
 
 if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-local function get_appearance()
-  if wezterm.gui then
-    return wezterm.gui.get_appearance()
-  end
-  return "Dark"
-end
-
-local function scheme_for_appearance(appearance)
-  if appearance:find "Dark" then
-    return "Catppuccin Mocha"
-  else
-    return "Catppuccin Latte"
-  end
-end
-
 -- var set by smart-splits.nvim
 local function is_vim(pane)
   return pane:get_user_vars().IS_NVIM == "true"
 end
-
-local direction_keys = {
-  Left = "h",
-  Down = "j",
-  Up = "k",
-  Right = "l",
-  -- reverse lookup
-  h = "Left",
-  j = "Down",
-  k = "Up",
-  l = "Right",
-}
 
 local function split_nav(resize_or_move, key)
   return {
@@ -62,104 +34,26 @@ local function split_nav(resize_or_move, key)
   }
 end
 
-local process_icons = {
-  ["docker"] = wezterm.nerdfonts.linux_docker,
-  ["docker-compose"] = wezterm.nerdfonts.linux_docker,
-  ["kubectl"] = wezterm.nerdfonts.md_kubernetes,
-  ["k9s"] = wezterm.nerdfonts.md_kubernetes,
-  ["psql"] = wezterm.nerdfonts.dev_database,
-  ["usql"] = wezterm.nerdfonts.dev_database,
-  ["nvim"] = wezterm.nerdfonts.dev_vim,
-  ["make"] = wezterm.nerdfonts.seti_makefile,
-  ["vim"] = wezterm.nerdfonts.dev_vim,
-  ["node"] = wezterm.nerdfonts.dev_nodejs_small,
-  ["npm"] = wezterm.nerdfonts.dev_npm,
-  ["go"] = wezterm.nerdfonts.seti_go,
-  ["zsh"] = wezterm.nerdfonts.dev_terminal,
-  ["bash"] = wezterm.nerdfonts.cod_terminal_bash,
-  ["htop"] = wezterm.nerdfonts.mdi_chart_donut_variant,
-  ["cargo"] = wezterm.nerdfonts.dev_rust,
-  ["sudo"] = wezterm.nerdfonts.fa_hashtag,
-  ["git"] = wezterm.nerdfonts.dev_git,
-  ["lazygit"] = wezterm.nerdfonts.dev_git,
-  ["lua"] = wezterm.nerdfonts.seti_lua,
-  ["wget"] = wezterm.nerdfonts.mdi_arrow_down_box,
-  ["curl"] = wezterm.nerdfonts.mdi_flattr,
-  ["gh"] = wezterm.nerdfonts.dev_github_badge,
-  ["ruby"] = wezterm.nerdfonts.cod_ruby,
-  ["adb"] = wezterm.nerdfonts.dev_android,
-  ["python"] = wezterm.nerdfonts.cod_python,
-}
-
-local function get_current_working_dir(tab)
-  local current_dir = tab.active_pane.current_working_dir or ""
-  local HOME_DIR = string.format("file://%s", os.getenv "HOME")
-
-  return current_dir == HOME_DIR and "." or string.gsub(current_dir, "(.*[/\\])(.*)", "%2")
-end
-
-local function get_process(tab)
-  if not tab.active_pane or tab.active_pane.foreground_process_name == "" then
-    return "[?]"
-  end
-
-  local process_name = string.gsub(tab.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
-  if string.find(process_name, "kubectl") then
-    process_name = "kubectl"
-  end
-
-  return process_icons[process_name] or string.format("[%s]", process_name)
-end
-
----@diagnostic disable-next-line: unused-local
-wezterm.on("format-tab-title", function(tab, tabs, panes, conf, hover, max_width)
-  local has_unseen_output = false
-  if not tab.is_active then
-    for _, pane in ipairs(tab.panes) do
-      if pane.has_unseen_output then
-        has_unseen_output = true
-        break
-      end
-    end
-  end
-
-  local cwd = wezterm.format {
-    { Attribute = { Intensity = "Bold" } },
-    { Text = get_current_working_dir(tab) },
-  }
-
-  local title = string.format(" %s %s ", get_process(tab), cwd)
-
-  if has_unseen_output then
-    return {
-      { Foreground = { Color = "#28719c" } },
-      { Text = title },
-    }
-  end
-
-  return {
-    { Text = title },
-  }
-end)
-
 -- https://wezfurlong.org/wezterm/config/lua/window-events/update-right-status.html
 wezterm.on("update-right-status", function(window)
-  if not window:get_dimensions().is_full_screen then
-    window:set_right_status ""
-    return
-  end
-
   window:set_right_status(wezterm.format {
     { Text = wezterm.strftime "[%H:%M]" },
   })
 end)
 
-config.color_scheme = "Catppuccin Mocha"
--- scheme_for_appearance(get_appearance())
-config.font = wezterm.font("CaskaydiaCove Nerd Font", {
-  weight = "Regular",
-})
--- config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" } -- disable ligatures
+-- Set font
+config.font = wezterm.font_with_fallback {
+  {
+    family = "CaskaydiaCove Nerd Font",
+    weight = "Regular",
+    italic = false,
+  },
+  { family = "Symbols Nerd Font Mono", scale = 0.80 },
+}
+
+-- config.font = wezterm.font("CaskaydiaCove Nerd Font", {
+--   weight = "Regular",
+-- })
 config.font_size = 14
 config.window_padding = {
   left = 0,
@@ -168,74 +62,158 @@ config.window_padding = {
   bottom = 1,
 }
 config.window_background_opacity = 0.9
-config.use_fancy_tab_bar = true
+config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = false
 config.tab_bar_at_bottom = true
-config.tab_max_width = 32
+config.tab_max_width = 64
 config.hide_mouse_cursor_when_typing = false
+config.color_scheme = "Oceanic-Next"
+config.cursor_blink_rate = 1000
+config.command_palette_bg_color = "#1c1c1c"
+config.default_cursor_style = "BlinkingBlock"
 
-config.leader = { key = "b", mods = "CTRL" }
+-- Never prompt confirmation for closing
+-- config.window_close_confirmation = "NeverPrompt"
+config.window_close_confirmation = "AlwaysPrompt"
 
-config.keys = {
-  {
-    key = "-",
-    mods = "ALT",
-    action = act.SplitVertical { domain = "CurrentPaneDomain" },
-  },
-  {
-    key = "=",
-    mods = "ALT",
-    action = act.SplitHorizontal { domain = "CurrentPaneDomain" },
-  },
-  {
-    key = "w",
-    mods = "SHIFT|ALT",
-    action = act.CloseCurrentPane { confirm = true },
-  },
-  { key = "X", mods = "LEADER", action = act.ActivateCopyMode },
-  { key = "Z", mods = "LEADER", action = act.TogglePaneZoomState },
-  { key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
-  { key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
+local base16_colors = {
+  bg = "#1B2B34",
+  bg_dark = "#343D46",
+  bg_highlight = "#4F5B66",
+  comment = "#65737E",
+  fg_dark = "#A7ADBA",
+  fg = "#C0C5CE",
+  fg_gutter = "#CDD3DE",
+  fg_light = "#D8DEE9", -- TODO: this doesn't make sesne
 
-  { key = "a", mods = "LEADER|CTRL", action = wezterm.action { SendString = "\x01" } },
-  { key = "-", mods = "LEADER", action = wezterm.action { SplitVertical = { domain = "CurrentPaneDomain" } } },
-  { key = "\\", mods = "LEADER", action = wezterm.action { SplitHorizontal = { domain = "CurrentPaneDomain" } } },
-  { key = "s", mods = "LEADER", action = wezterm.action { SplitVertical = { domain = "CurrentPaneDomain" } } },
-  { key = "v", mods = "LEADER", action = wezterm.action { SplitHorizontal = { domain = "CurrentPaneDomain" } } },
-  { key = "z", mods = "LEADER", action = "TogglePaneZoomState" },
-  { key = "c", mods = "LEADER", action = wezterm.action { SpawnTab = "CurrentPaneDomain" } },
-  { key = "h", mods = "LEADER", action = wezterm.action { ActivatePaneDirection = "Left" } },
-  { key = "j", mods = "LEADER", action = wezterm.action { ActivatePaneDirection = "Down" } },
-  { key = "k", mods = "LEADER", action = wezterm.action { ActivatePaneDirection = "Up" } },
-  { key = "l", mods = "LEADER", action = wezterm.action { ActivatePaneDirection = "Right" } },
-  { key = "H", mods = "LEADER|SHIFT", action = wezterm.action { AdjustPaneSize = { "Left", 5 } } },
-  { key = "J", mods = "LEADER|SHIFT", action = wezterm.action { AdjustPaneSize = { "Down", 5 } } },
-  { key = "K", mods = "LEADER|SHIFT", action = wezterm.action { AdjustPaneSize = { "Up", 5 } } },
-  { key = "L", mods = "LEADER|SHIFT", action = wezterm.action { AdjustPaneSize = { "Right", 5 } } },
-  { key = "1", mods = "LEADER", action = wezterm.action { ActivateTab = 0 } },
-  { key = "2", mods = "LEADER", action = wezterm.action { ActivateTab = 1 } },
-  { key = "3", mods = "LEADER", action = wezterm.action { ActivateTab = 2 } },
-  { key = "4", mods = "LEADER", action = wezterm.action { ActivateTab = 3 } },
-  { key = "5", mods = "LEADER", action = wezterm.action { ActivateTab = 4 } },
-  { key = "6", mods = "LEADER", action = wezterm.action { ActivateTab = 5 } },
-  { key = "7", mods = "LEADER", action = wezterm.action { ActivateTab = 6 } },
-  { key = "8", mods = "LEADER", action = wezterm.action { ActivateTab = 7 } },
-  { key = "9", mods = "LEADER", action = wezterm.action { ActivateTab = 8 } },
-  { key = "&", mods = "LEADER|SHIFT", action = wezterm.action { CloseCurrentTab = { confirm = true } } },
-  { key = "d", mods = "LEADER", action = wezterm.action { CloseCurrentPane = { confirm = true } } },
-  { key = "x", mods = "LEADER", action = wezterm.action { CloseCurrentPane = { confirm = true } } },
-
-  -- move between split panes
-  split_nav("move", "h"),
-  split_nav("move", "j"),
-  split_nav("move", "k"),
-  split_nav("move", "l"),
-
-  -- resize panes
-  split_nav("resize", "h"),
-  split_nav("resize", "j"),
-  split_nav("resize", "k"),
-  split_nav("resize", "l"),
+  red = "#EC5f67",
+  orange = "#F99157",
+  yellow = "#FAC863",
+  green = "#99C794",
+  green_dark = "#11ab49",
+  cyan = "#5FB3B3",
+  blue = "#6699CC",
+  purple = "#C594C5",
+  magenta = "#C594C5",
 }
 
-return config
+-- https://wezfurlong.org/wezterm/config/appearance.html#retro-tab-bar-appearance
+config.colors = {
+  tab_bar = {
+    background = base16_colors.bg,
+    active_tab = {
+      bg_color = base16_colors.green_dark,
+      fg_color = base16_colors.fg,
+    },
+    inactive_tab = {
+      bg_color = base16_colors.bg_dark,
+      fg_color = base16_colors.fg_dark,
+    },
+    new_tab = {
+      bg_color = base16_colors.bg_dark,
+      fg_color = base16_colors.fg_dark,
+    },
+  },
+}
+
+config.inactive_pane_hsb = {
+  saturation = 0.9,
+  brightness = 0.6,
+}
+local process_icons = {
+  ["docker"] = wezterm.nerdfonts.linux_docker,
+  ["docker-compose"] = wezterm.nerdfonts.linux_docker,
+  ["psql"] = "󱤢",
+  ["kuberlr"] = wezterm.nerdfonts.linux_docker,
+  ["kubectl"] = wezterm.nerdfonts.linux_docker,
+  ["stern"] = wezterm.nerdfonts.linux_docker,
+  ["make"] = wezterm.nerdfonts.seti_makefile,
+  ["vim"] = wezterm.nerdfonts.dev_vim,
+  ["node"] = wezterm.nerdfonts.mdi_hexagon,
+  ["go"] = wezterm.nerdfonts.seti_go,
+  ["zsh"] = wezterm.nerdfonts.dev_terminal,
+  ["bash"] = wezterm.nerdfonts.cod_terminal_bash,
+  ["btm"] = wezterm.nerdfonts.mdi_chart_donut_variant,
+  ["htop"] = wezterm.nerdfonts.mdi_chart_donut_variant,
+  ["cargo"] = wezterm.nerdfonts.dev_rust,
+  ["sudo"] = wezterm.nerdfonts.fa_hashtag,
+  ["lazydocker"] = wezterm.nerdfonts.linux_docker,
+  ["git"] = wezterm.nerdfonts.dev_git,
+  ["lua"] = wezterm.nerdfonts.seti_lua,
+  ["wget"] = wezterm.nerdfonts.mdi_arrow_down_box,
+  ["curl"] = wezterm.nerdfonts.mdi_flattr,
+  ["gh"] = wezterm.nerdfonts.dev_github_badge,
+  ["ruby"] = wezterm.nerdfonts.cod_ruby,
+}
+
+local function basename(s)
+  return s:gsub("(.*[/\\])(.*)", "%2"):match "%w+"
+end
+
+local function is_not_empty(s)
+  return s ~= nil and #tostring(s) > 0
+end
+
+local function remove_trailing(s)
+  if string.sub(s, -1, -1) == "/" then
+    return string.sub(s, 1, -2)
+  end
+
+  return s
+end
+
+local function get_current_process(tab)
+  local wezterm_prog = tab.active_pane.user_vars.WEZTERM_PROG
+  if is_not_empty(wezterm_prog) then
+    return basename(wezterm_prog)
+  end
+
+  if is_not_empty(tab.active_pane.foreground_process_name) then
+    return basename(tab.active_pane.foreground_process_name)
+  end
+
+  return "?"
+end
+
+local function get_current_working_dir(tab)
+  local current_dir_url = tab.active_pane.current_working_dir
+  if not is_not_empty(current_dir_url) then
+    return " ?"
+  end
+
+  local home_dir = remove_trailing(os.getenv "HOME") .. "/"
+  if current_dir_url.file_path == home_dir then
+    return " ~"
+  end
+
+  return " " .. current_dir_url.file_path:gsub("(.*/)(.*)/", "%2")
+end
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+  local idx = " " .. tab.tab_index + 1 .. " "
+  local process = "[" .. get_current_process(tab) .. "]"
+  local dir = get_current_working_dir(tab)
+  local separator = " ▕"
+
+  return {
+    { Attribute = { Intensity = "Bold" } },
+    { Text = idx },
+    "ResetAttributes",
+    { Foreground = { Color = "#9cdbfb" } },
+    { Text = process },
+    "ResetAttributes",
+    { Text = wezterm.truncate_right(dir, max_width - (2 + #idx + #process)) },
+    { Attribute = { Intensity = "Bold" } },
+    { Foreground = { Color = "#1b2226" } },
+    { Text = separator },
+  }
+end)
+
+wezterm.on("format-window-title", function(tab, _, tabs)
+  local index = ""
+  if #tabs > 1 then
+    index = "[" .. tab.tab_index + 1 .. "/" .. #tabs .. "]"
+  end
+
+  return index .. tab.window_title
+end)

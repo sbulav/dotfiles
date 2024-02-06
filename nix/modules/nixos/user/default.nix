@@ -74,7 +74,7 @@ in {
           nixt = "sudo nixos-rebuild test --flake ~/dotfiles/nix#nz";
           nixclean = "sudo nix-collect-garbage -d && sudo nix-store --gc && sudo nix-store --repair --verify --check-contents && sudo nix-store --optimise -vvv";
         };
-        interactiveShellInit = "source ~/dotfiles/fish/functions/l.fish";
+        # interactiveShellInit = "source ~/dotfiles/fish/functions/l.fish";
       };
     };
     users.users.${cfg.name} =

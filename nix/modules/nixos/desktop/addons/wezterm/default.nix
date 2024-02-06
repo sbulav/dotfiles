@@ -16,7 +16,12 @@ in {
   config = mkIf cfg.enable {
     home.programs.wezterm = {
       enable = true;
-      extraConfig = builtins.readFile ./wezterm.lua;
+      extraConfig =
+        (builtins.readFile ./wezterm.lua)
+        + (builtins.readFile ./mappings.lua)
+        + ''
+          return config
+        '';
     };
   };
 }
