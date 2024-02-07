@@ -12,13 +12,6 @@ in {
   options.custom.desktop.addons.gtk = with types; {
     enable = mkBoolOpt false "Whether to customize GTK and apply themes.";
 
-    environment.systemPackages = with pkgs; [
-      adwaita-qt
-      adwaita-qt6
-      gnome.adwaita-icon-theme
-      gnome.gnome-tweaks
-    ];
-
     home.config = mkIf cfg.enable {
       gtk = {
         enable = true;

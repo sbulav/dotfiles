@@ -19,6 +19,7 @@ in {
       extraConfig =
         (builtins.readFile ./wezterm.lua)
         + (builtins.readFile ./mappings.lua)
+        + (builtins.readFile ./tabs.lua)
         + ''
           return config
         '';

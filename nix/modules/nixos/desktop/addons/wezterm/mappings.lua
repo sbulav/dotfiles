@@ -49,15 +49,15 @@ config.keys = {
   { key = "d", mods = "LEADER", action = wezterm.action { CloseCurrentPane = { confirm = true } } },
   { key = "x", mods = "LEADER", action = wezterm.action { CloseCurrentPane = { confirm = true } } },
 
-  -- move between split panes
-  split_nav("move", "h"),
-  split_nav("move", "j"),
-  split_nav("move", "k"),
-  split_nav("move", "l"),
+  -- -- move between split panes
+  -- split_nav("move", "h"),
+  -- split_nav("move", "j"),
+  -- split_nav("move", "k"),
+  -- split_nav("move", "l"),
 
-  -- resize panes
-  split_nav("resize", "h"),
-  split_nav("resize", "j"),
-  split_nav("resize", "k"),
-  split_nav("resize", "l"),
+  -- -- resize panes
+  -- split_nav("resize", "h"),
+  -- split_nav("resize", "j"),
+  -- split_nav("resize", "k"),
+  -- split_nav("resize", "l"),
 }

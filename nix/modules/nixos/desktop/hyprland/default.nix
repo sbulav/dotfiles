@@ -48,6 +48,11 @@ in {
       grim
       slurp
       networkmanagerapplet
+
+      adwaita-qt
+      adwaita-qt6
+      gnome.adwaita-icon-theme
+      gnome.gnome-tweaks
     ];
 
     environment.sessionVariables = {
