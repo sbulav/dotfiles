@@ -26,6 +26,7 @@ in {
       mako = enabled;
       regreet = enabled;
       rofi = enabled;
+      swayidle = enabled;
       swaylock = enabled;
       waybar = enabled;
       wezterm = enabled;
