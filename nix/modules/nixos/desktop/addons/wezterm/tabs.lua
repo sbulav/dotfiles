@@ -15,22 +15,22 @@ local icons = {
   ["git"] = wezterm.nerdfonts.dev_git,
   ["go"] = wezterm.nerdfonts.seti_go,
   ["htop"] = wezterm.nerdfonts.md_chart_areaspline,
-  ["kubectl"] = wezterm.nerdfonts.linux_docker,
-  ["k9s"] = wezterm.nerdfonts.linux_docker,
+  ["kubectl"] = wezterm.nerdfonts.md_kubernetes,
+  ["k9s"] = wezterm.nerdfonts.md_kubernetes,
   ["kuberlr"] = wezterm.nerdfonts.linux_docker,
   ["lazydocker"] = wezterm.nerdfonts.linux_docker,
   ["lazygit"] = wezterm.nerdfonts.cod_github,
   ["lua"] = wezterm.nerdfonts.seti_lua,
   ["make"] = wezterm.nerdfonts.seti_makefile,
   ["node"] = wezterm.nerdfonts.mdi_hexagon,
-  ["nvim"] = wezterm.nerdfonts.custom_vim,
-  ["pacman"] = "󰮯 ",
-  ["paru"] = "󰮯 ",
+  ["nvim"] = wezterm.nerdfonts.linux_neovim,
+  ["nix"] = wezterm.nerdfonts.md_nix,
+  ["nixt"] = wezterm.nerdfonts.md_nix,
   ["psql"] = wezterm.nerdfonts.dev_postgresql,
   ["pwsh.exe"] = wezterm.nerdfonts.md_console,
   ["ruby"] = wezterm.nerdfonts.cod_ruby,
   ["sudo"] = wezterm.nerdfonts.fa_hashtag,
-  ["vim"] = wezterm.nerdfonts.dev_vim,
+  ["vim"] = wezterm.nerdfonts.linux_neovim,
   ["wget"] = wezterm.nerdfonts.mdi_arrow_down_box,
   ["zsh"] = wezterm.nerdfonts.dev_terminal,
 }
@@ -67,13 +67,13 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   local inactive_bg = colors.tab_bar.inactive_tab.bg_color
 
   local tab_idx = 1
-  -- for i, t in ipairs(tabs) do
-  -- 	if t.tab_id == tab.tab_id then
-  -- 		tab_idx = i
-  -- 		break
-  -- 	end
-  -- end
-  local tab_idx = tab.tab_index + 1
+  for i, t in ipairs(tabs) do
+    if t.tab_id == tab.tab_id then
+      tab_idx = i
+      break
+    end
+  end
+  -- local tab_idx = tab.tab_index + 1
   local is_last = tab_idx == #tabs
   local next_tab = tabs[tab_idx + 1]
   local next_is_active = next_tab and next_tab.is_active

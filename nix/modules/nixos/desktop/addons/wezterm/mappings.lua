@@ -1,3 +1,5 @@
+local act = wezterm.action
+
 config.leader = { key = "b", mods = "CTRL" }
 
 config.keys = {
@@ -17,7 +19,6 @@ config.keys = {
     action = act.CloseCurrentPane { confirm = true },
   },
   { key = "X", mods = "LEADER", action = act.ActivateCopyMode },
-  { key = "Z", mods = "LEADER", action = act.TogglePaneZoomState },
   { key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
   { key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
 
@@ -45,19 +46,13 @@ config.keys = {
   { key = "7", mods = "LEADER", action = wezterm.action { ActivateTab = 6 } },
   { key = "8", mods = "LEADER", action = wezterm.action { ActivateTab = 7 } },
   { key = "9", mods = "LEADER", action = wezterm.action { ActivateTab = 8 } },
-  { key = "&", mods = "LEADER|SHIFT", action = wezterm.action { CloseCurrentTab = { confirm = true } } },
   { key = "d", mods = "LEADER", action = wezterm.action { CloseCurrentPane = { confirm = true } } },
-  { key = "x", mods = "LEADER", action = wezterm.action { CloseCurrentPane = { confirm = true } } },
+}
 
-  -- -- move between split panes
-  -- split_nav("move", "h"),
-  -- split_nav("move", "j"),
-  -- split_nav("move", "k"),
-  -- split_nav("move", "l"),
-
-  -- -- resize panes
-  -- split_nav("resize", "h"),
-  -- split_nav("resize", "j"),
-  -- split_nav("resize", "k"),
-  -- split_nav("resize", "l"),
+config.mouse_bindings = {
+  {
+    event = { Down = { streak = 1, button = "Right" } },
+    mods = "NONE",
+    action = act.PasteFrom "PrimarySelection",
+  },
 }
