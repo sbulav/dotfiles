@@ -23,6 +23,10 @@ in {
           command = "${pkgs.swaylock-effects}/bin/swaylock -efF";
         }
         {
+          event = "after-resume";
+          command = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+        }
+        {
           event = "before-sleep";
           command = "${pkgs.swaylock-effects}/bin/swaylock -efF";
         }
