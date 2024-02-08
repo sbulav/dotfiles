@@ -19,32 +19,28 @@ in {
 
       events = [
         {
-          event = "before-sleep";
-          command = "${pkgs.swaylock}/bin/swaylock -defF";
-        }
-        {
-          # TODO: Make dynamic for window manager
-          event = "after-resume";
-          command = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
-        }
-        {
           event = "lock";
-          command = "${pkgs.swaylock}/bin/swaylock -defF";
+          command = "${pkgs.swaylock-effects}/bin/swaylock -efF";
         }
         {
           event = "before-sleep";
-          command = "${pkgs.libnotify}/bin/notify-send 'Going to sleep in 30 sec' -t 30000";
+          command = "${pkgs.swaylock-effects}/bin/swaylock -efF";
         }
       ];
+      # 5 min lock, 10min turn the screen off, 20 min suspend
       timeouts = [
         {
-          timeout = 900;
-          command = "${pkgs.swaylock}/bin/swaylock -defF";
+          timeout = 300;
+          command = "${pkgs.swaylock-effects}/bin/swaylock -efF -C ~/.config/swaylock/config";
         }
         {
-          # TODO: Make dynamic for window manager
-          timeout = 1200;
+          timeout = 600;
           command = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
+          resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+        }
+        {
+          timeout = 1200;
+          command = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ];
     };

@@ -28,7 +28,7 @@
   };
 
   fileSystems."/mnt/tank" = {
-    device = "truenas.sbulav.gq:/mnt/tank";
+    device = "truenas.sbulav.ru:/mnt/tank";
     options = ["x-systemd.automount" "x-systemd.idle-timeout=600" "noauto"];
     fsType = "nfs";
   };
@@ -42,6 +42,9 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
+  networking.hosts = {
+    "192.168.89.200" = ["truenas.sbulav.ru"];
+  };
   # networking.interfaces.enp2s0f0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
