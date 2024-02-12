@@ -1,5 +1,92 @@
 # Changelog
 
+## [4.0.0](https://www.github.com/sbulav/dotfiles/compare/v3.2.0...v4.0.0) (2024-02-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* start moving darwin to snowfall
+
+### Features
+
+* add kitty opacity ([2772f12](https://www.github.com/sbulav/dotfiles/commit/2772f129cf46f7cfd08a181f0378e11df7e15e56))
+* **fish:** add zoxide ([39a4ecf](https://www.github.com/sbulav/dotfiles/commit/39a4ecf10bd3c041b9a84d23b9bdf30ea4c26a6a))
+* **fish:** update fish plugins ([8b9eea7](https://www.github.com/sbulav/dotfiles/commit/8b9eea7af010aa77233d7300dcaff589e4a91082))
+* **fish:** use alt+t for fzf file search ([0be2b81](https://www.github.com/sbulav/dotfiles/commit/0be2b815b5a44f6173e152ed5a9dee38c84aa08f))
+* **kitty:** add mouse copy paste ([525f197](https://www.github.com/sbulav/dotfiles/commit/525f19740cff6aff4472996ae921c2a5f540a4d0))
+* **l2tp:** add l2tp module ([6b72bfd](https://www.github.com/sbulav/dotfiles/commit/6b72bfd9af8571572f9166a1e390212943f117d4))
+* more nix modules ([511d8f3](https://www.github.com/sbulav/dotfiles/commit/511d8f347c09fa1c5a62ce632881263c9e6c4a72))
+* **nix:** add develop suite ([9790397](https://www.github.com/sbulav/dotfiles/commit/979039781575d1beab9bda9672551e4c18eda32f))
+* **nix:** add git and gnupg ([0e5f94b](https://www.github.com/sbulav/dotfiles/commit/0e5f94b41871f5c3247fe106e80e0e931a059dde))
+* **nix:** add gtk cursorTheme ([09cb1e1](https://www.github.com/sbulav/dotfiles/commit/09cb1e1900d7f451a6e761a71c271695f8daff2f))
+* **nix:** add more apps and add MIME ([f779cd3](https://www.github.com/sbulav/dotfiles/commit/f779cd36b164eb5c511b5079b5f9a032db0f3e4d))
+* **nix:** add more desktop modules ([ff34ffc](https://www.github.com/sbulav/dotfiles/commit/ff34ffcf4aab442de2dfa0085b10f4792be1f90d))
+* **nix:** add more modules ([962cf00](https://www.github.com/sbulav/dotfiles/commit/962cf00f7a2f66a6a1fb2c714b51534ed2fe708c))
+* **nix:** add nfs fileshare ([7263a82](https://www.github.com/sbulav/dotfiles/commit/7263a82875733eb874c15ae16dca3818531c571d))
+* **nix:** add rofi search shortcut ([0400426](https://www.github.com/sbulav/dotfiles/commit/04004266faa1e81d61883a0487371319dfb7aa8a))
+* **nix:** add rofi-calc ([bd5a818](https://www.github.com/sbulav/dotfiles/commit/bd5a8182795ce4080e36287a6dacca5d99c34ccf))
+* **nix:** add sudo and clean up ([17e7118](https://www.github.com/sbulav/dotfiles/commit/17e7118014324c557fdb2d4e373f95cbcd11e6e3))
+* **nix:** add swaylock,lf, etc ([673d857](https://www.github.com/sbulav/dotfiles/commit/673d85736a30890cc0f5ab340965a1c617d8d3e9))
+* **nix:** add vpn selector rofi ([993cf05](https://www.github.com/sbulav/dotfiles/commit/993cf0591358abbcc869178ea8c57e5721e86a25))
+* **nix:** add wezterm module ([cb7f8f3](https://www.github.com/sbulav/dotfiles/commit/cb7f8f31a09b51cc84ba2c630236f8fd7a398a01))
+* **nix:** add yazi module ([8026fff](https://www.github.com/sbulav/dotfiles/commit/8026fff21b6df1dc56c917fea9d0f507ecb0cf51))
+* **nix:** allow close window wo confirmation ([08edcf7](https://www.github.com/sbulav/dotfiles/commit/08edcf71936a39cb4ffe3af331692229529ed173))
+* **nix:** auto mount nfs share ([0ae76bf](https://www.github.com/sbulav/dotfiles/commit/0ae76bfd5c03fd38f63c8287bec3740caa186022))
+* **nix:** change wp & update rbw lock timeout ([ae3f33e](https://www.github.com/sbulav/dotfiles/commit/ae3f33e515a86a673fd8c76ebfe3cef98c9e7d89))
+* **nix:** control hyprland via home-manager ([f6c6971](https://www.github.com/sbulav/dotfiles/commit/f6c6971a8dbbd088a623dd6be3a9c287d45a1ec8))
+* **nix:** disable fprint auth as it's not unlocking keyring ([89e4dcd](https://www.github.com/sbulav/dotfiles/commit/89e4dcd10297b4e5261fd2e839b0fc492f656dc5))
+* **nix:** enable fontconfig and install telegram ([a97492b](https://www.github.com/sbulav/dotfiles/commit/a97492b7059f6330a2929f345c3719eb9258cbf9))
+* **nix:** enable gnome-keyring to store passwords ([845b553](https://www.github.com/sbulav/dotfiles/commit/845b55306ea056eb18a205e67367cbabda1f4e01))
+* **nix:** enable libnotify to send messages via notify-send ([0bf74f5](https://www.github.com/sbulav/dotfiles/commit/0bf74f5f060f402ee4cbe05b6d002c2fdb6a0ee3))
+* **nix:** enable yazi for testing ([a44ae83](https://www.github.com/sbulav/dotfiles/commit/a44ae83f267f639e9b209accb818441e88fa1bae))
+* **nix:** fix rbw ([6e1f439](https://www.github.com/sbulav/dotfiles/commit/6e1f43987b7c7b43bc361c17736184a65de45e1b))
+* **nix:** fix swayidle module ([8fabc1f](https://www.github.com/sbulav/dotfiles/commit/8fabc1f0c37b4a0fa2648fde62ab08e1514965f4))
+* **nix:** handle hdmi monitors ([b403afc](https://www.github.com/sbulav/dotfiles/commit/b403afcafff223845e32feaf0e043e5f344733bb))
+* **nix:** keep tuning wezterm ([27a7b05](https://www.github.com/sbulav/dotfiles/commit/27a7b050a915bc7016c6299f2f01bf95110ac3c2))
+* **nix:** Manage gtk fonts and themes via config ([27dcbb8](https://www.github.com/sbulav/dotfiles/commit/27dcbb818d4e6f0fb96ac8ac3437d91598713cea))
+* **nix:** manage pyright and black with nix ([abb4a3e](https://www.github.com/sbulav/dotfiles/commit/abb4a3e63cb3de2abe955e752708602a2d0eef47))
+* **nix:** more changes ([6d02f94](https://www.github.com/sbulav/dotfiles/commit/6d02f94ecc98d9a960b768f5708f48bee25dc9c6))
+* **nix:** nixos run home manager as module ([d84cec1](https://www.github.com/sbulav/dotfiles/commit/d84cec133bcd584f1cbf7cf35032e6c4a6274364))
+* **nix:** optimize user pass ([6928dd2](https://www.github.com/sbulav/dotfiles/commit/6928dd247d4fabc7e17d5caf9f3f08f20ffb9769))
+* **nix:** re-enable fingerprint on nz ([6b7c4fb](https://www.github.com/sbulav/dotfiles/commit/6b7c4fbe62e7f37c4a030ffbbd2ea5857dd82640))
+* **nix:** remove regreet patch ([f131601](https://www.github.com/sbulav/dotfiles/commit/f1316012d4b73c479c145866363622c8d2ba6f47))
+* **nix:** remove unneeded module ([d7cbd38](https://www.github.com/sbulav/dotfiles/commit/d7cbd3880d20a49e7c3d124b3d7a4c80aff302e3))
+* **nix:** remove unused dev shells ([ba13395](https://www.github.com/sbulav/dotfiles/commit/ba133951d24da8871a8d09f67bce5ec49faf9f3d))
+* **nix:** replace lf with yazi ([93c0c2d](https://www.github.com/sbulav/dotfiles/commit/93c0c2dc2221b1be4ce41e45caa6f31bb13e2a33))
+* **nix:** set up screenshot to clipboard ([784597e](https://www.github.com/sbulav/dotfiles/commit/784597eaf8040624e37561b2dc01807fb7b3254b))
+* **nix:** start migrating to snowfall-lib ([d06802e](https://www.github.com/sbulav/dotfiles/commit/d06802e9ba3f81a2e40f1e740f3e9e5160f40aa0))
+* **nix:** switch default terminal to nix ([423d6eb](https://www.github.com/sbulav/dotfiles/commit/423d6eb56bbb225509a1d851c94081d8e7ad0057))
+* **nix:** switch layout with caps ([7373b9d](https://www.github.com/sbulav/dotfiles/commit/7373b9db03063ac65ea295dbc871d21a03d09a4c))
+* **nix:** switch rofi to combi mode ([765c89f](https://www.github.com/sbulav/dotfiles/commit/765c89f9f6a1407aca00548797c8ed07cd0aa2be))
+* **nix:** switch to wayland rofi ([4be761e](https://www.github.com/sbulav/dotfiles/commit/4be761e42a91c0cd0f6cc95a0df15fc8541a4295))
+* **nix:** update readme ([feb0aac](https://www.github.com/sbulav/dotfiles/commit/feb0aac5b17c9cd25519847ffe480165fd2ea348))
+* **nix:** update waybar widgets ([85d3f06](https://www.github.com/sbulav/dotfiles/commit/85d3f06a80a9f771fbccabae95e1d336f6df771f))
+* **nix:** use cliphist and rofi for copying ([fbdf1fd](https://www.github.com/sbulav/dotfiles/commit/fbdf1fdb9b70f5d2da176dbe4bed3c658b0f8756))
+* **nix:** use rbw to paste bitwarden pw from rofi ([e952749](https://www.github.com/sbulav/dotfiles/commit/e9527499970e86c439a663204c49cae6492ec4a0))
+* **nix:** use swayidle as service ([a2fff28](https://www.github.com/sbulav/dotfiles/commit/a2fff2871d0e03904ddad5eb6df42e69fabc5a7e))
+* **nvim:** don't manage stylua in Mason ([62f13cd](https://www.github.com/sbulav/dotfiles/commit/62f13cde844968a8756f4b1a04ac54b5c139256c))
+* **nvim:** make cheat.sh work with one line words ([1f2d00c](https://www.github.com/sbulav/dotfiles/commit/1f2d00c28b265bd52606a5e23f48e7446630683d))
+* **nvim:** replace lsp icons ([daf935e](https://www.github.com/sbulav/dotfiles/commit/daf935ed63ae3b93cc3e2cfb31f9b5c1db84a780))
+* **nvim:** switch back to "Oceanic-Next" ([38260c9](https://www.github.com/sbulav/dotfiles/commit/38260c97a962ea9654a83a46acd335b896e2f031))
+* **nvim:** Telescope search in cwd by default ([da49bbd](https://www.github.com/sbulav/dotfiles/commit/da49bbd3b0e6aad59db73e9c90656ea4384d99a5))
+* **nvim:** use tab for luasnip over the text ([f243c0e](https://www.github.com/sbulav/dotfiles/commit/f243c0e2c1f3ce854498b57079ae6f32f114ad46))
+* start moving darwin to snowfall ([ece60d8](https://www.github.com/sbulav/dotfiles/commit/ece60d814928b4382ace46482d5bb7a169509fdc))
+* **tmux:** don't auto start session ([65b1a56](https://www.github.com/sbulav/dotfiles/commit/65b1a5673c70f3ace87b80fc2bf4b84dc7aaefdd))
+* **wezterm:** add more wezterm config ([2124235](https://www.github.com/sbulav/dotfiles/commit/21242350cd1bf14e15d34a5205ea3955b5bf28ab))
+* **wezterm:** finally fix fonts, clean config ([c61a406](https://www.github.com/sbulav/dotfiles/commit/c61a406d1748749c5fd82de561b803eebb3ba077))
+* **wezterm:** move events to separate file ([2aefdfa](https://www.github.com/sbulav/dotfiles/commit/2aefdfadd30cae281f5ea7ab6da32b3cc081855f))
+* **wezterm:** split config and set tmux-like maps ([6a75d04](https://www.github.com/sbulav/dotfiles/commit/6a75d041f78d3dc5bf9b119a2c9b0cb79889ca7c))
+* **zoom:** add zoom module ([96c03df](https://www.github.com/sbulav/dotfiles/commit/96c03dfe13ed585c1fb50274c692884b4438153e))
+
+
+### Bug Fixes
+
+* **nix:** correct hyprland mappings ([5b20a25](https://www.github.com/sbulav/dotfiles/commit/5b20a254169f3790b568036aa2bc21ffecb680eb))
+* **nix:** leave only one hyprland portal ([a86675e](https://www.github.com/sbulav/dotfiles/commit/a86675e171cf6d42064faa401b2be77cb9c29818))
+* **nix:** mako startup ([34b86e6](https://www.github.com/sbulav/dotfiles/commit/34b86e63df01e76af1b89a65325087e9a84fd7bb))
+* **nix:** use pinentry-gnome for rbw ([618cacc](https://www.github.com/sbulav/dotfiles/commit/618cacc4936591aae9ba1a8f273c39c95e8fe528))
+* **swayidle:** enable monitors after sleep ([26bab16](https://www.github.com/sbulav/dotfiles/commit/26bab163ccd415293760079bc76f2278462db1aa))
+
 ## [3.2.0](https://www.github.com/sbulav/dotfiles/compare/v3.1.0...v3.2.0) (2024-01-15)
 
 
