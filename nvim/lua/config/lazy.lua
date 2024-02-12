@@ -43,4 +43,4 @@ require("lazy").setup("plugins", {
         },
     },
 })
-vim.cmd.colorscheme "monet"
+vim.cmd.colorscheme "base16-oceanicnext"

@@ -1,11 +1,15 @@
+#https://github.com/Kazuto/.nix/blob/master/modules/linux/home/default.nix
 {
   description = "Sbulav nix config";
 
   inputs = {
     # Nixpkgs
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    snowfall-lib = {
+      url = "github:snowfallorg/lib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,91 +27,44 @@
     };
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Nix formatter
-    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
-    alejandra.inputs.nixpkgs.follows = "nixpkgs";
+    alejandra = {
+      url = "github:kamadorueda/alejandra/3.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {
-    alejandra,
-    darwin,
-    home-manager,
-    homebrew-cask,
-    homebrew-core,
-    nix-homebrew,
-    nixpkgs,
-    self,
-    ...
-  } @ inputs: let
-    user = "sab";
-    systems = ["x86_64-linux" "aarch64-darwin"];
-    forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
-    devShell = system: let
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      default = with pkgs;
-        mkShell {
-          nativeBuildInputs = with pkgs; [bashInteractive git age age-plugin-yubikey];
-          shellHook = with pkgs; ''
-            export EDITOR=vim
-          '';
+  outputs = inputs: let
+    lib = inputs.snowfall-lib.mkLib {
+      inherit inputs;
+      src = ./.;
+
+      snowfall = {
+        meta = {
+          name = "dotfiles";
+          title = "dotfiles";
         };
-    };
-  in {
-    devShells = forAllSystems devShell;
 
-    darwinConfigurations = let
-      user = "sab";
-    in {
-      macos = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        specialArgs = inputs;
-        modules = [
-          nix-homebrew.darwinModules.nix-homebrew
-          home-manager.darwinModules.home-manager
-          {
-            nix-homebrew = {
-              enable = true;
-              user = "sab";
-              taps = {
-                "homebrew/homebrew-core" = homebrew-core;
-                "homebrew/homebrew-cask" = homebrew-cask;
-              };
-              mutableTaps = true;
-              autoMigrate = true;
-            };
-          }
-          ./darwin
-        ];
+        namespace = "custom";
       };
     };
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = let
-      user = "sab";
-    in {
-      nz = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;}; # Pass flake inputs to our config
-        # > Our main nixos configuration file <
-        modules = [./nixos/configuration.nix];
+  in
+    lib.mkFlake {
+      inherit inputs;
+      src = ./.;
+
+      channels-config = {
+        allowUnfree = true;
       };
+
+      overlays = with inputs; [];
+
+      systems.modules.nixos = with inputs; [];
+
+      templates = import ./templates {};
     };
-    imports = [
-      # Import home-manager's NixOS module
-      inputs.home-manager.nixosModules.home-manager
-    ];
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
-    homeConfigurations = {
-      "sab@nz" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs;}; # Pass flake inputs to our config
-        # > Our main home-manager configuration file <
-        modules = [./nixos/home-manager/home.nix];
-      };
-    };
-  };
 }

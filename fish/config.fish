@@ -1,10 +1,11 @@
 # Append paths
-set -a PATH "$HOME/bin/" "$HOME/.local/bin" "/opt/homebrew/bin" "$HOME/./go/bin/" "$HOME/Library/Python/3.8/bin/"
+set -a PATH "$HOME/bin/" "$HOME/.local/bin" "/opt/homebrew/bin" "$HOME/./go/bin/"
 
 # Initialize FZF keybindings
 fzf_key_bindings
 if status --is-interactive;
   atuin init fish --disable-up-arrow | source
+  zoxide init fish | source
 end
 
 
@@ -18,11 +19,8 @@ set -x LANG en_US.UTF-8
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
-# Use python3 as default on Mac
-set -gx PATH "/usr/local/opt/python/libexec/bin" $PATH
-
 # Set KUBECONFIG
-set -gx KUBECONFIG "$HOME/.kube/all-merged"
+set -gx KUBECONFIG "$HOME/.kube/config"
 
 # Add krew to path
 set -gx PATH $PATH $HOME/.krew/bin
@@ -31,11 +29,11 @@ set -gx PATH $PATH $HOME/.krew/bin
 set -gx FISH_KUBECTL_COMPLETION_COMPLETE_CRDS 0
 
 # Load ssh keys into ssh-agent
-load_keys
+#load_keys
 
 # Load env credentials
 if begin; test -f ~/.ssh/env-credentials;end
-posix-source ~/.ssh/env-credentials
+  posix-source ~/.ssh/env-credentials
 end
 
 # git_prompt
