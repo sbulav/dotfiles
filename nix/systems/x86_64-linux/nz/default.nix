@@ -19,6 +19,11 @@
     yazi.enable = true;
   };
 
+  custom.virtualisation = {
+    virt-manager.enable = true;
+    kvm.enable = false;
+  };
+
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "23.11";
   # ======================== DO NOT CHANGE THIS ========================
