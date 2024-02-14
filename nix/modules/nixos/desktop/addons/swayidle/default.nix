@@ -20,7 +20,7 @@ in {
       events = [
         {
           event = "lock";
-          command = "${pkgs.swaylock-effects}/bin/swaylock -efF";
+          command = "${pkgs.swaylock-effects}/bin/swaylock -fF";
         }
         {
           event = "after-resume";
@@ -28,14 +28,14 @@ in {
         }
         {
           event = "before-sleep";
-          command = "${pkgs.swaylock-effects}/bin/swaylock -efF";
+          command = "${pkgs.swaylock-effects}/bin/swaylock -fF";
         }
       ];
       # 5 min lock, 10min turn the screen off, 20 min suspend
       timeouts = [
         {
           timeout = 300;
-          command = "${pkgs.swaylock-effects}/bin/swaylock -efF -C ~/.config/swaylock/config";
+          command = "${pkgs.swaylock-effects}/bin/swaylock -fF -C ~/.config/swaylock/config";
         }
         {
           timeout = 600;
