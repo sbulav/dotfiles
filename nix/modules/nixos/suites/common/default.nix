@@ -38,6 +38,7 @@ in {
 
     custom.tools = {
       git.enable = true;
+      gh.enable = true;
       http.enable = true;
       misc.enable = true;
       net.enable = true;
