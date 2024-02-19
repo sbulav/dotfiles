@@ -24,9 +24,10 @@ with lib.custom; {
 
     tools = {
       git = enabled;
+      gh = enabled;
       bat = enabled;
-      # direnv = enabled;
     };
+
     desktop = {
       addons = {
         wezterm = enabled;
