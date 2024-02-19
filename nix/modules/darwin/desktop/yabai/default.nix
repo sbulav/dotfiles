@@ -17,7 +17,6 @@ in {
   config = mkIf cfg.enable {
     custom.desktop.addons = {
       skhd = enabled;
-      spacebar = disabled;
     };
     launchd.user.agents.yabai.serviceConfig = {
       StandardOutPath = "/tmp/yabai.log";

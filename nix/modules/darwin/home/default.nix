@@ -10,9 +10,9 @@ with lib;
 with lib.custom; let
   cfg = config.custom.home;
 in {
-  # imports = with inputs; [
-  #   home-manager.darwinModules.home-manager
-  # ];
+  imports = with inputs; [
+    home-manager.darwinModules.home-manager
+  ];
 
   options.custom.home = with types; {
     file =
@@ -29,6 +29,8 @@ in {
     custom.home.extraOptions = {
       home.stateVersion = mkDefault "22.11";
       home.file = mkAliasDefinitions options.custom.home.file;
+      programs = mkAliasDefinitions options.custom.home.programs;
+      services = mkAliasDefinitions options.custom.home.services;
       xdg.enable = true;
       xdg.configFile = mkAliasDefinitions options.custom.home.configFile;
     };

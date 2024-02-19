@@ -23,9 +23,9 @@ in {
       #   iterm2 = enabled;
       # };
 
-      cli-apps = {
-        neovim = enabled;
-      };
+      # cli-apps = {
+      #   neovim = enabled;
+      # };
 
       # tools = {
       #   git = enabled;
