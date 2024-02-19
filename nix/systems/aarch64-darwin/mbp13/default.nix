@@ -13,6 +13,7 @@ with lib.custom; {
     desktop.yabai = enabled;
   };
 
+  # suites.common.enable = true; # Enables the basics, like audio, networking, ssh, etc.
   environment.systemPath = [
     "/opt/homebrew/bin"
   ];

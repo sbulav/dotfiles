@@ -11,6 +11,12 @@
 
   is-linux = pkgs.stdenv.isLinux;
   is-darwin = pkgs.stdenv.isDarwin;
+  home-directory =
+    if cfg.name == null
+    then null
+    else if is-darwin
+    then "/Users/${cfg.name}"
+    else "/home/${cfg.name}";
 in {
   options.custom.user = {
     name = mkOpt types.str "sab" "The name to use for the user account.";

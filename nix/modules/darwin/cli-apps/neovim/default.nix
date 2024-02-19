@@ -14,10 +14,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.neovim = {
-      enable = true;
-      defaultEditor = true;
-      vimAlias = true;
-    };
+    environment.systemPackages = with pkgs; [
+      neovim
+    ];
   };
 }

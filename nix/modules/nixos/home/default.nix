@@ -25,12 +25,12 @@ with lib.custom; {
 
   config = {
     home.extraOptions = {
-      home.stateVersion = config.system.stateVersion;
       home.file = mkAliasDefinitions options.home.file;
-      xdg.enable = true;
-      xdg.configFile = mkAliasDefinitions options.home.configFile;
+      home.stateVersion = config.system.stateVersion;
       programs = mkAliasDefinitions options.home.programs;
       services = mkAliasDefinitions options.home.services;
+      xdg.configFile = mkAliasDefinitions options.home.configFile;
+      xdg.enable = true;
     };
 
     home-manager = {

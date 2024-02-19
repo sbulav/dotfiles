@@ -23,20 +23,34 @@ in {
       #   iterm2 = enabled;
       # };
 
-      # cli-apps = {
-      #   neovim = enabled;
-      # };
+      cli-apps = {
+        tmux = enabled;
+        # neovim = enabled;
+        # yazi = enabled;
+      };
 
       # tools = {
       #   git = enabled;
       #   flake = enabled;
       # };
 
+      tools = {
+        # git.enable = true;
+        # gh.enable = true;
+        http.enable = true;
+        misc.enable = true;
+        k8s.enable = true;
+        net.enable = true;
+      };
       system = {
         fonts = enabled;
         input = enabled;
         interface = enabled;
       };
+
+      # cli-apps = {
+      #   yazi.enable = lib.mkDefault true;
+      # };
 
       # security = {
       #   gpg = enabled;
