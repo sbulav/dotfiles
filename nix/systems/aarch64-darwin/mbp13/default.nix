@@ -7,7 +7,7 @@ with lib.custom; {
   custom = {
     suites = {
       common = enabled;
-      development = enabled;
+      develop = enabled;
     };
 
     desktop.yabai = enabled;

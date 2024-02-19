@@ -13,21 +13,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home = {
-      packages = with pkgs; [
-        neovim
-      ];
-
-      sessionVariables = {
-        PAGER = "less";
-        MANPAGER = "less";
-        NPM_CONFIG_PREFIX = "$HOME/.npm-global";
-        EDITOR = "nvim";
-      };
-
-      shellAliases = {
-        vimdiff = "nvim -d";
-      };
+    programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+      vimAlias = true;
     };
 
     # xdg.configFile = {
