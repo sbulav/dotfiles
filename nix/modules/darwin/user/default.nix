@@ -34,6 +34,16 @@ in {
       shell = pkgs.fish;
     };
 
+    programs = {
+      fish = {
+        enable = true;
+        shellAliases = {
+          nixup = "darwin-rebuild switch --flake ~/dotfiles/nix";
+          nixt = "darwin-rebuild check --flake ~/dotfiles/nix";
+        };
+      };
+    };
+
     snowfallorg.user.${config.custom.user.name}.home.config = {
       home = {
         file = {

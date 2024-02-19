@@ -28,6 +28,7 @@ in {
       tree
       unzip
       yq
+      zoxide
     ];
   };
 }
