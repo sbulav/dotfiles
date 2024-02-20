@@ -24,7 +24,7 @@ in {
       finder = {
         AppleShowAllExtensions = true;
         FXEnableExtensionChangeWarning = false;
-        _FXShowPosixPathInTitle = false;
+        _FXShowPosixPathInTitle = true;
       };
 
       # NSGlobalDomain = {

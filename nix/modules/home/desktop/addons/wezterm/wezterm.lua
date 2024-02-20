@@ -16,7 +16,7 @@ config.font = wezterm.font_with_fallback {
   { family = "Symbols Nerd Font Mono", scale = 0.9 },
   { family = "DejaVu Sans", weight = "Regular", scale = 0.75 },
 }
-if wezterm.target_triple == "x86_64-apple-darwin" then
+if wezterm.target_triple == "aarch64-apple-darwin" then
   config.font_size = 18
   -- Linux Setup
 else
