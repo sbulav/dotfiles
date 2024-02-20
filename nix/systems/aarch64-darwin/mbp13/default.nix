@@ -11,6 +11,7 @@ with lib.custom; {
     };
 
     desktop.yabai = enabled;
+    desktop.addons.wezterm = enabled;
   };
 
   # suites.common.enable = true; # Enables the basics, like audio, networking, ssh, etc.

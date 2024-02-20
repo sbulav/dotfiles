@@ -138,7 +138,7 @@ in {
         ctrl + shift - d : yabai -m space --destroy
 
         # Applications
-        alt - x : /Users/sab/.nix-profile/bin/kitty
+        alt - x : /Applications/Nix\ Apps/WezTerm.app/wezterm
         ctrl + alt - b: /Applications/Firefox.App/Contents/MacOS/firefox
 
         # -- Starting/Stopping/Restarting Yabai --

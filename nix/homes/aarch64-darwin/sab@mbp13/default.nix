@@ -14,8 +14,6 @@ with lib.custom; {
     };
 
     cli-apps = {
-      # zsh = enabled;
-      # tmux = enabled;
       home-manager = enabled;
       atuin = enabled;
       neovim = enabled;
