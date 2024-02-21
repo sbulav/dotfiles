@@ -14,7 +14,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    system.security.rbw.enable = true;
     custom = {
       desktop.addons = {
         keyring = enabled;

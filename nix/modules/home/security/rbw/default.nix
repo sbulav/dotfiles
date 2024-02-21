@@ -8,20 +8,20 @@
 }:
 with lib;
 with lib.custom; let
-  cfg = config.system.security.rbw;
+  cfg = config.custom.security.rbw;
 in {
-  options.system.security.rbw = with types; {
+  options.custom.security.rbw = with types; {
     enable = mkBoolOpt false "Whether or not to enable rbw.";
     lockTimeout = mkOpt int 28800 "The amount of time to wait before continuing with shell init.";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
+    home.packages = with pkgs; [
       rbw
       pinentry-gnome
     ];
 
-    home.programs = {
+    programs = {
       rbw = {
         enable = true;
         settings = {

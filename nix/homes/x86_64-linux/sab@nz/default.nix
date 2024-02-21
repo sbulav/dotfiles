@@ -39,5 +39,6 @@ with lib.custom; {
       git = enabled;
       direnv = disabled;
     };
+    security.rbw.enable = true;
   };
 }
