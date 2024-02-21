@@ -23,16 +23,16 @@ in {
       kitty = enabled;
       mako = enabled;
       regreet = enabled;
-      rofi = enabled;
-      swayidle = enabled;
-      swaylock = enabled;
-      waybar = enabled;
-      wezterm = enabled;
-      wlogout = enabled;
+      # rofi = enabled;
+      # swayidle = enabled;
+      # swaylock = enabled;
+      # waybar = enabled;
+      # wezterm = enabled;
+      # wlogout = enabled;
       xdg-portal = enabled;
     };
 
-    home.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
+    # home.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
 
     environment.systemPackages = with pkgs; [
       # hyprland

@@ -15,8 +15,11 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [rofi-rbw wtype];
-    home.programs.rofi = {
+    home.packages = with pkgs; [
+      rofi-rbw
+      wtype
+    ];
+    programs.rofi = {
       enable = true;
       package = pkgs.rofi-wayland;
       plugins = with pkgs; [

@@ -14,7 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.programs.wlogout = {
+    programs.wlogout = {
       enable = true;
     };
   };

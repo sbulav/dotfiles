@@ -14,7 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.programs.swaylock = {
+    programs.swaylock = {
       enable = true;
       package = pkgs.swaylock-effects;
       settings = {

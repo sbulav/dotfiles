@@ -1,4 +1,3 @@
-
 {
   options,
   config,
@@ -18,7 +17,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.programs.waybar = {
+    programs.waybar = {
       enable = true;
       package = pkgs.waybar;
 

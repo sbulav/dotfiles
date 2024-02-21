@@ -14,7 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.services.swayidle = {
+    services.swayidle = {
       enable = true;
 
       events = [
