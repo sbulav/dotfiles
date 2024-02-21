@@ -14,8 +14,8 @@ with lib.custom; {
     };
 
     desktop = {
+      hyprland = enabled;
       addons = {
-        # gtk = enabled;
         hyprpaper = enabled;
         mako = enabled;
         rofi = enabled;

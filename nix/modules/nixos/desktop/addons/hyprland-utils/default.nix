@@ -7,32 +7,18 @@
 }:
 with lib;
 with lib.custom; let
-  cfg = config.custom.desktop.hyprland;
+  cfg = config.custom.desktop.addons.hyprland-utils;
 in {
-  options.custom.desktop.hyprland = with types; {
-    enable = mkBoolOpt false "Whether or not to install Hyprland and dependencies.";
+  options.custom.desktop.addons.hyprland-utils = with types; {
+    enable = mkBoolOpt false "Whether or not to add support for hyprland.";
   };
 
   config = mkIf cfg.enable {
-    custom.desktop.addons = {
-      keyring = enabled;
-      # nautilus = enabled;
-      # thunar = enabled;
-      gtk = enabled;
-      # hyprpaper = enabled;
-      # kitty = enabled;
-      # mako = enabled;
-      regreet = enabled;
-      # rofi = enabled;
-      # swayidle = enabled;
-      # swaylock = enabled;
-      # waybar = enabled;
-      # wezterm = enabled;
-      # wlogout = enabled;
-      xdg-portal = enabled;
+    # Required as deps
+    programs.hyprland = {
+      enable = true;
+      xwayland.enable = true;
     };
-
-    # home.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
 
     environment.systemPackages = with pkgs; [
       # hyprland
@@ -66,22 +52,6 @@ in {
       XDG_SESSION_DESKTOP = "Hyprland";
       XDG_SCREENSHOTS_DIR = "~/Pictures/Screenshots";
     };
-
-    # Required as deps
-    programs.hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
-
-    home.wayland.windowManager.hyprland = {
-      enable = true;
-      extraConfig =
-        builtins.readFile ./hyprland.conf;
-
-      systemd.enable = true;
-      xwayland.enable = true;
-    };
-
     services.xserver = {
       enable = true;
       displayManager = {
