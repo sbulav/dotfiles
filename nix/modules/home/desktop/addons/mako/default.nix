@@ -14,8 +14,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [libnotify];
-    home.services.mako = {
+    home.packages = with pkgs; [
+      libnotify
+    ];
+    services.mako = {
       enable = true;
       defaultTimeout = 5000;
       font = "FiraCode Nerd Font 10";

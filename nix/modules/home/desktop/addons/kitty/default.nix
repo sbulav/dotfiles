@@ -14,7 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.programs.kitty = {
+    programs.kitty = {
       enable = true;
       font = {
         name = "CaskaydiaCove Nerd Font";

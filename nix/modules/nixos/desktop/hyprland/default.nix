@@ -19,9 +19,9 @@ in {
       # nautilus = enabled;
       # thunar = enabled;
       gtk = enabled;
-      hyprpaper = enabled;
-      kitty = enabled;
-      mako = enabled;
+      # hyprpaper = enabled;
+      # kitty = enabled;
+      # mako = enabled;
       regreet = enabled;
       # rofi = enabled;
       # swayidle = enabled;

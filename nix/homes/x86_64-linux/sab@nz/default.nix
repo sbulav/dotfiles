@@ -15,7 +15,11 @@ with lib.custom; {
 
     desktop = {
       addons = {
+        # gtk = enabled;
+        hyprpaper = enabled;
+        mako = enabled;
         rofi = enabled;
+        kitty = disabled;
         swaylock = enabled;
         swayidle = enabled;
         waybar = enabled;
