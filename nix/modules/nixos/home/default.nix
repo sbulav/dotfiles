@@ -20,6 +20,7 @@ with lib.custom; {
       "A set of files to be managed by home-manager's <option>xdg.configFile</option>.";
     programs = mkOpt attrs {} "Programs to be managed by home-manager.";
     services = mkOpt attrs {} "Services to be managed by home-manager.";
+    wayland = mkOpt attrs {} "Wayland to be managed by home-manager.";
     extraOptions = mkOpt attrs {} "Options to pass directly to home-manager.";
   };
 
@@ -29,6 +30,7 @@ with lib.custom; {
       home.stateVersion = config.system.stateVersion;
       programs = mkAliasDefinitions options.home.programs;
       services = mkAliasDefinitions options.home.services;
+      wayland = mkAliasDefinitions options.home.wayland;
       xdg.configFile = mkAliasDefinitions options.home.configFile;
       xdg.enable = true;
     };

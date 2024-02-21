@@ -15,8 +15,6 @@ in {
 
   config = mkIf cfg.enable {
     custom.desktop.addons = {
-      # electron-support = enabled;
-      # hyprpicker = enabled;
       keyring = enabled;
       # nautilus = enabled;
       # thunar = enabled;
@@ -37,8 +35,8 @@ in {
     home.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
 
     environment.systemPackages = with pkgs; [
-      hyprland
-      hyprland-protocols
+      # hyprland
+      # hyprland-protocols
       hyprpaper
       hyprpicker
 
@@ -69,21 +67,25 @@ in {
       XDG_SCREENSHOTS_DIR = "~/Pictures/Screenshots";
     };
 
+    # Required as deps
     programs.hyprland = {
       enable = true;
       xwayland.enable = true;
     };
 
+    home.wayland.windowManager.hyprland = {
+      enable = true;
+      extraConfig =
+        builtins.readFile ./hyprland.conf;
+
+      systemd.enable = true;
+      xwayland.enable = true;
+    };
+
     services.xserver = {
       enable = true;
-
       displayManager = {
         defaultSession = "hyprland";
-
-        # gdm = {
-        #   enable = true;
-        #   wayland = true;
-        # };
       };
 
       # Enable touchpad support (enabled default in most desktopManager).
