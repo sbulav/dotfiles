@@ -30,7 +30,14 @@ with lib.custom; {
     };
 
     cli-apps = {
+      atuin = enabled;
+      yazi = enabled;
       home-manager = enabled;
+    };
+    tools = {
+      gh = enabled;
+      git = enabled;
+      direnv = disabled;
     };
   };
 }

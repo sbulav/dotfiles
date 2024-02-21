@@ -37,18 +37,14 @@ in {
     environment.systemPackages = [pkgs.custom.sys];
 
     custom.tools = {
-      git.enable = true;
-      gh.enable = true;
       http.enable = true;
       misc.enable = true;
       net.enable = true;
     };
     custom.cli-apps = {
-      atuin.enable = lib.mkDefault true;
       neovim.enable = lib.mkDefault true;
       lf.enable = lib.mkDefault false;
       tmux.enable = lib.mkDefault true;
-      yazi.enable = lib.mkDefault false;
     };
   };
 }
