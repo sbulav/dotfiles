@@ -95,6 +95,7 @@ in {
               "class<Godot>" = "";
               "class<Mysql-workbench-bin>" = "";
               "class<Slack>" = "󰒱";
+              "class<zoom>" = "󱋒";
               "class<code>" = "󰨞";
               "code-url-handler" = "󰨞";
               "class<discord>" = "󰙯";
