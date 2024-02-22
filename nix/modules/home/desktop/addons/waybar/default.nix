@@ -68,13 +68,57 @@ in {
           };
 
           "hyprland/workspaces" = {
-            format = "{icon}";
+            format = "{icon} {windows}";
             on-click = "activate";
-            all-outputs = true;
+            all-outputs = false;
+            active-only = "false";
             format-icons = {
-              "urgent" = " ";
-              "active" = " ";
-              "default" = " ";
+              "1" = "󰎤";
+              "2" = "󰎧";
+              "3" = "󰎪";
+              "4" = "󰎭";
+              "5" = "󰎱";
+              "6" = "󰎳";
+              "7" = "󰎶";
+              "8" = "󰎹";
+              "9" = "󰎼";
+              "10" = "󰽽";
+              "urgent" = "󱨇";
+              "default" = "";
+              "empty" = "󱓼";
+            };
+            window-rewrite-default = "";
+            window-rewrite = {
+              "class<1Password>" = "󰢁";
+              "class<Caprine>" = "󰈎";
+              "class<Github Desktop>" = "󰊤";
+              "class<Godot>" = "";
+              "class<Mysql-workbench-bin>" = "";
+              "class<Slack>" = "󰒱";
+              "class<code>" = "󰨞";
+              "code-url-handler" = "󰨞";
+              "class<discord>" = "󰙯";
+              "class<firefox>" = "";
+              "class<firefox> title<.*github.*>" = "";
+              "class<firefox> title<.*twitch|youtube|plex|tntdrama|bally sports.*>" = "";
+              "class<kitty>" = "";
+              "class<org.wezfurlong.wezterm>" = "";
+              "class<mediainfo-gui>" = "󱂷";
+              "class<org.kde.digikam>" = "󰄄";
+              "class<org.telegram.desktop>" = "";
+              "class<.pitivi-wrapped>" = "󱄢";
+              "class<steam>" = "";
+              "class<thunderbird>" = "";
+              "class<virt-manager>" = "󰢹";
+              "class<vlc>" = "󰕼";
+              "class<thunar>" = "󰉋";
+              "class<org.gnome.Nautilus>" = "󰉋";
+              "class<Spotify>" = "";
+              "title<Spotify Free>" = "";
+              "class<libreoffice-draw>" = "󰽉";
+              "class<libreoffice-writer>" = "";
+              "class<libreoffice-calc>" = "󱎏";
+              "class<libreoffice-impress>" = "󱎐";
             };
           };
 
