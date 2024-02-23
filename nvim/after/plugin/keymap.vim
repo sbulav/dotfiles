@@ -216,17 +216,16 @@ nnoremap <leader>o :w <bar> %bd <bar> e# <bar> bd# <CR>
 nnoremap ; q:A
 
 " Simply run a make command
-nnoremap <leader>m :Telescope marks<CR>
 nnoremap <leader>md :delmarks!<CR> <bar> :delmarks A-Z <CR> <bar> :lua require("utils.marks").refresh()<CR>
-nnoremap mo mO <bar>:lua require("utils.marks").refresh()<CR>
 nnoremap <A-n> `N
 nnoremap <A-e> `E
 nnoremap <A-i> `I
 nnoremap <A-o> `O
-nnoremap <BS>n mN <bar>:lua require("utils.marks").refresh()<CR>
-nnoremap <BS>e mE <bar>:lua require("utils.marks").refresh()<CR>
-nnoremap <BS>i mI <bar>:lua require("utils.marks").refresh()<CR>
-nnoremap <BS>o mO <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap <leader>m :lua require("utils.marks").marks_to_quickfix_list() <CR>
+nnoremap <leader><leader>n mN <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap <leader><leader>e mE <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap <leader><leader>i mI <bar>:lua require("utils.marks").refresh()<CR>
+nnoremap <leader><leader>o mO <bar>:lua require("utils.marks").refresh()<CR>
 nnoremap mn mN <bar>:lua require("utils.marks").refresh()<CR>
 nnoremap me mE <bar>:lua require("utils.marks").refresh()<CR>
 nnoremap mi mI <bar>:lua require("utils.marks").refresh()<CR>
