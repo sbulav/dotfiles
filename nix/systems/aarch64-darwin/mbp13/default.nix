@@ -10,6 +10,10 @@ with lib.custom; {
       develop = enabled;
     };
 
+    virtualisation = {
+      virt-manager = enabled;
+    };
+
     desktop.yabai = enabled;
     desktop.addons.wezterm = enabled;
   };
