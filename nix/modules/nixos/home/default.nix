@@ -26,6 +26,7 @@ with lib.custom; {
     home.extraOptions = {
       home.file = mkAliasDefinitions options.home.file;
       home.stateVersion = config.system.stateVersion;
+      xdg.configFile = mkAliasDefinitions options.home.configFile;
       programs = mkAliasDefinitions options.home.programs;
     };
 
