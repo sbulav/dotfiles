@@ -21,7 +21,7 @@ with lib.custom; {
         rofi = enabled;
         kitty = disabled;
         swaylock = enabled;
-        swayidle = enabled;
+        hypridle = enabled;
         waybar = enabled;
         wlogout = enabled;
         hyprlock = disabled;

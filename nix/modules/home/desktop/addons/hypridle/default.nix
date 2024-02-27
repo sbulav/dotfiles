@@ -20,19 +20,25 @@ in {
   config = mkIf cfg.enable {
     services.hypridle = {
       enable = true;
-      package = pkgs.hypridle;
+      # package = pkgs.hypridle;
 
-      lockCmd = "${getExe config.programs.hypridle.package}";
+      lockCmd = "${pkgs.swaylock-effects}/bin/swaylock -fF";
       afterSleepCmd = "${getExe' config.wayland.windowManager.hyprland.package "hyprctl"} dispatch dpms on";
 
+      # 5 min lock, 10min turn the screen off, 20 min suspend
       listeners = [
         {
-          timeout = 900;
-          onTimeout = "${getExe config.programs.hypridle.package}";
+          timeout = 300;
+          onTimeout = "${pkgs.swaylock-effects}/bin/swaylock -fF";
+        }
+        {
+          timeout = 600;
+          onTimeout = "${getExe' config.wayland.windowManager.hyprland.package "hyprctl"} dispatch dpms off";
+          onResume = "${getExe' config.wayland.windowManager.hyprland.package "hyprctl"} dispatch dpms on";
         }
         {
           timeout = 1200;
-          onTimeout = "${getExe' config.wayland.windowManager.hyprland.package "hyprctl"} dispatch dpms off";
+          onTimeout = "${pkgs.systemd}/bin/systemctl suspend";
           onResume = "${getExe' config.wayland.windowManager.hyprland.package "hyprctl"} dispatch dpms on";
         }
       ];
