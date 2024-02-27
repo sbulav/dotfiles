@@ -96,6 +96,7 @@ in {
               "class<Mysql-workbench-bin>" = "";
               "class<Slack>" = "󰒱";
               "class<zoom>" = "󱋒";
+              "class<Zoom Meeting>" = "󱋒";
               "class<code>" = "󰨞";
               "code-url-handler" = "󰨞";
               "class<discord>" = "󰙯";
