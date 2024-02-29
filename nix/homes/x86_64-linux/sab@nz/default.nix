@@ -39,6 +39,9 @@ with lib.custom; {
       git = enabled;
       direnv = disabled;
     };
-    security.rbw.enable = true;
+    security = {
+      rbw = enabled;
+      vault = enabled;
+    };
   };
 }

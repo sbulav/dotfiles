@@ -44,6 +44,7 @@
   networking.useDHCP = lib.mkDefault true;
   networking.hosts = {
     "192.168.89.200" = ["truenas.sbulav.ru"];
+    "100.92.128.100" = ["vault-c12.pyn.ru"];
   };
   # networking.interfaces.enp2s0f0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
