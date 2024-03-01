@@ -17,7 +17,6 @@ in {
     environment.systemPackages = with pkgs; [
       eza
       bat
-      neofetch
       zoxide
       starship
     ];

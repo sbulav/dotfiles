@@ -33,6 +33,7 @@ with lib.custom; {
       atuin = enabled;
       yazi = enabled;
       home-manager = enabled;
+      fastfetch = enabled;
     };
     tools = {
       gh = enabled;
