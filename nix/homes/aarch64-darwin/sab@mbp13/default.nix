@@ -31,6 +31,9 @@ with lib.custom; {
         wezterm = enabled;
       };
     };
+    security = {
+      vault = enabled;
+    };
   };
 
   home.sessionPath = [
