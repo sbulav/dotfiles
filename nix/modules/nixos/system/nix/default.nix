@@ -26,6 +26,7 @@ in {
       nixfmt
       nix-index
       nix-prefetch-git
+      nvd
     ];
 
     nix = let
@@ -64,6 +65,12 @@ in {
       generateRegistryFromInputs = true;
       generateNixPathFromInputs = true;
       linkInputs = true;
+    };
+    system.activationScripts.diff = {
+      supportsDryActivation = true;
+      text = ''
+        ${pkgs.nvd}/bin/nvd --nix-bin-dir=${pkgs.nix}/bin diff /run/current-system "$systemConfig"
+      '';
     };
   };
 }
