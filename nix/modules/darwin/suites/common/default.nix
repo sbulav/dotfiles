@@ -20,7 +20,7 @@ in {
       nix = enabled;
 
       cli-apps = {
-        tmux = enabled;
+        tmux = disabled;
       };
 
       tools = {
@@ -28,13 +28,13 @@ in {
         misc.enable = true;
         k8s.enable = true;
         net.enable = true;
+        homebrew.enable = true;
       };
       system = {
         fonts = enabled;
         input = enabled;
         interface = enabled;
       };
-
     };
   };
 }

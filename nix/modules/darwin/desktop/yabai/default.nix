@@ -76,13 +76,13 @@ in {
         setup_space 5 media
         setup_space 6 other
 
-        yabai -m rule --add app="^Safari$" space=2
-        yabai -m rule --add app="^Firefox$" space=2
+        yabai -m rule --add app="^Safari$" space=3
+        yabai -m rule --add app="^Firefox$" space=3
         yabai -m rule --add app="^Kitty$" space=3
         yabai -m rule --add app="^kitty$" space=3
-        yabai -m rule --add app="^wezterm$" space=3
-        yabai -m rule --add app="^wezterm-gui$" space=3
-        yabai -m rule --add app="^WezTerm$" space=3
+        yabai -m rule --add app="^wezterm$" space=6
+        yabai -m rule --add app="^wezterm-gui$" space=6
+        yabai -m rule --add app="^WezTerm$" space=6
         yabai -m rule --add app="^Telegram$" space=1
         yabai -m rule --add app="^Slack$" space=1
         yabai -m rule --add app="^Teams$" space=1
@@ -96,6 +96,7 @@ in {
         yabai -m rule --add app="^System Information$" label="^About This Mac$" manage=off
         yabai -m rule --add app="^Cisco AnyConnect Secure Mobility Client$" manage=off
         yabai -m rule --add app="^Cisco$" manage=off
+        yabai -m rule --add app="^Raycast$" manage=off
 
         # Load scripting addition
         yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
