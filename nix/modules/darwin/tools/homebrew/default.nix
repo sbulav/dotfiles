@@ -29,6 +29,10 @@ in {
         upgrade = true;
       };
 
+      brews = [
+        "bitwarden-cli"
+      ];
+
       casks = [
         "raycast"
         "vlc"
