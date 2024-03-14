@@ -1,5 +1,47 @@
 # Changelog
 
+## [4.1.0](https://www.github.com/sbulav/dotfiles/compare/v4.0.0...v4.1.0) (2024-03-14)
+
+
+### Features
+
+* **Nix:** add bitwarden-cli on darwin ([64f5483](https://www.github.com/sbulav/dotfiles/commit/64f548354c6d6d9b4c4a7c2b7885d398600e0ad0))
+* **nix:** add darwin k8s and linters ([1de7b3a](https://www.github.com/sbulav/dotfiles/commit/1de7b3a83636f8a6c774e1fe12296eac6654fb5f))
+* **nix:** add darwin wezterm module ([d320470](https://www.github.com/sbulav/dotfiles/commit/d3204704de23947847cb89d9714eb1ed715abf81))
+* **nix:** add gh and direnv home modules ([422e2ec](https://www.github.com/sbulav/dotfiles/commit/422e2ec5264b81f55e84108959d0ea758f19270d))
+* **nix:** add gh module ([b501863](https://www.github.com/sbulav/dotfiles/commit/b501863cf8801febe23f823d493fd073eda52e8e))
+* **nix:** add virt manager darwin module ([b2eb6df](https://www.github.com/sbulav/dotfiles/commit/b2eb6df5f5a75d2658fc99e35e6dfeaf71ac3c62))
+* **nix:** add virt-manager and kvm modules ([d2faf5a](https://www.github.com/sbulav/dotfiles/commit/d2faf5ac59fe76af942c0680b06a8656bc5e447d))
+* **nix:** add vm hyprland rewrite rule ([92ca853](https://www.github.com/sbulav/dotfiles/commit/92ca853b68e725f08074bdb7c2ae1370a7ff9359))
+* **nix:** add zoxide and build aliases for darwin ([690803e](https://www.github.com/sbulav/dotfiles/commit/690803e69dfff46287a3beacbe67739eb1d17bd9))
+* **nix:** another wave of moving modules to hm ([d810d52](https://www.github.com/sbulav/dotfiles/commit/d810d5228b361cba506b1f952ee6bef0a5576490))
+* **nix:** enable homebrew on darwin ([060a656](https://www.github.com/sbulav/dotfiles/commit/060a6569f8e316c2be728689010ff8c160448a80))
+* **nix:** enable nvd diff output ([8aff530](https://www.github.com/sbulav/dotfiles/commit/8aff5306fc91f664ce302dc2981cf98463beb623))
+* **nix:** finally working darwin config ([6535462](https://www.github.com/sbulav/dotfiles/commit/653546290007b39801f0bd6ff7c0c7f26012517c))
+* **nix:** install vault on darwin ([01400bb](https://www.github.com/sbulav/dotfiles/commit/01400bbf55c130fffc0f3618aea743581d25997d))
+* **nix:** install vault on nz ([049c79c](https://www.github.com/sbulav/dotfiles/commit/049c79c132f07d8365137735cdf9ca9a42540a76))
+* **nix:** more modules migrated to hm ([c496a2f](https://www.github.com/sbulav/dotfiles/commit/c496a2ffb04852b62fa1fcecbf300e07ef850e9b))
+* **nix:** move hyprland to hm ([ba3d1e2](https://www.github.com/sbulav/dotfiles/commit/ba3d1e25bc86d2d1b30aac502728fa3696ee0b02))
+* **nix:** move rbw to hm ([87a974a](https://www.github.com/sbulav/dotfiles/commit/87a974a92cb3fc1abc64ca78a14bdee7f45565f6))
+* **nix:** remove tmux on darwin/fish ([b05265f](https://www.github.com/sbulav/dotfiles/commit/b05265f80c75e94d0c054ada09c7777a8289b29b))
+* **nix:** start migrating home manager modules ([9dcca4b](https://www.github.com/sbulav/dotfiles/commit/9dcca4b0c21c6b146994ce5c4bbebed2540aad6c))
+* **nix:** switch from neofetch to fastfetch ([47708fb](https://www.github.com/sbulav/dotfiles/commit/47708fb8eb3330f61427443ca910edc7d6b93fb9))
+* **nix:** switch hyprland via hm ([c6de3e0](https://www.github.com/sbulav/dotfiles/commit/c6de3e01a1d3937ebb268355db88759463624924))
+* **nix:** switch to hypridle ([d9b2a51](https://www.github.com/sbulav/dotfiles/commit/d9b2a5158902ac783754250dcf9c52b500d6de7d))
+* **nix:** wip on nix darwin ([e7dab69](https://www.github.com/sbulav/dotfiles/commit/e7dab691d59b266993fc4430299ad6eab5f175b5))
+* **nvim:** rework mark utils, add quickfix marks ([22f46a3](https://www.github.com/sbulav/dotfiles/commit/22f46a3b999eed8133ccb413de7ec407a6e5bacb))
+* **wayland:** tune hyprland module ([df7f836](https://www.github.com/sbulav/dotfiles/commit/df7f8369ea54f8e7fdb126f7c42c9e24000ccdc6))
+
+
+### Bug Fixes
+
+* **hypr:** clean up and restore swaylock bind ([4d936af](https://www.github.com/sbulav/dotfiles/commit/4d936afb7aabd963e482d0a0e2b2e99a4acbc140))
+* **nix:** correctly create wgetrc ([97cf03c](https://www.github.com/sbulav/dotfiles/commit/97cf03c432f0581460a982be68b757518dc4ae82))
+* **nix:** fix wezterm on darwin ([e112e5d](https://www.github.com/sbulav/dotfiles/commit/e112e5dee9aa615278fe0cd1e133b89dcc508c67))
+* **swayidle:** enable check empty pwd as it's required for fingerprint ([b1052dd](https://www.github.com/sbulav/dotfiles/commit/b1052dd53255c9cccbcfb65909b3018e23ec8c7a))
+* **waybar:** add zoom icon ([f947355](https://www.github.com/sbulav/dotfiles/commit/f947355e8b4ddfc0bb529aa8cc11aac04fac1281))
+* **waybar:** use correct icon for zoom ([4e867e2](https://www.github.com/sbulav/dotfiles/commit/4e867e2cd16805b03197ea61621b2ef668bc5d61))
+
 ## [4.0.0](https://www.github.com/sbulav/dotfiles/compare/v3.2.0...v4.0.0) (2024-02-12)
 
 
