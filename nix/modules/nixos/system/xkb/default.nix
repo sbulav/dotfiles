@@ -14,10 +14,10 @@ in {
 
   config = mkIf cfg.enable {
     console.useXkbConfig = true;
-    services.xserver = {
+    services.xserver.xkb = {
       layout = "dh,ru";
       # xkbOptions = "grp:shift_caps_toggle,grp_led:caps,terminate:ctrl_alt_bksp";
-      xkbOptions = "terminate:ctrl_alt_bksp";
+      options = "terminate:ctrl_alt_bksp";
       extraLayouts.dh = {
         description = "Colemak-DH ergo";
         languages = ["eng"];

@@ -17,7 +17,9 @@ end
 local function is_lower(char)
     return (97 <= char:byte() and char:byte() <= 122)
 end
-
+local function path_exists(path)
+    return vim.loop.fs_stat(path) and true or false
+end
 local function define_sign(name)
     if is_upper(name) then
         vim.fn.sign_define(name, {
@@ -66,6 +68,33 @@ local function add_local_marks()
             next_id = next_id + 1
         end
     end
+end
+
+function M.marks_to_quickfix_list()
+    local global_marks = {
+        items = vim.fn.getmarklist(),
+        name_func = function(mark, _)
+            -- get buffer name if it is opened, otherwise get file name
+            return vim.api.nvim_get_mark(mark, {})[4]
+        end,
+    }
+    local marks_table = {}
+    for _, v in ipairs(global_marks.items) do
+        -- strip the first single quote character
+        local mark_name = string.sub(v.mark, 2, 3)
+        local _, lnum, col, _ = unpack(v.pos)
+        local row = {
+            text = mark_name,
+            filename = vim.fs.normalize(v.file),
+            lnum = lnum,
+            col = col,
+        }
+        if string.find("NEIO", mark_name) and path_exists(row.filename) then
+            table.insert(marks_table, row)
+        end
+    end
+    vim.fn.setqflist({}, " ", { title = "Bookmarks", id = "$", items = marks_table })
+    vim.cmd [[QFToggle]]
 end
 
 function M.setup(user_config)

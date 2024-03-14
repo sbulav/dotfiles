@@ -26,6 +26,7 @@ in {
       fonts = with pkgs;
         [
           noto-fonts
+          dejavu_fonts
           noto-fonts-cjk-sans
           noto-fonts-cjk-serif
           noto-fonts-emoji

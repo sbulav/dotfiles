@@ -1,0 +1,132 @@
+/*
+*
+* Catppuccin Macchiato palette
+*
+*/
+
+@define-color base   #24273a;
+@define-color mantle #1e2030;
+@define-color crust  #181926;
+
+@define-color text     #cad3f5;
+@define-color subtext0 #b8c0e0;
+@define-color subtext1 #a5adcb;
+
+@define-color surface0 #363a4f;
+@define-color surface1 #494d64;
+@define-color surface2 #5b6078;
+
+@define-color overlay0 #6e738d;
+@define-color overlay1 #8087a2;
+@define-color overlay2 #939ab7;
+
+@define-color blue      #8aadf4;
+@define-color lavender  #b7bdf8;
+@define-color sapphire  #7dc4e4;
+@define-color sky       #91d7e3;
+@define-color teal      #8bd5ca;
+@define-color green     #a6da95;
+@define-color yellow    #eed49f;
+@define-color peach     #f5a97f;
+@define-color maroon    #ee99a0;
+@define-color red       #ed8796;
+@define-color mauve     #c6a0f6;
+@define-color pink      #f5bde6;
+@define-color flamingo  #f0c6c6;
+@define-color rosewater #f4dbd6;
+* {
+  border: none;
+  border-radius: 0;
+  font-family: FiraCode Nerd Font, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: rgba(0, 0, 0, 0.4);
+  /* background: rgba(30, 32, 48, 0.5); */
+  /* background: rgba(0, 0, 0, 0.4); */
+  color: rgba(255, 255, 255, 1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+tooltip {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+tooltip label {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+widget label,
+widget image {
+  padding: 0 8px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#window,
+#custom-media {
+  background: rgba(0, 0, 0, 0);
+  padding-right: 20px;
+}
+
+.modules-right,
+.modules-center {
+  color: white;
+  /* padding: 0 8px; */
+}
+
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: black;
+  }
+}
+
+#battery.warning:not(.charging) {
+  background: #f87171;
+  color: white;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+
+#workspaces {
+  color: white;
+  /* background: rgba(255, 255, 255, 0.2); */
+  margin-right: 8px;
+}
+
+#workspaces label {
+  padding: 0 6px 0 8px;
+  font-size: 14px;
+}
+
+#workspaces button {
+  color: white;
+  padding: 0; 
+}
+
+#workspaces button.empty {
+  color: @overlay0;
+}
+
+#workspaces button.visible {
+  color: @blue;
+}
+
+#workspaces button.active {
+  background-color: @surface0;
+  color: @sapphire;
+}
+
+#workspaces button.urgent {
+  box-shadow: 2px 2px 2px 2px;
+  border-radius: 1em;
+  color: @red;
+}

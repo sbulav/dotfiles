@@ -11,12 +11,14 @@
   #   # Any particular packages only for this host
   # ];
 
+  # Suites managed by nix, see suites by home-manager in homes
   suites.common.enable = true; # Enables the basics, like audio, networking, ssh, etc.
   suites.desktop.enable = true;
   suites.develop.enable = true;
 
-  custom.cli-apps = {
-    yazi.enable = true;
+  custom.virtualisation = {
+    virt-manager.enable = true;
+    kvm.enable = false;
   };
 
   # ======================== DO NOT CHANGE THIS ========================

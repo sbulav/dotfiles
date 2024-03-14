@@ -20,6 +20,7 @@ in {
       nixfmt
       nix-index
       nix-prefetch-git
+      nvd
     ];
 
     nix = let
@@ -68,5 +69,14 @@ in {
       generateNixPathFromInputs = true;
       linkInputs = true;
     };
+    system.activationScripts.postUserActivation =
+      {
+        text = ''
+          ${pkgs.nvd}/bin/nvd --nix-bin-dir=${pkgs.nix}/bin diff /run/current-system "$systemConfig"
+        '';
+      }
+      // lib.optionalAttrs pkgs.stdenv.isLinux {
+        supportsDryActivation = true;
+      };
   };
 }

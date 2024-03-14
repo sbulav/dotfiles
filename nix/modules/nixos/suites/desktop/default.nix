@@ -14,10 +14,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    system.security.rbw.enable = true;
     custom = {
-      desktop = {
-        hyprland = enabled;
+      desktop.addons = {
+        keyring = enabled;
+        gtk = enabled;
+        regreet = enabled;
+        xdg-portal = enabled;
+        hyprland-utils = enabled;
       };
       apps = {
         firefox = enabled;

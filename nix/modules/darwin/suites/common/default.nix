@@ -19,28 +19,22 @@ in {
     custom = {
       nix = enabled;
 
-      # apps = {
-      #   iterm2 = enabled;
-      # };
-
       cli-apps = {
-        neovim = enabled;
+        tmux = disabled;
       };
 
-      # tools = {
-      #   git = enabled;
-      #   flake = enabled;
-      # };
-
+      tools = {
+        http.enable = true;
+        misc.enable = true;
+        k8s.enable = true;
+        net.enable = true;
+        homebrew.enable = true;
+      };
       system = {
         fonts = enabled;
         input = enabled;
         interface = enabled;
       };
-
-      # security = {
-      #   gpg = enabled;
-      # };
     };
   };
 }

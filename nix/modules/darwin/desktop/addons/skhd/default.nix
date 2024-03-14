@@ -35,8 +35,10 @@ in {
         alt - 9 : yabai -m space --focus 9
         alt - 0 : yabai -m space --focus 10
 
-        alt - up : yabai -m space --focus 2
-        alt - down : yabai -m space --focus (yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == true))[-1].index')
+        alt - up : yabai -m space --focus 3
+        alt - down : yabai -m space --focus 6
+        alt - left : yabai -m space --focus prev
+        alt - right : yabai -m space --focus next
 
         # change focus between external displays (left and right)
         ctrl + alt - left : yabai -m display --focus west
@@ -59,10 +61,6 @@ in {
         alt - j : yabai -m window --focus south
         alt - k : yabai -m window --focus north
         alt - l : yabai -m window --focus east
-        alt - left : yabai -m window --focus west
-        alt - down : yabai -m window --focus south
-        alt - up : yabai -m window --focus north
-        alt - right : yabai -m window --focus east
 
         # Close current window
         alt - q : yabai -m window --close
@@ -138,7 +136,7 @@ in {
         ctrl + shift - d : yabai -m space --destroy
 
         # Applications
-        alt - x : /Users/sab/.nix-profile/bin/kitty
+        alt - x : /Applications/Nix\ Apps/WezTerm.app/wezterm
         ctrl + alt - b: /Applications/Firefox.App/Contents/MacOS/firefox
 
         # -- Starting/Stopping/Restarting Yabai --
