@@ -14,8 +14,9 @@ with lib.custom; {
     };
 
     cli-apps = {
-      home-manager = enabled;
       atuin = enabled;
+      bottom = enabled;
+      home-manager = enabled;
       neovim = enabled;
       yazi = enabled;
     };

@@ -31,9 +31,10 @@ with lib.custom; {
 
     cli-apps = {
       atuin = enabled;
-      yazi = enabled;
-      home-manager = enabled;
+      bottom = enabled;
       fastfetch = enabled;
+      home-manager = enabled;
+      yazi = enabled;
     };
     tools = {
       gh = enabled;
