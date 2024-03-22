@@ -115,7 +115,7 @@ return {
                     require("lspconfig")[server].setup(server_opts)
                 end,
                 -- manually configured servers
-                require("lspconfig")["rnix"].setup {},
+                require("lspconfig")["nil_ls"].setup {},
                 require("lspconfig")["marksman"].setup { cmd = { "marksman", "server" } },
 
                 require("lspconfig")["lua_ls"].setup {

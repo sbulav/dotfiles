@@ -22,7 +22,7 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       cachix
-      rnix-lsp
+      nil
       nixfmt
       nix-index
       nix-prefetch-git
