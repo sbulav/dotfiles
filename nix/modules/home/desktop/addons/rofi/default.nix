@@ -22,12 +22,12 @@ in {
     programs.rofi = {
       enable = true;
       package = pkgs.rofi-wayland;
-      plugins = with pkgs; [
-        rofi-calc
-      ];
+      # plugins = with pkgs; [
+      #   rofi-calc
+      # ];
       extraConfig = {
         combi-hide-mode-prefix = true;
-        combi-modi = "drun,run,calc";
+        combi-modi = "drun,run";
         disable-history = false;
         display-Network = " 󰤨  Network";
         display-drun = "   Apps ";
@@ -37,7 +37,7 @@ in {
         drun-display-format = "{icon} {name}";
         icon-theme = "Fluent";
         location = 0;
-        modi = "run,drun,vpn:~/.config/rofi/rofi-vpn.sh,clip:~/.config/rofi/rofi-cliphist.sh,calc,";
+        modi = "run,drun,vpn:~/.config/rofi/rofi-vpn.sh,clip:~/.config/rofi/rofi-cliphist.sh,";
         show-icons = true;
         sidebar-mode = true;
         sorting-method = "fzf";
