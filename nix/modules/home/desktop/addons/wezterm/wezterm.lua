@@ -7,6 +7,10 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+-- Disable wayland until this issue is fixed
+-- https://github.com/wez/wezterm/issues/5197
+config.enable_wayland = false
+
 -- Fonts
 -- {{{
 config.adjust_window_size_when_changing_font_size = false
