@@ -43,7 +43,8 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   networking.hosts = {
-    "192.168.89.200" = ["truenas.sbulav.ru"];
+    # "192.168.89.200" = ["truenas.sbulav.ru"];
+    "100.87.128.100" = ["vault-c7.pyn.ru"];
     "100.91.128.100" = ["vault-c11.pyn.ru"];
     "100.92.128.100" = ["vault-c12.pyn.ru"];
   };

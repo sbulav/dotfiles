@@ -193,11 +193,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1711098889,
-        "narHash": "sha256-ZrrAfnmFL/E2r0BZGJ9B9IiVpMD6RegkL5EtzgOvn74=",
+        "lastModified": 1711012212,
+        "narHash": "sha256-FkLPVp4ydTVCIJNGVwL+DGKR7CHtSfDNG1KPS/dZq14=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "c8777e528fe37ef7bc94af02fa60c90bfabdd06e",
+        "rev": "71036dd9715b4f59ee2a411a72acf7e25f7f0403",
         "type": "github"
       },
       "original": {
@@ -209,11 +209,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1711088478,
-        "narHash": "sha256-OmmhSA3X1JjsWU4cO3iaSwg2btBVkXg8/ciCsqYwubY=",
+        "lastModified": 1711010833,
+        "narHash": "sha256-Qrh7ATxtRSeXZuIwMT55Q4FibS/CybH7yHoUG5F3sxs=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "6b9f22abafb887533d9dc5dd06f604b52ba7c24e",
+        "rev": "5f7c468b39565f501483f883710f703b718c2f24",
         "type": "github"
       },
       "original": {
@@ -283,11 +283,25 @@
         "xdph": "xdph"
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1711070930,
         "narHash": "sha256-jKOAO/NlfaTC/OcZkPoT87gsfVqt/+Ye+KcaIv6e2mU=",
+||||||| parent of 0eab6f9 (fix(nix): move pinentry to correct folder)
+        "lastModified": 1709506828,
+        "narHash": "sha256-4gmgQvJZX5KM5i9bqGEOsHSBVRQhyfSF9BvvfpBFmQE=",
+=======
+        "lastModified": 1710986113,
+        "narHash": "sha256-tC6KaJExkSsp7+D7amwjZSYAX347GJC1HYvg3DV0LEI=",
+>>>>>>> 0eab6f9 (fix(nix): move pinentry to correct folder)
         "owner": "hyprwm",
         "repo": "Hyprland",
+<<<<<<< HEAD
         "rev": "9bad62b85f179ad2c95c6e7f734768ef060a604b",
+||||||| parent of 0eab6f9 (fix(nix): move pinentry to correct folder)
+        "rev": "9d89b7109da9b58904caf7c53a7af4b6daed1696",
+=======
+        "rev": "4c796683c05a0eaccc14aae8875f06972f9f3c5e",
+>>>>>>> 0eab6f9 (fix(nix): move pinentry to correct folder)
         "type": "github"
       },
       "original": {
@@ -420,11 +434,25 @@
         "systems": "systems_4"
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1711041955,
         "narHash": "sha256-cmHFjNQU6oCJ3fkBCLxYa423QsWu0WWjehmiciP/urs=",
+||||||| parent of 0eab6f9 (fix(nix): move pinentry to correct folder)
+        "lastModified": 1709517267,
+        "narHash": "sha256-t15sJ0yi0Snv4TP2dmXP71lcmNHDxq6yx9hDhjNuzAk=",
+=======
+        "lastModified": 1710863423,
+        "narHash": "sha256-JdSC7TCqPOp85B9jpAAlkVrIVejJFY+f9rSlDc9vKsk=",
+>>>>>>> 0eab6f9 (fix(nix): move pinentry to correct folder)
         "owner": "hyprwm",
         "repo": "Hyprlock",
+<<<<<<< HEAD
         "rev": "f237dead6cf7c79b713168fb1053758c771a1dfe",
+||||||| parent of 0eab6f9 (fix(nix): move pinentry to correct folder)
+        "rev": "49ef1d306c92bbfef057272ae0bdefe8aea8d0c7",
+=======
+        "rev": "54da0cae0f197f07c17c672ebdc22de244859494",
+>>>>>>> 0eab6f9 (fix(nix): move pinentry to correct folder)
         "type": "github"
       },
       "original": {
