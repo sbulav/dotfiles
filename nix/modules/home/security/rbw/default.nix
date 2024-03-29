@@ -25,7 +25,7 @@ in {
         enable = true;
         settings = {
           lock_timeout = cfg.lockTimeout;
-          # pinentry = pkgs.pinentry-gnome3;
+          pinentry = pkgs.pinentry-gnome3;
           email = "zppfan@gmail.com";
         };
       };
