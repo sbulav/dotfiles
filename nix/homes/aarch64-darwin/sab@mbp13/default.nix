@@ -14,6 +14,7 @@ with lib.custom; {
     };
 
     cli-apps = {
+      argocd = enabled;
       atuin = enabled;
       bottom = enabled;
       home-manager = enabled;
