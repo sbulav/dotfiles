@@ -24,7 +24,9 @@ if wezterm.target_triple == "aarch64-apple-darwin" then
   config.font_size = 18
   -- Linux Setup
 else
-  config.font_size = 14
+  -- Until issue with wayland is fixed
+  -- config.font_size = 14
+  config.font_size = 18
 end
 -- }}}
 -- Windows
