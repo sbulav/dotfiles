@@ -1,6 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: let
+  wallpapers = inputs.wallpapers-nix.packages.${pkgs.system}.catppuccin;
+in {
   imports = [./hardware-configuration.nix];
-
+  system.wallpaper = "${wallpapers}/share/wallpapers/catppuccin/bench.png";
   # Enable Bootloader
   system.boot.efi.enable = true;
   system.battery.enable = true; # Only for laptops, they will still work without it, just improves battery life
