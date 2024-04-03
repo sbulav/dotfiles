@@ -1,40 +1,30 @@
 {
-  options,
+  inputs,
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib;
 with lib.custom; let
   cfg = config.custom.desktop.addons.hyprpaper;
-  wallpaper = /home/sab/Pictures/cityscape2.jpg;
+  inherit (inputs) hyprpaper;
+  wallpaper = builtins.fetchurl {
+    url = "https://github.com/Vinetos/dotnix/blob/main/home/themes/catpuccin/backgrounds/deer.jpg?raw=true";
+    sha256 = "1494bkhakk72xk8hcy1mw7b1m6rr4bda3aspblz6ml6325fx796x";
+  };
 in {
+  imports = [hyprpaper.homeManagerModules.default];
   options.custom.desktop.addons.hyprpaper = with types; {
     enable = mkBoolOpt false "Whether to enable the hyprpaper config";
   };
 
   config = mkIf cfg.enable {
-    xdg.configFile = {
-      "hypr/hyprpaper.conf".text = ''
-        preload = ${wallpaper}
-        wallpaper = eDP-1,${wallpaper}
-        wallpaper = DP-1,${wallpaper}
-        wallpaper = DP-2,${wallpaper}
-      '';
-    };
-    systemd.user.services.hyprpaper = {
-      Install.WantedBy = ["hyprland-session.target"];
+    services.hyprpaper = {
+      enable = true;
 
-      Unit = {
-        Description = "Hyprpaper Service";
-        PartOf = ["graphical-session.target"];
-      };
-
-      Service = {
-        ExecStart = "${getExe pkgs.hyprpaper}";
-        Restart = "always";
-      };
+      preloads = [wallpaper];
+      wallpapers = [", ${wallpaper}"];
+      ipc = false;
     };
   };
 }
