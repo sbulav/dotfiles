@@ -9,6 +9,10 @@
 with lib;
 with lib.custom; let
   cfg = config.custom.desktop.addons.hyprlock;
+  wallpaper = builtins.fetchurl {
+    url = config.custom.theme.wallpaper_url;
+    sha256 = config.custom.theme.wallpaper_sha256;
+  };
   inherit (inputs) hyprlock;
 in {
   imports = [hyprlock.homeManagerModules.default];
@@ -43,7 +47,7 @@ in {
 
       backgrounds = [
         {
-          path = "/home/sab/Pictures/wallpaper.png";
+          path = wallpaper;
         }
       ];
     };

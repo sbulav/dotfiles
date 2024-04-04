@@ -9,8 +9,8 @@ with lib.custom; let
   cfg = config.custom.desktop.addons.hyprpaper;
   inherit (inputs) hyprpaper;
   wallpaper = builtins.fetchurl {
-    url = "https://github.com/Vinetos/dotnix/blob/main/home/themes/catpuccin/backgrounds/deer.jpg?raw=true";
-    sha256 = "1494bkhakk72xk8hcy1mw7b1m6rr4bda3aspblz6ml6325fx796x";
+    url = config.custom.theme.wallpaper_url;
+    sha256 = config.custom.theme.wallpaper_sha256;
   };
 in {
   imports = [hyprpaper.homeManagerModules.default];

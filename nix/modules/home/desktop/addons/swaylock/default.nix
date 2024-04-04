@@ -8,6 +8,10 @@
 with lib;
 with lib.custom; let
   cfg = config.custom.desktop.addons.swaylock;
+  wallpaper = builtins.fetchurl {
+    url = config.custom.theme.wallpaper_url;
+    sha256 = config.custom.theme.wallpaper_sha256;
+  };
 in {
   options.custom.desktop.addons.swaylock = with types; {
     enable = mkBoolOpt false "Whether to enable the swaylock";
@@ -18,7 +22,7 @@ in {
       enable = true;
       package = pkgs.swaylock-effects;
       settings = {
-        image = "$HOME/Pictures/wallpaper.png";
+        image = wallpaper;
         color = "000000ff";
         font-size = "24";
         indicator-idle-visible = true;

@@ -12,6 +12,9 @@ with lib.custom; {
       enable = true;
       name = config.snowfallorg.user.name;
     };
+    theme = {
+      enable = true;
+    };
 
     desktop = {
       hyprland = enabled;
