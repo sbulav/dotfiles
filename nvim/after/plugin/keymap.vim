@@ -19,6 +19,7 @@ augroup pscbindings
   autocmd FileType typescript nnoremap <buffer> <F5> :Nredir !npm run build && npm run test && npm run lint<cr>
   autocmd FileType dockerfile nnoremap <buffer> <F5> <cmd>lua require('nredir').nredir("!hadolint " .. vim.fn.bufname())<cr>
   autocmd FileType nix nnoremap <buffer> <F5> <cmd>lua require('nredir').nredir("!nix eval --file " .. vim.fn.bufname())<cr>
+  autocmd FileType sh nnoremap <buffer> <F6> <cmd>lua require('nredir').nredir("!bash " .. vim.fn.bufname())<cr>
 augroup end
 
 " Draw a visual line in any mode on F1
