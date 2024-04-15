@@ -115,7 +115,7 @@ local options = {
     -- Trailings / tabs{{{
     list = true, -- display listchars
     fillchars = { vert = "│", eob = " " }, -- make vertical split sign better
-    listchars = { eol = "↲", tab = "» " }, -- set listchars
+    listchars = { eol = "↲", tab = "» ", nbsp = "␣" }, -- set listchars
     --
     -- -- Better vimdiff{{{
     diffopt = "internal,algorithm:patience,indent-heuristic", --}}}
