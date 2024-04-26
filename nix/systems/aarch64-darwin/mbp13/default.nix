@@ -11,7 +11,7 @@ with lib.custom; {
     };
 
     virtualisation = {
-      virt-manager = enabled;
+      virt-manager = disabled;
     };
 
     desktop.yabai = enabled;
