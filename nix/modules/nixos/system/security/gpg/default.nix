@@ -56,6 +56,7 @@ in {
         enable = true;
         enableSSHSupport = true;
         enableExtraSocket = true;
+        pinentryPackage = pkgs.pinentry-gnome3;
       };
     };
 

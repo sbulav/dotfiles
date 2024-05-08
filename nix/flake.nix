@@ -25,16 +25,16 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    hypridle = {
-      url = "github:hyprwm/Hypridle";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     hyprlock = {
       url = "github:hyprwm/Hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
       url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -47,6 +47,10 @@
     alejandra = {
       url = "github:kamadorueda/alejandra/3.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    wallpapers-nix = {
+      url = "github:sbulav/wallpapers-nix";
     };
   };
 
@@ -76,7 +80,5 @@
       overlays = with inputs; [];
 
       systems.modules.nixos = with inputs; [];
-
-      templates = import ./templates {};
     };
 }

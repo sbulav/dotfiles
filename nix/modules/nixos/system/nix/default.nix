@@ -12,7 +12,7 @@ in {
   options.system.nix = with types; {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
 
-    package = mkOpt package pkgs.nixUnstable "Which nix package to use.";
+    package = mkOpt package pkgs.nixVersions.latest "Which nix package to use.";
     default-substituter = {
       url = mkOpt str "https://cache.nixos.org" "The url for the substituter.";
       key = mkOpt str "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" "The trusted public key for the substituter.";
@@ -22,8 +22,8 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       cachix
-      rnix-lsp
-      nixfmt
+      nil
+      nixfmt-rfc-style
       nix-index
       nix-prefetch-git
       nvd

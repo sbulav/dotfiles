@@ -14,6 +14,9 @@ in {
   };
 
   config = mkIf cfg.enable {
+    home = {
+      packages = with pkgs; [brightnessctl];
+    };
     wayland.windowManager.hyprland = {
       enable = true;
       extraConfig =

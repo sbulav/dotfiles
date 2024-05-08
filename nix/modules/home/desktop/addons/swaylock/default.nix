@@ -18,7 +18,7 @@ in {
       enable = true;
       package = pkgs.swaylock-effects;
       settings = {
-        image = "$HOME/Pictures/wallpaper.png";
+        image = config.custom.desktop.addons.wallpaper;
         color = "000000ff";
         font-size = "24";
         indicator-idle-visible = true;

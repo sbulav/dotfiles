@@ -17,10 +17,10 @@ in {
     environment.systemPackages = with pkgs; [
       lua-language-server # LSP for lua
       marksman # LSP for markdown
-      rnix-lsp # LSP for nix
+      nil # LSP for nix
       tree-sitter
       yamllint
-      nodejs_21 # Note for LSP servers
+      nodejs_22 # Note for LSP servers
       nodePackages_latest.pyright
       black
     ];

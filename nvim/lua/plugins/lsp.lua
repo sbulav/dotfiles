@@ -3,6 +3,7 @@ return {
         "neovim/nvim-lspconfig",
         event = "BufReadPre",
         dependencies = {
+            { "folke/neodev.nvim", opts = {} },
             "mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "hrsh7th/cmp-nvim-lsp",
@@ -115,24 +116,24 @@ return {
                     require("lspconfig")[server].setup(server_opts)
                 end,
                 -- manually configured servers
-                require("lspconfig")["rnix"].setup {},
+                require("lspconfig")["nil_ls"].setup {},
                 require("lspconfig")["marksman"].setup { cmd = { "marksman", "server" } },
 
                 require("lspconfig")["lua_ls"].setup {
                     settings = {
                         Lua = {
-                            -- make the language server recognize "vim" global
-                            diagnostics = {
-                                globals = { "vim" },
-                            },
+                            -- -- make the language server recognize "vim" global
+                            -- diagnostics = {
+                            --     globals = { "vim" },
+                            -- },
 
                             workspace = {
                                 checkThirdParty = false,
                             },
-                            library = {
-                                [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-                                [vim.fn.stdpath "config" .. "/lua"] = true,
-                            },
+                            -- library = {
+                            --     [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                            --     [vim.fn.stdpath "config" .. "/lua"] = true,
+                            -- },
 
                             completion = {
                                 callSnippet = "Replace",

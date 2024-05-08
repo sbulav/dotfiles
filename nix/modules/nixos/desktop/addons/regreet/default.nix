@@ -8,6 +8,7 @@
 with lib;
 with lib.custom; let
   cfg = config.custom.desktop.addons.regreet;
+  wallpaper = options.system.wallpaper.value;
   greetdSwayConfig = pkgs.writeText "greetd-sway-config" ''
     exec "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP"
     input "type:touchpad" {
@@ -45,7 +46,7 @@ in {
 
       settings = {
         background = {
-          path = /home/sab/Pictures/wallpaper.png;
+          path = wallpaper;
           fit = "Cover";
         };
         GTK = {

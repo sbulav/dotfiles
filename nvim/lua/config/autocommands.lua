@@ -43,6 +43,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 --     desc = "Validate Jenkins files on save",
 --     pattern = "*enkinsfile*",
 -- })
+--
+vim.api.nvim_create_augroup("ValidateGitlabCIfiles", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePre", {
+    callback = function()
+        require("validate-gitlab-ci.validate-gitlab-ci").validate()
+    end,
+    group = "ValidateGitlabCIfiles",
+    desc = "Validate Gitlab CI  files on save",
+    pattern = ".gitlab-ci.yml",
+})
 
 vim.api.nvim_create_augroup("ConfugureLuaBo", { clear = true })
 vim.api.nvim_create_autocmd("BufRead", {

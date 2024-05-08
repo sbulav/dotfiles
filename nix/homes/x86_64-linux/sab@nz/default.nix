@@ -1,12 +1,13 @@
 {
   lib,
-  pkgs,
   config,
-  osConfig ? {},
-  format ? "unknown",
+  inputs,
+  pkgs,
   ...
 }:
-with lib.custom; {
+with lib.custom; let
+  wallpapers = inputs.wallpapers-nix.packages.${pkgs.system}.catppuccin;
+in {
   custom = {
     user = {
       enable = true;
@@ -26,14 +27,17 @@ with lib.custom; {
         wlogout = enabled;
         hyprlock = disabled;
         wezterm = enabled;
+        wallpaper = "${wallpapers}/share/wallpapers/catppuccin/bench.png";
       };
     };
 
     cli-apps = {
+      argocd = enabled;
       atuin = enabled;
-      yazi = enabled;
-      home-manager = enabled;
+      bottom = enabled;
       fastfetch = enabled;
+      home-manager = enabled;
+      yazi = enabled;
     };
     tools = {
       gh = enabled;
@@ -45,4 +49,5 @@ with lib.custom; {
       vault = enabled;
     };
   };
+  home.stateVersion = "23.11";
 }
