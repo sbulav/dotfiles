@@ -19,6 +19,7 @@ augroup pscbindings
   autocmd FileType typescript nnoremap <buffer> <F5> :Nredir !npm run build && npm run test && npm run lint<cr>
   autocmd FileType dockerfile nnoremap <buffer> <F5> <cmd>lua require('nredir').nredir("!hadolint " .. vim.fn.bufname())<cr>
   autocmd FileType nix nnoremap <buffer> <F5> <cmd>lua require('nredir').nredir("!nix eval --file " .. vim.fn.bufname())<cr>
+  autocmd FileType sh nnoremap <buffer> <F6> <cmd>lua require('nredir').nredir("!bash " .. vim.fn.bufname())<cr>
 augroup end
 
 " Draw a visual line in any mode on F1
@@ -145,7 +146,8 @@ nnoremap <leader>A :argadd <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 " Telescope
 " <c-x>,<c-v> open in split/vsplit, <c-u>,<c-d> up/down preview
 nnoremap <leader>fM <cmd>lua require('telescope.builtin').marks()<cr>
-nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fA <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fa <cmd>lua require('config.telescope_myfunctions').grep_in_cwd()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fc <cmd>lua require('telescope.builtin').git_commits()<cr>
 nnoremap <leader>fF <cmd>lua require('telescope.builtin').find_files()<cr>

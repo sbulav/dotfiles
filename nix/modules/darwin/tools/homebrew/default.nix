@@ -36,6 +36,7 @@ in {
       casks = [
         "raycast"
         "vlc"
+        "xnviewmp"
       ];
 
       # taps = [

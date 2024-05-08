@@ -37,6 +37,10 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Home manager
     home-manager = {
@@ -80,7 +84,5 @@
       overlays = with inputs; [];
 
       systems.modules.nixos = with inputs; [];
-
-      templates = import ./templates {};
     };
 }
