@@ -52,6 +52,10 @@
       url = "github:kamadorueda/alejandra/3.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    wallpapers-nix = {
+      url = "github:sbulav/wallpapers-nix";
+    };
   };
 
   outputs = inputs: let

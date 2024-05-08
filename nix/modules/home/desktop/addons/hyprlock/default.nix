@@ -1,9 +1,7 @@
 {
   inputs,
-  options,
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib;
@@ -43,7 +41,7 @@ in {
 
       backgrounds = [
         {
-          path = "/home/sab/Pictures/wallpaper.png";
+          path = config.custom.desktop.addons.wallpaper;
         }
       ];
     };

@@ -575,6 +575,19 @@
         "type": "github"
       }
     },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1711333969,
+        "narHash": "sha256-5PiWGn10DQjMZee5NXzeA6ccsv60iLu+Xtw+mfvkUAs=",
+        "path": "/nix/store/161i7cxz0w0raqmrj88z86cj66babp9z-source",
+        "rev": "57e6b3a9e4ebec5aa121188301f04a6b8c354c9b",
+        "type": "path"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
     "root": {
       "inputs": {
         "alejandra": "alejandra",
@@ -587,8 +600,10 @@
         "hyprlock": "hyprlock",
         "hyprpaper": "hyprpaper",
         "nix-homebrew": "nix-homebrew",
-        "nixpkgs": "nixpkgs_4",
-        "snowfall-lib": "snowfall-lib"
+        "nixpkgs": "nixpkgs_3",
+        "snowfall-lib": "snowfall-lib",
+        "wallpapers-nix": "wallpapers-nix"
+
       }
     },
     "rust-analyzer-src": {
@@ -762,6 +777,24 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "wallpapers-nix": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1712154137,
+        "narHash": "sha256-lVJq5t53BJJaAAPiHh++F38UjwVTem3Vy7ajVNaxsU0=",
+        "owner": "sbulav",
+        "repo": "wallpapers-nix",
+        "rev": "8a4a30599ac2f452bb2e2717cd5b815d1a56f036",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sbulav",
+        "repo": "wallpapers-nix",
         "type": "github"
       }
     },
