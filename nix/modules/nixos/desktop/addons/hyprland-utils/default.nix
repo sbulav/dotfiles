@@ -54,12 +54,13 @@ in {
     };
     services.xserver = {
       enable = true;
+    };
+    services = {
+      # Enable touchpad support (enabled default in most desktopManager).
+      libinput.enable = true;
       displayManager = {
         defaultSession = "hyprland";
       };
-
-      # Enable touchpad support (enabled default in most desktopManager).
-      libinput.enable = true;
     };
   };
 }

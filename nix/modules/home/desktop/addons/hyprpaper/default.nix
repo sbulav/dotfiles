@@ -7,6 +7,7 @@
 with lib;
 with lib.custom; let
   cfg = config.custom.desktop.addons.hyprpaper;
+  inherit (inputs) hyprpaper;
   wallpaper = config.custom.desktop.addons.wallpaper;
 in {
   imports = [hyprpaper.homeManagerModules.default];
