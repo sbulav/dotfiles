@@ -1,5 +1,36 @@
 # Changelog
 
+## [4.2.0](https://www.github.com/sbulav/dotfiles/compare/v4.1.0...v4.2.0) (2024-05-08)
+
+
+### Features
+
+* **lsp:** update node lsp to 22 ([e8c8dfd](https://www.github.com/sbulav/dotfiles/commit/e8c8dfd92dd3f897f08d650f3339181c298af1b2))
+* **nix:** add bottom ([bd902d3](https://www.github.com/sbulav/dotfiles/commit/bd902d34933483f7bc3a9380bfaa25a47001caa4))
+* **nix:** add brightnessctl ([927f3c7](https://www.github.com/sbulav/dotfiles/commit/927f3c7221c147f8c569feab9912a9b401d206e4))
+* **nix:** enable argocd client ([b11b573](https://www.github.com/sbulav/dotfiles/commit/b11b573583f2ccaf6eab776476ac5187fbf67793))
+* **nix:** enable xnviewmp cask ([93e2ebb](https://www.github.com/sbulav/dotfiles/commit/93e2ebb44c479115a1fac7a4fe9d09dc7e703812))
+* **nix:** rework hyprpaper ([3533738](https://www.github.com/sbulav/dotfiles/commit/35337384015776c2f739e7b39a9ab7ee9db1b75a))
+* **nix:** switch to nixfmt-rfc-style ([69e09bf](https://www.github.com/sbulav/dotfiles/commit/69e09bfa9512908fb371cecf8f0c6a3e5bc99f18))
+* **nix:** use my own github based wallpapers ([7218897](https://www.github.com/sbulav/dotfiles/commit/72188977700f2a8c313a31ee7226d5d7c5e17d4d))
+* **nvim:** add bash nredir cmd ([98f07ef](https://www.github.com/sbulav/dotfiles/commit/98f07ef37dad4173e131111aee2b69b7ef0eb9fd))
+* **nvim:** add my plugin to validate gitlabCI ([3c95459](https://www.github.com/sbulav/dotfiles/commit/3c9545931553c81d26395798fb1b9c0df510648c))
+* **nvim:** add neodev plugin ([c6fe658](https://www.github.com/sbulav/dotfiles/commit/c6fe658826d40d65900c135261c850fd640110bf))
+* **nvim:** add TS exclusions ([1a60995](https://www.github.com/sbulav/dotfiles/commit/1a60995ef94420056ebe72d2c78e1d4b579c37b6))
+* **nvim:** live grep in cwd by default ([7956e91](https://www.github.com/sbulav/dotfiles/commit/7956e915fd6f3faf53caeacc0b4f669c0f27a1fc))
+* replace rnix with nil_ls as its deprecated ([7783331](https://www.github.com/sbulav/dotfiles/commit/778333144252af5e5b7093d56b1661159bd57b89))
+* update flakes and use latest nixpackages ([bb4a37e](https://www.github.com/sbulav/dotfiles/commit/bb4a37e80338de8cba6d72b708f98cc7729aed32))
+
+
+### Bug Fixes
+
+* **nix:** disable font-manager until it compiles ([97236a2](https://www.github.com/sbulav/dotfiles/commit/97236a2d7ac90213fee24ce35b741b4621ebe295))
+* **nix:** move pinentry to correct folder ([a8c21a4](https://www.github.com/sbulav/dotfiles/commit/a8c21a49bd7ab34a9eb62b0dbb42d439b64ecfd5))
+* **rbw:** use gnome3 pinentry ([4b94e3c](https://www.github.com/sbulav/dotfiles/commit/4b94e3cef67a8cd48a988f8a218f5aa6ae1c759c))
+* **rofi:** remove rofi-calc as its broken now ([599872d](https://www.github.com/sbulav/dotfiles/commit/599872dbe3642ee438b7bb0e131430b2724cba15))
+* **wezterm:** add workaround for starting rofi ([e919242](https://www.github.com/sbulav/dotfiles/commit/e919242ac389bd86b723be8f6af16d2b6250f24e))
+* **wezterm:** amend font until issue with wayland ([3cbd3cc](https://www.github.com/sbulav/dotfiles/commit/3cbd3cce8c8706045604bda0005acbc92da7811a))
+
 ## [4.1.0](https://www.github.com/sbulav/dotfiles/compare/v4.0.0...v4.1.0) (2024-03-14)
 
 
