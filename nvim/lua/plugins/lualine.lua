@@ -22,7 +22,7 @@ end
 
 local function lsp_client_names()
     -- Get all active clients in the buffer
-    local clients = vim.lsp.buf_get_clients()
+    local clients = vim.lsp.get_active_clients()
     local client_names = "["
 
     for _, client in pairs(clients) do
