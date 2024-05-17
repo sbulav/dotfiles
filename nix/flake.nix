@@ -25,10 +25,6 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    hyprlock = {
-      url = "github:hyprwm/Hyprlock";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
