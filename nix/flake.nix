@@ -29,10 +29,6 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # Home manager
     home-manager = {
@@ -71,6 +67,7 @@
 
       channels-config = {
         allowUnfree = true;
+        allowBroken = true;
       };
 
       overlays = with inputs; [];
