@@ -33,7 +33,7 @@ in {
       xdg.configFile = mkAliasDefinitions options.custom.home.configFile;
     };
 
-    snowfallorg.user.${config.custom.user.name}.home.config = mkAliasDefinitions options.custom.home.extraOptions;
+    snowfallorg.users.${config.custom.user.name}.home.config = mkAliasDefinitions options.custom.home.extraOptions;
 
     home-manager = {
       useUserPackages = true;
