@@ -41,8 +41,11 @@ return {
                 yamlls = {
                     -- lazy-load schemastore when needed
                     on_new_config = function(new_config)
-                        new_config.settings.json.schemas = new_config.settings.json.schemas or {}
-                        vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+                        new_config.settings.yaml.schemas = vim.tbl_deep_extend(
+                            "force",
+                            new_config.settings.yaml.schemas or {},
+                            require("schemastore").yaml.schemas()
+                        )
                     end,
                     -- Have to add this for yamlls to understand that we support line folding
                     capabilities = {
@@ -77,13 +80,14 @@ return {
             -- return true if you don't want this server to be setup with lspconfig
             ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
             setup = {
-                -- example to setup with typescript.nvim
-                -- tsserver = function(_, opts)
-                --   require("typescript").setup({ server = opts })
-                --   return true
-                -- end,
-                -- Specify * to use this function as a fallback for any server
-                -- ["*"] = function(server, opts) end,
+                yamlls = function()
+                    -- Neovim < 0.10 does not have dynamic registration for formatting
+                    if vim.fn.has "nvim-0.10" == 0 then
+                        require("lsp.utils").lsp.on_attach(function(client, _)
+                            client.server_capabilities.documentFormattingProvider = true
+                        end, "yamlls")
+                    end
+                end,
             },
         },
         ---@param opts PluginLspOpts
