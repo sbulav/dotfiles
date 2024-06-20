@@ -22,6 +22,7 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       cachix
+      gcc
       nil
       nixfmt-rfc-style
       nix-index
