@@ -16,7 +16,7 @@ require("lazy").setup("plugins", {
     },
     dev = { path = "~/git" },
     install = {
-        colorscheme = { "base16-oceanicnext" },
+        colorscheme = { "cyberdream" },
     },
     performance = {
         rtp = {
@@ -43,4 +43,4 @@ require("lazy").setup("plugins", {
         },
     },
 })
-vim.cmd.colorscheme "base16-oceanicnext"
+vim.cmd.colorscheme "cyberdream"

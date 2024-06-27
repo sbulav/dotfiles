@@ -12,8 +12,9 @@ return {
             timeout = 1000,
 
             -- For stages that change opacity this is treated as the highlight behind the window
-            background_colour = "Normal",
-
+            -- background_colour = "Normal",
+            -- Used for transparency
+            background_colour = "#000000",
             -- Icons for the different levels
             icons = {
                 ERROR = "",
