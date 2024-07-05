@@ -21,9 +21,7 @@ in {
     };
 
     fonts = {
-      fontDir = enabled;
-
-      fonts = with pkgs;
+      packages = with pkgs;
         [
           noto-fonts
           dejavu_fonts

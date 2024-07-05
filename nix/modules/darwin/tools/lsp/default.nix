@@ -20,8 +20,8 @@ in {
       nil # LSP for nix
       tree-sitter
       yamllint
-      nodejs_21 # Note for LSP servers
-      nodePackages_latest.pyright
+      nodejs_22 # Note for LSP servers
+      pyright
       black
     ];
   };

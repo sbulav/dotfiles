@@ -25,6 +25,7 @@ in {
   custom.virtualisation = {
     virt-manager.enable = true;
     kvm.enable = false;
+    podman.enable = true;
   };
 
   # ======================== DO NOT CHANGE THIS ========================

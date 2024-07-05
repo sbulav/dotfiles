@@ -9,35 +9,6 @@ return {
     },
     { "janko/vim-test", cmd = { "TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit" } },
 
-    {
-        "rolv-apneseth/tfm.nvim",
-        opts = {
-            file_manager = "yazi",
-            replace_netrw = true,
-            keybindings = {
-                ["<ESC>"] = "q",
-            },
-            -- Customise UI. The below options are the default
-            ui = {
-                border = "rounded",
-                height = 0.9,
-                width = 0.9,
-                x = 0.5,
-                y = 0.5,
-            },
-        },
-    },
-    -- {
-    --     "DreamMaoMao/yazi.nvim",
-    --     dependencies = {
-    --         "nvim-telescope/telescope.nvim",
-    --         "nvim-lua/plenary.nvim",
-    --     },
-    --     config = function()
-    --         require("yazi").setup {}
-    --     end,
-    -- },
-
     -- Redirect output to scratch buffer
     "sbulav/nredir.nvim",
 

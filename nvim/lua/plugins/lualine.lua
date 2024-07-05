@@ -2,7 +2,7 @@ local function lsp_progress(_, is_active)
     if not is_active then
         return
     end
-    local messages = vim.lsp.util.get_progress_messages()
+    local messages = vim.lsp.status()
     if #messages == 0 then
         return ""
     end
@@ -22,7 +22,7 @@ end
 
 local function lsp_client_names()
     -- Get all active clients in the buffer
-    local clients = vim.lsp.buf_get_clients()
+    local clients = vim.lsp.get_active_clients()
     local client_names = "["
 
     for _, client in pairs(clients) do
@@ -55,13 +55,36 @@ local colors = {
     black = "#080808",
     blue = "#80a0ff",
     color0 = "#ffffff",
+    cyan = "#79dac8",
     lightgreen = "#99c794",
     lightgrey = "#65737e",
     navy = "#6699cc",
-    cyan = "#79dac8",
     red = "#ff5189",
     white = "#c6c6c6",
     yellow = "#ECBE7B",
+}
+
+local colorscyberdream = {
+    bg = "#16181a",
+    bgAlt = "#1e2124",
+    bgHighlight = "#3c4048",
+    black = "#080808",
+    blue = "#5ea1ff",
+    cyan = "#5ef1ff",
+    fg = "#ffffff",
+    green = "#5eff6c",
+    grey = "#7b8496",
+    lightblue = "#bbd3ff",
+    lightgrey = "#65737e",
+    magenta = "#ff5ef1",
+    navy = "#6699cc",
+    orange = "#ffbd5e",
+    pink = "#ff5ea0",
+    purple = "#bd5eff",
+    red = "#ff6e5e",
+    white = "#c6c6c6",
+    yellow = "#f1ff5e",
+    transparent = "#000000",
 }
 
 local oceanic_my = {
@@ -82,6 +105,27 @@ local oceanic_my = {
         a = { fg = colors.white, bg = colors.black },
         b = { fg = colors.white, bg = colors.black },
         c = { fg = colors.white, bg = colors.black },
+    },
+}
+
+local cyberdream_my = {
+    normal = {
+        a = { fg = colorscyberdream.black, bg = colorscyberdream.blue, gui = "bold" },
+        b = { fg = colorscyberdream.fg, bg = colorscyberdream.lightgrey },
+        c = { fg = colorscyberdream.white, bg = colorscyberdream.transparent },
+    },
+    insert = {
+        a = { fg = colorscyberdream.black, bg = colorscyberdream.green, gui = "bold" },
+        b = { fg = colorscyberdream.fg, bg = colorscyberdream.lightgrey },
+        c = { fg = colorscyberdream.white, bg = colorscyberdream.transparent },
+    },
+    visual = { a = { fg = colorscyberdream.black, bg = colorscyberdream.magenta } },
+    replace = { a = { fg = colorscyberdream.black, bg = colorscyberdream.red } },
+
+    inactive = {
+        a = { fg = colorscyberdream.white, bg = colorscyberdream.transparent },
+        b = { fg = colorscyberdream.white, bg = colorscyberdream.transparent },
+        c = { fg = colorscyberdream.white, bg = colorscyberdream.transparent },
     },
 }
 
@@ -113,7 +157,7 @@ return {
     config = function()
         require("lualine").setup {
             options = {
-                theme = oceanic_my,
+                theme = cyberdream_my,
                 globalstatus = true,
                 component_separators = { left = "", right = "" },
                 section_separators = { left = "", right = "" },

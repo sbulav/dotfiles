@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   lib,
   ...
@@ -7,10 +6,8 @@
 with lib;
 with lib.custom; let
   cfg = config.custom.desktop.addons.hyprpaper;
-  inherit (inputs) hyprpaper;
   wallpaper = config.custom.desktop.addons.wallpaper;
 in {
-  imports = [hyprpaper.homeManagerModules.default];
   options.custom.desktop.addons.hyprpaper = with types; {
     enable = mkBoolOpt false "Whether to enable the hyprpaper config";
   };
@@ -19,9 +16,11 @@ in {
     services.hyprpaper = {
       enable = true;
 
-      preloads = [wallpaper];
-      wallpapers = [", ${wallpaper}"];
-      ipc = false;
+      settings = {
+        preload = [wallpaper];
+        wallpaper = [", ${wallpaper}"];
+        ipc = false;
+      };
     };
   };
 }

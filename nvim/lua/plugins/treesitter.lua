@@ -4,7 +4,7 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         dependencies = {
-            "HiPhish/nvim-ts-rainbow2",
+            "HiPhish/rainbow-delimiters.nvim",
             "JoosepAlviste/nvim-ts-context-commentstring",
         },
         cmd = { "TSUpdate" },

@@ -44,7 +44,7 @@ in {
       };
     };
 
-    snowfallorg.user.${config.custom.user.name}.home.config = {
+    snowfallorg.users.${config.custom.user.name}.home.config = {
       home = {
         file = {
           ".profile".text = ''

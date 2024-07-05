@@ -78,8 +78,8 @@ in {
 
         yabai -m rule --add app="^Safari$" space=3
         yabai -m rule --add app="^Firefox$" space=3
-        yabai -m rule --add app="^Kitty$" space=3
-        yabai -m rule --add app="^kitty$" space=3
+        yabai -m rule --add app="^Kitty$" space=6
+        yabai -m rule --add app="^kitty$" space=6
         yabai -m rule --add app="^wezterm$" space=6
         yabai -m rule --add app="^wezterm-gui$" space=6
         yabai -m rule --add app="^WezTerm$" space=6

@@ -7,7 +7,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     snowfall-lib = {
-      url = "github:snowfallorg/lib";
+      url = "github:snowfallorg/lib?ref=v3.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {
@@ -25,16 +25,8 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    hyprlock = {
-      url = "github:hyprwm/Hyprlock";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -75,6 +67,7 @@
 
       channels-config = {
         allowUnfree = true;
+        allowBroken = true;
       };
 
       overlays = with inputs; [];

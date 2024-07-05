@@ -21,7 +21,7 @@ in {
       tree-sitter
       yamllint
       nodejs_22 # Note for LSP servers
-      nodePackages_latest.pyright
+      pyright
       black
     ];
   };

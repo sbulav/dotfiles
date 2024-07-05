@@ -4,7 +4,7 @@ return {
     event = "BufRead",
     config = function()
         require("conform").setup {
-            format_on_save = function(bufnr)
+            format_after_save = function(bufnr)
                 -- Disable with a global or buffer-local variable
                 if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
                     return
