@@ -1,5 +1,27 @@
 # Changelog
 
+## [4.3.0](https://www.github.com/sbulav/dotfiles/compare/v4.2.0...v4.3.0) (2024-07-05)
+
+
+### Features
+
+* **fish:** change l to ls -la ([8472ec9](https://www.github.com/sbulav/dotfiles/commit/8472ec928b6d9c8e4dcaadffaddd0f8f18f13b6f))
+* **nix:** add gcc to nixos for treesitter ([a44da2c](https://www.github.com/sbulav/dotfiles/commit/a44da2c56c653e9a917b81b9cd15a3a113088807))
+* **nix:** add podman module ([1fa31ed](https://www.github.com/sbulav/dotfiles/commit/1fa31ed7f931de42d3ccfc669242714ef3bd73a7))
+* **nix:** hyprpaper from hm ([10eb0f9](https://www.github.com/sbulav/dotfiles/commit/10eb0f9c7ef0308359a26e16337d5c68d74e55a8))
+* **nvim:** add dial.nvim ([9c8deb3](https://www.github.com/sbulav/dotfiles/commit/9c8deb37218f92bf954cb75464052a8d4e845222))
+* **nvim:** cyberdream for lualine ([f4634a9](https://www.github.com/sbulav/dotfiles/commit/f4634a9c41eab87bbc1c4b4b14c400a84023cb86))
+* **nvim:** move to new yazi plugin ([09d4282](https://www.github.com/sbulav/dotfiles/commit/09d4282738f0ccea0ea71f4853ba0ba606b4e3d2))
+* **nvim:** replace neodev with lazydev ([0f9d292](https://www.github.com/sbulav/dotfiles/commit/0f9d29234baa574ee2373a88723c630bfe9da27f))
+* **nvim:** switch to cyberdream for now ([5878716](https://www.github.com/sbulav/dotfiles/commit/58787164d0bb29beb8bf681007baa1692b9a184e))
+* **nvim:** update yamls capabilities ([06df9af](https://www.github.com/sbulav/dotfiles/commit/06df9afecc3e3b216426e3ab6976cdf3b0993a0c))
+
+
+### Bug Fixes
+
+* **hyprpaper:** use correct option ([26d3338](https://www.github.com/sbulav/dotfiles/commit/26d3338db4c0368ffbb588de732cc1c7da226574))
+* **nix:** update flake and use openconnect_ssl ([cb9cf2f](https://www.github.com/sbulav/dotfiles/commit/cb9cf2f1688f9582b5dfbe83b21ddfc2ef27dbe7))
+
 ## [4.2.0](https://www.github.com/sbulav/dotfiles/compare/v4.1.0...v4.2.0) (2024-05-08)
 
 
