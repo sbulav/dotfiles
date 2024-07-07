@@ -1,10 +1,12 @@
 return {
     "goolord/alpha-nvim",
-    dependencies = { "kyazdani42/nvim-web-devicons" },
+    dependencies = { "echasnovski/mini.nvim" },
     event = "VimEnter",
     commit = "6af3b19",
     enabled = true,
     config = function()
+        require("mini.icons").setup()
+        MiniIcons.mock_nvim_web_devicons()
         local alpha = require "alpha"
         local startify = require "alpha.themes.startify"
         local function footer()
@@ -42,6 +44,7 @@ return {
             startify.button("u", "Update plugins", ":Lazy update<CR>"),
             startify.button("q", "Quit NVIM", ":qa<CR>"),
         }
+
         alpha.setup(startify.opts)
     end,
 }

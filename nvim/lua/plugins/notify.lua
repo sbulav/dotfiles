@@ -1,6 +1,6 @@
 return {
     "rcarriga/nvim-notify",
-    dependencies = { "kyazdani42/nvim-web-devicons" },
+    dependencies = { "echasnovski/mini.nvim" },
     event = "VeryLazy",
     enabled = true,
     config = function()
