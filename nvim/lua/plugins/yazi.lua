@@ -16,6 +16,8 @@ return {
             "<F3>",
             function()
                 require("yazi").yazi()
+                -- FIXME: avoid messages each time when openint yazi on mac
+                print "yazi opened"
             end,
             desc = "Open the file manager",
         },
