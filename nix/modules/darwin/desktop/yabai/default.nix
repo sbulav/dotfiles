@@ -53,7 +53,7 @@ in {
 
       extraConfig = ''
         for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 6)'); do
-            yabai -m space --destroy 7
+            yabai -m space --destroy 8
         done
 
         function setup_space {
@@ -70,25 +70,26 @@ in {
         }
 
         setup_space 1 main
-        setup_space 2 web
-        setup_space 3 code
-        setup_space 4 social
-        setup_space 5 media
-        setup_space 6 other
+        setup_space 2 mail
+        setup_space 3 calendar
+        setup_space 4 browser
+        setup_space 5 social
+        setup_space 6 media
+        setup_space 7 other
 
-        yabai -m rule --add app="^Safari$" space=3
-        yabai -m rule --add app="^Firefox$" space=3
-        yabai -m rule --add app="^Kitty$" space=6
-        yabai -m rule --add app="^kitty$" space=6
-        yabai -m rule --add app="^wezterm$" space=6
-        yabai -m rule --add app="^wezterm-gui$" space=6
-        yabai -m rule --add app="^WezTerm$" space=6
+        yabai -m rule --add app="^Safari$" space=4
+        yabai -m rule --add app="^Firefox$" space=4
+        yabai -m rule --add app="^Kitty$" space=7
+        yabai -m rule --add app="^kitty$" space=7
+        yabai -m rule --add app="^wezterm$" space=7
+        yabai -m rule --add app="^wezterm-gui$" space=7
+        yabai -m rule --add app="^WezTerm$" space=7
         yabai -m rule --add app="^Telegram$" space=1
         yabai -m rule --add app="^Slack$" space=1
         yabai -m rule --add app="^Teams$" space=1
-        yabai -m rule --add app="^Mail$" space=4
-        yabai -m rule --add app="^Calendar$" space=4
-        yabai -m rule --add app="^Music$" space=5
+        yabai -m rule --add app="^Mail$" space=2
+        yabai -m rule --add app="^Calendar$" space=3
+        yabai -m rule --add app="^Music$" space=6
 
         # Float system settings
         yabai -m rule --add app="^(Terminal|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility)$" manage=off
