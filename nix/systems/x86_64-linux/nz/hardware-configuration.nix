@@ -27,8 +27,8 @@
     fsType = "vfat";
   };
 
-  fileSystems."/mnt/tank" = {
-    device = "truenas.sbulav.ru:/mnt/tank";
+  fileSystems."/mnt/tank/torrents" = {
+    device = "truenas.sbulav.ru:/mnt/tank/torrents";
     options = ["x-systemd.automount" "x-systemd.idle-timeout=600" "noauto"];
     fsType = "nfs";
   };
