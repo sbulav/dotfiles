@@ -1,10 +1,8 @@
 {
   pkgs,
   inputs,
-  lib,
   ...
 }: let
-  inherit (lib.${namespace}) enabled;
   system = "x86_64-linux";
   hostName = "serverz";
 in {
