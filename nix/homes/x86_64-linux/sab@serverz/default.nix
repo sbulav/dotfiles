@@ -4,7 +4,10 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+with lib.custom; let
+  wallpapers = inputs.wallpapers-nix.packages.${pkgs.system}.catppuccin;
+in {
   custom = {
     user = {
       enable = true;
