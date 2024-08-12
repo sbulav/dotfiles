@@ -14,7 +14,7 @@ with lib.custom; {
       virt-manager = disabled;
     };
 
-    desktop.yabai = enabled;
+    desktop.yabai = disabled;
     desktop.addons.wezterm = enabled;
   };
 
