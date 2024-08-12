@@ -1,9 +1,6 @@
 {
   lib,
-  pkgs,
   config,
-  osConfig ? {},
-  format ? "unknown",
   ...
 }:
 with lib.custom; {
@@ -11,6 +8,9 @@ with lib.custom; {
     user = {
       enable = true;
       name = config.snowfallorg.user.name;
+    };
+    apps = {
+      zoom-us = enabled;
     };
 
     cli-apps = {
