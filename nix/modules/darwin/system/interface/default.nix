@@ -64,5 +64,61 @@ in {
         type = "png";
       };
     };
+
+    # dock settings
+    dock = {
+      # auto show and hide dock
+      autohide = true;
+      # remove delay for showing dock
+      autohide-delay = 0.0;
+      # how fast is the dock showing animation
+      autohide-time-modifier = 1.0;
+      mineffect = "scale";
+      minimize-to-application = true;
+      mouse-over-hilite-stack = true;
+      mru-spaces = false;
+      orientation = "bottom";
+      show-process-indicators = true;
+      show-recents = false;
+      showhidden = false;
+      static-only = false;
+      tilesize = 50;
+
+      # Hot corners
+      # Possible values:
+      #  0: no-op
+      #  2: Mission Control
+      #  3: Show application windows
+      #  4: Desktop
+      #  5: Start screen saver
+      #  6: Disable screen saver
+      #  7: Dashboard
+      # 10: Put display to sleep
+      # 11: Launchpad
+      # 12: Notification Center
+      # 13: Lock Screen
+      # 14: Quick Notes
+      wvous-tl-corner = 2;
+      wvous-tr-corner = 12;
+      wvous-bl-corner = 14;
+      wvous-br-corner = 4;
+
+      # sudo su "$USER" -c "defaults write com.apple.dock persistent-apps -array 	\
+      # '$launchpad' '$settings' '$appstore' '$small_blank' 																		\
+      # '$messages' '$messenger' '$teams' '$discord' '$mail' '$small_blank' 										\
+      # '$firefox' '$safari' '$fantastical' '$reminders' '$notes' '$small_blank' 								\
+      # '$music' '$spotify' '$plex' '$small_blank' 																							\
+      # '$code' '$github' '$gitkraken' '$small_blank' 													\
+      # '$alacritty' '$kitty'"
+      persistent-apps = [
+        "/System/Applications/Launchpad.app"
+        "/System/Applications/System Settings.app"
+        "/Applications/Slack.app"
+        "/Applications/Firefox.app"
+        "/System/Applications/Mail.app"
+        # TODO: implement small_blank
+        "${pkgs.wezterm}/Applications/WezTerm.app"
+      ];
+    };
   };
 }
