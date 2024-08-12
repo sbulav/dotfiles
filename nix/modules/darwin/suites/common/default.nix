@@ -34,7 +34,7 @@ in {
         fonts = enabled;
         input = enabled;
         interface = enabled;
-        secutiry = enabled;
+        security = enabled;
       };
     };
   };
