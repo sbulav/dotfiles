@@ -46,6 +46,7 @@ in {
 
             KeyRepeat = 1;
             InitialKeyRepeat = 10;
+            "com.apple.keyboard.fnState" = true;
 
             NSAutomaticCapitalizationEnabled = false;
             NSAutomaticDashSubstitutionEnabled = false;
