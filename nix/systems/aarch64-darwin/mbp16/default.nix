@@ -14,7 +14,7 @@ with lib.custom; {
       virt-manager = disabled;
     };
 
-    desktop.yabai = disabled;
+    desktop.aerospace = enabled;
     desktop.addons.wezterm = enabled;
   };
 
