@@ -1,5 +1,4 @@
 {
-  options,
   config,
   pkgs,
   lib,
@@ -64,6 +63,9 @@ in {
         type = "png";
       };
 
+      # Displays have separate Spaces
+      spaces.spans-displays = false;
+
       # dock settings
       dock = {
         # auto show and hide dock
@@ -72,6 +74,7 @@ in {
         autohide-delay = 0.0;
         # how fast is the dock showing animation
         autohide-time-modifier = 1.0;
+        expose-group-by-app = true;
         mineffect = "scale";
         minimize-to-application = true;
         mouse-over-hilite-stack = true;
