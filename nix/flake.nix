@@ -6,6 +6,8 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    stable.url = "github:nixos/nixpkgs/nixos-24.05";
+
     snowfall-lib = {
       url = "github:snowfallorg/lib?ref=v3.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
