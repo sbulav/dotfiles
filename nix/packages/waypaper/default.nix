@@ -43,9 +43,10 @@ python3.pkgs.buildPythonApplication rec {
     changelog = "https://github.com/anufrievroman/waypaper/releases/tag/${version}";
     description = "GUI wallpaper setter for Wayland-based window managers";
     longDescription = ''
-      GUI wallpaper setter for Wayland-based window managers that works as a frontend for popular backends like swaybg and swww.
+      GUI wallpaper setter for Wayland-based window managers that works as a
+      frontend for popular backends like hyprpaper, swaybg and swww.
 
-      If wallpaper does not change, make sure that swaybg or swww is installed.
+      If wallpaper does not change, make sure that IPC is enabled;
     '';
     homepage = "https://github.com/anufrievroman/waypaper";
     license = licenses.gpl3Only;
