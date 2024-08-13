@@ -17,7 +17,7 @@ in {
       casks = ["nikitabobko/tap/aerospace"];
     };
 
-    home-manager.users.${config.user} = {
+    home-manager.users.${config.custom.user.name} = {
       xdg.configFile."aerospace/aerospace.toml".source = ./aerospace.toml;
     };
   };
