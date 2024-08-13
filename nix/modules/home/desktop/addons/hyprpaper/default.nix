@@ -19,7 +19,7 @@ in {
       settings = {
         preload = [wallpaper];
         wallpaper = [", ${wallpaper}"];
-        ipc = false;
+        ipc = true;
       };
     };
   };

@@ -3,6 +3,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 with lib;
@@ -38,6 +39,8 @@ in {
       adwaita-qt6
       adwaita-icon-theme
       gnome-tweaks
+      # inputs.nixpkgs-philippheuer.packages.${pkgs.system}.waypaper # wallpaper manager
+      pkgs.custom.waypaper
     ];
 
     environment.sessionVariables = {
