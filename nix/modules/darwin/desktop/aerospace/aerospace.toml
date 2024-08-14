@@ -194,8 +194,12 @@ if.app-id = 'org.mozilla.firefox'
 run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
+if.app-id = 'us.zoom.xos'
+run = ['layout floating', 'move-node-to-workspace 4']
+
+[[on-window-detected]]
 if.app-id = 'org.videolan.vlc'
-run = "move-node-to-workspace 4"
+run = "move-node-to-workspace 5"
 
 [[on-window-detected]]
 if.app-id = 'com.apple.mail'
@@ -213,9 +217,6 @@ run = "move-node-to-workspace 9"
 if.app-id = 'com.tdesktop.Telegram'
 run = "move-node-to-workspace 9"
 
-[[on-window-detected]]
-if.app-id = 'us.zoom.xos'
-run = "move-node-to-workspace 9"
 
 [[on-window-detected]]
 if.app-id = 'com.apple.systempreferences'
