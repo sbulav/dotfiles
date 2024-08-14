@@ -18,7 +18,7 @@ in {
           # trackpad settings
           trackpad = {
             # silent clicking = 0, default = 1
-            ActuationStrength = 0;
+            ActuationStrength = 1;
             # enable tap to click
             Clicking = true;
             # firmness level, 0 = lightest, 2 = heaviest
@@ -44,8 +44,8 @@ in {
             AppleKeyboardUIMode = 3;
             ApplePressAndHoldEnabled = false;
 
-            KeyRepeat = 1;
-            InitialKeyRepeat = 10;
+            # KeyRepeat = 1;
+            # InitialKeyRepeat = 10;
             "com.apple.keyboard.fnState" = true;
 
             NSAutomaticCapitalizationEnabled = false;
