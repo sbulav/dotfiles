@@ -7,9 +7,12 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
--- Disable wayland until this issue is fixed
+-- TODO: Disable wayland until this issue is fixed
 -- https://github.com/wez/wezterm/issues/5197
 config.enable_wayland = false
+-- TODO: remove WebGpu when this issue is fixed
+-- https://github.com/wez/wezterm/issues/5990
+config.front_end = "WebGpu"
 
 -- Fonts
 -- {{{

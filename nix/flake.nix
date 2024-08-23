@@ -48,7 +48,7 @@
     };
 
     wezterm = {
-      url = "github:wez/wezterm?dir=nix";
+      url = "github:wez/wezterm/main?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
