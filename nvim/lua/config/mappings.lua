@@ -122,6 +122,13 @@ vim.keymap.set("n", "<Space>yp", function()
     vim.fn.setreg("+", path)
 end, attach_opts)
 
+vim.keymap.set("n", "<Space>yb", function()
+    local branch = vim.fn.system "git branch --show-current"
+    print(branch)
+    utils.info("Yanking current branch: " .. branch, "INFO")
+    vim.fn.setreg("+", branch)
+end, attach_opts)
+
 -- Use Visual mode for Multiline, selection is kind flacky
 vim.keymap.set({ "n", "v" }, "[6", function()
     require("base64.command").encode()
