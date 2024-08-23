@@ -46,6 +46,11 @@
     wallpapers-nix = {
       url = "github:sbulav/wallpapers-nix";
     };
+
+    wezterm = {
+      url = "github:wez/wezterm?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
