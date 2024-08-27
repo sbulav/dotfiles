@@ -46,7 +46,7 @@ in {
 
       cursorTheme.name = "Bibata-Modern-Classic";
       font.name = "FiraCode Nerd Font Regular";
-      font.size = "12";
+      font.size = 12;
       iconTheme.name = "Papirus-Dark";
       theme.name = "Catppuccin-Mocha-Compact-Mauve-dark";
 
