@@ -44,16 +44,16 @@ in {
     programs.regreet = {
       enable = true;
 
+      cursorTheme.name = "Bibata-Modern-Classic";
+      font.name = "FiraCode Nerd Font Regular";
+      font.size = "12";
+      iconTheme.name = "Papirus-Dark";
+      theme.name = "Catppuccin-Mocha-Compact-Mauve-dark";
+
       settings = {
         background = {
           path = wallpaper;
           fit = "Cover";
-        };
-        GTK = {
-          cursor_theme_name = "Bibata-Modern-Classic";
-          font_name = "FiraCode Nerd Font Regular 12";
-          icon_theme_name = "Papirus-Dark";
-          theme_name = "Catppuccin-Mocha-Compact-Mauve-dark";
         };
       };
     };
