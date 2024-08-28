@@ -51,7 +51,7 @@ in {
     };
     security = {
       rbw = enabled;
-      vault = disabled;
+      vault = enabled;
     };
   };
   home.stateVersion = "23.11";
