@@ -36,6 +36,10 @@ in {
       };
     };
 
+    apps = {
+      obsidian = enabled;
+    };
+
     cli-apps = {
       argocd = enabled;
       atuin = enabled;

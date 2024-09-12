@@ -29,7 +29,13 @@
 
   fileSystems."/mnt/tank/torrents" = {
     device = "truenas.sbulav.ru:/mnt/tank/torrents";
-    options = ["x-systemd.automount" "x-systemd.idle-timeout=600" "noauto"];
+    options = ["x-systemd.automount" "x-systemd.idle-timeout=60" "noauto"];
+    fsType = "nfs";
+  };
+
+  fileSystems."/mnt/obsidian" = {
+    device = "truenas.sbulav.ru:/mnt/tank/Apps/obsidian";
+    options = ["x-systemd.automount" "x-systemd.idle-timeout=60" "noauto"];
     fsType = "nfs";
   };
 
