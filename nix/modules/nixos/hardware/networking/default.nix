@@ -30,7 +30,7 @@ in {
     };
     systemd.services.NetworkManager-wait-online.enable = false;
     services.wg-netmanager.enable = true;
-    environment.systemPackages = with pkgs; [networkmanager-l2tp gnome.networkmanager-l2tp openconnect_openssl];
+    environment.systemPackages = with pkgs; [networkmanager-l2tp openconnect_openssl];
     services.strongswan = {
       enable = true;
       secrets = [
