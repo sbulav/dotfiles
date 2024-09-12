@@ -103,7 +103,7 @@ in {
         wvous-tl-corner = 2;
         wvous-tr-corner = 12;
         wvous-bl-corner = 14;
-        wvous-br-corner = 4;
+        wvous-br-corner = 3;
 
         # sudo su "$USER" -c "defaults write com.apple.dock persistent-apps -array 	\
         # '$launchpad' '$settings' '$appstore' '$small_blank' 																		\
