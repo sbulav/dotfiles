@@ -10,6 +10,7 @@ with lib.custom; {
       name = config.snowfallorg.user.name;
     };
     apps = {
+      obsidian = enabled;
       zoom-us = enabled;
     };
 
