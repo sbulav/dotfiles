@@ -7,13 +7,6 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
--- TODO: Disable wayland until this issue is fixed
--- https://github.com/wez/wezterm/issues/5197
-config.enable_wayland = false
--- TODO: remove WebGpu when this issue is fixed
--- https://github.com/wez/wezterm/issues/5990
-config.front_end = "WebGpu"
-
 -- Fonts
 -- {{{
 config.adjust_window_size_when_changing_font_size = false
@@ -27,9 +20,7 @@ if wezterm.target_triple == "aarch64-apple-darwin" then
   config.font_size = 18
   -- Linux Setup
 else
-  -- Until issue with wayland is fixed
-  -- config.font_size = 14
-  config.font_size = 18
+  config.font_size = 14
 end
 -- }}}
 -- Windows
