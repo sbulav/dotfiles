@@ -15,7 +15,6 @@ with lib.custom; {
     };
 
     desktop.aerospace = enabled;
-    desktop.addons.wezterm = enabled;
   };
 
   # suites.common.enable = true; # Enables the basics, like audio, networking, ssh, etc.

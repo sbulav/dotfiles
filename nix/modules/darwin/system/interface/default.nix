@@ -118,8 +118,8 @@ in {
           "/Applications/Slack.app"
           "/Applications/Firefox.app"
           "/System/Applications/Mail.app"
-          # TODO: implement small_blank
-          "${pkgs.wezterm}/Applications/WezTerm.app"
+          "/Users/${config.custom.user.name}/Applications/Home Manager Apps/WezTerm.app"
+          "/Users/${config.custom.user.name}/Applications/Home Manager Apps/Obsidian.app"
         ];
       };
     };
