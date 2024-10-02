@@ -9,7 +9,7 @@
     stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
     snowfall-lib = {
-      url = "github:snowfallorg/lib?ref=v3.0.0";
+      url = "github:snowfallorg/lib?ref=v3.0.3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {
@@ -74,7 +74,7 @@
 
       channels-config = {
         allowUnfree = true;
-        allowBroken = true;
+        # allowBroken = true;
       };
 
       overlays = with inputs; [];
