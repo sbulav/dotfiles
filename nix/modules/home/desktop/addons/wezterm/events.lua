@@ -22,13 +22,13 @@ wezterm.on("update-right-status", function(window)
   local date = wezterm.strftime "[%H:%M]"
 
   window:set_right_status(wezterm.format {
-    { Foreground = { Color = base16_colors.blue } },
+    { Foreground = { Color = theme.blue } },
     { Text = wezterm.nerdfonts.md_kubernetes },
-    { Foreground = { Color = base16_colors.magenta } },
+    { Foreground = { Color = theme.magenta } },
     { Text = " " .. kube_context },
-    { Foreground = { Color = base16_colors.cyan } },
+    { Foreground = { Color = theme.cyan } },
     { Text = ":" .. kube_ns },
-    { Foreground = { Color = base16_colors.red } },
+    { Foreground = { Color = theme.red } },
     { Text = " " .. date },
   })
 end)

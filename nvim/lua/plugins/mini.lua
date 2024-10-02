@@ -74,5 +74,6 @@ return {
             n_lines = 50,
         }
         require("mini.trailspace").setup()
+        require("mini.icons").setup()
     end,
 }

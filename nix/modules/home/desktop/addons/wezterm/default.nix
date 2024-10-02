@@ -1,8 +1,8 @@
 {
-  options,
+  inputs,
+  pkgs,
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib;
@@ -16,6 +16,7 @@ in {
   config = mkIf cfg.enable {
     programs.wezterm = {
       enable = true;
+      package = inputs.wezterm.packages.${pkgs.system}.default;
       extraConfig =
         # Generate wezterm.lua; order of files are important
         (builtins.readFile ./wezterm.lua)

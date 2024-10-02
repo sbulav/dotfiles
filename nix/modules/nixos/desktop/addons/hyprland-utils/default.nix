@@ -3,6 +3,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 with lib;
@@ -36,8 +37,8 @@ in {
 
       adwaita-qt
       adwaita-qt6
-      gnome.adwaita-icon-theme
-      gnome.gnome-tweaks
+      adwaita-icon-theme
+      gnome-tweaks
     ];
 
     environment.sessionVariables = {

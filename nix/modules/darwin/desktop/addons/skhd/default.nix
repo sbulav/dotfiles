@@ -35,8 +35,8 @@ in {
         alt - 9 : yabai -m space --focus 9
         alt - 0 : yabai -m space --focus 10
 
-        alt - up : yabai -m space --focus 3
-        alt - down : yabai -m space --focus 6
+        alt - up : yabai -m space --focus 4
+        alt - down : yabai -m space --focus 7
         alt - left : yabai -m space --focus prev
         alt - right : yabai -m space --focus next
 

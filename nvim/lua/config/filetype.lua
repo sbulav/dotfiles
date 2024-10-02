@@ -1,5 +1,17 @@
+local is_helm = function(path)
+    for dir in vim.fs.parents(path) do
+        if vim.fn.fnamemodify(dir, ":t") == "templates" then
+            if vim.fn.filereadable(vim.fs.dirname(dir) .. "/Chart.yaml") == 1 then
+                return "helm"
+            end
+        end
+    end
+    return "yaml"
+end
+
 vim.filetype.add {
     extension = {
+        yaml = is_helm,
         fish = "fish",
         tf = "terraform",
         tfvars = "terraform",

@@ -1,9 +1,6 @@
 {
   lib,
-  pkgs,
   config,
-  osConfig ? {},
-  format ? "unknown",
   ...
 }:
 with lib.custom; {
@@ -11,6 +8,10 @@ with lib.custom; {
     user = {
       enable = true;
       name = config.snowfallorg.user.name;
+    };
+    apps = {
+      obsidian = enabled;
+      zoom-us = enabled;
     };
 
     cli-apps = {
@@ -42,5 +43,5 @@ with lib.custom; {
     "$HOME/bin"
   ];
 
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
 }

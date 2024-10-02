@@ -22,6 +22,7 @@ in {
       };
 
       extraPackages = with pkgs.bat-extras; [
+        #TODO: enable when compiling is fixec
         batdiff
         batgrep
         batman

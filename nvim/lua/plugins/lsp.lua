@@ -38,6 +38,7 @@ return {
                 },
                 -- pyright = {},
                 -- terraformls = {},
+                helm_ls = {},
                 yamlls = {
                     -- lazy-load schemastore when needed
                     on_new_config = function(new_config)
@@ -120,6 +121,7 @@ return {
                     require("lspconfig")[server].setup(server_opts)
                 end,
                 -- manually configured servers
+                require("lspconfig")["helm_ls"].setup {},
                 require("lspconfig")["nil_ls"].setup {},
                 require("lspconfig")["marksman"].setup { cmd = { "marksman", "server" } },
 

@@ -27,9 +27,27 @@
     fsType = "vfat";
   };
 
-  fileSystems."/mnt/tank" = {
-    device = "truenas.sbulav.ru:/mnt/tank";
-    options = ["x-systemd.automount" "x-systemd.idle-timeout=600" "noauto"];
+  fileSystems."/mnt/tank/torrents" = {
+    device = "truenas.sbulav.ru:/mnt/tank/torrents";
+    options = [
+      "noauto"
+      "x-systemd.automount"
+      "x-systemd.requires=network.target"
+      "x-systemd.mount-timeout=10"
+      "x-systemd.idle-timeout=1min"
+    ];
+    fsType = "nfs";
+  };
+
+  fileSystems."/mnt/obsidian" = {
+    device = "truenas.sbulav.ru:/mnt/tank/Apps/obsidian";
+    options = [
+      "noauto"
+      "x-systemd.automount"
+      "x-systemd.requires=network.target"
+      "x-systemd.mount-timeout=10"
+      "x-systemd.idle-timeout=1min"
+    ];
     fsType = "nfs";
   };
 

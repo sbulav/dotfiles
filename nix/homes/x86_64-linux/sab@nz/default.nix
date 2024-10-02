@@ -28,7 +28,16 @@ in {
         hyprlock = disabled;
         wezterm = enabled;
         wallpaper = "${wallpapers}/share/wallpapers/catppuccin/bench.png";
+
+        waypaper = {
+          enable = true;
+          wallpaperDirectory = "${wallpapers}/share/wallpapers";
+        };
       };
+    };
+
+    apps = {
+      obsidian = enabled;
     };
 
     cli-apps = {

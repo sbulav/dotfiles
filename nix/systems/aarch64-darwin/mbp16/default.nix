@@ -14,8 +14,7 @@ with lib.custom; {
       virt-manager = disabled;
     };
 
-    desktop.yabai = enabled;
-    desktop.addons.wezterm = enabled;
+    desktop.aerospace = enabled;
   };
 
   # suites.common.enable = true; # Enables the basics, like audio, networking, ssh, etc.

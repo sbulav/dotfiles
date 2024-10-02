@@ -13,7 +13,7 @@ vim.api.nvim_set_keymap("n", "<c-\\>", "<cmd>ToggleTerm direction=vertical<CR>",
 
 return {
     "akinsho/toggleterm.nvim",
-    dependencies = { "kyazdani42/nvim-web-devicons" },
+    dependencies = { "echasnovski/mini.nvim" },
     event = "VeryLazy",
     config = function()
         vim.api.nvim_create_augroup("Terminal", { clear = true })

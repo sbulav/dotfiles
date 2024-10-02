@@ -1,13 +1,13 @@
 return {
     { "sbulav/base16" },
-    {
-        "fynnfluegge/monet.nvim",
-        name = "monet",
-        opts = {
-            transparent_background = true,
-            dark_mode = true,
-        },
-    },
+    -- {
+    --     "fynnfluegge/monet.nvim",
+    --     name = "monet",
+    --     opts = {
+    --         transparent_background = true,
+    --         dark_mode = true,
+    --     },
+    -- },
     {
         "scottmckendry/cyberdream.nvim",
         lazy = false,

@@ -23,6 +23,7 @@ in {
       nodejs_22 # Note for LSP servers
       pyright
       black
+      helm-ls
     ];
   };
 }
