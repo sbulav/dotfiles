@@ -44,18 +44,18 @@ in {
     programs.regreet = {
       enable = true;
 
-      cursorTheme.name = "Bibata-Modern-Classic";
-      font.name = "FiraCode Nerd Font Regular";
-      font.size = 12;
-      iconTheme.name = "Papirus-Dark";
-      theme.name = "Catppuccin-Mocha-Compact-Mauve-dark";
+      # cursorTheme.name = "Bibata-Modern-Classic";
+      # font.name = "FiraCode Nerd Font Regular";
+      # font.size = 12;
+      # iconTheme.name = "Papirus-Dark";
+      # theme.name = "Catppuccin-Mocha-Compact-Mauve-dark";
 
-      settings = {
-        background = {
-          path = wallpaper;
-          fit = "Cover";
-        };
-      };
+      # settings = {
+      #   background = {
+      #     path = wallpaper;
+      #     fit = "Cover";
+      #   };
+      # };
     };
 
     programs.sway.enable = true;

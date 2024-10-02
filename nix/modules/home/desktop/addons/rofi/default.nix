@@ -49,7 +49,7 @@ in {
         kb-row-select = "Control+Super+space";
         matching = "fuzzy";
       };
-      theme = ./rofi/catppuccin-frappe.rasi;
+      # theme = ./rofi/catppuccin-frappe.rasi;
     };
     home.file.".config/rofi/rofi-vpn.sh" = {
       executable = true;

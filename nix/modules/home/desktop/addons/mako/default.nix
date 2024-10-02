@@ -20,7 +20,7 @@ in {
     services.mako = {
       enable = true;
       defaultTimeout = 5000;
-      font = "FiraCode Nerd Font 10";
+      # font = "FiraCode Nerd Font 10";
       layer = "overlay";
       anchor = "top-right";
       maxIconSize = 32;

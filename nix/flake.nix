@@ -51,6 +51,7 @@
       url = "github:wez/wezterm/main?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix.url = "github:danth/stylix";
   };
 
   outputs = inputs: let
@@ -79,6 +80,6 @@
 
       overlays = with inputs; [];
 
-      systems.modules.nixos = with inputs; [];
+      systems.modules.nixos = with inputs; [stylix.nixosModules.stylix];
     };
 }
