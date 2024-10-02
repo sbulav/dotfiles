@@ -1,5 +1,53 @@
 # Changelog
 
+## [4.4.0](https://www.github.com/sbulav/dotfiles/compare/v4.3.0...v4.4.0) (2024-10-02)
+
+
+### Features
+
+* add helm_ls ([aebb538](https://www.github.com/sbulav/dotfiles/commit/aebb5380e847940691ce82ee0b5da46a2c44aad3))
+* add helm-ls to darwin ([cf3e358](https://www.github.com/sbulav/dotfiles/commit/cf3e358e25a525117ffa1b120d015d889b8f7eb3))
+* add mbp16 ([b575ab5](https://www.github.com/sbulav/dotfiles/commit/b575ab5a2313e68c9ece4393fcb2251ce5f563b3))
+* add obsidian modules and mount for it ([531c125](https://www.github.com/sbulav/dotfiles/commit/531c12556ddf20f4d431fa8aed071f576f7c77ae))
+* enable obsidian in mac16 ([e263477](https://www.github.com/sbulav/dotfiles/commit/e2634772486517b64b9607567ccb753c9a2f49e2))
+* **nix:** add aerospace module ([4285b7a](https://www.github.com/sbulav/dotfiles/commit/4285b7aa31a00998ea3b02ba576c212d9b8e48ce))
+* **nix:** add dock settings ([eab9d74](https://www.github.com/sbulav/dotfiles/commit/eab9d746287445b92a02cf1fb2e079e88c76f7e9))
+* **nix:** add more default darwin options ([2977ced](https://www.github.com/sbulav/dotfiles/commit/2977ced02d07e54ba82598998660c0dcf0633cd5))
+* **nix:** add system security darwin touchid module ([ba2880d](https://www.github.com/sbulav/dotfiles/commit/ba2880d554b30bb322e776254ffafee3214073ce))
+* **nix:** add waypaper module ([d7fb7f7](https://www.github.com/sbulav/dotfiles/commit/d7fb7f723a7f5ca9ed26c3793939f2a5314e1dde))
+* **nix:** add waypaper with hyprpaper support ([077f8ec](https://www.github.com/sbulav/dotfiles/commit/077f8ec7dbb85b0951604fce421f9e472d72ecae))
+* **nix:** add zoom-us home module ([4cdada2](https://www.github.com/sbulav/dotfiles/commit/4cdada2e45b34fce0b96045d1ab7e0734854293f))
+* **nix:** bump flakes with couple workarounds related to rust1.80 ([4a64342](https://www.github.com/sbulav/dotfiles/commit/4a64342a5c56f63bc0fd7ac0ffcaa6b4ff9bf9b2))
+* **nix:** switch to wezterm nightly ([801a5cd](https://www.github.com/sbulav/dotfiles/commit/801a5cd8c0f414ec1350f8262bddce97458b2342))
+* **nix:** tune aerospace bindings ([f20dd47](https://www.github.com/sbulav/dotfiles/commit/f20dd477cf015b93ab63bc29544b5846f9529a87))
+* **nix:** tune aerospace keybindings ([c3fbbe4](https://www.github.com/sbulav/dotfiles/commit/c3fbbe4aca793396e09e5db65c366a7419a70794))
+* **nix:** tune input, disable yabai on mbp16 ([66886d3](https://www.github.com/sbulav/dotfiles/commit/66886d3533c41fe4d9bd4df6e670ae8c59e9ef47))
+* **nix:** use show app window in br aerospace ([5ea5161](https://www.github.com/sbulav/dotfiles/commit/5ea51616da7e273b75d9a6a6f38224a9a7d128af))
+* **nvim:** add explicit yazi keymaps ([075d2ab](https://www.github.com/sbulav/dotfiles/commit/075d2ab05d08e497328e38430c6e7833fa047343))
+* **nvim:** add mapping to copy current branch ([1c693b9](https://www.github.com/sbulav/dotfiles/commit/1c693b9bbd11e78064fe89b1d8f0552ec0dfae71))
+* replace web-devicons with mini.icons ([7ade5e5](https://www.github.com/sbulav/dotfiles/commit/7ade5e51a5856605c7e00ee967561fab18c0d250))
+* **vault:** switch to vault from github ([32dd1c2](https://www.github.com/sbulav/dotfiles/commit/32dd1c260b78c39f9a05ad3ea295ac2d960b060b))
+* **wezterm:** flake now generates application on mac ([4e36242](https://www.github.com/sbulav/dotfiles/commit/4e36242996b6612a1231fa2f27dff04d39becb45))
+* **yabai:** reorder windows on startup ([c298317](https://www.github.com/sbulav/dotfiles/commit/c2983172db25b651296e88188c2abc3d7256a2ac))
+
+
+### Bug Fixes
+
+* avoid messages each time when yazi is opened ([620d7bd](https://www.github.com/sbulav/dotfiles/commit/620d7bdbb15ff6f6f021c54276ed0e2906e69726))
+* **nix:** add missing comma ([b5befdf](https://www.github.com/sbulav/dotfiles/commit/b5befdfee706506d9ceb51448ede9f42bb8e500d))
+* **nix:** aerospace module and default config ([7fa3021](https://www.github.com/sbulav/dotfiles/commit/7fa302139d0cf8de64188f68f0fe828a63f7f38d))
+* **nix:** function keys work as f on darwin ([4eed7c0](https://www.github.com/sbulav/dotfiles/commit/4eed7c0de07b0a93428ff34f18c106012f545eff))
+* **nix:** hyprland cursor ([dd471b9](https://www.github.com/sbulav/dotfiles/commit/dd471b979e67ddee4030602fc70cdaffec831439))
+* **nix:** pin zoom until sharing is fixed ([368e2fc](https://www.github.com/sbulav/dotfiles/commit/368e2fcb533b5e5b4fe1a7021ec8577186ce6103))
+* **nix:** use correct mnt path ([f3c63b0](https://www.github.com/sbulav/dotfiles/commit/f3c63b08557aba6058579f0d00a044832bf10893))
+* **nix:** use correct username for aerospace ([991c169](https://www.github.com/sbulav/dotfiles/commit/991c169850688f6ac9828639f5eaac0f66186787))
+* **nix:** use int regreet option ([586fa18](https://www.github.com/sbulav/dotfiles/commit/586fa18578504f89df5e51539e23b09f6540a82b))
+* **nix:** wrong spelling ([eafd6fa](https://www.github.com/sbulav/dotfiles/commit/eafd6faae3cef678f9ce09fdd6f5f853a4043c7c))
+* **nix:** yazi 3.x shell block ([281b841](https://www.github.com/sbulav/dotfiles/commit/281b84129c3a31beefff84b2578ec8e591e9dc55))
+* **nix:** zoom startup workspace ([1e4ab11](https://www.github.com/sbulav/dotfiles/commit/1e4ab11d57fc046eb78e3dbd47176c093b20ae42))
+* **wezterm:** rendering and gpu fixed in master ([9a2a778](https://www.github.com/sbulav/dotfiles/commit/9a2a77845bb15b9d24d5a5530d49e3a00be8a8b1))
+* **wezterm:** use correct colorscheme for k8s status ([9d58087](https://www.github.com/sbulav/dotfiles/commit/9d58087c8616bac3a4219516411f665e0640132d))
+
 ## [4.3.0](https://www.github.com/sbulav/dotfiles/compare/v4.2.0...v4.3.0) (2024-07-05)
 
 
