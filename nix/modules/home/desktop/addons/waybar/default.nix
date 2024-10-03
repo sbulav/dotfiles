@@ -17,6 +17,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    stylix.targets.waybar.enable = false;
     programs.waybar = {
       enable = true;
       package = pkgs.waybar;
@@ -26,9 +27,9 @@ in {
         target = "hyprland-session.target";
       };
 
-      # style = pkgs.substituteAll {
-      #   src = ./style.css;
-      # };
+      style = pkgs.substituteAll {
+        src = ./style.css;
+      };
 
       settings = {
         mainBar = {
