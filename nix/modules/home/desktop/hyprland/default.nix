@@ -24,6 +24,13 @@ in {
 
       systemd.enable = true;
       xwayland.enable = true;
+
+      settings = {
+        cursor = {
+          enable_hyprcursor = true;
+          sync_gsettings_theme = true;
+        };
+      };
     };
   };
 }
