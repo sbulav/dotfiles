@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.5.0](https://www.github.com/sbulav/dotfiles/compare/v4.4.0...v4.5.0) (2024-10-10)
+
+
+### Features
+
+* **fish:** add gpm function ([aeb7ae9](https://www.github.com/sbulav/dotfiles/commit/aeb7ae9166583b282bc12258b419d61d87c89769))
+
 ## [4.4.0](https://www.github.com/sbulav/dotfiles/compare/v4.3.0...v4.4.0) (2024-10-02)
 
 
