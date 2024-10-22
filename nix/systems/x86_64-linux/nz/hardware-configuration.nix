@@ -28,7 +28,7 @@
   };
 
   fileSystems."/mnt/tank/torrents" = {
-    device = "truenas.sbulav.ru:/mnt/tank/torrents";
+    device = "192.168.89.200:/mnt/tank/torrents";
     options = [
       "noauto"
       "x-systemd.automount"
@@ -40,7 +40,7 @@
   };
 
   fileSystems."/mnt/obsidian" = {
-    device = "truenas.sbulav.ru:/mnt/tank/Apps/obsidian";
+    device = "192.168.89.200:/mnt/tank/Apps/obsidian";
     options = [
       "noauto"
       "x-systemd.automount"
