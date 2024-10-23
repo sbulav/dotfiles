@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  wallpapers = inputs.wallpapers-nix.packages.${pkgs.system}.catppuccin;
+  wallpapers = inputs.wallpapers-nix.packages.${pkgs.system}.full;
 in {
   imports = [./hardware-configuration.nix];
   system.wallpaper = "${wallpapers}/share/wallpapers/catppuccin/bench.png";
