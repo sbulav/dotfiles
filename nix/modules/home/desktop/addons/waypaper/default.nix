@@ -32,7 +32,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      custom.waypaper
+      waypaper
     ];
     xdg.configFile."waypaper/config.ini".text = ''
       [Settings]
