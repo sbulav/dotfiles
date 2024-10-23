@@ -27,7 +27,7 @@ in {
         wlogout = enabled;
         hyprlock = disabled;
         wezterm = enabled;
-        wallpaper = "${wallpapers}/share/wallpapers/nature/mountain-orange.png";
+        wallpaper = "${wallpapers}/share/wallpapers/nature/mountan-orange.png";
 
         waypaper = {
           enable = true;
