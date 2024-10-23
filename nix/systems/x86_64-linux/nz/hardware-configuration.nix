@@ -66,6 +66,13 @@
     "100.91.128.100" = ["vault-c11.pyn.ru"];
     "100.92.128.100" = ["vault-c12.pyn.ru"];
   };
+  networking.interfaces.wlp3s0.ipv4.routes = [
+    {
+      address = "192.168.89.0";
+      prefixLength = 24;
+      via = "192.168.88.1";
+    }
+  ];
   # networking.interfaces.enp2s0f0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
