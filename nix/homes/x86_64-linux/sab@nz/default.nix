@@ -6,7 +6,7 @@
   ...
 }:
 with lib.custom; let
-  wallpapers = inputs.wallpapers-nix.packages.${pkgs.system}.catppuccin;
+  wallpapers = inputs.wallpapers-nix.packages.${pkgs.system}.full;
 in {
   custom = {
     user = {
@@ -27,7 +27,7 @@ in {
         wlogout = enabled;
         hyprlock = disabled;
         wezterm = enabled;
-        wallpaper = "${wallpapers}/share/wallpapers/catppuccin/bench.png";
+        wallpaper = "${wallpapers}/share/wallpapers/nature/mountain-orange.png";
 
         waypaper = {
           enable = true;

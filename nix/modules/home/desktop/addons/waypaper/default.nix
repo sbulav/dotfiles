@@ -13,6 +13,7 @@
     ;
 
   cfg = config.custom.desktop.addons.waypaper;
+  wallpaper = config.custom.desktop.addons.wallpaper;
 in {
   options.custom.desktop.addons.waypaper = {
     enable = mkEnableOption "Waypaper app to change wallpapers";
@@ -46,7 +47,7 @@ in {
       subfolders = True
       number_of_columns = 3
       post_command =
-      wallpaper = ${cfg.wallpaperDirectory}/catpuccin/lantern.png
+      wallpaper = ${wallpaper}
       swww_transition_type = any
       swww_transition_step = 90
       swww_transition_angle = 0
