@@ -37,11 +37,6 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Nix formatter
-    alejandra = {
-      url = "github:kamadorueda/alejandra/3.0.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     wallpapers-nix = {
       url = "github:sbulav/wallpapers-nix";
