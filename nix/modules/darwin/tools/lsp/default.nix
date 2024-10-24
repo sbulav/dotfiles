@@ -1,5 +1,5 @@
 {
-  options,
+  inputs,
   config,
   lib,
   pkgs,
@@ -14,6 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     environment.systemPackages = with pkgs; [
       lua-language-server # LSP for lua
       marksman # LSP for markdown
