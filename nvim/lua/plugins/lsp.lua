@@ -122,7 +122,27 @@ return {
                 end,
                 -- manually configured servers
                 require("lspconfig")["helm_ls"].setup {},
-                require("lspconfig")["nil_ls"].setup {},
+                require("lspconfig").nixd.setup {
+                    cmd = { "nixd" },
+                    settings = {
+                        nixd = {
+                            nixpkgs = {
+                                expr = "import <nixpkgs> { }",
+                            },
+                            formatting = {
+                                command = { "alejandra" }, -- or nixfmt or nixpkgs-fmt
+                            },
+                            -- options = {
+                            --   nixos = {
+                            --       expr = '(builtins.getFlake "/PATH/TO/FLAKE").nixosConfigurations.CONFIGNAME.options',
+                            --   },
+                            --   home_manager = {
+                            --       expr = '(builtins.getFlake "/PATH/TO/FLAKE").homeConfigurations.CONFIGNAME.options',
+                            --   },
+                            -- },
+                        },
+                    },
+                },
                 require("lspconfig")["marksman"].setup { cmd = { "marksman", "server" } },
 
                 require("lspconfig")["lua_ls"].setup {

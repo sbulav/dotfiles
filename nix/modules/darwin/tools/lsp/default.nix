@@ -17,7 +17,7 @@ in {
     environment.systemPackages = with pkgs; [
       lua-language-server # LSP for lua
       marksman # LSP for markdown
-      nil # LSP for nix
+      nixd # LSP for nix
       tree-sitter
       yamllint
       nodejs_22 # Note for LSP servers
