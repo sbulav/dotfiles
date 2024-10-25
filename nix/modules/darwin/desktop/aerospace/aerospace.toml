@@ -86,7 +86,7 @@ outer.right =      6
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-b = 'exec-and-forget open -n /Applications/Firefox.app'
-alt-x = 'exec-and-forget open -n /etc/profiles/per-user/sab/bin/wezterm-gui'
+alt-x = 'exec-and-forget open -n /Users/sab/Applications/Home\ Manager\ Apps/WezTerm.app'
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
@@ -206,6 +206,10 @@ if.app-id = 'com.apple.mail'
 run = "move-node-to-workspace 8"
 
 [[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = ['move-node-to-workspace 8']
+
+[[on-window-detected]]
 if.app-id = 'com.cisco.anyconnect.gui'
 run = ['move-node-to-workspace 6']
 
@@ -217,14 +221,10 @@ run = "move-node-to-workspace 9"
 if.app-id = 'com.tdesktop.Telegram'
 run = "move-node-to-workspace 9"
 
-
 [[on-window-detected]]
 if.app-id = 'com.apple.systempreferences'
 run = ['layout floating', 'move-node-to-workspace 6']
 
-[[on-window-detected]]
-if.app-id = 'com.apple.finder'
-run = ['layout floating', 'move-node-to-workspace 6']
 
 # Colemak-dh
 [key-mapping.key-notation-to-key-code]
