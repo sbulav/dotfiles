@@ -12,8 +12,7 @@ in {
   options.hardware.networking = with types; {
     enable = mkBoolOpt false "Enable NetworkManager";
     hosts =
-      mkOpt attrs {}
-      (mdDoc "An attribute set to merge with `networking.hosts`");
+      mkOpt attrs {} "An attribute set to merge with `networking.hosts`";
   };
 
   config = mkIf cfg.enable {
