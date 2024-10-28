@@ -134,6 +134,9 @@ alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 
+# See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-monitor
+alt-shift-left = 'move-node-to-monitor left'
+alt-shift-right = 'move-node-to-monitor right'
 
 ctrl-shift-f = 'fullscreen'
 alt-shift-f = 'macos-native-fullscreen on'
