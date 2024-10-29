@@ -6,7 +6,7 @@
   wallpapers = inputs.wallpapers-nix.packages.${pkgs.system}.full;
 in {
   imports = [./hardware-configuration.nix];
-  system.wallpaper = "${wallpapers}/share/wallpapers/catppuccin/bench.png";
+  system.wallpaper = "${wallpapers}/share/wallpapers/catppuccin/lake-purple.jpg";
   # Enable Bootloader
   system.boot.efi.enable = true;
   system.battery.enable = true; # Only for laptops, they will still work without it, just improves battery life
