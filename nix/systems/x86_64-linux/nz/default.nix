@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   inputs,
   ...
 }: let
@@ -21,6 +22,11 @@ in {
   suites.common.enable = true; # Enables the basics, like audio, networking, ssh, etc.
   suites.desktop.enable = true;
   suites.develop.enable = true;
+  custom.security.sops = {
+    enable = true;
+    sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+    defaultSopsFile = lib.snowfall.fs.get-file "secrets/nz/default.yaml";
+  };
 
   custom.virtualisation = {
     virt-manager.enable = true;
