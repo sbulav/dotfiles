@@ -9,7 +9,7 @@ creation_rules:
           - *sab_nz
           - *sab_mbp16
 
-  - path_regex: secrets/nz@sab[^/]+\.(yaml|json|env|ini)$
+  - path_regex: secrets/nz@sab/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - age:
           - *sab_nz
