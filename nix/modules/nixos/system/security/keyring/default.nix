@@ -1,19 +1,19 @@
 {
-  options,
   config,
   lib,
   pkgs,
+  namespace,
   ...
-}:
-with lib;
-with lib.custom; let
-  cfg = config.custom.security.keyring;
+}: let
+  inherit (lib.${namespace}) mkBoolOpt mkOpt;
+
+  cfg = config.${namespace}.security.keyring;
 in {
-  options.custom.security.keyring = with types; {
+  options.${namespace}.security.keyring = with lib.types; {
     enable = mkBoolOpt false "Whether to enable gnome keyring.";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       gnome.gnome-keyring
       gnome.libgnome-keyring
