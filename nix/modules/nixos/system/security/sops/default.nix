@@ -25,10 +25,10 @@ in {
       };
     };
 
-    # sops.secrets = {
-    #   "khanelinix_khaneliman_ssh_key" = {
-    #     sopsFile = lib.snowfall.fs.get-file "secrets/khanelinix/khaneliman/default.yaml";
-    #   };
-    # };
+    sops.secrets = {
+      "nz_sab_ssh_key" = {
+        sopsFile = lib.snowfall.fs.get-file "secrets/sab/default.yaml";
+      };
+    };
   };
 }
