@@ -52,11 +52,11 @@
       inputs.nixpkgs.follows = "stable";
     };
 
-    sops-nix-darwin = {
-      # url = "github:Mic92/sops-nix/nix-darwin";
-      url = "github:khaneliman/sops-nix/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # sops-nix-darwin = {
+    #   url = "github:Mic92/sops-nix/nix-darwin";
+    #   # url = "github:khaneliman/sops-nix/nix-darwin";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = inputs: let
