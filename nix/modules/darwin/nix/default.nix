@@ -16,7 +16,7 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      deploy-rs
+      cachix
       nixfmt-rfc-style
       nix-index
       nix-prefetch-git
@@ -33,6 +33,7 @@ in {
         http-connections = 50;
         warn-dirty = false;
         log-lines = 50;
+        builders-use-substitutes = true;
 
         # Large builds apparently fail due to an issue with darwin:
         # https://github.com/NixOS/nix/issues/4119
@@ -51,6 +52,21 @@ in {
         # case it becomes important.
         extra-nix-path = "nixpkgs=flake:nixpkgs";
         build-users-group = "nixbld";
+        substituters = [
+          "https://cache.nixos.org"
+          "https://khanelinix.cachix.org"
+          "https://nix-community.cachix.org"
+          "https://nixpkgs-unfree.cachix.org"
+          "https://numtide.cachix.org"
+        ];
+
+        trusted-public-keys = [
+          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+          "khanelinix.cachix.org-1:FTmbv7OqlMsmJEOFvAlz7PVkoGtstbwLC2OldAiJZ10="
+          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
+          "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+        ];
       };
       #// (lib.optionalAttrs config.custom.tools.direnv.enable {
       #  keep-outputs = true;
