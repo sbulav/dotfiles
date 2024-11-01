@@ -52,11 +52,11 @@
       inputs.nixpkgs.follows = "stable";
     };
 
-    # sops-nix-darwin = {
-    #   url = "github:Mic92/sops-nix/nix-darwin";
-    #   # url = "github:khaneliman/sops-nix/nix-darwin";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    sops-nix-darwin = {
+      url = "github:Mic92/sops-nix/nix-darwin";
+      # url = "github:khaneliman/sops-nix/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
@@ -88,8 +88,11 @@
       homes.modules = with inputs; [
         sops-nix.homeManagerModules.sops
       ];
-      systems.modules.nixos = with inputs; [
-        sops-nix.nixosModules.sops
-      ];
+      systems = {
+        modules = {
+          darwin = with inputs; [sops-nix-darwin.darwinModules.sops];
+          nixos = with inputs; [sops-nix.nixosModules.sops];
+        };
+      };
     };
 }

@@ -6,9 +6,9 @@
 }: let
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
-  cfg = config.${namespace}.security.sops;
+  cfg = config.${namespace}.system.security.sops;
 in {
-  options.${namespace}.security.sops = with lib.types; {
+  options.${namespace}.system.security.sops = with lib.types; {
     enable = mkBoolOpt false "Whether to enable sops.";
     defaultSopsFile = mkOpt path null "Default sops file.";
     sshKeyPaths = mkOpt (listOf path) ["/etc/ssh/ssh_host_ed25519_key"] "SSH Key paths to use.";
@@ -26,8 +26,8 @@ in {
     };
 
     sops.secrets = {
-      "nz_sab_ssh_key" = {
-        sopsFile = lib.snowfall.fs.get-file "secrets/nz@sab/default.yaml";
+      "mbp16_sab_ssh_key" = {
+        sopsFile = lib.snowfall.fs.get-file "secrets/mbp16/default.yaml";
       };
     };
   };

@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}:
+{lib, ...}:
 with lib.custom; {
   custom = {
     suites = {
@@ -12,6 +8,14 @@ with lib.custom; {
 
     virtualisation = {
       virt-manager = disabled;
+    };
+
+    system.security = {
+      sops = {
+        enable = false; #TODO: enable when fix is available https://github.com/Mic92/sops-nix/pull/614
+        sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+        defaultSopsFile = lib.snowfall.fs.get-file "secrets/mbp16/default.yaml";
+      };
     };
 
     desktop.aerospace = enabled;

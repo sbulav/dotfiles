@@ -1,14 +1,29 @@
 keys:
-  - &sab age1p9ee76x0dlr7tm6v93r64p9ys5tqt9slhg6vyrn76qydh53gwuhsya0zsq
+  - &sab_nz age1p9ee76x0dlr7tm6v93r64p9ys5tqt9slhg6vyrn76qydh53gwuhsya0zsq
+  - &sab_mbp16 age18rax0jv4pj2yuegt7e5ea2wzu486mz9nl3vhsa09y45lzw8cj58stfdd6d
+  - &host_mbp16 age17tnup59gy7jvj65la8nud0y6ukf57w0mueh3e4hxx5npwsa5x44sv765ru
 creation_rules:
   - path_regex: secrets/sab/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - age:
-          - *sab
-  - path_regex: secrets/nz/[^/]+\.(yaml|json|env|ini)$
+          - *sab_nz
+          - *sab_mbp16
+
+  - path_regex: secrets/nz@sab[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - age:
-          - *sab
+          - *sab_nz
+          - *sab_mbp16
+  - path_regex: secrets/mbp16@sab/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *sab_nz
+          - *sab_mbp16
+  - path_regex: secrets/mbp16/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *sab_mbp16
+          - *host_mbp16
           # - *user_khanelinix_khaneliman
           # - *user_CORE_nixos
           # - *user_khanelimac_khaneliman
