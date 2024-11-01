@@ -56,6 +56,11 @@ in {
     security = {
       rbw = enabled;
       vault = enabled;
+      sops = {
+        enable = true;
+        defaultSopsFile = lib.snowfall.fs.get-file "secrets/nz/sab/default.yaml";
+        sshKeyPaths = ["${config.home.homeDirectory}/.ssh/id_ed25519"];
+      };
     };
   };
   home.stateVersion = "23.11";
