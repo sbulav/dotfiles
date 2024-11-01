@@ -23,6 +23,10 @@ in {
       ssh-to-age
     ];
 
+    # programs.fish.shellInit = ''
+    #   export SOOO="$(cat ${config.home.homeDirectory}/c11-test.yaml)"
+    # '';
+
     sops = {
       inherit (cfg) defaultSopsFile;
       defaultSopsFormat = "yaml";
@@ -31,6 +35,17 @@ in {
         generateKey = true;
         keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
         sshKeyPaths = ["${config.home.homeDirectory}/.ssh/id_ed25519"] ++ cfg.sshKeyPaths;
+      };
+
+      secrets = {
+        c11-kubeconfig = {
+          sopsFile = lib.snowfall.fs.get-file "secrets/mbp16@sab/default.yaml";
+          path = "${config.home.homeDirectory}/c11-test.yaml";
+        };
+        exa_mbp16 = {
+          sopsFile = lib.snowfall.fs.get-file "secrets/mbp16@sab/default.yaml";
+          path = "${config.home.homeDirectory}/exa-test.yaml";
+        };
       };
 
       # secrets = {
