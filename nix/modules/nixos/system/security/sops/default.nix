@@ -27,7 +27,7 @@ in {
 
     sops.secrets = {
       "nz_sab_ssh_key" = {
-        sopsFile = lib.snowfall.fs.get-file "secrets/nz@sab/default.yaml";
+        sopsFile = lib.snowfall.fs.get-file "secrets/sab/default.yaml";
       };
     };
   };
