@@ -37,16 +37,17 @@ in {
         sshKeyPaths = ["${config.home.homeDirectory}/.ssh/id_ed25519"] ++ cfg.sshKeyPaths;
       };
 
-      secrets = {
-        c11-kubeconfig = {
-          sopsFile = lib.snowfall.fs.get-file "secrets/mbp16@sab/default.yaml";
-          path = "${config.home.homeDirectory}/c11-test.yaml";
-        };
-        exa_mbp16 = {
-          sopsFile = lib.snowfall.fs.get-file "secrets/mbp16@sab/default.yaml";
-          path = "${config.home.homeDirectory}/exa-test.yaml";
-        };
-      };
+      # Example secrets
+      # secrets = {
+      #   c11-kubeconfig = {
+      #     sopsFile = lib.snowfall.fs.get-file "secrets/mbp16@sab/default.yaml";
+      #     path = "${config.home.homeDirectory}/c11-test.yaml";
+      #   };
+      #   exa_mbp16 = {
+      #     sopsFile = lib.snowfall.fs.get-file "secrets/mbp16@sab/default.yaml";
+      #     path = "${config.home.homeDirectory}/exa-test.yaml";
+      #   };
+      # };
 
       # secrets = {
       #   nix = {
