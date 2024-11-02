@@ -10,7 +10,7 @@ with lib.custom; {
       virt-manager = disabled;
     };
 
-    system.security = {
+    security = {
       sops = {
         enable = false; #TODO: enable when fix is available https://github.com/Mic92/sops-nix/pull/614
         sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
