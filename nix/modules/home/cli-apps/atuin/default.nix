@@ -30,7 +30,7 @@ in {
         invert = false;
         #TODO:(atuin) disable when comfortable
         show_help = true;
-        sops.secrets = lib.mkIf osConfig.${namespace}.security.sops.enable {
+        sops.secrets = lib.mkIf config.${namespace}.security.sops.enable {
           key_path = config.sops.secrets.atuin_key.path;
         };
 
@@ -43,7 +43,8 @@ in {
       };
     };
 
-    sops.secrets = lib.mkIf osConfig.${namespace}.security.sops.enable {
+    # sops.secrets = lib.mkIf osConfig.${namespace}.security.sops.enable {
+    sops.secrets = lib.mkIf config.${namespace}.security.sops.enable {
       atuin_key = {
         sopsFile = lib.snowfall.fs.get-file "secrets/sab/default.yaml";
       };
