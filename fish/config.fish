@@ -32,8 +32,8 @@ set -gx FISH_KUBECTL_COMPLETION_COMPLETE_CRDS 0
 #load_keys
 
 # Load env credentials
-if begin; test -f ~/.ssh/env-credentials;end
-  posix-source ~/.ssh/env-credentials
+if begin; test -f ~/.ssh/sops-env-credentials;end
+  posix-source ~/.ssh/sops-env-credentials
 end
 
 # git_prompt
