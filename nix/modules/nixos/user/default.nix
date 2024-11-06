@@ -70,8 +70,8 @@ in {
       fish = {
         enable = true;
         shellAliases = {
-          nixup = "sudo nixos-rebuild switch --flake ~/dotfiles/nix#nz";
-          nixt = "sudo nixos-rebuild test --flake ~/dotfiles/nix#nz";
+          nixup = "sudo nixos-rebuild switch --flake ~/dotfiles/nix";
+          nixt = "sudo nixos-rebuild test --flake ~/dotfiles/nix";
           nixclean = "sudo nix-collect-garbage -d && sudo nix-store --gc && sudo nix-store --repair --verify --check-contents && sudo nix-store --optimise -vvv";
         };
         # interactiveShellInit = "source ~/dotfiles/fish/functions/l.fish";
