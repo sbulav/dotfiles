@@ -45,6 +45,18 @@
     wezterm = {
       url = "github:wez/wezterm/main?dir=nix";
     };
+
+    # Sops (Secrets)
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "stable";
+    };
+
+    sops-nix-darwin = {
+      url = "github:Mic92/sops-nix/nix-darwin";
+      # url = "github:khaneliman/sops-nix/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
@@ -73,6 +85,14 @@
 
       overlays = with inputs; [];
 
-      systems.modules.nixos = with inputs; [];
+      homes.modules = with inputs; [
+        sops-nix.homeManagerModules.sops
+      ];
+      systems = {
+        modules = {
+          darwin = with inputs; [sops-nix-darwin.darwinModules.sops];
+          nixos = with inputs; [sops-nix.nixosModules.sops];
+        };
+      };
     };
 }

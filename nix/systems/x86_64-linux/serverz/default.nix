@@ -10,8 +10,8 @@ in {
     ./hardware-configuration.nix
   ];
 
-  # Grub installed via Disko
-  boot.loader.grub.device = "nodev";
+  # Enable Bootloader
+  system.boot.efi.enable = true;
 
   # environment.systemPackages = with pkgs; [
   #   # Any particular packages only for this host

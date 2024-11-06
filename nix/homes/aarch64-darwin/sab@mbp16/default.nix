@@ -36,6 +36,11 @@ with lib.custom; {
     };
     security = {
       vault = enabled;
+      sops = {
+        enable = true;
+        defaultSopsFile = lib.snowfall.fs.get-file "secrets/sab/default.yaml";
+        sshKeyPaths = ["${config.home.homeDirectory}/.ssh/id_ed25519"];
+      };
     };
   };
 
