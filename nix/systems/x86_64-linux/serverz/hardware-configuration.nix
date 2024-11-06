@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }: {
@@ -16,6 +15,8 @@
   boot.initrd.kernelModules = ["dm-snapshot"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
+  boot.supportedFilesystems = ["zfs"];
+  boot.zfs.forceImportRoot = false;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/644e21d6-33e5-4003-b18a-a41f8dd5e299";
@@ -36,6 +37,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   networking.interfaces.enp4s0.useDHCP = lib.mkDefault true;
+  networking.hostId = "147b8cf8";
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
