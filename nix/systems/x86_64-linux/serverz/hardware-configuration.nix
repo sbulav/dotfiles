@@ -11,22 +11,24 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["ahci" "ohci_pci" "ehci_pci" "pata_atiixp" "usb_storage" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = ["dm-snapshot"];
+  boot.initrd.availableKernelModules = ["ata_piix" "xhci_pci" "ahci" "sd_mod" "sr_mod"];
+
+  boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
   boot.supportedFilesystems = ["zfs"];
   boot.zfs.forceImportRoot = false;
+  boot.zfs.extraPools = ["tank"];
+  networking.hostId = "3f032089";
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/644e21d6-33e5-4003-b18a-a41f8dd5e299";
-    fsType = "ext4";
+    device = "/dev/disk/by-uuid/e189d61e-5333-4b6e-8423-ea8f27227a9f";
+    fsType = "ext3";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/19A6-B38B";
+    device = "/dev/disk/by-uuid/2216-78D1";
     fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
   };
 
   swapDevices = [];
@@ -36,8 +38,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  networking.interfaces.enp4s0.useDHCP = lib.mkDefault true;
-  networking.hostId = "147b8cf8";
+  #  networking.interfaces.enp4s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
