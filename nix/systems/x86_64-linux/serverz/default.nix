@@ -11,11 +11,8 @@ in {
   ];
 
   # Enable Bootloader
-  system.boot.efi.enable = true;
-
-  # environment.systemPackages = with pkgs; [
-  #   # Any particular packages only for this host
-  # ];
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   # Suites managed by nix, see suites by home-manager in homes
   suites.common.enable = true; # Enables the basics, like audio, networking, ssh, etc.
