@@ -8,7 +8,7 @@
   ...
 }: {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
+    (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
   boot.initrd.availableKernelModules = ["ata_piix" "xhci_pci" "ahci" "sd_mod" "sr_mod"];
@@ -22,12 +22,12 @@
   networking.hostId = "3f032089";
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/e189d61e-5333-4b6e-8423-ea8f27227a9f";
-    fsType = "ext3";
+    device = "/dev/disk/by-uuid/e190d61e-5333-4b6e-8423-ea8f27227a9f";
+    fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/2216-78D1";
+    device = "/dev/disk/by-uuid/2217-78D1";
     fsType = "vfat";
   };
 
