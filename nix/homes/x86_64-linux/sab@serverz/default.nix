@@ -5,9 +5,7 @@
   pkgs,
   ...
 }:
-with lib.custom; let
-  wallpapers = inputs.wallpapers-nix.packages.${pkgs.system}.catppuccin;
-in {
+with lib.custom; {
   custom = {
     user = {
       enable = true;
@@ -30,6 +28,11 @@ in {
     security = {
       rbw = disabled;
       vault = disabled;
+      sops = {
+        enable = true;
+        defaultSopsFile = lib.snowfall.fs.get-file "secrets/sab/default.yaml";
+        sshKeyPaths = ["${config.home.homeDirectory}/.ssh/id_ed25519"];
+      };
     };
   };
   home.stateVersion = "24.05";
