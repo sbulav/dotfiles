@@ -13,7 +13,7 @@ with lib.custom; {
     };
 
     cli-apps = {
-      argocd = disabled;
+      argocd = enabled;
       atuin = enabled;
       bottom = enabled;
       fastfetch = enabled;
