@@ -3,6 +3,7 @@
   lib,
   ...
 }:
+with lib;
 with lib.custom; let
   cfg = config.suites.server;
 in {
