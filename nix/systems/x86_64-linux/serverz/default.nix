@@ -1,5 +1,5 @@
 {
-  pkgs,
+  lib,
   inputs,
   ...
 }: let
@@ -15,14 +15,14 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Suites managed by nix, see suites by home-manager in homes
-  suites.common.enable = true; # Enables the basics, like audio, networking, ssh, etc.
+  suites.server.enable = true; # Enables the basics, like neovim, ssh, etc.
   suites.desktop.enable = false;
   suites.develop.enable = false;
 
-  services = {
-    openssh = {
-      enable = true;
-    };
+  custom.security.sops = {
+    enable = true;
+    sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+    defaultSopsFile = lib.snowfall.fs.get-file "secrets/serverz/default.yaml";
   };
 
   users.users.sab.openssh.authorizedKeys.keys = [
