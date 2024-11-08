@@ -33,3 +33,8 @@ creation_rules:
       - age:
           - *sab_nz
           - *host_nz
+  - path_regex: secrets/serverz/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *sab_serverz
+          - *host_serverz
