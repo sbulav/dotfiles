@@ -37,13 +37,6 @@ in {
         sshKeyPaths = ["${config.home.homeDirectory}/.ssh/id_ed25519"] ++ cfg.sshKeyPaths;
       };
 
-      # Example secrets
-      secrets = {
-        env_credentials = {
-          sopsFile = lib.snowfall.fs.get-file "secrets/sab/default.yaml";
-          path = "${config.home.homeDirectory}/.ssh/sops-env-credentials";
-        };
-      };
       #   exa_mbp16 = {
       #     sopsFile = lib.snowfall.fs.get-file "secrets/mbp16@sab/default.yaml";
       #     path = "${config.home.homeDirectory}/exa-test.yaml";
