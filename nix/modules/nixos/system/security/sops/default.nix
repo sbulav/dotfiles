@@ -24,11 +24,5 @@ in {
         keyFile = "${config.users.users.${config.${namespace}.user.name}.home}/.config/sops/age/keys.txt";
       };
     };
-
-    sops.secrets = {
-      "nz_sab_ssh_key" = {
-        sopsFile = lib.snowfall.fs.get-file "secrets/sab/default.yaml";
-      };
-    };
   };
 }

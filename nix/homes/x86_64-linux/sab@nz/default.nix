@@ -63,5 +63,12 @@ in {
       };
     };
   };
+
+  sops.secrets = {
+    env_credentials = {
+      sopsFile = lib.snowfall.fs.get-file "secrets/sab/default.yaml";
+      path = "${config.home.homeDirectory}/.ssh/sops-env-credentials";
+    };
+  };
   home.stateVersion = "23.11";
 }
