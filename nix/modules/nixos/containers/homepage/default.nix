@@ -10,30 +10,20 @@ with lib.custom; let
 in {
   options.${namespace}.containers.homepage = with types; {
     enable = mkBoolOpt false "Enable homepage nixos-container;";
-    domain = mkOpt str "" "The domain to get certificates to";
+    host = mkOpt str "homepage.sbulav.ru" "The host to serve homepage on";
+    hostAddress = mkOpt str "172.16.64.10" "With private network, which address to use on Host";
+    localAddress = mkOpt str "172.16.64.101" "With privateNetwork, which address to use in container";
   };
 
   config = mkIf cfg.enable {
-    # networking.nat = {
-    #   enable = true;
-    #   internalInterfaces = ["ve-homepage"];
-    #   externalInterface = "ens3";
-    # };
     containers.homepage = {
       ephemeral = true;
       autoStart = true;
 
       privateNetwork = true;
       # Need to add 172.16.64.0/18 on router
-      hostAddress = "172.16.64.10";
-      localAddress = "172.16.64.101";
-
-      # bindMounts = {
-      #   "/var/log/httpd" = {
-      #     hostPath = "/tank/video/";
-      #     isReadOnly = false;
-      #   };
-      # };
+      hostAddress = "${cfg.hostAddress}";
+      localAddress = "${cfg.localAddress}";
 
       config = {
         config,
@@ -53,6 +43,30 @@ in {
         };
         services.resolved.enable = true;
         system.stateVersion = "24.11";
+      };
+    };
+
+    containers.traefik.config.services.traefik.dynamicConfigOptions.http = lib.mkIf osConfig.${namespace}.containers.traefik.enable {
+      routers.homepage = {
+        entrypoints = ["websecure"];
+        rule = "Host(`${cfg.host}`)";
+        service = "homepage";
+        middlewares = [
+          "secure-headers"
+        ];
+        tls = {
+          certResolver = "production";
+        };
+      };
+      services.homepage = {
+        loadBalancer = {
+          passHostHeader = true;
+          servers = [
+            {
+              url = "http://${cfg.localAddress}:8082";
+            }
+          ];
+        };
       };
     };
   };
