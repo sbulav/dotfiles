@@ -14,47 +14,45 @@ in {
   };
 
   config = mkIf cfg.enable {
+    # networking.nat = {
+    #   enable = true;
+    #   internalInterfaces = ["ve-homepage"];
+    #   externalInterface = "ens3";
+    # };
     containers.homepage = {
-      networking.nat = {
-        enable = true;
-        internalInterfaces = ["ve-homepage"];
-        externalInterface = "ens3";
-      };
-      containers.wasabi = {
-        ephemeral = true;
-        autoStart = true;
+      ephemeral = true;
+      autoStart = true;
 
-        privateNetwork = true;
-        # Need to add 172.16.64.0/18 on router
-        hostAddress = "172.16.64.10";
-        localAddress = "172.16.64.101";
+      privateNetwork = true;
+      # Need to add 172.16.64.0/18 on router
+      hostAddress = "172.16.64.10";
+      localAddress = "172.16.64.101";
 
-        # bindMounts = {
-        #   "/var/log/httpd" = {
-        #     hostPath = "/tank/video/";
-        #     isReadOnly = false;
-        #   };
-        # };
+      # bindMounts = {
+      #   "/var/log/httpd" = {
+      #     hostPath = "/tank/video/";
+      #     isReadOnly = false;
+      #   };
+      # };
 
-        config = {
-          config,
-          pkgs,
-          ...
-        }: {
-          services.homepage-dashboard.enable = true;
+      config = {
+        config,
+        pkgs,
+        ...
+      }: {
+        services.homepage-dashboard.enable = true;
 
-          networking = {
-            firewall = {
-              enable = true;
-              allowedTCPPorts = [80];
-            };
-            # Use systemd-resolved inside the container
-            # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
-            useHostResolvConf = lib.mkForce false;
+        networking = {
+          firewall = {
+            enable = true;
+            allowedTCPPorts = [80];
           };
-          services.resolved.enable = true;
-          system.stateVersion = "24.11";
+          # Use systemd-resolved inside the container
+          # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
+          useHostResolvConf = lib.mkForce false;
         };
+        services.resolved.enable = true;
+        system.stateVersion = "24.11";
       };
     };
   };
