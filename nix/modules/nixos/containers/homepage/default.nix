@@ -2,7 +2,6 @@
   config,
   lib,
   namespace,
-  osConfig,
   ...
 }:
 with lib;
@@ -47,7 +46,7 @@ in {
       };
     };
 
-    containers.traefik.config.services.traefik.dynamicConfigOptions.http = lib.mkIf osConfig.${namespace}.containers.traefik.enable {
+    containers.traefik.config.services.traefik.dynamicConfigOptions.http = lib.mkIf config.${namespace}.containers.traefik.enable {
       routers.homepage = {
         entrypoints = ["websecure"];
         rule = "Host(`${cfg.host}`)";
