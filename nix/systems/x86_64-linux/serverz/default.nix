@@ -46,6 +46,7 @@ in {
       host = "homepage.sbulav.ru";
       hostAddress = "172.16.64.10";
       localAddress = "172.16.64.101";
+    };
   };
 
   environment.systemPackages = with pkgs; [
