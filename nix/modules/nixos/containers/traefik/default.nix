@@ -1,19 +1,18 @@
 {
   config,
   lib,
+  namespace,
   ...
 }:
 with lib;
 with lib.custom; let
   cfg = config.${namespace}.containers.traefik;
-  # wallpaper = options.system.wallpaper.value;
-
-  staticConfigOptions = import ./staticConfigOptions.nix;
 in {
   options.${namespace}.containers.traefik = with types; {
     enable = mkBoolOpt false "Enable Traefik nixos-container;";
     cf_secret_file = mkOpt str "secrets/serverz/default.yaml" "SOPS secret to get cloudflare creds from";
     domain = mkOpt str "" "The domain to get certificates to";
+    dataPath = mkOpt str "/tank/traefik" "Traefik data path on host machine";
   };
 
   config = mkIf cfg.enable {
@@ -34,27 +33,29 @@ in {
       ephemeral = true;
       autoStart = true;
 
+      # Mounting Cloudflare creds(email and dns api token) as file
       bindMounts = {
         "${config.sops.secrets.traefik-cf-env.path}" = {
           isReadOnly = true;
         };
 
         "/traefik/certs" = {
-          hostPath = "/tank/traefik/certs/";
+          hostPath = "${cfg.dataPath}/certs/";
           isReadOnly = false;
         };
         "/traefik/logs" = {
-          hostPath = "/tank/traefik/logs/";
+          hostPath = "${cfg.dataPath}/logs/";
           isReadOnly = false;
         };
       };
 
       config = {
+        #Injecting Cloudflare creds as systemd service env variables
         systemd.services.traefik.serviceConfig.EnvironmentFile = "/run/secrets/traefik-cf-env";
         services.traefik = {
           enable = true;
 
-          inherit (staticConfigOptions) staticConfigOptions;
+          staticConfigOptions = import ./staticConfigOptions.nix;
 
           dynamicConfigOptions = {
             http = {
@@ -75,43 +76,13 @@ in {
                 };
               };
 
-              middlewares = {
-                secure-headers = {
-                  headers = {
-                    sslRedirect = true;
-                    accessControlMaxAge = "100";
-                    stsSeconds = "31536000"; # force browsers to only connect over https
-                    stsIncludeSubdomains = true; # force browsers to only connect over https
-                    stsPreload = true; # force browsers to only connect over https
-                    forceSTSHeader = true; # force browsers to only connect over https
-                    contentTypeNosniff = true; # sets x-content-type-options header value to "nosniff", reduces risk of drive-by downloads
-                    frameDeny = true; # sets x-frame-options header value to "deny", prevents attacker from spoofing website in order to fool users into clicking something that is not there
-                    browserXssFilter = true; # sets x-xss-protection header value to "1; mode=block", which prevents page from loading if detecting a cross-site scripting attack
-                    contentSecurityPolicy = [
-                      # sets content-security-policy header to suggested value
-                      "default-src"
-                      "self"
-                    ];
-                    referrerPolicy = "same-origin";
-                    addVaryHeader = true;
-                  };
-                };
-                auth-chain = {
-                  chain.middlewares = [
-                    "secure-headers"
-                  ];
-                };
-              };
+              middlewares = import ./middleware_secure-headers.nix;
             };
           };
         };
 
-        networking = {
-          firewall = {
-            enable = false;
-            allowedTCPPorts = [80];
-          };
-        };
+        # We are using Host network
+        networking.firewall.enable = false;
         system.stateVersion = "24.11";
       };
     };
