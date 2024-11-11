@@ -2,6 +2,7 @@
   config,
   lib,
   namespace,
+  osConfig,
   ...
 }:
 with lib;
