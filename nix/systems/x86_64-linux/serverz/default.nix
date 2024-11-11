@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   inputs,
   ...
@@ -34,6 +35,16 @@ in {
     podman.enable = false;
   };
 
+  custom.containers.traefik = {
+    enable = true;
+    cf_secret_file = "secrets/serverz/default.yaml";
+    domain = "sbulav.ru";
+  };
+
+  environment.systemPackages = with pkgs; [
+    alejandra
+    nixd # LSP for nix
+  ];
   # ======================== DO NOT CHANGE THIS ========================
   system.stateVersion = "24.05";
   # ======================== DO NOT CHANGE THIS ========================
