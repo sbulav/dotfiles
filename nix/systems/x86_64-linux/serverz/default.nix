@@ -35,10 +35,18 @@ in {
     podman.enable = false;
   };
 
-  custom.containers.traefik = {
-    enable = true;
-    cf_secret_file = "secrets/serverz/default.yaml";
-    domain = "sbulav.ru";
+  custom.containers = {
+    traefik = {
+      enable = true;
+      cf_secret_file = "secrets/serverz/default.yaml";
+      domain = "sbulav.ru";
+    };
+    homepage = {
+      enable = true;
+      host = "homepage.sbulav.ru";
+      hostAddress = "172.16.64.10";
+      localAddress = "172.16.64.101";
+    };
   };
 
   environment.systemPackages = with pkgs; [
