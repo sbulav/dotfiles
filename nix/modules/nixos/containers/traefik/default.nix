@@ -76,6 +76,7 @@ in {
                 };
               };
 
+              # TODO: implement authelia auth
               middlewares = import ./middleware_secure-headers.nix;
             };
           };
