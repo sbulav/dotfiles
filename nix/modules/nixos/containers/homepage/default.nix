@@ -25,18 +25,18 @@ in {
       hostAddress = "${cfg.hostAddress}";
       localAddress = "${cfg.localAddress}";
 
-      config = {
-        config,
-        pkgs,
-        ...
-      }: {
+      config = {...}: {
         networking.hosts = {
-          "${cfg.hostAddress}" = ["traefik.sbulav.ru"];
+          #TODO: remove this once migrated
+          "${cfg.hostAddress}" = [
+            "traefik.sbulav.ru"
+            "adguard.sbulav.ru"
+            "flood.sbulav.ru"
+          ];
         };
 
         services.homepage-dashboard = {
           enable = true;
-          # Example https://github.com/notohh/snowflake/blob/647a7f5af9647a2fbb9c46b218e6575c2dcf8828/hosts/yuki/services/homepage/services.nix#L2
           widgets = [
             {
               resources = {
@@ -65,6 +65,7 @@ in {
                     href = "http://localhost/";
                   };
                 }
+                # TODO: implement enabling widgets based on config
 
                 {
                   "Traefik" = {
@@ -73,6 +74,26 @@ in {
                     widget = {
                       type = "traefik";
                       url = "https://traefik.sbulav.ru";
+                    };
+                  };
+                }
+                {
+                  "Adguard" = {
+                    icon = "Adguard";
+                    href = "https://adguard.sbulav.ru";
+                    widget = {
+                      type = "adguard";
+                      url = "https://adguard.sbulav.ru";
+                    };
+                  };
+                }
+                {
+                  "Flood" = {
+                    icon = "Flood";
+                    href = "https://flood.sbulav.ru";
+                    widget = {
+                      type = "flood";
+                      url = "https://flood.sbulav.ru";
                     };
                   };
                 }
