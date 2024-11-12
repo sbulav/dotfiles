@@ -53,6 +53,18 @@ in {
       hostAddress = "172.16.64.10";
       localAddress = "172.16.64.102";
     };
+    adguard = {
+      enable = true;
+      host = "adguard.sbulav.ru";
+      hostAddress = "172.16.64.10";
+      localAddress = "172.16.64.104";
+    };
+    flood = {
+      enable = true;
+      host = "flood.sbulav.ru";
+      hostAddress = "172.16.64.10";
+      localAddress = "172.16.64.105";
+    };
   };
 
   environment.systemPackages = with pkgs; [
