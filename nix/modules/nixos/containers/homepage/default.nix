@@ -30,7 +30,56 @@ in {
         pkgs,
         ...
       }: {
-        services.homepage-dashboard.enable = true;
+        networking.hosts = {
+          "${cfg.hostAddress}" = ["traefik.sbulav.ru"];
+        };
+
+        services.homepage-dashboard = {
+          enable = true;
+          # Example https://github.com/notohh/snowflake/blob/647a7f5af9647a2fbb9c46b218e6575c2dcf8828/hosts/yuki/services/homepage/services.nix#L2
+          widgets = [
+            {
+              resources = {
+                cpu = true;
+                disk = "/";
+                memory = true;
+              };
+            }
+          ];
+          services = [
+            {
+              "My First Group" = [
+                {
+                  "My First Service" = {
+                    description = "Homepage is awesome";
+                    href = "http://localhost/";
+                  };
+                }
+              ];
+            }
+            {
+              "Network" = [
+                {
+                  "My Second Service" = {
+                    description = "Homepage is the best";
+                    href = "http://localhost/";
+                  };
+                }
+
+                {
+                  "Traefik" = {
+                    icon = "traefik";
+                    href = "https://traefik.sbulav.ru";
+                    widget = {
+                      type = "traefik";
+                      url = "https://traefik.sbulav.ru";
+                    };
+                  };
+                }
+              ];
+            }
+          ];
+        };
 
         networking = {
           firewall = {
