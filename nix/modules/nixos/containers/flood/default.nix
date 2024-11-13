@@ -9,8 +9,8 @@ with lib.custom; let
   cfg = config.${namespace}.containers.flood;
 in {
   options.${namespace}.containers.flood = with types; {
-    enable = mkBoolOpt false "Enable flood nixos-container;";
-    host = mkOpt str "flood.sbulav.ru" "The host to serve homepage on";
+    enable = mkBoolOpt false "Enable flood nixos-container with rtorrent;";
+    host = mkOpt str "flood.sbulav.ru" "The host to serve flood on";
     hostAddress = mkOpt str "172.16.64.10" "With private network, which address to use on Host";
     localAddress = mkOpt str "172.16.64.105" "With privateNetwork, which address to use in container";
   };

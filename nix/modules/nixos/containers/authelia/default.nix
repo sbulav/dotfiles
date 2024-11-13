@@ -11,8 +11,8 @@ with lib.custom; let
 in {
   options.${namespace}.containers.authelia = with types; {
     enable = mkBoolOpt false "Enable authelia nixos-container;";
-    cf_secret_file = mkOpt str "secrets/serverz/default.yaml" "SOPS secret to get cloudflare creds from";
-    dataPath = mkOpt str "/tank/authelia" "Traefik data path on host machine";
+    secret_file = mkOpt str "secrets/serverz/default.yaml" "SOPS secret to get creds from";
+    dataPath = mkOpt str "/tank/authelia" "Authelia data path on host machine";
     host = mkOpt str "authelia.sbulav.ru" "The host to serve authentik on";
     domain = mkOpt str "sbulav.ru" "The domain session cookie to protect";
     hostAddress = mkOpt str "172.16.64.10" "With private network, which address to use on Host";
@@ -22,12 +22,12 @@ in {
   config = mkIf cfg.enable {
     sops.secrets = {
       authelia-env = {
-        sopsFile = lib.snowfall.fs.get-file "${cfg.cf_secret_file}";
+        sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
         uid = 999;
         restartUnits = ["container@authelia.service"];
       };
       authelia-storage-encryption-key = {
-        sopsFile = lib.snowfall.fs.get-file "${cfg.cf_secret_file}";
+        sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
         uid = 999;
         restartUnits = ["container@authelia.service"];
       };
