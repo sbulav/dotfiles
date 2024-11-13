@@ -65,6 +65,12 @@ in {
       hostAddress = "172.16.64.10";
       localAddress = "172.16.64.105";
     };
+    nextcloud = {
+      enable = true;
+      host = "nextcloud2.sbulav.ru";
+      hostAddress = "172.16.64.10";
+      localAddress = "172.16.64.106";
+    };
   };
 
   environment.systemPackages = with pkgs; [

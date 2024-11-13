@@ -17,6 +17,14 @@
       ];
       referrerPolicy = "same-origin";
       addVaryHeader = true;
+      customResponseHeaders = {
+        X-Robots-Tag = "none,noarchive,nosnippet,notranslate,noimageindex";
+        server = "";
+        X-Forwarded-Proto = "https";
+      };
+      sslProxyHeaders = {
+        X-Forwarded-Proto = "https";
+      };
     };
   };
   auth-chain = {
