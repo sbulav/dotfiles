@@ -87,5 +87,13 @@ in {
         system.stateVersion = "24.11";
       };
     };
+    containers.adguard.config.services.adguardhome.settings.filtering.rewrites =
+      lib.mkIf config.${namespace}.containers.adguard.enable
+      [
+        {
+          domain = "traefik.${cfg.domain}";
+          answer = "${config.${namespace}.containers.adguard.rewriteAddress}";
+        }
+      ];
   };
 }

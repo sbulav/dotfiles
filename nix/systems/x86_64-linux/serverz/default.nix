@@ -56,6 +56,7 @@ in {
     adguard = {
       enable = true;
       host = "adguard.sbulav.ru";
+      rewriteAddress = "192.168.89.206";
       hostAddress = "172.16.64.10";
       localAddress = "172.16.64.104";
     };
