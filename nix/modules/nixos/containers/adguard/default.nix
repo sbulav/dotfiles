@@ -13,6 +13,7 @@ in {
     host = mkOpt str "adguard.sbulav.ru" "The host to serve adguard on";
     hostAddress = mkOpt str "172.16.64.10" "With private network, which address to use on Host";
     localAddress = mkOpt str "172.16.64.104" "With privateNetwork, which address to use in container";
+    rewriteAddress = mkOpt str "192.168.89.206" "IP address or CNAME to create DNS rewrites(local DNS entries) to";
   };
 
   config = mkIf cfg.enable {
@@ -57,8 +58,8 @@ in {
 
               rewrites = [
                 {
-                  domain = "test2.sbulav.ru";
-                  answer = "10.100.100.53";
+                  domain = "${cfg.host}";
+                  answer = "${cfg.rewriteAddress}";
                 }
               ];
             };
