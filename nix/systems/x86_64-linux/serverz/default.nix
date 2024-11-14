@@ -61,7 +61,7 @@ in {
       localAddress = "172.16.64.104";
     };
     flood = {
-      enable = true;
+      enable = false;
       host = "flood.sbulav.ru";
       hostAddress = "172.16.64.10";
       localAddress = "172.16.64.105";

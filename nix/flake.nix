@@ -57,6 +57,12 @@
       # url = "github:khaneliman/sops-nix/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # System Deployment
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
@@ -94,5 +100,6 @@
           nixos = with inputs; [sops-nix.nixosModules.sops];
         };
       };
+      deploy = lib.mkDeploy {inherit (inputs) self;};
     };
 }
