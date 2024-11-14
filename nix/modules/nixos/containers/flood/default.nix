@@ -91,5 +91,14 @@ in {
         };
       };
     };
+
+    containers.adguard.config.services.adguardhome.settings.filtering.rewrites =
+      lib.mkIf config.${namespace}.containers.flood.enable
+      [
+        {
+          domain = "${cfg.host}";
+          answer = "${config.${namespace}.containers.adguard.rewriteAddress}";
+        }
+      ];
   };
 }
