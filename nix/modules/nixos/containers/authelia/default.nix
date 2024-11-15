@@ -26,6 +26,8 @@ in {
         url = "http://${cfg.localAddress}:9091";
         middleware = "secure-headers";
       })
+    (import ../shared/shared-adguard-dns-rewrite.nix
+      {host = "${cfg.host}";})
   ];
 
   config = mkIf cfg.enable {
@@ -148,14 +150,5 @@ in {
         system.stateVersion = "24.11";
       };
     };
-
-    containers.adguard.config.services.adguardhome.settings.filtering.rewrites =
-      lib.mkIf config.${namespace}.containers.adguard.enable
-      [
-        {
-          domain = "${cfg.host}";
-          answer = "${config.${namespace}.containers.adguard.rewriteAddress}";
-        }
-      ];
   };
 }
