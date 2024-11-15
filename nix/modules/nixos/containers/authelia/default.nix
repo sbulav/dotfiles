@@ -116,7 +116,7 @@ in {
                     default_redirection_url = "https://homepage.${cfg.domain}";
                     expiration = "12h";
                     inactivity = "4h";
-                    remember_me_duration = "1M";
+                    remember_me = "1M";
                   }
                 ];
               };
