@@ -1,5 +1,5 @@
 {
-  secure-headers = {
+  containers.traefik.config.services.traefik.dynamicConfigOptions.http.middlewares.secure-headers = {
     headers = {
       sslRedirect = true;
       accessControlMaxAge = "100";
@@ -26,10 +26,5 @@
         X-Forwarded-Proto = "https";
       };
     };
-  };
-  auth-chain = {
-    chain.middlewares = [
-      "secure-headers"
-    ];
   };
 }
