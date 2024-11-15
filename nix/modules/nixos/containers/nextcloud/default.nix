@@ -24,9 +24,13 @@ in {
         app = "nextcloud";
         host = "${cfg.host}";
         url = "http://${cfg.localAddress}:80";
+        route_enabled = cfg.enable;
       })
     (import ../shared/shared-adguard-dns-rewrite.nix
-      {host = "${cfg.host}";})
+      {
+        host = "${cfg.host}";
+        rewrite_enabled = cfg.enable;
+      })
   ];
   config = mkIf cfg.enable {
     networking.nat = {

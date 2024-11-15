@@ -22,6 +22,7 @@ in {
         app = "adguard";
         host = "${cfg.host}";
         url = "http://${cfg.localAddress}:3000";
+        route_enabled = cfg.enable;
       })
   ];
 
