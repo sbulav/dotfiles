@@ -93,11 +93,18 @@ in {
                 max_retries = 3;
               };
               session = {
-                domain = "${cfg.domain}";
-                expiration = 604800;
-                inactivity = 300;
                 name = "authelia_session";
+                cookies = [
+                  {
+                    domain = "${cfg.domain}";
+                    authelia_url = "https://${cfg.host}";
+                    default_redirection_url = "https://homepage.${cfg.domain}";
+                  }
+                ];
               };
+              default_2fa_method = "totp";
+              # TODO: change notifier to smtp/2fa
+              #used to send 2FA registration emails etc
               notifier = {
                 disable_startup_check = false;
                 filesystem = {
@@ -106,11 +113,13 @@ in {
               };
               access_control = {
                 # default_policy = "deny";
-                default_policy = "one_factor";
+                # default_policy = "one_factor";
+                default_policy = "two_factor";
                 rules = [
                   {
-                    domain = "*.sbulav.ru";
-                    policy = "one_factor";
+                    domain = "*.${cfg.domain}";
+                    # policy = "one_factor";
+                    policy = "two_factor";
                   }
                 ];
               };

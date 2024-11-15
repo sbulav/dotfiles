@@ -73,9 +73,7 @@ in {
         entrypoints = ["websecure"];
         rule = "Host(`${cfg.host}`)";
         service = "flood";
-        middlewares = [
-          "secure-headers"
-        ];
+        middlewares = ["auth-chain"];
         tls = {
           certResolver = "production";
         };
