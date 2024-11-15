@@ -67,7 +67,7 @@ in {
       localAddress = "172.16.64.105";
     };
     nextcloud = {
-      enable = true;
+      enable = false;
       host = "nextcloud2.sbulav.ru";
       hostAddress = "172.16.64.10";
       localAddress = "172.16.64.106";

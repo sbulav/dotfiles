@@ -18,6 +18,14 @@ in {
     localAddress = mkOpt str "172.16.64.106" "With privateNetwork, which address to use in container";
   };
 
+  imports = [
+    (import ../shared/shared-traefik-route.nix
+      {
+        app = "nextcloud";
+        host = "${cfg.host}";
+        url = "http://${cfg.localAddress}:80";
+      })
+  ];
   config = mkIf cfg.enable {
     networking.nat = {
       enable = true;
@@ -147,28 +155,6 @@ in {
         };
         services.resolved.enable = true;
         system.stateVersion = "24.11";
-      };
-    };
-
-    containers.traefik.config.services.traefik.dynamicConfigOptions.http = lib.mkIf config.${namespace}.containers.traefik.enable {
-      routers.nextcloud = {
-        entrypoints = ["websecure"];
-        rule = "Host(`${cfg.host}`)";
-        service = "nextcloud";
-        middlewares = ["auth-chain"];
-        tls = {
-          certResolver = "production";
-        };
-      };
-      services.nextcloud = {
-        loadBalancer = {
-          passHostHeader = true;
-          servers = [
-            {
-              url = "http://${cfg.localAddress}:80";
-            }
-          ];
-        };
       };
     };
 

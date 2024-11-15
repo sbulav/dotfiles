@@ -16,6 +16,15 @@ in {
     rewriteAddress = mkOpt str "192.168.89.206" "IP address or CNAME to create DNS rewrites(local DNS entries) to";
   };
 
+  imports = [
+    (import ../shared/shared-traefik-route.nix
+      {
+        app = "adguard";
+        host = "${cfg.host}";
+        url = "http://${cfg.localAddress}:3000";
+      })
+  ];
+
   config = mkIf cfg.enable {
     networking.nat = {
       enable = true;
@@ -79,28 +88,6 @@ in {
         };
         services.resolved.enable = true;
         system.stateVersion = "24.11";
-      };
-    };
-
-    containers.traefik.config.services.traefik.dynamicConfigOptions.http = lib.mkIf config.${namespace}.containers.traefik.enable {
-      routers.adguard = {
-        entrypoints = ["websecure"];
-        rule = "Host(`${cfg.host}`)";
-        service = "adguard";
-        middlewares = ["auth-chain"];
-        tls = {
-          certResolver = "production";
-        };
-      };
-      services.adguard = {
-        loadBalancer = {
-          passHostHeader = true;
-          servers = [
-            {
-              url = "http://${cfg.localAddress}:3000";
-            }
-          ];
-        };
       };
     };
   };

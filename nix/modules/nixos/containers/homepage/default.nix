@@ -15,6 +15,14 @@ in {
     localAddress = mkOpt str "172.16.64.101" "With privateNetwork, which address to use in container";
   };
 
+  imports = [
+    (import ../shared/shared-traefik-route.nix
+      {
+        app = "homepage";
+        host = "${cfg.host}";
+        url = "http://${cfg.localAddress}:8082";
+      })
+  ];
   config = mkIf cfg.enable {
     containers.homepage = {
       ephemeral = true;
@@ -113,28 +121,6 @@ in {
         };
         services.resolved.enable = true;
         system.stateVersion = "24.11";
-      };
-    };
-
-    containers.traefik.config.services.traefik.dynamicConfigOptions.http = lib.mkIf config.${namespace}.containers.traefik.enable {
-      routers.homepage = {
-        entrypoints = ["websecure"];
-        rule = "Host(`${cfg.host}`)";
-        service = "homepage";
-        middlewares = ["auth-chain"];
-        tls = {
-          certResolver = "production";
-        };
-      };
-      services.homepage = {
-        loadBalancer = {
-          passHostHeader = true;
-          servers = [
-            {
-              url = "http://${cfg.localAddress}:8082";
-            }
-          ];
-        };
       };
     };
 
