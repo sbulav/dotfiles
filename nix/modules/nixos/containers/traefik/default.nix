@@ -21,7 +21,10 @@ in {
     ./middleware_allow-lan.nix
     ./middleware_secure-headers.nix
     (import ../shared/shared-adguard-dns-rewrite.nix
-      {host = "traefik.${cfg.domain}";})
+      {
+        host = "traefik.${cfg.domain}";
+        rewrite_enabled = cfg.enable;
+      })
   ];
 
   config = mkIf cfg.enable {

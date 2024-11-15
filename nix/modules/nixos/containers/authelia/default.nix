@@ -25,9 +25,13 @@ in {
         host = "${cfg.host}";
         url = "http://${cfg.localAddress}:9091";
         middleware = "secure-headers";
+        route_enabled = cfg.enable;
       })
     (import ../shared/shared-adguard-dns-rewrite.nix
-      {host = "${cfg.host}";})
+      {
+        host = "${cfg.host}";
+        rewrite_enabled = cfg.enable;
+      })
   ];
 
   config = mkIf cfg.enable {
@@ -110,6 +114,9 @@ in {
                     domain = "${cfg.domain}";
                     authelia_url = "https://${cfg.host}";
                     default_redirection_url = "https://homepage.${cfg.domain}";
+                    expiration = "12h";
+                    inactivity = "4h";
+                    remember_me_duration = "1M";
                   }
                 ];
               };
