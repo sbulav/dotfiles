@@ -2,7 +2,6 @@
   config,
   lib,
   namespace,
-  inputs,
   ...
 }:
 with lib;
@@ -18,6 +17,16 @@ in {
     hostAddress = mkOpt str "172.16.64.10" "With private network, which address to use on Host";
     localAddress = mkOpt str "172.16.64.103" "With privateNetwork, which address to use in container";
   };
+
+  imports = [
+    (import ../shared/shared-traefik-route.nix
+      {
+        app = "authelia";
+        host = "${cfg.host}";
+        url = "http://${cfg.localAddress}:9091";
+        middleware = "secure-headers";
+      })
+  ];
 
   config = mkIf cfg.enable {
     sops.secrets = {
@@ -137,30 +146,6 @@ in {
         };
         services.resolved.enable = true;
         system.stateVersion = "24.11";
-      };
-    };
-
-    containers.traefik.config.services.traefik.dynamicConfigOptions.http = lib.mkIf config.${namespace}.containers.traefik.enable {
-      routers.authelia = {
-        entrypoints = ["websecure"];
-        rule = "Host(`${cfg.host}`)";
-        service = "authelia";
-        middlewares = [
-          "secure-headers"
-        ];
-        tls = {
-          certResolver = "production";
-        };
-      };
-      services.authelia = {
-        loadBalancer = {
-          passHostHeader = true;
-          servers = [
-            {
-              url = "http://${cfg.localAddress}:9091";
-            }
-          ];
-        };
       };
     };
 

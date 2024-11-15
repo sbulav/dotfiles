@@ -14,6 +14,14 @@ in {
     hostAddress = mkOpt str "172.16.64.10" "With private network, which address to use on Host";
     localAddress = mkOpt str "172.16.64.105" "With privateNetwork, which address to use in container";
   };
+  imports = [
+    (import ../shared/shared-traefik-route.nix
+      {
+        app = "flood";
+        host = "${cfg.host}";
+        url = "http://${cfg.localAddress}:3000";
+      })
+  ];
 
   config = mkIf cfg.enable {
     networking.nat = {
@@ -65,28 +73,6 @@ in {
         };
         services.resolved.enable = true;
         system.stateVersion = "24.11";
-      };
-    };
-
-    containers.traefik.config.services.traefik.dynamicConfigOptions.http = lib.mkIf config.${namespace}.containers.traefik.enable {
-      routers.flood = {
-        entrypoints = ["websecure"];
-        rule = "Host(`${cfg.host}`)";
-        service = "flood";
-        middlewares = ["auth-chain"];
-        tls = {
-          certResolver = "production";
-        };
-      };
-      services.flood = {
-        loadBalancer = {
-          passHostHeader = true;
-          servers = [
-            {
-              url = "http://${cfg.localAddress}:3000";
-            }
-          ];
-        };
       };
     };
 
