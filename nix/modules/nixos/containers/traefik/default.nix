@@ -20,6 +20,8 @@ in {
     ./middleware_authelia.nix
     ./middleware_allow-lan.nix
     ./middleware_secure-headers.nix
+    (import ../shared/shared-adguard-dns-rewrite.nix
+      {host = "traefik.${cfg.domain}";})
   ];
 
   config = mkIf cfg.enable {
@@ -96,13 +98,5 @@ in {
         system.stateVersion = "24.11";
       };
     };
-    containers.adguard.config.services.adguardhome.settings.filtering.rewrites =
-      lib.mkIf config.${namespace}.containers.adguard.enable
-      [
-        {
-          domain = "traefik.${cfg.domain}";
-          answer = "${config.${namespace}.containers.adguard.rewriteAddress}";
-        }
-      ];
   };
 }
