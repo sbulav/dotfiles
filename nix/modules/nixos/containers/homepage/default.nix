@@ -83,7 +83,7 @@ in {
                     href = "https://adguard.sbulav.ru";
                     widget = {
                       type = "adguard";
-                      url = "https://adguard.sbulav.ru";
+                      url = "http://${config.${namespace}.containers.adguard.localAddress}:3000";
                     };
                   };
                 }
@@ -93,7 +93,7 @@ in {
                     href = "https://flood.sbulav.ru";
                     widget = {
                       type = "flood";
-                      url = "https://flood.sbulav.ru";
+                      url = "http://${config.${namespace}.containers.flood.localAddress}:3000";
                     };
                   };
                 }
@@ -121,9 +121,7 @@ in {
         entrypoints = ["websecure"];
         rule = "Host(`${cfg.host}`)";
         service = "homepage";
-        middlewares = [
-          "secure-headers"
-        ];
+        middlewares = ["auth-chain"];
         tls = {
           certResolver = "production";
         };

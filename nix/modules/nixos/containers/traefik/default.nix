@@ -14,6 +14,12 @@ in {
     domain = mkOpt str "" "The domain to get certificates to";
     dataPath = mkOpt str "/tank/traefik" "Traefik data path on host machine";
   };
+  imports = [
+    # Middlewares
+    ./middleware_authelia.nix
+    ./middleware_allow-lan.nix
+    ./middleware_secure-headers.nix
+  ];
 
   config = mkIf cfg.enable {
     sops.secrets = {
@@ -62,9 +68,7 @@ in {
               routers.traefik-dashboard = {
                 rule = "Host(`traefik.${cfg.domain}`)";
                 service = "api@internal";
-                middlewares = [
-                  "secure-headers"
-                ];
+                middlewares = ["secure-headers" "allow-lan"];
                 tls = {
                   certResolver = "production";
                   domains = {
@@ -76,8 +80,12 @@ in {
                 };
               };
 
-              # TODO: implement authelia auth
-              middlewares = import ./middleware_secure-headers.nix;
+              middlewares.auth-chain = {
+                chain.middlewares = [
+                  "secure-headers"
+                  "authelia"
+                ];
+              };
             };
           };
         };

@@ -87,9 +87,7 @@ in {
         entrypoints = ["websecure"];
         rule = "Host(`${cfg.host}`)";
         service = "adguard";
-        middlewares = [
-          "secure-headers"
-        ];
+        middlewares = ["auth-chain"];
         tls = {
           certResolver = "production";
         };
