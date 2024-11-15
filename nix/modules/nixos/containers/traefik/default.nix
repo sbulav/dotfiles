@@ -14,6 +14,7 @@ in {
     domain = mkOpt str "" "The domain to get certificates to";
     dataPath = mkOpt str "/tank/traefik" "Traefik data path on host machine";
   };
+
   imports = [
     # Middlewares
     ./middleware_authelia.nix
