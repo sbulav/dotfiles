@@ -46,6 +46,22 @@ in {
         uid = 999;
         restartUnits = ["container@authelia.service"];
       };
+      authelia-jwt_secret = {
+        sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
+        uid = 999;
+        restartUnits = ["container@authelia.service"];
+      };
+      authelia-session_secret = {
+        sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
+        uid = 999;
+        restartUnits = ["container@authelia.service"];
+      };
+      # "authelia-jwt_rsa_key.pem" = {
+      #   # format = "binary";
+      #   sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
+      #   uid = 999;
+      #   restartUnits = ["container@authelia.service"];
+      # };
     };
     containers.authelia = {
       ephemeral = true;
@@ -64,6 +80,15 @@ in {
         "${config.sops.secrets.authelia-storage-encryption-key.path}" = {
           isReadOnly = true;
         };
+        "${config.sops.secrets.authelia-session_secret.path}" = {
+          isReadOnly = true;
+        };
+        "${config.sops.secrets.authelia-jwt_secret.path}" = {
+          isReadOnly = true;
+        };
+        # "${config.sops.secrets."authelia-jwt_rsa_key.pem".path}" = {
+        #   isReadOnly = true;
+        # };
 
         "/var/lib/authelia-main/users/" = {
           hostPath = "${cfg.dataPath}/users/";
@@ -85,9 +110,9 @@ in {
             enable = true;
             secrets = {
               storageEncryptionKeyFile = config.sops.secrets.authelia-storage-encryption-key.path;
-              #   jwtSecretFile = config.sops.secrets.authelia_jwt_secret_file.path;
-              #   sessionSecretFile = config.sops.secrets.authelia_session_secret_file.path;
-              manual = true;
+              jwtSecretFile = config.sops.secrets.authelia-jwt_secret.path;
+              sessionSecretFile = config.sops.secrets.authelia-session_secret.path;
+              # manual = true;
             };
 
             settings = {
@@ -140,6 +165,38 @@ in {
                     policy = "two_factor";
                   }
                 ];
+              };
+
+              identity_providers = {
+                oidc = {
+                  # jwks = [
+                  #   {
+                  #     key_id = "main";
+                  #     key = config.sops.secrets.authelia-storage-encryption-key;
+                  #   }
+                  # ];
+                  clients = [
+                    # {
+                    #   client_id = "jellyfin";
+                    #   client_name = "Jellyfin";
+                    #   client_secret = "$pbkdf2-sha512$310000$w8/7AXV6ljEACFLwkc.neQ$bMnyFnhUjuFjhKGw.awXKfK1EK6n9XS5P6RcywAbBxLhI6hcJqJ8jDCt3oOBp9YpaPCbNh3Sm23NCwJaUIci5w";
+                    #   require_pkce = true;
+                    #   pkce_challenge_method = "S256";
+                    #   authorization_policy = "one_factor";
+                    #   redirect_uris = [ "https://jellyfin.${config.domain.base}/sso/OID/redirect/authelia" ];
+                    #   token_endpoint_auth_method = "client_secret_post";
+                    # }
+                    {
+                      client_id = "nextcloud";
+                      client_name = "Nextcloud";
+                      client_secret = "$pbkdf2-sha512$310000$UO0xTTiZTXcj6cUL1R7P/A$4SQ.Zzv//x02/sZ5WM8EBPYd/Tps07K8.Zq19sjVVV6vIMCb.e5giDgHeZokgD3lBv4MOVlxttCjRU0dhFO15w";
+                      require_pkce = true;
+                      pkce_challenge_method = "S256";
+                      authorization_policy = "one_factor";
+                      redirect_uris = ["https://nextcloud2.${cfg.domain}/apps/oidc_login/oidc"];
+                    }
+                  ];
+                };
               };
             };
           };
