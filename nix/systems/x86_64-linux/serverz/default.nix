@@ -14,6 +14,7 @@ in {
   # Enable Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.enableContainers = true;
 
   # Suites managed by nix, see suites by home-manager in homes
   suites.server.enable = true; # Enables the basics, like neovim, ssh, etc.
@@ -61,13 +62,13 @@ in {
       localAddress = "172.16.64.104";
     };
     flood = {
-      enable = true;
+      enable = false;
       host = "flood.sbulav.ru";
       hostAddress = "172.16.64.10";
       localAddress = "172.16.64.105";
     };
     nextcloud = {
-      enable = false;
+      enable = true;
       host = "nextcloud2.sbulav.ru";
       hostAddress = "172.16.64.10";
       localAddress = "172.16.64.106";

@@ -146,6 +146,20 @@ in {
                 "OC\\Preview\\Movie"
                 "OC\\Preview\\MP4"
               ];
+              user_oidc = {
+                single_logout = false;
+                auto_provision = true;
+                soft_auto_provision = true;
+              };
+
+              oidc_login_client_id = "nextcloud";
+              oidc_login_provider_url = "https://authelia.sbulav.ru";
+              oidc_login_attributes = {
+                id = "preferred_username";
+              };
+              oidc_login_scope = "openid profile";
+              oidc_login_button_text = "Log in with OpenID";
+              oidc_login_code_challenge_method = "S256";
             };
           };
         };
