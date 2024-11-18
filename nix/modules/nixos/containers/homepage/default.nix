@@ -93,7 +93,7 @@ in {
                 }
                 {
                   "Adguard" = {
-                    icon = "Adguard";
+                    icon = "adguard-home";
                     href = "https://adguard.sbulav.ru";
                     widget = {
                       type = "adguard";
@@ -103,7 +103,7 @@ in {
                 }
                 {
                   "Flood" = {
-                    icon = "Flood";
+                    icon = "flood";
                     href = "https://flood.sbulav.ru";
                     widget = {
                       type = "flood";
