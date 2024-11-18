@@ -175,13 +175,17 @@ in {
                     #   token_endpoint_auth_method = "client_secret_post";
                     # }
                     {
+                      authorization_policy = "one_factor";
                       client_id = "nextcloud";
                       client_name = "Nextcloud";
                       client_secret = "$pbkdf2-sha512$310000$UO0xTTiZTXcj6cUL1R7P/A$4SQ.Zzv//x02/sZ5WM8EBPYd/Tps07K8.Zq19sjVVV6vIMCb.e5giDgHeZokgD3lBv4MOVlxttCjRU0dhFO15w";
-                      require_pkce = true;
+                      consent_mode = "implicit";
                       pkce_challenge_method = "S256";
-                      authorization_policy = "one_factor";
+                      public = "false";
                       redirect_uris = ["https://nextcloud2.${cfg.domain}/apps/oidc_login/oidc"];
+                      require_pkce = true;
+                      token_endpoint_auth_method = "client_secret_basic";
+                      userinfo_signed_response_alg = "none";
                     }
                   ];
                 };
