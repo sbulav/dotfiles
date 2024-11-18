@@ -36,32 +36,32 @@ in {
 
   config = mkIf cfg.enable {
     sops.secrets = {
-      authelia-env = {
-        sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
-        uid = 999;
-        restartUnits = ["container@authelia.service"];
-      };
+      # authelia-env = {
+      #   sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
+      #   uid = 999;
+      #   restartUnits = ["container@authelia.service"];
+      # };
       authelia-storage-encryption-key = {
         sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
         uid = 999;
         restartUnits = ["container@authelia.service"];
       };
-      authelia-jwt_secret = {
+      authelia-jwt-secret = {
         sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
         uid = 999;
         restartUnits = ["container@authelia.service"];
       };
-      authelia-session_secret = {
+      authelia-session-secret = {
         sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
         uid = 999;
         restartUnits = ["container@authelia.service"];
       };
-      # "authelia-jwt_rsa_key.pem" = {
-      #   # format = "binary";
-      #   sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
-      #   uid = 999;
-      #   restartUnits = ["container@authelia.service"];
-      # };
+      "authelia-jwt-rsa-key" = {
+        # format = "binary";
+        sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
+        uid = 999;
+        restartUnits = ["container@authelia.service"];
+      };
     };
     containers.authelia = {
       ephemeral = true;
@@ -74,21 +74,21 @@ in {
 
       # Mounting Cloudflare creds(email and dns api token) as file
       bindMounts = {
-        "${config.sops.secrets.authelia-env.path}" = {
-          isReadOnly = true;
-        };
+        # "${config.sops.secrets.authelia-env.path}" = {
+        #   isReadOnly = true;
+        # };
         "${config.sops.secrets.authelia-storage-encryption-key.path}" = {
           isReadOnly = true;
         };
-        "${config.sops.secrets.authelia-session_secret.path}" = {
+        "${config.sops.secrets.authelia-session-secret.path}" = {
           isReadOnly = true;
         };
-        "${config.sops.secrets.authelia-jwt_secret.path}" = {
+        "${config.sops.secrets.authelia-jwt-secret.path}" = {
           isReadOnly = true;
         };
-        # "${config.sops.secrets."authelia-jwt_rsa_key.pem".path}" = {
-        #   isReadOnly = true;
-        # };
+        "${config.sops.secrets.authelia-jwt-rsa-key.path}" = {
+          isReadOnly = true;
+        };
 
         "/var/lib/authelia-main/users/" = {
           hostPath = "${cfg.dataPath}/users/";
@@ -104,14 +104,15 @@ in {
         };
       };
       config = {...}: {
-        systemd.services.authelia-main.serviceConfig.EnvironmentFile = "/run/secrets/authelia-env";
+        # systemd.services.authelia-main.serviceConfig.EnvironmentFile = "/run/secrets/authelia-env";
         services.authelia.instances = {
           main = {
             enable = true;
             secrets = {
               storageEncryptionKeyFile = config.sops.secrets.authelia-storage-encryption-key.path;
-              jwtSecretFile = config.sops.secrets.authelia-jwt_secret.path;
-              sessionSecretFile = config.sops.secrets.authelia-session_secret.path;
+              jwtSecretFile = config.sops.secrets.authelia-jwt-secret.path;
+              sessionSecretFile = config.sops.secrets.authelia-session-secret.path;
+              oidcIssuerPrivateKeyFile = config.sops.secrets.authelia-jwt-rsa-key.path;
               # manual = true;
             };
 
