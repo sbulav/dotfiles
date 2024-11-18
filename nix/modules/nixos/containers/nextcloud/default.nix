@@ -3,6 +3,7 @@
   lib,
   namespace,
   inputs,
+  pkgs,
   ...
 }:
 with lib;
@@ -44,6 +45,10 @@ in {
         sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
         uid = 999;
       };
+      nextcloud-oidc-login-client-secret = {
+        sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
+        uid = 999;
+      };
     };
     containers.nextcloud = {
       ephemeral = true;
@@ -56,6 +61,9 @@ in {
 
       bindMounts = {
         "${config.sops.secrets.nextcloud-admin-pass.path}" = {
+          isReadOnly = true;
+        };
+        "${config.sops.secrets.nextcloud-oidc-login-client-secret.path}" = {
           isReadOnly = true;
         };
 
@@ -84,6 +92,7 @@ in {
       config = {
         config,
         inputs,
+        pkgs,
         ...
       }: {
         systemd.tmpfiles.rules = [
@@ -113,8 +122,12 @@ in {
                 (config.services.nextcloud.package.packages.apps)
                 previewgenerator
                 notes
-                user_oidc
                 ;
+              oidc_login = pkgs.fetchNextcloudApp {
+                license = "agpl3Plus";
+                url = "https://github.com/pulsejet/nextcloud-oidc-login/releases/download/v3.2.0/oidc_login.tar.gz";
+                sha256 = "sha256-DrbaKENMz2QJfbDKCMrNGEZYpUEvtcsiqw9WnveaPZA=";
+              };
             };
 
             config = {
@@ -151,14 +164,36 @@ in {
                 auto_provision = true;
                 soft_auto_provision = true;
               };
-
-              oidc_login_client_id = "nextcloud";
+              allow_user_to_change_display_name = false;
+              lost_password_link = "disabled";
               oidc_login_provider_url = "https://authelia.sbulav.ru";
+              oidc_login_client_id = "nextcloud";
+              oidc_login_client_secret = "$(cat /run/secrets/nextcloud-oidc-login-client-secret)";
+              oidc_login_auto_redirect = false;
+              oidc_login_end_session_redirect = false;
+              oidc_login_button_text = "Log in with Authelia";
+              oidc_login_hide_password_form = false;
+              oidc_login_use_id_token = true;
               oidc_login_attributes = {
                 id = "preferred_username";
+                name = "name";
+                mail = "email";
+                groups = "groups";
               };
-              oidc_login_scope = "openid profile";
-              oidc_login_button_text = "Log in with OpenID";
+              oidc_login_default_group = "oidc";
+              oidc_login_use_external_storage = false;
+              oidc_login_scope = "openid profile email groups";
+              oidc_login_proxy_ldap = false;
+              oidc_login_disable_registration = false; # different from doc, to enable auto creation of new users
+              oidc_login_redir_fallback = false;
+              oidc_login_tls_verify = true;
+              oidc_create_groups = false;
+              oidc_login_webdav_enabled = false;
+              oidc_login_password_authentication = false;
+              oidc_login_public_key_caching_time = 86400;
+              oidc_login_min_time_between_jwks_requests = 10;
+              oidc_login_well_known_caching_time = 86400;
+              oidc_login_update_avatar = false;
               oidc_login_code_challenge_method = "S256";
             };
           };
@@ -171,9 +206,9 @@ in {
           };
           # Use systemd-resolved inside the container
           # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
-          useHostResolvConf = lib.mkForce false;
+          # useHostResolvConf = lib.mkForce false;
         };
-        services.resolved.enable = true;
+        # services.resolved.enable = true;
         system.stateVersion = "24.11";
       };
     };
