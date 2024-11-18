@@ -45,7 +45,7 @@ in {
         sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
         uid = 999;
       };
-      nextcloud-oidc-login-client-secret = {
+      nextcloud-secretFile = {
         sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
         uid = 999;
       };
@@ -63,7 +63,7 @@ in {
         "${config.sops.secrets.nextcloud-admin-pass.path}" = {
           isReadOnly = true;
         };
-        "${config.sops.secrets.nextcloud-oidc-login-client-secret.path}" = {
+        "${config.sops.secrets.nextcloud-secretFile.path}" = {
           isReadOnly = true;
         };
 
@@ -96,7 +96,6 @@ in {
         ...
       }: {
         systemd.tmpfiles.rules = [
-          # "z /run/secrets/nextcloud-admin-pass - nextcloud nextcloud -"
           "d /var/lib/nextcloud 750 nextcloud nextcloud -"
           "d /var/lib/postgresql 700 postgres postgres -"
         ];
@@ -106,7 +105,7 @@ in {
             enable = true;
             package = inputs.stable.legacyPackages.x86_64-linux.nextcloud30;
             hostName = "${cfg.host}";
-            secretFile = "/run/secrets/nextcloud-oidc-login-client-secret";
+            secretFile = "/run/secrets/nextcloud-secretFile";
 
             https = true;
             maxUploadSize = "16G";
