@@ -106,6 +106,7 @@ in {
             enable = true;
             package = inputs.stable.legacyPackages.x86_64-linux.nextcloud30;
             hostName = "${cfg.host}";
+            secretFile = "/run/secrets/run/secrets/nextcloud-oidc-login-client-secret";
 
             https = true;
             maxUploadSize = "16G";
@@ -168,7 +169,6 @@ in {
               lost_password_link = "disabled";
               oidc_login_provider_url = "https://authelia.sbulav.ru";
               oidc_login_client_id = "nextcloud";
-              oidc_login_client_secret = "$(cat /run/secrets/nextcloud-oidc-login-client-secret)";
               oidc_login_auto_redirect = false;
               oidc_login_end_session_redirect = false;
               oidc_login_button_text = "Log in with Authelia";
@@ -191,7 +191,7 @@ in {
               oidc_login_webdav_enabled = false;
               oidc_login_password_authentication = false;
               oidc_login_public_key_caching_time = 86400;
-              oidc_login_min_time_between_jwks_requests = 10;
+              oidc_login_min_time_between_jwks_requests = 20;
               oidc_login_well_known_caching_time = 86400;
               oidc_login_update_avatar = false;
               oidc_login_code_challenge_method = "S256";
