@@ -36,11 +36,6 @@ in {
 
   config = mkIf cfg.enable {
     sops.secrets = {
-      # authelia-env = {
-      #   sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
-      #   uid = 999;
-      #   restartUnits = ["container@authelia.service"];
-      # };
       authelia-storage-encryption-key = {
         sopsFile = lib.snowfall.fs.get-file "${cfg.secret_file}";
         uid = 999;
@@ -104,7 +99,6 @@ in {
         };
       };
       config = {...}: {
-        # systemd.services.authelia-main.serviceConfig.EnvironmentFile = "/run/secrets/authelia-env";
         services.authelia.instances = {
           main = {
             enable = true;
@@ -113,7 +107,6 @@ in {
               jwtSecretFile = config.sops.secrets.authelia-jwt-secret.path;
               sessionSecretFile = config.sops.secrets.authelia-session-secret.path;
               oidcIssuerPrivateKeyFile = config.sops.secrets.authelia-jwt-rsa-key.path;
-              # manual = true;
             };
 
             settings = {
@@ -170,12 +163,6 @@ in {
 
               identity_providers = {
                 oidc = {
-                  # jwks = [
-                  #   {
-                  #     key_id = "main";
-                  #     key = config.sops.secrets.authelia-storage-encryption-key;
-                  #   }
-                  # ];
                   clients = [
                     # {
                     #   client_id = "jellyfin";
