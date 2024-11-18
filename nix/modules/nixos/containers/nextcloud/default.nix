@@ -106,7 +106,7 @@ in {
             enable = true;
             package = inputs.stable.legacyPackages.x86_64-linux.nextcloud30;
             hostName = "${cfg.host}";
-            secretFile = "/run/secrets/run/secrets/nextcloud-oidc-login-client-secret";
+            secretFile = "/run/secrets/nextcloud-oidc-login-client-secret";
 
             https = true;
             maxUploadSize = "16G";
