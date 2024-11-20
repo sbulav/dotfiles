@@ -43,7 +43,6 @@ in {
       };
     };
 
-    # sops.secrets = lib.mkIf osConfig.${namespace}.security.sops.enable {
     sops.secrets = lib.mkIf config.${namespace}.security.sops.enable {
       atuin_key = {
         sopsFile = lib.snowfall.fs.get-file "secrets/sab/default.yaml";

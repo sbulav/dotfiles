@@ -17,9 +17,10 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       cachix
-      nixfmt-rfc-style
+      deploy-rs
       nix-index
       nix-prefetch-git
+      nixfmt-rfc-style
       nvd
     ];
 
