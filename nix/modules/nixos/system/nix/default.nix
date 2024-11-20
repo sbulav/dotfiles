@@ -22,11 +22,12 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       cachix
+      deploy-rs
       gcc
       nil
-      nixfmt-rfc-style
       nix-index
       nix-prefetch-git
+      nixfmt-rfc-style
       nvd
     ];
 
