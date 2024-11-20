@@ -13,12 +13,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # NixOS 22.05 moved NixOS Containers to a new state directory and the old
-    # directory is taken over by OCI Containers (eg. podman). For systems with
-    # system.stateVersion < 22.05, it is not possible to have both enabled.
-    # This option disables NixOS Containers, leaving OCI Containers available.
-    boot.enableContainers = false;
-
     environment.systemPackages = with pkgs; [podman-compose];
 
     custom = {
