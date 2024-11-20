@@ -36,6 +36,7 @@ with lib.custom; {
     };
     security = {
       vault = enabled;
+      openconnect = enabled;
       sops = {
         enable = true;
         defaultSopsFile = lib.snowfall.fs.get-file "secrets/sab/default.yaml";
