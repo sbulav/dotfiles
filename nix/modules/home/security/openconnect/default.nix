@@ -28,7 +28,7 @@ with lib.custom; let
 
     # Parse command
     case "$1" in
-      start)
+      up)
       ;;
       down)
       ;;
