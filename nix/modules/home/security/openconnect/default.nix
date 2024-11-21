@@ -43,7 +43,7 @@ with lib.custom; let
         case "$1" in
           up)
             echo $OPENCONNECT_PW | \
-              sudo ${pkgs.openconnect}/bin/openconnect --background \
+              sudo ${pkgs.openconnect}/bin/openconnect --no-dtls --background \
               --passwd-on-stdin -u $OPENCONNECT_USER $OPENCONNECT_SERVER
             if [[ $? -ne 0 ]]; then
             echo "******************************************************"
@@ -55,6 +55,9 @@ with lib.custom; let
               grep "nameserver" /etc/resolv.conf
               echo "******************************************************"
               echo "VPN is up and running!"
+              echo "******************************************************"
+              echo "Removing LAN routes to VPN"
+              sudo route del -net 192.168.0.0/16
             fi
           ;;
           down)
