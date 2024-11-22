@@ -73,6 +73,12 @@ in {
       hostAddress = "172.16.64.10";
       localAddress = "172.16.64.106";
     };
+    jellyfin = {
+      enable = true;
+      host = "jellyfin2.sbulav.ru";
+      hostAddress = "172.16.64.10";
+      localAddress = "172.16.64.107";
+    };
   };
 
   environment.systemPackages = with pkgs; [
