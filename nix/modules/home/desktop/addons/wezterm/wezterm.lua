@@ -51,4 +51,15 @@ config.inactive_pane_hsb = {
   saturation = 0.9,
   brightness = 0.2,
 }
+config.quick_select_patterns = {
+  "[0-9a-f]{7,40}",
+  "https?://[\\w.-]+\\.[a-z]{2,}[\\w/?.=&%-]*", -- URLs
+  "/[\\w.-/]+", -- File paths
+  "[\\w._%+-]+@[\\w.-]+\\.[a-z]{2,}", -- Emails
+  "\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b", -- IP addresses
+  "\\b0x[0-9a-fA-F]+\\b", -- Hex numbers
+  "\\b[0-9a-fA-F]{7,40}\\b", -- Git hashes
+  "\\b[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\\b", -- UUIDs
+}
+
 -- }}}

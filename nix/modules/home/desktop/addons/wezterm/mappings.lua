@@ -3,6 +3,7 @@ local act = wezterm.action
 config.leader = { key = "b", mods = "CTRL" }
 
 config.keys = {
+  { key = " ", mods = "SHIFT", action = act.QuickSelect },
   {
     key = "-",
     mods = "ALT",
@@ -18,7 +19,7 @@ config.keys = {
     mods = "SHIFT|ALT",
     action = act.CloseCurrentPane { confirm = true },
   },
-  { key = "X", mods = "LEADER", action = act.ActivateCopyMode },
+  { key = "x", mods = "LEADER", action = act.ActivateCopyMode },
   { key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
   { key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
 
