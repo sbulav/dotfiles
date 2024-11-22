@@ -22,7 +22,7 @@ in {
         host = "${cfg.host}";
         url = "http://${cfg.localAddress}:8096";
         route_enabled = cfg.enable;
-        middleware = "secure-headers";
+        # middleware = "secure-headers";
       })
     (import ../shared/shared-adguard-dns-rewrite.nix
       {
