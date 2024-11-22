@@ -121,6 +121,16 @@ in {
 
               storage.local.path = "/var/lib/authelia-main/storage/db.sqlite3";
               server.disable_healthcheck = true;
+
+              server = {
+                endpoints = {
+                  authz = {
+                    forward-auth = {
+                      implementation = "ForwardAuth";
+                    };
+                  };
+                };
+              };
               regulation = {
                 ban_time = 300;
                 find_time = 120;
