@@ -27,7 +27,7 @@ in {
         wlogout = enabled;
         hyprlock = disabled;
         wezterm = enabled;
-        wallpaper = "${wallpapers}/share/wallpapers/catppuccin/lake-purple.jpg";
+        wallpaper = "${wallpapers}/share/wallpapers/unorganized/left.jpg";
 
         waypaper = {
           enable = true;

@@ -66,7 +66,7 @@
     "100.87.128.100" = ["vault-c7.pyn.ru"];
     "100.91.128.100" = ["vault-c11.pyn.ru"];
     "100.92.128.100" = ["vault-c12.pyn.ru"];
-    "192.168.89.206" = ["serverz"];
+    "192.168.89.206" = ["serverz" "jellyfin2.sbulav.ru" "authelia.sbulav.ru"];
   };
   networking.interfaces.wlp3s0.ipv4.routes = [
     {

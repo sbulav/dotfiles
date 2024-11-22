@@ -906,11 +906,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1712154137,
-        "narHash": "sha256-lVJq5t53BJJaAAPiHh++F38UjwVTem3Vy7ajVNaxsU0=",
+        "lastModified": 1732289594,
+        "narHash": "sha256-xPMPmNHiatMQPFCKcP/53JELPPbOAzTzS5enOpDi2Pw=",
         "owner": "sbulav",
         "repo": "wallpapers-nix",
-        "rev": "8a4a30599ac2f452bb2e2717cd5b815d1a56f036",
+        "rev": "e35fc1755dc731f1b466904c82538dcd25493296",
         "type": "github"
       },
       "original": {
