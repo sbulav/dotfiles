@@ -3,7 +3,7 @@
   app ? "test",
   host ? "test.sbulav.ru",
   url ? "http://localhost:80",
-  middleware ? "auth-chain",
+  middleware ? ["auth-chain"],
   route_enabled ? false,
   ...
 }: {
@@ -14,7 +14,7 @@
         entrypoints = ["websecure"];
         rule = "Host(`${host}`)";
         service = "${app}";
-        middlewares = ["${middleware}"];
+        middlewares = middleware;
         tls = {
           certResolver = "production";
         };

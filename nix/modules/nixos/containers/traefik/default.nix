@@ -20,6 +20,7 @@ in {
     ./middleware_authelia.nix
     ./middleware_allow-lan.nix
     ./middleware_secure-headers.nix
+    ./middleware_secure-headers-jellyfin.nix
     (import ../shared/shared-adguard-dns-rewrite.nix
       {
         host = "traefik.${cfg.domain}";

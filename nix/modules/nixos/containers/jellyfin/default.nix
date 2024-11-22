@@ -24,6 +24,7 @@ in {
         host = "${cfg.host}";
         url = "http://${cfg.localAddress}:8096";
         route_enabled = cfg.enable;
+        middleware = ["secure-headers-jellyfin" "authelia"];
       })
     (import ../shared/shared-adguard-dns-rewrite.nix
       {
@@ -72,6 +73,12 @@ in {
       };
 
       config = {pkgs, ...}: {
+        # networking.hosts = {
+        #   #TODO: remove this once migrated
+        #   "${cfg.hostAddress}" = [
+        #     "authelia.sbulav.ru"
+        #   ];
+        # };
         systemd.tmpfiles.rules = [
           "d /var/lib/jellyfin 700 jellyfin jellyfin -"
         ];
@@ -100,10 +107,12 @@ in {
                         <EnableAllFolders>true</EnableAllFolders>
                         <EnabledFolders />
                         <AdminRoles>
+                          <string>jellyfin-admins</string>
                           <string>admins</string>
                         </AdminRoles>
                         <Roles>
-                          <string>users</string>
+                          <string>jellyfin-users</string>
+                          <string>dev</string>
                         </Roles>
                         <EnableFolderRoles>false</EnableFolderRoles>
                         <EnableLiveTvRoles>false</EnableLiveTvRoles>
@@ -134,45 +143,19 @@ in {
             text = ''
               <?xml version="1.0" encoding="utf-8"?>
               <BrandingOptions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-                 <LoginDisclaimer>&lt;a href="https://${cfg.host}/SSO/OID/p/authelia" class="raised cancel block emby-button authentik-sso"&gt;
-                    Sign in with Authelia&amp;nbsp;
-                    &lt;img alt="OpenID Connect (authelia)" title="OpenID Connect (authelia)" class="oauth-login-image" src="https://raw.githubusercontent.com/goauthentik/authentik/master/web/icons/icon.png"&gt;
-                  &lt;/a&gt;
-                  &lt;a href="https://${cfg.host}/SSOViews/linking" class="raised cancel block emby-button authentik-sso"&gt;
-                    Link Authentik config&amp;nbsp;
-                  &lt;/a&gt;
-                  &lt;a href="https://${config.${namespace}.containers.authelia.host}" class="raised cancel block emby-button authentik-sso"&gt;
-                    Authelia config&amp;nbsp;
-                  &lt;/a&gt;
-                </LoginDisclaimer>
-                <CustomCss>
-                  /* Hide this in lieu of authentik link */
-                  .emby-button.block.btnForgotPassword {
-                     display: none;
-                  }
+                <LoginDisclaimer>&lt;form action="https://${cfg.host}/sso/OID/start/authelia"&gt;
+                &lt;button class="raised block emby-button button-submit"&gt;
+                  Sign in with SSO
+                &lt;/button&gt;
+              &lt;/form&gt;</LoginDisclaimer>
+                <CustomCss>a.raised.emby-button {
+                padding: 0.9em 1em;
+                color: inherit !important;
+              }
 
-                  /* Make links look like buttons */
-                  a.raised.emby-button {
-                     padding: 0.9em 1em;
-                     color: inherit !important;
-                  }
-
-                  /* Let disclaimer take full width */
-                  .disclaimerContainer {
-                     display: block;
-                  }
-
-                  /* Optionally, apply some styling to the `.authentik-sso` class, probably let users configure this */
-                  .authentik-sso {
-                     /* idk set a background image or something lol */
-                  }
-
-                  .oauth-login-image {
-                      height: 24px;
-                      position: absolute;
-                      top: 12px;
-                  }
-                </CustomCss>
+              .disclaimerContainer {
+                display: block;
+              }</CustomCss>
                 <SplashscreenEnabled>true</SplashscreenEnabled>
               </BrandingOptions>
             '';
@@ -182,7 +165,7 @@ in {
           mkdir -p /var/lib/jellyfin/plugins
           CLIENT_SECRET="$(cat ${config.sops.secrets."jellyfin/oidc_client_secret".path})"
           sed "s/CLIENT_SECRET_REPLACE/$CLIENT_SECRET/" ${ssoConfig} > /var/lib/jellyfin/plugins/configurations/SSO-Auth.xml
-          cat ${brandingConfig} > /var/lib/jellyfin/plugins/configurations/brandingConfig.xml
+          cat ${brandingConfig} > /var/lib/jellyfin/config/branding.xml
         '';
 
         networking = {
@@ -192,11 +175,7 @@ in {
             allowedTCPPorts = [8096 8920];
             allowedUDPPorts = [1900 7359];
           };
-          # Use systemd-resolved inside the container
-          # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
-          useHostResolvConf = lib.mkForce false;
         };
-        services.resolved.enable = true;
         system.stateVersion = "24.11";
       };
     };
