@@ -176,16 +176,18 @@ in {
               identity_providers = {
                 oidc = {
                   clients = [
-                    # {
-                    #   client_id = "jellyfin";
-                    #   client_name = "Jellyfin";
-                    #   client_secret = "$pbkdf2-sha512$310000$w8/7AXV6ljEACFLwkc.neQ$bMnyFnhUjuFjhKGw.awXKfK1EK6n9XS5P6RcywAbBxLhI6hcJqJ8jDCt3oOBp9YpaPCbNh3Sm23NCwJaUIci5w";
-                    #   require_pkce = true;
-                    #   pkce_challenge_method = "S256";
-                    #   authorization_policy = "one_factor";
-                    #   redirect_uris = [ "https://jellyfin.${config.domain.base}/sso/OID/redirect/authelia" ];
-                    #   token_endpoint_auth_method = "client_secret_post";
-                    # }
+                    {
+                      authorization_policy = "one_factor";
+                      client_id = "jellyfin";
+                      client_name = "Jellyfin";
+                      client_secret = "$pbkdf2-sha512$310000$zsC4o9RfhpGEdyk6zlKtvw$ERgl4RYHk2IfILuFRfsOCcK.R1MYiyvUrU2XBgmYLSH5.DALMqw.5ZdRdIKAKAJakYHt/HkkB/lVf96uw6kGNg";
+                      consent_mode = "implicit";
+                      pkce_challenge_method = "S256";
+                      public = "false";
+                      redirect_uris = ["https://jellyfin2.${cfg.domain}/sso/OID/redirect/authelia"];
+                      require_pkce = true;
+                      token_endpoint_auth_method = "client_secret_post";
+                    }
                     {
                       authorization_policy = "one_factor";
                       client_id = "nextcloud";
