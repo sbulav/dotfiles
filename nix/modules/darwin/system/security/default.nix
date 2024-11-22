@@ -26,6 +26,7 @@ in {
           ${pkgs.coreutils}/bin/env nix-env -p /nix/var/nix/profiles/system --set /nix/store/*, \
           ${pkgs.coreutils}/bin/env /nix/store/*/activate, \
           /etc/profiles/per-user/${config.${namespace}.user.name}/bin/openconnect, \
+          /sbin/route, \
           /usr/bin/dscacheutil, \
           /usr/bin/killall, \
           /usr/bin/pkill, \
