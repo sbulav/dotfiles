@@ -120,9 +120,11 @@ in {
               };
 
               storage.local.path = "/var/lib/authelia-main/storage/db.sqlite3";
-              server.disable_healthcheck = true;
 
               server = {
+                disable_healthcheck = true;
+                # Fix forward-auth for Jellyfin
+                # See https://github.com/authelia/authelia/discussions/7472
                 endpoints = {
                   authz = {
                     forward-auth = {
