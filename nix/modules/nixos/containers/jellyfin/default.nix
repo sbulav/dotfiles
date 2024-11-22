@@ -22,6 +22,7 @@ in {
         host = "${cfg.host}";
         url = "http://${cfg.localAddress}:8096";
         route_enabled = cfg.enable;
+        middleware = "secure-headers";
       })
     (import ../shared/shared-adguard-dns-rewrite.nix
       {
@@ -58,29 +59,29 @@ in {
           "hostPath" = "${cfg.dataPath}/log/";
           isReadOnly = false;
         };
+      };
 
-        config = {...}: {
-          systemd.tmpfiles.rules = [
-            "d /var/lib/jellyfin 700 jellyfin jellyfin -"
-          ];
-          services.jellyfin = {
-            enable = true;
-          };
-
-          networking = {
-            firewall = {
-              enable = true;
-              # https://jellyfin.org/docs/general/networking/index.html#port-bindings
-              allowedTCPPorts = [8096 8920];
-              allowedUDPPorts = [1900 7359];
-            };
-            # Use systemd-resolved inside the container
-            # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
-            useHostResolvConf = lib.mkForce false;
-          };
-          services.resolved.enable = true;
-          system.stateVersion = "24.11";
+      config = {...}: {
+        systemd.tmpfiles.rules = [
+          "d /var/lib/jellyfin 700 jellyfin jellyfin -"
+        ];
+        services.jellyfin = {
+          enable = true;
         };
+
+        networking = {
+          firewall = {
+            enable = false;
+            # https://jellyfin.org/docs/general/networking/index.html#port-bindings
+            allowedTCPPorts = [8096 8920];
+            allowedUDPPorts = [1900 7359];
+          };
+          # Use systemd-resolved inside the container
+          # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
+          useHostResolvConf = lib.mkForce false;
+        };
+        services.resolved.enable = true;
+        system.stateVersion = "24.11";
       };
     };
   };

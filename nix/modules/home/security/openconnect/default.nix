@@ -8,6 +8,13 @@
 with lib;
 with lib.custom; let
   cfg = config.${namespace}.security.openconnect;
+  route_delete_command =
+    if pkgs.stdenv.isLinux
+    then "sudo route del -net 192.168.0.0/16"
+    else if pkgs.stdenv.isDarwin
+    then "sudo route delete -net 192.168.0.0/16"
+    else "";
+
   vpnScript = pkgs.writeScriptBin "myvpn" ''
     #! ${pkgs.bash}/bin/sh
 
@@ -57,7 +64,7 @@ with lib.custom; let
               echo "VPN is up and running!"
               echo "******************************************************"
               echo "Removing LAN routes to VPN"
-              sudo route del -net 192.168.0.0/16
+              ${route_delete_command}
             fi
           ;;
           down)
