@@ -3,7 +3,7 @@ local act = wezterm.action
 config.leader = { key = "b", mods = "CTRL" }
 
 config.keys = {
-  { key = " ", mods = "SHIFT", action = act.QuickSelect },
+  { key = "o", mods = "LEADER", action = act.QuickSelect },
   {
     key = "-",
     mods = "ALT",

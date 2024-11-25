@@ -73,12 +73,6 @@ in {
       };
 
       config = {pkgs, ...}: {
-        # networking.hosts = {
-        #   #TODO: remove this once migrated
-        #   "${cfg.hostAddress}" = [
-        #     "authelia.sbulav.ru"
-        #   ];
-        # };
         systemd.tmpfiles.rules = [
           "d /var/lib/jellyfin 700 jellyfin jellyfin -"
         ];
@@ -86,6 +80,11 @@ in {
           enable = true;
         };
         systemd.services.jellyfin.preStart = let
+          sso-authentication-plugin = pkgs.fetchzip {
+            stripRoot = false;
+            url = "https://github.com/9p4/jellyfin-plugin-sso/releases/download/v3.5.2.4/sso-authentication_3.5.2.4.zip";
+            hash = "sha256-e+w5m6/7vRAynStDj34eBexfCIEgDJ09huHzi5gQEbo=";
+          };
           ssoConfig = pkgs.writeTextFile {
             name = "SSO-Auth.xml";
             text = ''
@@ -162,15 +161,22 @@ in {
             executable = false;
           };
         in ''
+          # Setting up SSO integration
           mkdir -p /var/lib/jellyfin/plugins
           CLIENT_SECRET="$(cat ${config.sops.secrets."jellyfin/oidc_client_secret".path})"
           sed "s/CLIENT_SECRET_REPLACE/$CLIENT_SECRET/" ${ssoConfig} > /var/lib/jellyfin/plugins/configurations/SSO-Auth.xml
           cat ${brandingConfig} > /var/lib/jellyfin/config/branding.xml
+
+          # Setting up SSO plugin
+          rm -rf /var/lib/jellyfin/plugins/sso-authentication-plugin
+          mkdir -p /var/lib/jellyfin/plugins/sso-authentication-plugin
+          cp ${sso-authentication-plugin}/* /var/lib/jellyfin/plugins/sso-authentication-plugin/
+          chmod -R 770 /var/lib/jellyfin/plugins/sso-authentication-plugin
         '';
 
         networking = {
           firewall = {
-            enable = false;
+            enable = true;
             # https://jellyfin.org/docs/general/networking/index.html#port-bindings
             allowedTCPPorts = [8096 8920];
             allowedUDPPorts = [1900 7359];
