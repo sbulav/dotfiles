@@ -46,11 +46,14 @@ in {
             "traefik.sbulav.ru"
             "adguard.sbulav.ru"
             "flood.sbulav.ru"
+            "jellyfin2.sbulav.ru"
           ];
         };
 
         services.homepage-dashboard = {
           enable = true;
+          # TODO: Pass secrets via services.homepage-dashboard.environmentFile
+          # https://gethomepage.dev/installation/docker/#using-environment-secrets
           widgets = [
             {
               resources = {
@@ -62,49 +65,67 @@ in {
           ];
           services = [
             {
-              "My First Group" = [
-                {
-                  "My First Service" = {
-                    description = "Homepage is awesome";
-                    href = "http://localhost/";
-                  };
-                }
-              ];
-            }
-            {
               "Network" = [
-                {
-                  "My Second Service" = {
-                    description = "Homepage is the best";
-                    href = "http://localhost/";
-                  };
-                }
                 # TODO: implement enabling widgets based on config
-
                 {
                   "Traefik" = {
                     icon = "traefik";
-                    href = "https://traefik.sbulav.ru";
+                    href = "https://traefik.${config.${namespace}.containers.traefik.domain}";
                     widget = {
                       type = "traefik";
-                      url = "https://traefik.sbulav.ru";
+                      url = "https://traefik.${config.${namespace}.containers.traefik.domain}";
                     };
                   };
                 }
                 {
-                  "Adguard" = {
+                  "Adguard" = mkIf config.${namespace}.containers.adguard.enable {
                     icon = "adguard-home";
-                    href = "https://adguard.sbulav.ru";
+                    href = "https://${config.${namespace}.containers.adguard.host}";
                     widget = {
                       type = "adguard";
                       url = "http://${config.${namespace}.containers.adguard.localAddress}:3000";
                     };
                   };
                 }
+              ];
+            }
+            {
+              "Media" = [
                 {
-                  "Flood" = {
+                  "nextcloud" = mkIf config.${namespace}.containers.nextcloud.enable {
+                    icon = "nextcloud";
+                    href = "https://${config.${namespace}.containers.nextcloud.host}";
+                    widget = {
+                      type = "nextcloud";
+                      url = "https://${config.${namespace}.containers.nextcloud.host}";
+                    };
+                  };
+                }
+
+                {
+                  "jellyfin" = {
+                    icon = "jellyfin";
+                    href = "https://${config.${namespace}.containers.jellyfin.host}";
+                    widget = {
+                      type = "jellyfin";
+                      key = "apikey";
+                      url = "http://${config.${namespace}.containers.jellyfin.localAddress}:8196";
+                      enableBlocks = true; # optional, defaults to false
+                      enableNowPlaying = true; # optional, defaults to true
+                      enableUser = true; # optional, defaults to false
+                      showEpisodeNumber = true; # optional, defaults to false
+                      expandOneStreamToTwoRows = false; # optional, defaults to true
+                    };
+                  };
+                }
+              ];
+            }
+            {
+              "ARR Stack" = [
+                {
+                  "Flood" = mkIf config.${namespace}.containers.flood.enable {
                     icon = "flood";
-                    href = "https://flood.sbulav.ru";
+                    href = "https://${config.${namespace}.containers.flood.host}";
                     widget = {
                       type = "flood";
                       url = "http://${config.${namespace}.containers.flood.localAddress}:3000";
