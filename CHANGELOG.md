@@ -1,5 +1,12 @@
 # Changelog
 
+### [5.0.1](https://www.github.com/sbulav/dotfiles/compare/v5.0.0...v5.0.1) (2024-12-04)
+
+
+### Bug Fixes
+
+* use correct path in cdd ([7070c49](https://www.github.com/sbulav/dotfiles/commit/7070c49e51631f137f8c2417a4d7215fa97859bb))
+
 ## [5.0.0](https://www.github.com/sbulav/dotfiles/compare/v4.5.0...v5.0.0) (2024-12-04)
 
 
