@@ -1,5 +1,88 @@
 # Changelog
 
+## [5.0.0](https://www.github.com/sbulav/dotfiles/compare/v4.5.0...v5.0.0) (2024-12-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* extract nix config to dotnix
+
+### Features
+
+* add authz ([3f3c888](https://www.github.com/sbulav/dotfiles/commit/3f3c8884356b2a7c3f1dd4081bfb49f2d19681dd))
+* add examples of using sops ([c42b4a2](https://www.github.com/sbulav/dotfiles/commit/c42b4a2e4416bd26e94f623d4619b946fe234569))
+* add local serverz ([3195a6c](https://www.github.com/sbulav/dotfiles/commit/3195a6c0e8994a2b31e9f67b859235edf772efa1))
+* add sops-nix as home-manager ([89a5c81](https://www.github.com/sbulav/dotfiles/commit/89a5c81be5e4cbe92c58bb5e0c75b80f109623be))
+* **aerospace:** add mappings to move nodes between monitors ([66b94c8](https://www.github.com/sbulav/dotfiles/commit/66b94c8c41029bf5f43154d3e226da1adf817f37))
+* **aerospace:** pin anyconnect to wsp 6 ([94927da](https://www.github.com/sbulav/dotfiles/commit/94927dadfc12347233976b9da7429b7db4da0824))
+* extract nix config to dotnix ([355f44b](https://www.github.com/sbulav/dotfiles/commit/355f44b0c4d01a52d63c0a21322d7a76ebcac139))
+* **hyprland:** enable hyprcursor ([1901bb8](https://www.github.com/sbulav/dotfiles/commit/1901bb8379166700f117e6c7c8d7d8dda195c2ec))
+* **hyprland:** pin obsidian to wsp 3 ([7ee5b23](https://www.github.com/sbulav/dotfiles/commit/7ee5b23d25da80439aed6c51834de4d98441a8c1))
+* install myvpn on nz ([81e8909](https://www.github.com/sbulav/dotfiles/commit/81e8909c3125a7af0d4e82aa216d02931d32b4b8))
+* **jellyfin:** working oidc client secrets injection ([c26bf77](https://www.github.com/sbulav/dotfiles/commit/c26bf775e90740caa73680288ecbb5748f6d2822))
+* **jellyfin:** working sso ([5c023a6](https://www.github.com/sbulav/dotfiles/commit/5c023a62247811937c977faae42eb2be1b856434))
+* **nix:** add adguard flood modules ([1b5c88c](https://www.github.com/sbulav/dotfiles/commit/1b5c88c799fdf702f40e657800c3bc722f1d582d))
+* **nix:** add authelia and homepage ([41284fe](https://www.github.com/sbulav/dotfiles/commit/41284fe2eab8d3eece17a284afb4d6e1cd1b8de1))
+* **nix:** add authelia TOTP, require auth for all domains ([199526f](https://www.github.com/sbulav/dotfiles/commit/199526f88bdc6737dd43ffcb10f8e8cda71d4781))
+* **nix:** add basic jellyfin ([0bf2420](https://www.github.com/sbulav/dotfiles/commit/0bf2420e6f461c42ebdb31825a8d38ae068f7a09))
+* **nix:** add cachix for wezterm ([adeba93](https://www.github.com/sbulav/dotfiles/commit/adeba93cae37e4c92b92803b759e0aafc1a9439d))
+* **nix:** add dynamic dns rewrites ([cdfcd45](https://www.github.com/sbulav/dotfiles/commit/cdfcd45fe4de33fe807cf93060d16c414b295a7d))
+* **nix:** add homepage module ([777e769](https://www.github.com/sbulav/dotfiles/commit/777e769167bafc862d8ba01bfd15c04b807b2e90))
+* **nix:** Add LSP documentation on nixpkgs and flake ([8004c7a](https://www.github.com/sbulav/dotfiles/commit/8004c7acb9e3bfd45ab48019b0c8320b224e001e))
+* **nix:** add new zanoza host ([f990192](https://www.github.com/sbulav/dotfiles/commit/f990192c4ee5c876b90165cb0cda06572575a6b7))
+* **nix:** add nextcloud module ([4ff57e1](https://www.github.com/sbulav/dotfiles/commit/4ff57e1df5897cbcf2aa412f06e39a954b410a9c))
+* **nix:** add openconnect hm module ([18328f0](https://www.github.com/sbulav/dotfiles/commit/18328f03cec00e72073fa032ed6e0f0ae94f8de4))
+* **nix:** add parametrized homepage widgets ([e10c877](https://www.github.com/sbulav/dotfiles/commit/e10c8775603cbf69a3769ba34656901767dc915c))
+* **nix:** add server suite ([b5a6c7d](https://www.github.com/sbulav/dotfiles/commit/b5a6c7d2b6af06201c90d8c2b096b1dea3ecda68))
+* **nix:** add traefik module ([9156894](https://www.github.com/sbulav/dotfiles/commit/91568940c5d77a9b7abac7b9500085243d089b3e))
+* **nix:** auth nextcloud via oidc ([38ca6bb](https://www.github.com/sbulav/dotfiles/commit/38ca6bbe1e27f9f060c561d35b09234f69f586b6))
+* **nix:** bump snowfall-lib to 3.0.3, remove unused templates ([72ed681](https://www.github.com/sbulav/dotfiles/commit/72ed681289ff9d8c3e646b9f75f3cff3a006c1ef))
+* **nix:** conditional adguard rewrite ([8da1ec0](https://www.github.com/sbulav/dotfiles/commit/8da1ec0ac6d52c7ff16ee219ba34daafac24c2a8))
+* **nix:** deploy on remote via deploy-rs ([6d5c6ed](https://www.github.com/sbulav/dotfiles/commit/6d5c6edf65c4e3db0bb0dabfe9bf6fde2c61d9cf))
+* **nix:** enable atuin on serverz ([50e0ed1](https://www.github.com/sbulav/dotfiles/commit/50e0ed17ca2116a07bfcb939cfae416e8d98249f))
+* **nix:** enable chachix on darwin ([738e775](https://www.github.com/sbulav/dotfiles/commit/738e775a81fd67a5b5618b3526e53a0a71ba758d))
+* **nix:** enable sops in homes on serverz ([6bbbe24](https://www.github.com/sbulav/dotfiles/commit/6bbbe2480fb0189a5fad8ad7e443781d9fc9c2d8))
+* **nix:** enable sops on serverz ([747fbe9](https://www.github.com/sbulav/dotfiles/commit/747fbe9e4f1d2468d2f9fa65f87633bf23ca5010))
+* **nix:** enable zfs on serverz ([8e52e14](https://www.github.com/sbulav/dotfiles/commit/8e52e145b411a6a8ff84efc42eb93c1e7170dd09))
+* **nix:** extract traefik config to shared module ([6c0aa82](https://www.github.com/sbulav/dotfiles/commit/6c0aa8287465eed0a2f30a1e4cb6e28a2ef85525))
+* **nix:** make dns rewrites in module ([297a286](https://www.github.com/sbulav/dotfiles/commit/297a286318c2128d2a00fc382b99a979f52c2a43))
+* **nix:** set oidc content to implicit for nextcloud ([5677047](https://www.github.com/sbulav/dotfiles/commit/567704790149064b9b4dc6611b9a0a3b8e833381))
+* **nix:** start working on jellyfin ([586eae8](https://www.github.com/sbulav/dotfiles/commit/586eae8c902ecb66ea3b1aed6e0d78152b918aa9))
+* **nix:** switch from nil_ls to nixd ([14b6504](https://www.github.com/sbulav/dotfiles/commit/14b65045cf6886bf65eef535abb49a7cc157a334))
+* **nix:** switch serverz to efi ([e7ac346](https://www.github.com/sbulav/dotfiles/commit/e7ac3462720e078e498d9198c5f169c9eb052936))
+* **nix:** switch to sops env secrets ([5598627](https://www.github.com/sbulav/dotfiles/commit/559862798dd14b57e3a5c781e24cecb37bf646a2))
+* **nix:** update serverz to use zfs ([c3ab9c9](https://www.github.com/sbulav/dotfiles/commit/c3ab9c9a3ababb76874ed8a18284d82351f910f9))
+* **nix:** use correct cookie parameter ([a2fd512](https://www.github.com/sbulav/dotfiles/commit/a2fd51285c106fbab72185b373d3d725ec1b3d1d))
+* **nix:** use correct fs on serverz ([65d0c2f](https://www.github.com/sbulav/dotfiles/commit/65d0c2f50db314f7909cdb12dac08ef3c8d621ee))
+* **nix:** use fetchzip in jellyfin module to get plugin ([88842b3](https://www.github.com/sbulav/dotfiles/commit/88842b3319bafcbdbdfbc039fa23cd9efab875c3))
+* **nvim:** dial.nvim - add enabled/disabled to cycle ([1f85701](https://www.github.com/sbulav/dotfiles/commit/1f85701707708b469d5e4bac0ec595f6a50ae719))
+* restructure secrets, make them work on darwin ([0666ccc](https://www.github.com/sbulav/dotfiles/commit/0666ccc97d2a0fe3edee4397b6fb23dc8ff9283d))
+* **sops:** add keys for serverz ([732b0b9](https://www.github.com/sbulav/dotfiles/commit/732b0b914c54c1b1debe91486505f771107634ae))
+* **sops:** add serverz secrets ([c111964](https://www.github.com/sbulav/dotfiles/commit/c1119641ee2d83510a43c0a2231a6f6693584679))
+* **sops:** make atuin use key from sops ([43cc1c3](https://www.github.com/sbulav/dotfiles/commit/43cc1c310cbbb75dc6b44282232024a83b8172a5))
+* **sops:** make secrets optional in homes ([f9dffc8](https://www.github.com/sbulav/dotfiles/commit/f9dffc84c933126e656e37dc208cf1b1d9ef8706))
+* **sops:** manage atuin config and key ([2605f54](https://www.github.com/sbulav/dotfiles/commit/2605f54002856b31c43d1c9621564d258ab1d67f))
+* **sops:** working sops! ([a96f511](https://www.github.com/sbulav/dotfiles/commit/a96f5118528590d287fe8bcc95a1a5dd6fd93195))
+* **wallpapers:** add more wallpapers, change default ([981b49b](https://www.github.com/sbulav/dotfiles/commit/981b49b74c7c6873c615f18c236292e46494cdbd))
+* **waypaper:** switch to waypaper from nixpkgs ([403d9be](https://www.github.com/sbulav/dotfiles/commit/403d9bee10a77899404cf693a449f2a1450aa66a))
+* **wezterm:** add quick_select_patterns ([63f4cf1](https://www.github.com/sbulav/dotfiles/commit/63f4cf1bee0a2d0e7b114477b7eca2844285bf02))
+* **yazi:** switch to cyberdream theme ([396385a](https://www.github.com/sbulav/dotfiles/commit/396385adab7a7d2c8f52d0b42e6c767f3aa19ba8))
+
+
+### Bug Fixes
+
+* **aerospace:** update wezterm launch ([ed3d249](https://www.github.com/sbulav/dotfiles/commit/ed3d2490cc90f2cf91a69e93d76e937a8d81ce19))
+* **authelia:** forward-auth ([16513bc](https://www.github.com/sbulav/dotfiles/commit/16513bc8965f8f6a12fbe19b3f9b621d6e939dd3))
+* **nix:** add more params to traefik module ([9255bf9](https://www.github.com/sbulav/dotfiles/commit/9255bf9e66a0c002bd7bf676ae96e3615aa21d10))
+* **nix:** add nz specific route to work under VPN ([d54f1b8](https://www.github.com/sbulav/dotfiles/commit/d54f1b80d42158b8003ba309f602d1e397e0d322))
+* **nix:** avoid mounting via internet on VPN ([1111fcb](https://www.github.com/sbulav/dotfiles/commit/1111fcb68284527bd83e7a00e448e94eb8f97e5b))
+* **nix:** remove following wezterm nixpkgs ([380ae64](https://www.github.com/sbulav/dotfiles/commit/380ae64fbca8a4e087b8c7f076547277d8ff6fd2))
+* **nix:** use correct icons in homepage ([a693979](https://www.github.com/sbulav/dotfiles/commit/a6939794bb19ee18a7d2a355cf37b01bf5f9c053))
+* **nix:** with lib required ([1422fee](https://www.github.com/sbulav/dotfiles/commit/1422fee06025f98e3e6682101229710bb66dc431))
+* **openconnect:** use correct name in check ([8b8adab](https://www.github.com/sbulav/dotfiles/commit/8b8adab8b018bec502174a748ccf98db7d032d8e))
+* **vpn:** remove lan routes from vpn ([c5dcebc](https://www.github.com/sbulav/dotfiles/commit/c5dcebc7624f4e4a38eb95daa953690e5a016a54))
+* **wallpapers:** typo ([e531f3c](https://www.github.com/sbulav/dotfiles/commit/e531f3c6477541c5d0529c34ff61f99fd01cb845))
+
 ## [4.5.0](https://www.github.com/sbulav/dotfiles/compare/v4.4.0...v4.5.0) (2024-10-10)
 
 
