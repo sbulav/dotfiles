@@ -27,29 +27,29 @@
     fsType = "vfat";
   };
 
-  fileSystems."/mnt/tank/torrents" = {
-    device = "192.168.89.200:/mnt/tank/torrents";
-    options = [
-      "noauto"
-      "x-systemd.automount"
-      "x-systemd.requires=network.target"
-      "x-systemd.mount-timeout=10"
-      "x-systemd.idle-timeout=1min"
-    ];
-    fsType = "nfs";
-  };
+  # fileSystems."/mnt/tank/torrents" = {
+  #   device = "192.168.89.200:/mnt/tank/torrents";
+  #   options = [
+  #     "noauto"
+  #     "x-systemd.automount"
+  #     "x-systemd.requires=network.target"
+  #     "x-systemd.mount-timeout=10"
+  #     "x-systemd.idle-timeout=1min"
+  #   ];
+  #   fsType = "nfs";
+  # };
 
-  fileSystems."/mnt/obsidian" = {
-    device = "192.168.89.200:/mnt/tank/Apps/obsidian";
-    options = [
-      "noauto"
-      "x-systemd.automount"
-      "x-systemd.requires=network.target"
-      "x-systemd.mount-timeout=10"
-      "x-systemd.idle-timeout=1min"
-    ];
-    fsType = "nfs";
-  };
+  # fileSystems."/mnt/obsidian" = {
+  #   device = "192.168.89.200:/mnt/tank/Apps/obsidian";
+  #   options = [
+  #     "noauto"
+  #     "x-systemd.automount"
+  #     "x-systemd.requires=network.target"
+  #     "x-systemd.mount-timeout=10"
+  #     "x-systemd.idle-timeout=1min"
+  #   ];
+  #   fsType = "nfs";
+  # };
 
   swapDevices = [
     {device = "/dev/disk/by-uuid/73002676-c9b2-46e8-a987-5bf002c91cbc";}
@@ -61,7 +61,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   networking.hosts = {
-    # "192.168.89.200" = ["truenas.sbulav.ru"];
+    "192.168.89.207" = ["zanoza zanoza.sbulav.ru"];
     "100.87.128.100" = ["vault-c7.pyn.ru"];
     "100.91.128.100" = ["vault-c11.pyn.ru"];
     "100.92.128.100" = ["vault-c12.pyn.ru"];
