@@ -3,10 +3,11 @@ return {
         "neovim/nvim-lspconfig",
         event = "BufReadPre",
         dependencies = {
+            { "saghen/blink.cmp" },
             { "folke/lazydev.nvim", ft = "lua", opts = {} },
             "mason.nvim",
             "williamboman/mason-lspconfig.nvim",
-            "hrsh7th/cmp-nvim-lsp",
+            -- "hrsh7th/cmp-nvim-lsp",
             -- jsonls schemas
             "b0o/schemastore.nvim",
             version = false, -- last release is way too old
@@ -100,8 +101,8 @@ return {
             end)
 
             local servers = opts.servers
-            local capabilities =
-                require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+            -- local capabilities = require("blink.cmp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+            local capabilities = require("blink.cmp").get_lsp_capabilities()
 
             require("mason-lspconfig").setup {}
             -- require("mason-lspconfig").setup { ensure_installed = vim.tbl_keys(servers) }
