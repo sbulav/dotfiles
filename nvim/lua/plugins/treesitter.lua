@@ -58,7 +58,8 @@ return {
                     },
                 },
                 indent = {
-                    enable = true,
+                    -- FIXME: not working properly, starting newline one node higher
+                    enable = false,
                 },
                 rainbow = {
                     enable = true,
