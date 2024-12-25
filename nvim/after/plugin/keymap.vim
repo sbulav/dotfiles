@@ -158,7 +158,7 @@ nnoremap <leader>fs <cmd>lua require('telescope.builtin').git_files()<cr>
 nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fv <cmd>lua require('config.telescope_myfunctions').search_vimfiles()<cr>
 nnoremap <leader>fd <cmd>lua require('config.telescope_myfunctions').search_dotfiles()<cr>
-nnoremap <leader>fd <cmd>lua require('config.telescope_myfunctions').search_nixfiles()<cr>
+nnoremap <leader>fn <cmd>lua require('config.telescope_myfunctions').search_nixfiles()<cr>
 nnoremap <leader>gb <cmd>lua require('telescope.builtin').git_branches()<cr>
 " nnoremap <leader>gr <cmd>lua require'telescope'.extensions.gh.run{}<cr>
 " nnoremap <leader>gp <cmd>lua require'telescope'.extensions.gh.pull_request{}<cr>
