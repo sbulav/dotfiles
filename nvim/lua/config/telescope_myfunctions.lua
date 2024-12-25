@@ -35,4 +35,11 @@ M.search_vimfiles = function()
     }
 end
 
+M.search_nixfiles = function()
+    require("telescope.builtin").find_files {
+        prompt_title = "< Find Nixfiles >",
+        cwd = "$HOME/dotnix",
+    }
+end
+
 return M
