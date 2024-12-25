@@ -157,7 +157,6 @@ nnoremap <leader>fe <cmd>lua require('telescope.builtin').registers()<cr>
 nnoremap <leader>fs <cmd>lua require('telescope.builtin').git_files()<cr>
 nnoremap <leader>ft <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fv <cmd>lua require('config.telescope_myfunctions').search_vimfiles()<cr>
-nnoremap <leader>fn <cmd>lua require('config.telescope_myfunctions').search_nixfiles()<cr>
 nnoremap <leader>fd <cmd>lua require('config.telescope_myfunctions').search_dotfiles()<cr>
 nnoremap <leader>gb <cmd>lua require('telescope.builtin').git_branches()<cr>
 " nnoremap <leader>gr <cmd>lua require'telescope'.extensions.gh.run{}<cr>
@@ -206,7 +205,7 @@ nnoremap <leader>H <cmd>lua require('nredir').nredir(require("utils").cheatSheet
 " Open vimrc
 nnoremap <leader>rc :edit $MYVIMRC<CR>
 " Open flake
-nnoremap <leader>rf :edit ~/dotnix/flake.nix<CR>
+nnoremap <leader>rf :edit ~/dotfiles/nix/flake.nix<CR>
 " Global replace word under cursor
 nnoremap <leader>% :%s/\<<C-r>=expand('<cword>')<CR>\>/
 " Change project folder to current file's directory for current window
