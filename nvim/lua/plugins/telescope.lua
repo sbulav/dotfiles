@@ -1,8 +1,11 @@
 return {
     "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
+    event = "VimEnter",
     dependencies = {
-        { "nvim-lua/popup.nvim" },
-        { "nvim-lua/plenary.nvim" },
+        "nvim-lua/popup.nvim",
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope-fzf-native.nvim",
         -- { "nvim-telescope/telescope-github.nvim" },
         -- { "ANGkeith/telescope-terraform-doc.nvim" },
     },
