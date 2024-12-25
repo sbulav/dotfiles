@@ -101,12 +101,10 @@ nmap ' viw'
 " ----------------------------------------------------------------------------
 " Quickfix
 " ----------------------------------------------------------------------------
-nnoremap ]q :QNext<cr>zz        " Quickfix next
-nnoremap [q :QPrev<cr>zz        " Quickfix previous
+nnoremap ]q :cnext<cr>zz        " Quickfix next
+nnoremap [q :cprev<cr>zz        " Quickfix previous
 nnoremap ]Q :cnewer<cr>zz       " Open newer quickfix results
 nnoremap [Q :colder<cr>zz       " Open older quickfix results
-nnoremap <silent> <leader>q <cmd>QFToggle<CR>
-nnoremap <silent> <leader>l <cmd>LLToggle<CR>
 
 " ----------------------------------------------------------------------------
 " Buffers

@@ -94,7 +94,7 @@ function M.marks_to_quickfix_list()
         end
     end
     vim.fn.setqflist({}, " ", { title = "Bookmarks", id = "$", items = marks_table })
-    vim.cmd [[QFToggle]]
+    require("quicker").toggle()
 end
 
 function M.setup(user_config)
