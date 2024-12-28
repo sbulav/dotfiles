@@ -28,6 +28,13 @@ M.grep_in_cwd = function()
     }
 end
 
+M.grep_in_git_root = function()
+    require("telescope.builtin").live_grep {
+        prompt_title = "< Grep in Current Directory >",
+        cwd = Snacks.git.get_root(path),
+    }
+end
+
 M.search_vimfiles = function()
     require("telescope.builtin").find_files {
         prompt_title = "< Find Vimfiles >",
