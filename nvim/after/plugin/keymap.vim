@@ -146,6 +146,7 @@ nnoremap <leader>A :argadd <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 nnoremap <leader>fM <cmd>lua require('telescope.builtin').marks()<cr>
 nnoremap <leader>fA <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fa <cmd>lua require('config.telescope_myfunctions').grep_in_cwd()<cr>
+nnoremap <leader>fr <cmd>lua require('config.telescope_myfunctions').grep_in_git_root()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fc <cmd>lua require('telescope.builtin').git_commits()<cr>
 nnoremap <leader>fF <cmd>lua require('telescope.builtin').find_files()<cr>
