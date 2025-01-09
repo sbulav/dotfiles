@@ -4,7 +4,7 @@ return {
         "saghen/blink.cmp",
         lazy = false, -- lazy loading handled internally
         -- build = "nix run .#build-plugin",
-        version = "v0.8.*",
+        version = "v0.10.*",
         dependencies = {
             -- add blink.compat
             {
@@ -66,6 +66,7 @@ return {
             },
 
             snippets = {
+                preset = "luasnip",
                 expand = function(snippet)
                     require("luasnip").lsp_expand(snippet)
                 end,
@@ -80,7 +81,7 @@ return {
                 end,
             },
             sources = {
-                default = { "lsp", "tabnine", "path", "luasnip", "buffer" },
+                default = { "lsp", "tabnine", "path", "snippets", "buffer" },
                 cmdline = {}, -- do not complete in cmdline
                 providers = {
                     tabnine = {
@@ -93,13 +94,16 @@ return {
             },
             completion = {
                 list = {
-                    selection = "preselect",
+                    selection = {
+                        preselect = true,
+                        auto_insert = false,
+                    },
                 },
                 menu = {
                     border = "rounded",
                     min_width = 20,
                     draw = {
-                        align_to_component = "kind_icon", -- or 'none' to disable
+                        align_to = "kind_icon", -- or 'none' to disable
                         padding = { 1, 0 },
                         columns = {
                             { "label", "label_description", gap = 1 },
@@ -112,16 +116,21 @@ return {
                                 --   ellipsis: whether to add an ellipsis when truncating the text
                                 ellipsis = false,
                                 width = { fill = true },
+
                                 text = function(ctx)
                                     local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
-                                    source_formatted = ({
+                                    local source_formatted = ({
                                         Buffer = "[Buffer]",
                                         cmp_tabnine = "[T9]",
                                         LSP = "[LSP]",
                                         TreeSitter = "[TS]",
                                         Path = "[Path]",
-                                        Luasnip = "[Snippet]",
+                                        Snippets = "[Snippet]",
                                     })[ctx.item.source_name]
+
+                                    if not source_formatted then
+                                        source_formatted = ctx.item.source_name
+                                    end
 
                                     return kind_icon .. " " .. source_formatted
                                 end,
