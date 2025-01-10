@@ -1,7 +1,7 @@
 -- formatters
 return {
     "stevearc/conform.nvim",
-    event = "BufRead",
+    -- event = "BufRead",
     config = function()
         require("conform").setup {
             format_after_save = function(bufnr)

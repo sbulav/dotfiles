@@ -2,7 +2,8 @@ return {
     {
 
         "saghen/blink.cmp",
-        lazy = false, -- lazy loading handled internally
+        event = "InsertEnter",
+        -- lazy = false, -- lazy loading handled internally
         -- build = "nix run .#build-plugin",
         version = "v0.10.*",
         dependencies = {
@@ -19,6 +20,7 @@ return {
             {
                 "L3MON4D3/LuaSnip",
                 version = "v2.*",
+                event = "InsertEnter",
                 config = function()
                     require("luasnip").config.setup {
                         updateevents = "TextChanged,TextChangedI",
@@ -31,6 +33,7 @@ return {
             {
                 "tzachar/cmp-tabnine",
                 build = "./install.sh",
+                event = "InsertEnter",
                 config = function()
                     require("cmp_tabnine.config"):setup {
                         max_lines = 1000,
