@@ -1,7 +1,7 @@
 return {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
-    event = "VimEnter",
+    event = "VeryLazy",
     dependencies = {
         "nvim-lua/popup.nvim",
         "nvim-lua/plenary.nvim",

@@ -1,6 +1,7 @@
 -- better increase/descrease
 return {
     "monaqa/dial.nvim",
+    event = "VeryLazy",
   -- stylua: ignore
   -- false
   keys = {

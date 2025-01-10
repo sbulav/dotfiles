@@ -135,6 +135,7 @@ return {
     dependencies = { -- Show current code context
         {
             "nvimdev/lspsaga.nvim",
+            event = "VeryLazy",
             config = function()
                 require("lspsaga").setup {
                     symbol_in_winbar = {
