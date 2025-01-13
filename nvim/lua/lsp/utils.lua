@@ -16,12 +16,12 @@ end
 -- after the language server attaches to the current buffer
 function M.custom_on_attach(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 
     local attach_opts = { silent = true, buffer = bufnr }
 
     -- lsp provider to find the cursor word definition and reference
-    vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
+    vim.keymap.set("n", "gh", "<cmd>Lspsaga finder<CR>")
     -- lsp outline window with symbols
     vim.keymap.set("n", "<F7>", "<cmd>Lspsaga outline<CR>")
     -- show function signature help
