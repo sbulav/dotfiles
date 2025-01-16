@@ -9,6 +9,72 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    keys = {
+        {
+            "<leader>fb",
+            function()
+                Snacks.picker.buffers()
+            end,
+            desc = "Buffers",
+        },
+        {
+            "<leader>fA",
+            function()
+                Snacks.picker.grep()
+            end,
+            desc = "Grep",
+        },
+        {
+            "<leader>fF",
+            function()
+                Snacks.picker.files()
+            end,
+            desc = "Find Files",
+        },
+        {
+            "<leader>ff",
+            function()
+                Snacks.picker.files { cwd = vim.fn.expand "%:p:h" }
+            end,
+            desc = "Find In Current Directory",
+        },
+        -- {nvim/after/plugin/keymap.vim
+        --     "<leader>ff",
+        --     function()
+        --         Snacks.picker.files()
+        --     end,
+        --     desc = "Find Files",
+        -- },
+        -- {
+        --     "<leader>fg",
+        --     function()
+        --         Snacks.picker.git_files()
+        --     end,
+        --     desc = "Find Git Files",
+        -- },
+        -- {
+        --     "<leader>fr",
+        --     function()
+        --         Snacks.picker.recent()
+        --     end,nvim/after/plugin/keymap.vim
+        --     desc = "Recent",
+        -- },
+        -- -- git
+        -- {
+        --     "<leader>gc",
+        --     function()
+        --         Snacks.picker.git_log()
+        --     end,
+        --     desc = "Git Log",
+        -- },
+        -- {
+        --     "<leader>gs",
+        --     function()
+        --         Snacks.picker.git_status()
+        --     end,
+        --     desc = "Git Status",
+        -- },
+    },
     opts = {
         bigfile = { enabled = true },
         dashboard = { -- {{{
@@ -189,10 +255,8 @@ return {
                         ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
                         ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
                         ["<PageUp>"] = { "list_scroll_up", mode = { "i", "n" } },
-                        ["<PageDown"] = { "list_scroll_down", mode = { "i", "n" } },
+                        ["<PageDown>"] = { "list_scroll_down", mode = { "i", "n" } },
                         ["<c-g>"] = { "toggle_live", mode = { "i", "n" } },
-                        ["<ScrollWheelDown>"] = { "list_scroll_wheel_down", mode = { "i", "n" } },
-                        ["<ScrollWheelUp>"] = { "list_scroll_wheel_up", mode = { "i", "n" } },
                         ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
                         ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
                         ["<c-q>"] = { "qflist", mode = { "i", "n" } },
@@ -210,22 +274,18 @@ return {
                         ["j"] = "list_down",
                         ["k"] = "list_up",
                         ["q"] = "close",
+                        ["Q"] = "close",
                         ["<Tab>"] = "select_and_next",
                         ["<S-Tab>"] = "select_and_prev",
                         ["<Down>"] = "list_down",
                         ["<Up>"] = "list_up",
                         ["<a-d>"] = "inspect",
-                        ["<c-d>"] = "list_scroll_down",
-                        ["<c-u>"] = "list_scroll_up",
-                        ["zt"] = "list_scroll_top",
-                        ["zb"] = "list_scroll_bottom",
-                        ["zz"] = "list_scroll_center",
+                        ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
+                        ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
+                        ["<PageUp>"] = { "list_scroll_up", mode = { "i", "n" } },
+                        ["<PageDown>"] = { "list_scroll_down", mode = { "i", "n" } },
                         ["/"] = "toggle_focus",
-                        ["<ScrollWheelDown>"] = "list_scroll_wheel_down",
-                        ["<ScrollWheelUp>"] = "list_scroll_wheel_up",
                         ["<c-a>"] = "select_all",
-                        ["<c-f>"] = "preview_scroll_down",
-                        ["<c-b>"] = "preview_scroll_up",
                         ["<c-v>"] = "edit_vsplit",
                         ["<c-s>"] = "edit_split",
                         ["<c-j>"] = "list_down",
@@ -241,9 +301,8 @@ return {
                     keys = {
                         ["<Esc>"] = "close",
                         ["q"] = "close",
+                        ["Q"] = "close",
                         ["i"] = "focus_input",
-                        ["<ScrollWheelDown>"] = "list_scroll_wheel_down",
-                        ["<ScrollWheelUp>"] = "list_scroll_wheel_up",
                         ["<a-w>"] = "cycle_win",
                     },
                 },
