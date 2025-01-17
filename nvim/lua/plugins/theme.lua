@@ -17,7 +17,7 @@ return {
             borderless_telescope = false,
             extensions = {
                 alpha = false,
-                blinkcmp = false,
+                blinkcmp = true,
                 cmp = false,
                 dashboard = false,
                 fzflua = false,
@@ -40,7 +40,7 @@ return {
                 notify = false,
                 rainbow_delimiters = false,
                 snacks = true,
-                telescope = true,
+                telescope = false,
                 treesitter = true,
                 treesittercontext = true,
                 trouble = false,

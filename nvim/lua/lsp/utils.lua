@@ -40,12 +40,6 @@ function M.custom_on_attach(client, bufnr)
     -- You can use <C-o> to jump back to your previous location
     vim.keymap.set("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
     vim.keymap.set("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
-    vim.keymap.set("n", "<leader>so", function()
-        require("telescope.builtin").lsp_document_symbols()
-    end, attach_opts)
-    vim.keymap.set("n", "<leader>sr", function()
-        require("telescope.builtin").lsp_references()
-    end, attach_opts)
 
     vim.api.nvim_create_user_command("Format", vim.lsp.buf.format, {})
 
