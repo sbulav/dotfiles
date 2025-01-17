@@ -28,6 +28,7 @@ return {
                     "nofile",
                     "Greeter",
                     "TelescopePrompt",
+                    "snacks_picker_input",
                     "Float",
                 },
             },

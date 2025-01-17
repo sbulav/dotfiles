@@ -95,11 +95,6 @@ vim.keymap.set({ "i", "s" }, "<c-k>", function()
     require("luasnip").jump(-1)
 end, attach_opts)
 
-vim.keymap.set("n", "<F3>", function()
-    -- require("yazi").yazi {}
-    require("tfm").open()
-end, { noremap = true, silent = true })
-
 vim.keymap.set("n", "<Space>yn", function()
     local filename = vim.fn.expand "%:p"
     utils.info("Yanking current filename: " .. filename, "INFO")

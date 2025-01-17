@@ -10,19 +10,74 @@ return {
     priority = 1000,
     lazy = false,
     keys = {
-        {
-            "<leader>fb",
-            function()
-                Snacks.picker.buffers()
-            end,
-            desc = "Buffers",
-        },
+        -- Grep
+        -- {{{
         {
             "<leader>fA",
             function()
                 Snacks.picker.grep()
             end,
             desc = "Grep",
+        },
+        {
+            "<leader>fg",
+            function()
+                Snacks.picker.lines()
+            end,
+            desc = "Gref in current Buffer",
+        },
+        {
+            "<leader>fa",
+            function()
+                Snacks.picker.grep { cwd = vim.fn.expand "%:p:h" }
+            end,
+            desc = "Grep in Current Directory",
+        },
+        {
+            "<leader>fr",
+            function()
+                Snacks.picker.grep { cwd = Snacks.git.get_root(path) }
+            end,
+            desc = "Grep in Git root",
+        }, -- }}}
+        -- Git
+        -- {{{
+        {
+            "<leader>gf",
+            function()
+                Snacks.picker.git_files()
+            end,
+            desc = "Find Files (git-files)",
+        },
+        {
+            "<leader>gl",
+            function()
+                Snacks.picker.git_log()
+            end,
+            desc = "Git Log",
+        },
+        {
+            "<leader>gs",
+            function()
+                Snacks.picker.git_status()
+            end,
+            desc = "Git Status",
+        }, -- }}}
+        -- Find
+        -- {{{
+        {
+            "<leader>fv",
+            function()
+                Snacks.picker.files { cwd = "$HOME/dotfiles/nvim" }
+            end,
+            desc = "Find Vimfiles",
+        },
+        {
+            "<leader>fn",
+            function()
+                Snacks.picker.files { cwd = "$HOME/dotnix" }
+            end,
+            desc = "Find Nixfiles",
         },
         {
             "<leader>fF",
@@ -38,42 +93,57 @@ return {
             end,
             desc = "Find In Current Directory",
         },
-        -- {nvim/after/plugin/keymap.vim
-        --     "<leader>ff",
-        --     function()
-        --         Snacks.picker.files()
-        --     end,
-        --     desc = "Find Files",
-        -- },
-        -- {
-        --     "<leader>fg",
-        --     function()
-        --         Snacks.picker.git_files()
-        --     end,
-        --     desc = "Find Git Files",
-        -- },
-        -- {
-        --     "<leader>fr",
-        --     function()
-        --         Snacks.picker.recent()
-        --     end,nvim/after/plugin/keymap.vim
-        --     desc = "Recent",
-        -- },
-        -- -- git
-        -- {
-        --     "<leader>gc",
-        --     function()
-        --         Snacks.picker.git_log()
-        --     end,
-        --     desc = "Git Log",
-        -- },
-        -- {
-        --     "<leader>gs",
-        --     function()
-        --         Snacks.picker.git_status()
-        --     end,
-        --     desc = "Git Status",
-        -- },
+        {
+            "<leader>fh",
+            function()
+                Snacks.picker.recent()
+            end,
+            desc = "Recent",
+        },
+        {
+            "<leader>fb",
+            function()
+                Snacks.picker.buffers()
+            end,
+            desc = "Buffers",
+        }, -- }}}
+        -- Search other
+        -- {{{
+        {
+            "<leader>fc",
+            function()
+                Snacks.picker.commands()
+            end,
+            desc = "Commands",
+        },
+        {
+            "<leader>fd",
+            function()
+                Snacks.picker.diagnostics()
+            end,
+            desc = "Diagnostics",
+        },
+        {
+            "<leader>ft",
+            function()
+                Snacks.picker.help()
+            end,
+            desc = "Help Pages",
+        },
+        {
+            "<leader>fm",
+            function()
+                Snacks.picker.keymaps()
+            end,
+            desc = "Keymaps",
+        },
+        {
+            "<leader>fM",
+            function()
+                Snacks.picker.marks()
+            end,
+            desc = "Marks",
+        }, -- }}}
     },
     opts = {
         bigfile = { enabled = true },
