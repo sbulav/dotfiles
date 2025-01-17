@@ -5,146 +5,147 @@ local function footer()
     return string.format(" v%d.%d.%d %s  %s", v.major, v.minor, v.patch, platform, datetime)
 end
 
+local mappings = {
+    -- Grep
+    -- {{{
+    {
+        "<leader>fA",
+        function()
+            Snacks.picker.grep()
+        end,
+        desc = "Grep",
+    },
+    {
+        "<leader>fg",
+        function()
+            Snacks.picker.lines()
+        end,
+        desc = "Gref in current Buffer",
+    },
+    {
+        "<leader>fa",
+        function()
+            Snacks.picker.grep { cwd = vim.fn.expand "%:p:h" }
+        end,
+        desc = "Grep in Current Directory",
+    },
+    {
+        "<leader>fr",
+        function()
+            Snacks.picker.grep { cwd = Snacks.git.get_root(path) }
+        end,
+        desc = "Grep in Git root",
+    }, -- }}}
+    -- Git
+    -- {{{
+    {
+        "<leader>gf",
+        function()
+            Snacks.picker.git_files()
+        end,
+        desc = "Find Files (git-files)",
+    },
+    {
+        "<leader>gl",
+        function()
+            Snacks.picker.git_log()
+        end,
+        desc = "Git Log",
+    },
+    {
+        "<leader>gs",
+        function()
+            Snacks.picker.git_status()
+        end,
+        desc = "Git Status",
+    }, -- }}}
+    -- Find
+    -- {{{
+    {
+        "<leader>fv",
+        function()
+            Snacks.picker.files { cwd = "$HOME/dotfiles/nvim" }
+        end,
+        desc = "Find Vimfiles",
+    },
+    {
+        "<leader>fn",
+        function()
+            Snacks.picker.files { cwd = "$HOME/dotnix" }
+        end,
+        desc = "Find Nixfiles",
+    },
+    {
+        "<leader>fF",
+        function()
+            Snacks.picker.files()
+        end,
+        desc = "Find Files",
+    },
+    {
+        "<leader>ff",
+        function()
+            Snacks.picker.files { cwd = vim.fn.expand "%:p:h" }
+        end,
+        desc = "Find In Current Directory",
+    },
+    {
+        "<leader>fh",
+        function()
+            Snacks.picker.recent()
+        end,
+        desc = "Recent",
+    },
+    {
+        "<leader>fb",
+        function()
+            Snacks.picker.buffers()
+        end,
+        desc = "Buffers",
+    }, -- }}}
+    -- Search other
+    -- {{{
+    {
+        "<leader>fc",
+        function()
+            Snacks.picker.commands()
+        end,
+        desc = "Commands",
+    },
+    {
+        "<leader>fd",
+        function()
+            Snacks.picker.diagnostics()
+        end,
+        desc = "Diagnostics",
+    },
+    {
+        "<leader>ft",
+        function()
+            Snacks.picker.help()
+        end,
+        desc = "Help Pages",
+    },
+    {
+        "<leader>fm",
+        function()
+            Snacks.picker.keymaps()
+        end,
+        desc = "Keymaps",
+    },
+    {
+        "<leader>fM",
+        function()
+            Snacks.picker.marks()
+        end,
+        desc = "Marks",
+    }, -- }}}
+}
 return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
-    keys = {
-        -- Grep
-        -- {{{
-        {
-            "<leader>fA",
-            function()
-                Snacks.picker.grep()
-            end,
-            desc = "Grep",
-        },
-        {
-            "<leader>fg",
-            function()
-                Snacks.picker.lines()
-            end,
-            desc = "Gref in current Buffer",
-        },
-        {
-            "<leader>fa",
-            function()
-                Snacks.picker.grep { cwd = vim.fn.expand "%:p:h" }
-            end,
-            desc = "Grep in Current Directory",
-        },
-        {
-            "<leader>fr",
-            function()
-                Snacks.picker.grep { cwd = Snacks.git.get_root(path) }
-            end,
-            desc = "Grep in Git root",
-        }, -- }}}
-        -- Git
-        -- {{{
-        {
-            "<leader>gf",
-            function()
-                Snacks.picker.git_files()
-            end,
-            desc = "Find Files (git-files)",
-        },
-        {
-            "<leader>gl",
-            function()
-                Snacks.picker.git_log()
-            end,
-            desc = "Git Log",
-        },
-        {
-            "<leader>gs",
-            function()
-                Snacks.picker.git_status()
-            end,
-            desc = "Git Status",
-        }, -- }}}
-        -- Find
-        -- {{{
-        {
-            "<leader>fv",
-            function()
-                Snacks.picker.files { cwd = "$HOME/dotfiles/nvim" }
-            end,
-            desc = "Find Vimfiles",
-        },
-        {
-            "<leader>fn",
-            function()
-                Snacks.picker.files { cwd = "$HOME/dotnix" }
-            end,
-            desc = "Find Nixfiles",
-        },
-        {
-            "<leader>fF",
-            function()
-                Snacks.picker.files()
-            end,
-            desc = "Find Files",
-        },
-        {
-            "<leader>ff",
-            function()
-                Snacks.picker.files { cwd = vim.fn.expand "%:p:h" }
-            end,
-            desc = "Find In Current Directory",
-        },
-        {
-            "<leader>fh",
-            function()
-                Snacks.picker.recent()
-            end,
-            desc = "Recent",
-        },
-        {
-            "<leader>fb",
-            function()
-                Snacks.picker.buffers()
-            end,
-            desc = "Buffers",
-        }, -- }}}
-        -- Search other
-        -- {{{
-        {
-            "<leader>fc",
-            function()
-                Snacks.picker.commands()
-            end,
-            desc = "Commands",
-        },
-        {
-            "<leader>fd",
-            function()
-                Snacks.picker.diagnostics()
-            end,
-            desc = "Diagnostics",
-        },
-        {
-            "<leader>ft",
-            function()
-                Snacks.picker.help()
-            end,
-            desc = "Help Pages",
-        },
-        {
-            "<leader>fm",
-            function()
-                Snacks.picker.keymaps()
-            end,
-            desc = "Keymaps",
-        },
-        {
-            "<leader>fM",
-            function()
-                Snacks.picker.marks()
-            end,
-            desc = "Marks",
-        }, -- }}}
-    },
+    keys = mappings,
     opts = {
         bigfile = { enabled = true },
         dashboard = { -- {{{
@@ -260,35 +261,8 @@ return {
         }, -- }}}
         picker = {
             ui_select = true, -- replace `vim.ui.select` with the snacks picker
-            layout = {
-                reverse = true,
-                -- Telescope style layout
-                layout = {
-                    box = "horizontal",
-                    backdrop = false,
-                    width = 0.8,
-                    min_width = 120,
-                    height = 0.8,
-                    {
-                        box = "vertical",
-                        { win = "list", title = " Results ", title_pos = "center", border = "rounded" },
-                        {
-                            win = "input",
-                            height = 1,
-                            border = "rounded",
-                            title = "{source} {live}",
-                            title_pos = "center",
-                        },
-                    },
-                    {
-                        win = "preview",
-                        width = 0.45,
-                        border = "rounded",
-                        title = " Preview ",
-                        title_pos = "center",
-                    },
-                },
-            },
+
+            layout = { preset = "telescope", reverse = true },
             win = {
                 -- input window
                 input = {
