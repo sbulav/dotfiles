@@ -18,21 +18,21 @@ local mappings = {
     {
         "<leader>fg",
         function()
-            Snacks.picker.lines()
+            Snacks.picker.lines { title = "Grep in Current Buffer" }
         end,
-        desc = "Gref in current Buffer",
+        desc = "Grep in current Buffer",
     },
     {
         "<leader>fa",
         function()
-            Snacks.picker.grep { cwd = vim.fn.expand "%:p:h" }
+            Snacks.picker.grep { cwd = vim.fn.expand "%:p:h", title = "Grep in Current Directory" }
         end,
         desc = "Grep in Current Directory",
     },
     {
         "<leader>fr",
         function()
-            Snacks.picker.grep { cwd = Snacks.git.get_root(path) }
+            Snacks.picker.grep { cwd = Snacks.git.get_root(path), title = "Grep in Git root" }
         end,
         desc = "Grep in Git root",
     }, -- }}}
@@ -41,7 +41,7 @@ local mappings = {
     {
         "<leader>gf",
         function()
-            Snacks.picker.git_files()
+            Snacks.picker.git_files { title = "Find Git files" }
         end,
         desc = "Find Files (git-files)",
     },
@@ -64,14 +64,14 @@ local mappings = {
     {
         "<leader>fv",
         function()
-            Snacks.picker.files { cwd = "$HOME/dotfiles/nvim" }
+            Snacks.picker.files { cwd = "$HOME/dotfiles/nvim", title = "Find Vimfiles" }
         end,
         desc = "Find Vimfiles",
     },
     {
         "<leader>fn",
         function()
-            Snacks.picker.files { cwd = "$HOME/dotnix" }
+            Snacks.picker.files { cwd = "$HOME/dotnix", title = "Find Nixfiles" }
         end,
         desc = "Find Nixfiles",
     },
@@ -85,14 +85,14 @@ local mappings = {
     {
         "<leader>ff",
         function()
-            Snacks.picker.files { cwd = vim.fn.expand "%:p:h" }
+            Snacks.picker.files { cwd = vim.fn.expand "%:p:h", title = "Find In Current Directory" }
         end,
         desc = "Find In Current Directory",
     },
     {
         "<leader>fh",
         function()
-            Snacks.picker.recent()
+            Snacks.picker.recent { title = "Old Files" }
         end,
         desc = "Recent",
     },
