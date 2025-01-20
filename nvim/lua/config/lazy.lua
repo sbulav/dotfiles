@@ -42,5 +42,9 @@ require("lazy").setup("plugins", {
             },
         },
     },
+    rocks = {
+        enabled = false,
+        hererocks = false,
+    },
 })
 vim.cmd.colorscheme "cyberdream"
