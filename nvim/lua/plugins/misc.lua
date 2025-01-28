@@ -19,4 +19,16 @@ return {
 
     -- Encode/decode base64 strings
     "sbulav/base64.nvim",
+    {
+        "nvzone/typr",
+        dependencies = "nvzone/volt",
+        opts = {
+            kblayout = {
+                { "q", "w", "f", "p", "b", "j", "l", "u", "y", ";" },
+                { "a", "r", "s", "t", "g", "m", "n", "e", "i", "o" },
+                { "z", "x", "c", "d", "v", "k", "h", ",", ".", "/" },
+            },
+        },
+        cmd = { "Typr", "TyprStats" },
+    },
 }
