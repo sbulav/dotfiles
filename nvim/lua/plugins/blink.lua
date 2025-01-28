@@ -83,6 +83,12 @@ return {
                     require("luasnip").jump(direction)
                 end,
             },
+
+            enabled = function()
+                return not vim.tbl_contains({ "typr", "snacks_picker_input" }, vim.bo.filetype)
+                    and vim.bo.buftype ~= "prompt"
+                    and vim.b.completion ~= false
+            end,
             sources = {
                 default = { "lsp", "tabnine", "path", "snippets", "buffer" },
                 cmdline = {}, -- do not complete in cmdline
