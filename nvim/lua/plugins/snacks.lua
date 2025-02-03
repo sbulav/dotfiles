@@ -64,14 +64,14 @@ local mappings = {
     {
         "<leader>fv",
         function()
-            Snacks.picker.files { cwd = "$HOME/dotfiles/nvim", title = "Find Vimfiles" }
+            Snacks.picker.files { cwd = vim.fn.stdpath "config", title = "Find Vimfiles" }
         end,
         desc = "Find Vimfiles",
     },
     {
         "<leader>fn",
         function()
-            Snacks.picker.files { cwd = "$HOME/dotnix", title = "Find Nixfiles" }
+            Snacks.picker.files { cwd = vim.fn.getenv "HOME" .. "/dotnix", title = "Find Nixfiles" }
         end,
         desc = "Find Nixfiles",
     },
