@@ -53,6 +53,13 @@ local mappings = {
         desc = "Git Log",
     },
     {
+        "<leader>gL",
+        function()
+            Snacks.picker.git_log_line()
+        end,
+        desc = "Git Log Line",
+    },
+    {
         "<leader>gs",
         function()
             Snacks.picker.git_status()
@@ -125,6 +132,13 @@ local mappings = {
             Snacks.picker.help()
         end,
         desc = "Help Pages",
+    },
+    {
+        "<leader>fp",
+        function()
+            Snacks.picker.projects()
+        end,
+        desc = "Projects",
     },
     {
         "<leader>fm",

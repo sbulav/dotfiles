@@ -14,7 +14,7 @@ return {
         priority = 1000,
         opts = {
             transparent = true,
-            borderless_telescope = false,
+            borderless_pickers = false,
             extensions = {
                 alpha = false,
                 blinkcmp = true,
