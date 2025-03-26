@@ -14,6 +14,8 @@ return {
             formatters_by_ft = {
                 lua = { "stylua" },
                 nix = { "alejandra" },
+                terraform = { "tofu_fmt" },
+                tf = { "tofu_fmt" },
             },
         }
     end,

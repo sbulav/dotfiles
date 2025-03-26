@@ -47,7 +47,7 @@ return {
                     },
                 },
                 -- pyright = {},
-                -- terraformls = {},
+                terraformls = {},
                 helm_ls = {},
                 yamlls = {
                     -- lazy-load schemastore when needed
