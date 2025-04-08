@@ -28,8 +28,8 @@ inoremap <silent> <F1> <ESC>:execute "set colorcolumn=" . (&colorcolumn == "" ? 
 nnoremap <silent> <F1> :execute "set colorcolumn=" . (&colorcolumn == "" ? "81" : "")<CR>
 vnoremap <F1> <ESC>
 
-" Paste mode on F2
-set pastetoggle=<F2>
+" Paste mode on F2 #Deprecated in 0.11
+" set pastetoggle=<F2>
 
 " Use netrw as file Explorer
 " Moved to LUA
