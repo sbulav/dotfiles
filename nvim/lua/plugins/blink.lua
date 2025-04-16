@@ -29,26 +29,6 @@ return {
                     require "config.snippets"
                 end,
             },
-
-            {
-                "tzachar/cmp-tabnine",
-                build = "./install.sh",
-                event = "InsertEnter",
-                config = function()
-                    require("cmp_tabnine.config"):setup {
-                        max_lines = 1000,
-                        max_num_results = 20,
-                        sort = true,
-                        run_on_every_keystroke = true,
-                        snippet_placeholder = "..",
-                        ignored_file_types = { -- default is not to ignore
-                            -- uncomment to ignore in lua:
-                            -- lua = true
-                        },
-                        show_prediction_strength = true,
-                    }
-                end,
-            },
         },
         ---@module 'blink.cmp'
         opts = {
@@ -90,16 +70,8 @@ return {
                     and vim.b.completion ~= false
             end,
             sources = {
-                default = { "lsp", "tabnine", "path", "snippets", "buffer" },
+                default = { "lsp", "path", "snippets", "buffer" },
                 cmdline = {}, -- do not complete in cmdline
-                providers = {
-                    tabnine = {
-                        name = "cmp_tabnine",
-                        module = "blink.compat.source",
-                        score_offset = 100,
-                        async = true,
-                    },
-                },
             },
             completion = {
                 list = {
@@ -130,7 +102,6 @@ return {
                                     local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
                                     local source_formatted = ({
                                         Buffer = "[Buffer]",
-                                        cmp_tabnine = "[T9]",
                                         LSP = "[LSP]",
                                         TreeSitter = "[TS]",
                                         Path = "[Path]",
