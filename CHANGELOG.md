@@ -1,5 +1,38 @@
 # Changelog
 
+## [5.1.0](https://github.com/sbulav/dotfiles/compare/v5.0.1...v5.1.0) (2025-05-04)
+
+
+### Features
+
+* **comments:** migrate to mini.comment ([2da66f1](https://github.com/sbulav/dotfiles/commit/2da66f1a2d11d44a854fbbf11e3692fd005e8201))
+* **fish:** add tea completions ([f5579dc](https://github.com/sbulav/dotfiles/commit/f5579dc83db52edaae45ae9f6ac7b431e705c330))
+* **nvim:** add mapping to delete current resource ([e32d69c](https://github.com/sbulav/dotfiles/commit/e32d69cbfd79f2417b53dcbd7fa8000e531fcf19))
+* **nvim:** add new plugin Typr ([f9fd9c4](https://github.com/sbulav/dotfiles/commit/f9fd9c402ae5559d82b5b084655e2c71ecdef41e))
+* **nvim:** add tofu_fmt formatter for TF ([8556608](https://github.com/sbulav/dotfiles/commit/8556608261ce979a1c042b649d316b8a8835f2e7))
+* **nvim:** optimize startup time ([b64345e](https://github.com/sbulav/dotfiles/commit/b64345e9687208bdc639c1e5e7db8168a33abf1c))
+* **picker:** switch from telescope to snacks picker ([8f3fb8d](https://github.com/sbulav/dotfiles/commit/8f3fb8d0d7c5fe8c647e89bc7ec89355f6f3bf0c))
+* **quickfix:** replace deprecated qf_helper with quicker.nvim ([a6f85d2](https://github.com/sbulav/dotfiles/commit/a6f85d2cb2c061ee752edea28080e6f56f27dc0e))
+* restore telescope mappings ([4e69ad0](https://github.com/sbulav/dotfiles/commit/4e69ad08be4f88d791c79b9f7b6d1f3fcb3afea2))
+* snacks picker ([6cf37c6](https://github.com/sbulav/dotfiles/commit/6cf37c6858e78a6dcf8957bb271f6ba2d70db3f1))
+* **snacks:** add more mappings ([afd3825](https://github.com/sbulav/dotfiles/commit/afd38250eb79c63a0095ad18f02d163285d69859))
+* **snacks:** use snacks for notifications and dashboard ([8aea39e](https://github.com/sbulav/dotfiles/commit/8aea39ed5745aa95924355702cbbe555fa920027))
+* **telescope:** enable fzf native ([c6dc2d2](https://github.com/sbulav/dotfiles/commit/c6dc2d2b3ea85f96853e2de61241bd3551abc348))
+
+
+### Bug Fixes
+
+* **fish:** allow posix-source to handle env values with = ([6642f10](https://github.com/sbulav/dotfiles/commit/6642f106477a8be929c30f3ed721a7aca7198b45))
+* **fish:** allow posix-source to read secrets with= ([5921747](https://github.com/sbulav/dotfiles/commit/5921747dfa99c53cf958166d945d9948e1141da2))
+* **indent:** disable treesitter indentation for now ([b492e8e](https://github.com/sbulav/dotfiles/commit/b492e8e18f704cb5bd7fb8c11260282f47d56960))
+* **lazydev:** add libuv ([270a67e](https://github.com/sbulav/dotfiles/commit/270a67eadf6c3558a70e7f342f165d683c3f2449))
+* mapping ([63209be](https://github.com/sbulav/dotfiles/commit/63209be75851a9dc4641c2d69770f6c610889017))
+* **nvim:** restore search nixfiles ([1af2388](https://github.com/sbulav/dotfiles/commit/1af238836eb1021c1f4e678d42d15d03c185f2b5))
+* re-add missing search mapping ([ee07755](https://github.com/sbulav/dotfiles/commit/ee07755b91861b629d7aa3e52fc0ac12e75fb216))
+* **snacks.picker:** open selection on CR in all modes ([546dcd5](https://github.com/sbulav/dotfiles/commit/546dcd5457771f3a36d86090676de16dc07b2db7))
+* **snacks:** correct pass cwd ([7b3626c](https://github.com/sbulav/dotfiles/commit/7b3626c0ef7571350d5ff12324c169d476a4d988))
+* **theme:** disable borderless telescope ([8d7c9e3](https://github.com/sbulav/dotfiles/commit/8d7c9e3fe91948d514ad92d8c82fb2aaf716753a))
+
 ### [5.0.1](https://www.github.com/sbulav/dotfiles/compare/v5.0.0...v5.0.1) (2024-12-04)
 
 
