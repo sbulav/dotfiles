@@ -1,9 +1,16 @@
+-- Neovim LSP configuration without Mason (binaries managed via Nix)
+-- Ensure plugin is loaded on require via module trigger
+
 return {
     {
         "neovim/nvim-lspconfig",
-        event = "BufReadPre",
+        module = { "lspconfig", "cmp_nvim_lsp" },
+        event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            { "saghen/blink.cmp" },
+            "hrsh7th/nvim-cmp",
+            "hrsh7th/cmp-nvim-lsp",
+            "saghen/blink.cmp",
+            "b0o/schemastore.nvim",
             {
                 "folke/lazydev.nvim",
                 ft = "lua",
@@ -14,35 +21,43 @@ return {
                     },
                 },
             },
-            "mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
-            -- "hrsh7th/cmp-nvim-lsp",
-            "b0o/schemastore.nvim", -- For JSON/YAML schemas
-            version = false,
         },
-        opts = {
-            diagnostics = {
-                underline = true,
-                update_in_insert = false,
-                virtual_text = { spacing = 4, prefix = "●" },
-                severity_sort = true,
-            },
-            servers = {
+        config = function()
+            local lspconfig = require "lspconfig"
+            local cmp_nvim_lsp = require "cmp_nvim_lsp"
+
+            -- Common on_attach and capabilities
+            local on_attach = function(client, bufnr)
+                require("lsp.utils").custom_on_init()
+                require("lsp.utils").custom_on_attach(client, bufnr)
+            end
+
+            local capabilities = cmp_nvim_lsp.default_capabilities()
+
+            -- List of servers to configure
+            local servers = {
                 jsonls = {
+                    settings = {
+                        json = { format = { enable = true }, validate = { enable = true } },
+                    },
                     on_new_config = function(new_config)
                         new_config.settings.json.schemas = new_config.settings.json.schemas or {}
                         vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
                     end,
-                    settings = {
-                        json = {
-                            format = { enable = true },
-                            validate = { enable = true },
-                        },
-                    },
                 },
-                terraformls = {},
-                helm_ls = {},
                 yamlls = {
+                    settings = {
+                        yaml = {
+                            format = { enable = true },
+                            validate = true,
+                            keyOrdering = false,
+                            schemaStore = { enable = false, url = "" },
+                        },
+                        redhat = { telemetry = { enabled = false } },
+                    },
+                    capabilities = {
+                        textDocument = { foldingRange = { dynamicRegistration = false, lineFoldingOnly = true } },
+                    },
                     on_new_config = function(new_config)
                         new_config.settings.yaml.schemas = vim.tbl_deep_extend(
                             "force",
@@ -50,142 +65,48 @@ return {
                             require("schemastore").yaml.schemas()
                         )
                     end,
-                    capabilities = {
-                        textDocument = {
-                            foldingRange = {
-                                dynamicRegistration = false,
-                                lineFoldingOnly = true,
-                            },
-                        },
-                    },
+                },
+                terraformls = {},
+                pyright = {},
+                helm_ls = {},
+                marksman = { cmd = { "marksman", "server" } },
+                lua_ls = {
                     settings = {
-                        redhat = { telemetry = { enabled = false } },
-                        yaml = {
-                            keyOrdering = false,
-                            format = { enable = true },
-                            validate = true,
-                            schemaStore = {
-                                enable = false,
-                                url = "",
+                        Lua = { workspace = { checkThirdParty = false }, completion = { callSnippet = "Replace" } },
+                    },
+                },
+                nixd = {
+                    cmd = { "nixd" },
+                    settings = {
+                        nixd = {
+                            formatting = { command = { "alejandra" } },
+                            nixpkgs = { expr = "import (builtins.getFlake(toString ./.)).inputs.nixpkgs {}" },
+                            options = {
+                                nixos = {
+                                    expr = "let flake = builtins.getFlake(toString ./.); in flake.nixosConfigurations.nz.options",
+                                },
+                                home_manager = {
+                                    expr = 'let flake = builtins.getFlake(toString ./.); in flake.homeConfigurations."sab@mbp16".options',
+                                },
+                                darwin = {
+                                    expr = "let flake = builtins.getFlake(toString ./.); in flake.darwinConfigurations.mbp16.options",
+                                },
                             },
                         },
                     },
                 },
-            },
-            setup = {
-                yamlls = function()
-                    -- For nvim < 0.10, force formatting capability
-                    if vim.fn.has "nvim-0.10" == 0 then
-                        require("lsp.utils").lsp.on_attach(function(client, _)
-                            client.server_capabilities.documentFormattingProvider = true
-                        end, "yamlls")
-                    end
-                end,
-            },
-        },
-        config = function(plugin, opts)
-            -- Set up formatting and keymaps for all LSPs
-            require("lsp.utils").on_attach(function(client, buffer)
-                require("lsp.utils").custom_on_init()
-                require("lsp.utils").custom_on_attach(client, buffer)
-            end)
-
-            local servers = opts.servers
-            local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-            -- Make sure all your servers are installed
-            require("mason-lspconfig").setup {
-                ensure_installed = vim.tbl_keys(servers),
             }
 
-            -- Setup each LSP server in your config table
-            for server, server_opts in pairs(servers) do
-                server_opts.capabilities = capabilities
-                -- Custom setup logic via `opts.setup`
-                if opts.setup and opts.setup[server] then
-                    if opts.setup[server](server, server_opts) then
-                        goto continue
-                    end
-                elseif opts.setup and opts.setup["*"] then
-                    if opts.setup["*"](server, server_opts) then
-                        goto continue
-                    end
+            -- Apply configuration per server
+            for name, opts in pairs(servers) do
+                opts.on_attach = on_attach
+                opts.capabilities = capabilities
+                local handled = false
+                if opts.setup then
+                    handled = opts.setup(name, opts)
                 end
-                require("lspconfig")[server].setup(server_opts)
-                ::continue::
-            end
-
-            -- Manual, one-off LSP setups
-            require("lspconfig")["helm_ls"].setup {}
-            require("lspconfig").nixd.setup {
-                cmd = { "nixd" },
-                settings = {
-                    nixd = {
-                        nixpkgs = {
-                            expr = "import (builtins.getFlake(toString ./.)).inputs.nixpkgs { }",
-                        },
-                        formatting = { command = { "alejandra" } },
-                        options = {
-                            nixos = {
-                                expr = "let flake = builtins.getFlake(toString ./.); in flake.nixosConfigurations.nz.options",
-                            },
-                            home_manager = {
-                                expr = 'let flake = builtins.getFlake(toString ./.); in flake.homeConfigurations."sab@mbp16".options',
-                            },
-                            darwin = {
-                                expr = "let flake = builtins.getFlake(toString ./.); in flake.darwinConfigurations.mbp16.options",
-                            },
-                        },
-                    },
-                },
-            }
-            require("lspconfig")["marksman"].setup { cmd = { "marksman", "server" } }
-            require("lspconfig")["lua_ls"].setup {
-                settings = {
-                    Lua = {
-                        workspace = { checkThirdParty = false },
-                        completion = { callSnippet = "Replace" },
-                    },
-                },
-            }
-        end,
-    },
-
-    -- Mason setup for installing LSP binaries and tools
-    {
-        "williamboman/mason.nvim",
-        cmd = "Mason",
-        opts = {
-            ensure_installed = {
-                "eslint_d",
-                "flake8",
-                "goimports",
-                "gopls",
-                "isort",
-                "jq",
-                "json-lsp",
-                "jsonnet-language-server",
-                "prettierd",
-                "shfmt",
-                "terraform-ls",
-                "yaml-language-server",
-                -- Managed via Nix, DO NOT INSTALL IN MASON
-                -- "stylua",
-                -- "alejandra",
-                -- "pyright",
-                -- "black",
-                -- "marksman",
-                -- "nixd"
-                "lua-language-server",
-            },
-        },
-        config = function(plugin, opts)
-            require("mason").setup(opts)
-            local mr = require "mason-registry"
-            for _, tool in ipairs(opts.ensure_installed) do
-                local p = mr.get_package(tool)
-                if not p:is_installed() then
-                    p:install()
+                if not handled then
+                    lspconfig[name].setup(opts)
                 end
             end
         end,
