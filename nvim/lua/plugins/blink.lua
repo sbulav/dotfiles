@@ -5,7 +5,7 @@ return {
         event = "InsertEnter",
         -- lazy = false, -- lazy loading handled internally
         -- build = "nix run .#build-plugin",
-        version = "v0.10.*",
+        version = "v1.6.*",
         dependencies = {
             -- add blink.compat
             {
