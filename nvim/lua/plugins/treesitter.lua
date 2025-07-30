@@ -6,6 +6,7 @@ return {
         dependencies = {
             "HiPhish/rainbow-delimiters.nvim",
             "JoosepAlviste/nvim-ts-context-commentstring",
+            "nvim-treesitter/nvim-treesitter-textobjects",
         },
         cmd = { "TSUpdate" },
         event = "BufRead",
