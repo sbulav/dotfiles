@@ -68,6 +68,7 @@ return {
                 },
                 terraformls = {},
                 pyright = {},
+                ruff = {},
                 helm_ls = {},
                 marksman = { cmd = { "marksman", "server" } },
                 lua_ls = {

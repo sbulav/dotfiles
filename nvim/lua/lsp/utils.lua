@@ -41,7 +41,16 @@ function M.custom_on_attach(client, bufnr)
     vim.keymap.set("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
     vim.keymap.set("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 
-    vim.api.nvim_create_user_command("Format", vim.lsp.buf.format, {})
+    vim.api.nvim_create_user_command("Format", function()
+        local clients = vim.lsp.get_active_clients { bufnr = 0 }
+        for _, client in ipairs(clients) do
+            if client.supports_method "textDocument/formatting" then
+                vim.lsp.buf.format()
+                return
+            end
+        end
+        vim.notify("No attached LSP client supports formatting.", vim.log.levels.WARN)
+    end, {})
 
     -- Server capabilities spec:
     -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#serverCapabilities
