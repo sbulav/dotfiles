@@ -1,10 +1,9 @@
 -- Neovim LSP configuration without Mason (binaries managed via Nix)
--- Ensure plugin is loaded on require via module trigger
+-- Migrated to vim.lsp.config() API (Neovim 0.11+)
 
 return {
     {
         "neovim/nvim-lspconfig",
-        module = { "lspconfig", "cmp_nvim_lsp" },
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             "hrsh7th/nvim-cmp",
@@ -23,7 +22,6 @@ return {
             },
         },
         config = function()
-            local lspconfig = require "lspconfig"
             local cmp_nvim_lsp = require "cmp_nvim_lsp"
 
             -- Common on_attach and capabilities
@@ -34,81 +32,107 @@ return {
 
             local capabilities = cmp_nvim_lsp.default_capabilities()
 
-            -- List of servers to configure
-            local servers = {
-                jsonls = {
-                    settings = {
-                        json = { format = { enable = true }, validate = { enable = true } },
+            -- Helper function to setup servers with common config
+            local function setup_server(name, opts)
+                opts = opts or {}
+                opts.on_attach = opts.on_attach or on_attach
+                opts.capabilities = opts.capabilities or capabilities
+                vim.lsp.config(name, opts)
+                vim.lsp.enable(name)
+            end
+
+            -- JSON Language Server with schema support
+            setup_server("jsonls", {
+                settings = {
+                    json = {
+                        format = { enable = true },
+                        validate = { enable = true },
                     },
-                    on_new_config = function(new_config)
-                        new_config.settings.json.schemas = new_config.settings.json.schemas or {}
-                        vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
-                    end,
                 },
-                yamlls = {
-                    settings = {
-                        yaml = {
-                            format = { enable = true },
-                            validate = true,
-                            keyOrdering = false,
-                            schemaStore = { enable = false, url = "" },
+                on_new_config = function(new_config)
+                    new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+                    vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+                end,
+            })
+
+            -- YAML Language Server with schema support
+            setup_server("yamlls", {
+                capabilities = vim.tbl_deep_extend("force", capabilities, {
+                    textDocument = {
+                        foldingRange = {
+                            dynamicRegistration = false,
+                            lineFoldingOnly = true,
                         },
-                        redhat = { telemetry = { enabled = false } },
                     },
-                    capabilities = {
-                        textDocument = { foldingRange = { dynamicRegistration = false, lineFoldingOnly = true } },
+                }),
+                settings = {
+                    yaml = {
+                        format = { enable = true },
+                        validate = true,
+                        keyOrdering = false,
+                        schemaStore = { enable = false, url = "" },
                     },
-                    on_new_config = function(new_config)
-                        new_config.settings.yaml.schemas = vim.tbl_deep_extend(
-                            "force",
-                            new_config.settings.yaml.schemas or {},
-                            require("schemastore").yaml.schemas()
-                        )
-                    end,
+                    redhat = { telemetry = { enabled = false } },
                 },
-                terraformls = {},
-                pyright = {},
-                ruff = {},
-                helm_ls = {},
-                marksman = { cmd = { "marksman", "server" } },
-                lua_ls = {
-                    settings = {
-                        Lua = { workspace = { checkThirdParty = false }, completion = { callSnippet = "Replace" } },
+                on_new_config = function(new_config)
+                    new_config.settings.yaml.schemas = vim.tbl_deep_extend(
+                        "force",
+                        new_config.settings.yaml.schemas or {},
+                        require("schemastore").yaml.schemas()
+                    )
+                end,
+            })
+
+            -- Markdown Language Server
+            setup_server("marksman", {
+                cmd = { "marksman", "server" },
+            })
+
+            -- Lua Language Server
+            setup_server("lua_ls", {
+                settings = {
+                    Lua = {
+                        workspace = { checkThirdParty = false },
+                        completion = { callSnippet = "Replace" },
+                        telemetry = { enable = false },
                     },
                 },
-                nixd = {
-                    cmd = { "nixd" },
-                    settings = {
-                        nixd = {
-                            formatting = { command = { "alejandra" } },
-                            nixpkgs = { expr = "import (builtins.getFlake(toString ./.)).inputs.nixpkgs {}" },
-                            options = {
-                                nixos = {
-                                    expr = "let flake = builtins.getFlake(toString ./.); in flake.nixosConfigurations.nz.options",
-                                },
-                                home_manager = {
-                                    expr = 'let flake = builtins.getFlake(toString ./.); in flake.homeConfigurations."sab@mbp16".options',
-                                },
-                                darwin = {
-                                    expr = "let flake = builtins.getFlake(toString ./.); in flake.darwinConfigurations.mbp16.options",
-                                },
+            })
+
+            -- Nix Language Server
+            setup_server("nixd", {
+                cmd = { "nixd" },
+                settings = {
+                    nixd = {
+                        formatting = { command = { "alejandra" } },
+                        nixpkgs = {
+                            expr = "import (builtins.getFlake(toString ./.)).inputs.nixpkgs {}",
+                        },
+                        options = {
+                            nixos = {
+                                expr = "let flake = builtins.getFlake(toString ./.); in flake.nixosConfigurations.nz.options",
+                            },
+                            home_manager = {
+                                expr = 'let flake = builtins.getFlake(toString ./.); in flake.homeConfigurations."sab@mbp16".options',
+                            },
+                            darwin = {
+                                expr = "let flake = builtins.getFlake(toString ./.); in flake.darwinConfigurations.mbp16.options",
                             },
                         },
                     },
                 },
+            })
+
+            -- Simple servers with default configurations
+            local simple_servers = {
+                "terraformls", -- Terraform
+                "pyright", -- Python type checker
+                "ruff", -- Python linter/formatter
+                "helm_ls", -- Helm templates
             }
 
-            -- Apply configuration per server
-            for name, opts in pairs(servers) do
-                opts.on_attach = on_attach
-                opts.capabilities = capabilities
-                local handled = false
-                if opts.setup then
-                    handled = opts.setup(name, opts)
-                end
-                if not handled then
-                    lspconfig[name].setup(opts)
-                end
+            for _, server in ipairs(simple_servers) do
+                setup_server(server)
             end
         end,
     },
