@@ -28,6 +28,8 @@ set -gx PATH $PATH $HOME/.krew/bin
 # Do not complete CRD, to speed things up
 set -gx FISH_KUBECTL_COMPLETION_COMPLETE_CRDS 0
 
+# SET Path to SOPS keys
+set -gx SOPS_AGE_KEY_FILE "$HOME/.config/sops/age/keys.txt"
 # Load ssh keys into ssh-agent
 #load_keys
 
