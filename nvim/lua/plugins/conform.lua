@@ -13,7 +13,7 @@ return {
             end,
             formatters_by_ft = {
                 lua = { "stylua" },
-                nix = { "alejandra" },
+                nix = { "nixfmt" },
                 terraform = { "tofu_fmt" },
                 tf = { "tofu_fmt" },
             },
