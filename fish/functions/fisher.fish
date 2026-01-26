@@ -1,6 +1,6 @@
 function fisher --argument-names cmd --description "A plugin manager for Fish"
     set --query fisher_path || set --local fisher_path $__fish_config_dir
-    set --local fisher_version 4.4.5
+    set --local fisher_version 4.4.6
     set --local fish_plugins $__fish_config_dir/fish_plugins
 
     switch "$cmd"
@@ -86,6 +86,7 @@ function fisher --argument-names cmd --description "A plugin manager for Fish"
                     if test -e $plugin
                         command cp -Rf $plugin/* $source
                     else
+                        set resp (command mktemp)
                         set temp (command mktemp -d)
                         set repo (string split -- \@ $plugin) || set repo[2] HEAD
 
@@ -98,8 +99,13 @@ function fisher --argument-names cmd --description "A plugin manager for Fish"
 
                         echo Fetching (set_color --underline)\$url(set_color normal)
 
-                        if command curl -q --silent -L \$url | command tar -xzC \$temp -f - 2>/dev/null
+                        set http (command curl -q --silent -L -o \$resp -w %{http_code} \$url)
+
+                        if test \"\$http\" = 200 && command tar -xzC \$temp -f \$resp 2>/dev/null
                             command cp -Rf \$temp/*/* $source
+                        else if test \"\$http\" = 403
+                            echo fisher: GitHub API rate limit exceeded \(HTTP 403\) >&2
+                            command rm -rf $source
                         else
                             echo fisher: Invalid plugin name or host unavailable: \\\"$plugin\\\" >&2
                             command rm -rf $source
