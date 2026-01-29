@@ -153,14 +153,58 @@ local mappings = {
             Snacks.picker.marks()
         end,
         desc = "Marks",
-    }, -- }}}
+    },
+    {
+        "<leader>tp",
+        function()
+            Snacks.tea.pr()
+        end,
+        desc = "Tea Pull Requests (open)",
+    },
+    {
+        "<leader>tP",
+        function()
+            Snacks.tea.pr { state = "all" }
+        end,
+        desc = "Tea Pull Requests (all)",
+    },
+    {
+        "<leader>tc",
+        function()
+            Snacks.tea.pr_create {}
+        end,
+        desc = "Tea Create Pull Request",
+    },
+    -- }}}
 }
 return {
     "folke/snacks.nvim",
+    dependencies = {
+        {
+            -- Uncommend for development
+            dir = "~/git_priv/snacks-tea.nvim/",
+        },
+    },
     priority = 1000,
     lazy = false,
+    cmd = { "TeaPR", "TeaPRCreate", "TeaHealth" }, -- Added: Auto-load on these cmds
     keys = mappings,
+    init = function()
+        vim.schedule(function()
+            local ok, tea = pcall(require, "snacks.tea")
+            if ok then
+                tea.setup() -- Force early setup
+            end
+        end)
+    end,
     opts = {
+        forgejo = {
+            enabled = true,
+            tea = {
+                login = nil,
+                remote = "origin",
+            },
+        },
         bigfile = { enabled = true },
         dashboard = { -- {{{
             enabled = true,
