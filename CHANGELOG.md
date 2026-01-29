@@ -1,5 +1,27 @@
 # Changelog
 
+## [5.2.0](https://github.com/sbulav/dotfiles/compare/v5.1.0...v5.2.0) (2026-01-29)
+
+
+### Features
+
+* add ruff for python formatting ([b87287c](https://github.com/sbulav/dotfiles/commit/b87287c9f2db4bc402522464d6a3972509c4a697))
+* **fish:** add ailimits function ([0cbcc81](https://github.com/sbulav/dotfiles/commit/0cbcc81d174720e902d77fd120f2201518ac3ec6))
+* **fish:** add gmp function to checkout master|main ([b0ef6f0](https://github.com/sbulav/dotfiles/commit/b0ef6f0b62dc8a8bd39702b87612bebb713dac6f))
+* move to ssh-agent via gpg ([5fd7aba](https://github.com/sbulav/dotfiles/commit/5fd7aba3c653c91d990554f4d42763f3d81262b4))
+* **neovim:** switch to new version of nredir ([4b93414](https://github.com/sbulav/dotfiles/commit/4b934148c6538279802fa0a598d49f90134b761a))
+* switch to nixfmt for formatting ([e4faf2b](https://github.com/sbulav/dotfiles/commit/e4faf2b65e833b46875b0f611686d114295f3721))
+* **tea:** add snacks-tea plugin ([de87d64](https://github.com/sbulav/dotfiles/commit/de87d64479f0a9bb5d2d4f3a552dd7256ccd125d))
+* **treesitter:** add missing(!) treesitter-textobjects ([ae60c39](https://github.com/sbulav/dotfiles/commit/ae60c3963c983777e9f07f061553dcbddbc4d180))
+
+
+### Bug Fixes
+
+* **blink:** fix sources ([9f79da6](https://github.com/sbulav/dotfiles/commit/9f79da62fb3b4d52a33b6bd1af3a973af3a01bd8))
+* correctly set sops keys path ([6b05e64](https://github.com/sbulav/dotfiles/commit/6b05e646519481a3767a58e2fd2de24cb78b0703))
+* **lsp:** rewrite to remove deprecated api ([9ce979a](https://github.com/sbulav/dotfiles/commit/9ce979a70cc3f76b831bd47fff57f9498d87364d))
+* use more appropriate event ([01dc23c](https://github.com/sbulav/dotfiles/commit/01dc23c2a7fed6f22467b197644273be819629d7))
+
 ## [5.1.0](https://github.com/sbulav/dotfiles/compare/v5.0.1...v5.1.0) (2025-05-04)
 
 
