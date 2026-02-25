@@ -175,6 +175,46 @@ local mappings = {
         end,
         desc = "Tea Create Pull Request",
     },
+    {
+        "<leader>ji",
+        function()
+            require("jira").open_jira_issues()
+        end,
+        desc = "Jira open issues in current sprint",
+    },
+    {
+        "<leader>jj",
+        function()
+            require("jira").open_jira_issues {
+                issues = {
+                    args = {
+                        "issue",
+                        "list",
+                        "-q",
+                        "assignee in membersOf('Технический департамент :: Команда K8S') AND sprint IS EMPTY and status=Open",
+                    },
+                    filters = { "-s~closed", "-s~done" },
+                    -- prefill_search = "your-username",
+                },
+            }
+        end,
+        desc = "Jira open issues in current sprint",
+    },
+    {
+        "<leader>jc",
+        function()
+            require("jira").create_issue()
+        end,
+        desc = "Create Jira Issue",
+    },
+    {
+        "<leader>je",
+        function()
+            require("jira").open_jira_epic()
+        end,
+        desc = "Jira open issues in current sprint",
+    },
+
     -- }}}
 }
 return {
@@ -183,6 +223,7 @@ return {
         {
             -- Uncommend for development
             dir = "~/git_priv/snacks-tea.nvim/",
+            -- "sbulav/snacks-tea.nvim",
         },
     },
     priority = 1000,
@@ -320,6 +361,7 @@ return {
         picker = {
             ui_select = true, -- replace `vim.ui.select` with the snacks picker
 
+            db = { sqlite3_path = "/home/sab/.local/lib/libsqlite3.so" },
             layout = { preset = "telescope", reverse = true },
             win = {
                 -- input window
