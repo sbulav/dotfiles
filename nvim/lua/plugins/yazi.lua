@@ -6,21 +6,30 @@
 ---@type LazySpec
 return {
     "mikavilpas/yazi.nvim",
+    version = "v13.1.4",
     dependencies = {
         "nvim-lua/plenary.nvim",
     },
     event = "VeryLazy",
     keys = {
-        -- 👇 in this section, choose your own keymappings!
         {
             "<F3>",
             function()
                 require("yazi").yazi()
-                -- FIXME: avoid messages each time when openint yazi on mac
-                print "yazi opened"
             end,
             desc = "Open the file manager",
         },
+        {
+            "<leader>cw",
+            function()
+                require("yazi").yazi(nil, vim.fn.getcwd())
+            end,
+            desc = "Open the file manager in nvim's working directory",
+        },
+    },
+    ---@type YaziConfig
+    opts = {
+        open_for_directories = false,
         keymaps = {
             show_help = "<f1>",
             open_file_in_vertical_split = "<c-v>",
@@ -32,17 +41,5 @@ return {
             copy_relative_path_to_selected_files = "<c-y>",
             send_to_quickfix_list = "<c-q>",
         },
-        {
-            -- Open in the current working directory
-            "<leader>cw",
-            function()
-                require("yazi").yazi(nil, vim.fn.getcwd())
-            end,
-            desc = "Open the file manager in nvim's working directory",
-        },
-    },
-    ---@type YaziConfig
-    opts = {
-        open_for_directories = false,
     },
 }
