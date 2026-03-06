@@ -1,53 +1,103 @@
 return {
-    { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
+    {
+        -- Keep around for occasional Treesitter debugging, but leave it off by default.
+        "nvim-treesitter/playground",
+        cmd = "TSPlaygroundToggle",
+        enabled = false,
+    },
 
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = "master",
         dependencies = {
             "HiPhish/rainbow-delimiters.nvim",
             "JoosepAlviste/nvim-ts-context-commentstring",
             "nvim-treesitter/nvim-treesitter-textobjects",
+            {
+                "windwp/nvim-ts-autotag",
+                opts = {
+                    opts = {
+                        enable_close = false,
+                        enable_rename = true,
+                        enable_close_on_slash = true,
+                    },
+                },
+            },
         },
-        cmd = { "TSUpdate" },
-        event = "BufRead",
-        build = function()
-            require("nvim-treesitter.install").update { with_sync = true }
-        end,
+        lazy = false,
+        build = ":TSUpdate",
         config = function()
+            local rainbow_delimiters = require "rainbow-delimiters"
+
+            vim.g.rainbow_delimiters = {
+                strategy = {
+                    [""] = rainbow_delimiters.strategy.global,
+                    ["vim"] = rainbow_delimiters.strategy["local"],
+                },
+                query = {
+                    [""] = "rainbow-delimiters",
+                    lua = "rainbow-blocks",
+                },
+                priority = {
+                    [""] = 110,
+                    lua = 210,
+                },
+            }
+
             require("nvim-treesitter.configs").setup {
                 ensure_installed = {
                     "bash",
                     "cmake",
-                    -- "comment", -- comments are slowing down TS bigtime, so disable for now
                     "diff",
+                    "dockerfile",
                     "fish",
+                    "gitcommit",
                     "gitignore",
                     "go",
+                    "gomod",
+                    "gosum",
+                    "gowork",
+                    "hcl",
                     "html",
                     "http",
                     "javascript",
                     "jsdoc",
+                    "json",
                     "jsonc",
                     "lua",
                     "markdown",
                     "markdown_inline",
+                    "nix",
                     "php",
                     "python",
                     "query",
                     "regex",
                     "toml",
+                    "tsx",
                     "typescript",
                     "vim",
+                    "vimdoc",
                     "yaml",
-                    "json",
-                    "dockerfile",
                     "terraform",
                 },
                 sync_install = false,
                 auto_install = true,
                 highlight = {
-                    enable = true, -- false will disable the whole extension
-                    disable = { "fugitive", "git", "help", "TelescopePrompt", "snacks_picker_input" },
+                    enable = true,
+                    additional_vim_regex_highlighting = false,
+                    disable = function(_, buf)
+                        local max_filesize = 512 * 1024
+                        local filetype = vim.bo[buf].filetype
+                        local buftype = vim.bo[buf].buftype
+                        local name = vim.api.nvim_buf_get_name(buf)
+                        local ok, stats = pcall(vim.loop.fs_stat, name)
+
+                        if buftype == "prompt" or filetype == "help" or filetype == "snacks_picker_input" then
+                            return true
+                        end
+
+                        return ok and stats and stats.size > max_filesize
+                    end,
                 },
                 incremental_selection = {
                     enable = true,
@@ -62,10 +112,8 @@ return {
                     -- FIXME: not working properly, starting newline one node higher
                     enable = false,
                 },
-                rainbow = {
+                autotag = {
                     enable = true,
-                    extended_mode = true,
-                    max_file_lines = 1500,
                 },
                 textobjects = {
                     select = {
