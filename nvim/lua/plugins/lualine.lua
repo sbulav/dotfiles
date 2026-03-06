@@ -101,7 +101,7 @@ local function lsp_progress(_, is_active)
         table.insert(parts, string.format("%d%% %s", m.percentage or 0, title))
     end
 
-    local ms = vim.loop.hrtime() / 1e6
+    local ms = vim.uv.hrtime() / 1e6
     local frame = math.floor(ms / 120) % #spinners + 1
     return table.concat(parts, "  ") .. " " .. spinners[frame]
 end

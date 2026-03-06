@@ -18,7 +18,7 @@ local function is_lower(char)
 end
 
 local function path_exists(path)
-    return vim.loop.fs_stat(path) and true or false
+    return vim.uv.fs_stat(path) and true or false
 end
 
 local function define_sign(name)

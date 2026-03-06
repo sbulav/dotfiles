@@ -1,6 +1,6 @@
 return {
     "lewis6991/gitsigns.nvim",
-    event = "VeryLazy",
+    event = "BufReadPre",
     config = function()
         require("gitsigns").setup {
             -- see also: autocmds.lua
