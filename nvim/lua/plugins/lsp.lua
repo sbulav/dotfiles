@@ -6,37 +6,23 @@ return {
         "neovim/nvim-lspconfig",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            "hrsh7th/nvim-cmp",
-            "hrsh7th/cmp-nvim-lsp",
-            "saghen/blink.cmp",
             "b0o/schemastore.nvim",
-            {
-                "folke/lazydev.nvim",
-                ft = "lua",
-                opts = {
-                    library = {
-                        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-                        { path = "snacks.nvim", words = { "Snacks" } },
-                    },
-                },
-            },
         },
         config = function()
-            local cmp_nvim_lsp = require "cmp_nvim_lsp"
-
             -- Common on_attach and capabilities
             local on_attach = function(client, bufnr)
                 require("lsp.utils").custom_on_init()
                 require("lsp.utils").custom_on_attach(client, bufnr)
             end
 
-            local capabilities = cmp_nvim_lsp.default_capabilities()
+            local function with_capabilities(extra)
+                return vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), extra or {})
+            end
 
             -- Helper function to setup servers with common config
             local function setup_server(name, opts)
                 opts = opts or {}
                 opts.on_attach = opts.on_attach or on_attach
-                opts.capabilities = opts.capabilities or capabilities
                 vim.lsp.config(name, opts)
                 vim.lsp.enable(name)
             end
@@ -57,7 +43,7 @@ return {
 
             -- YAML Language Server with schema support
             setup_server("yamlls", {
-                capabilities = vim.tbl_deep_extend("force", capabilities, {
+                capabilities = with_capabilities({
                     textDocument = {
                         foldingRange = {
                             dynamicRegistration = false,

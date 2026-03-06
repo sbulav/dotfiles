@@ -2,23 +2,13 @@ return {
     {
         "saghen/blink.cmp",
         event = "InsertEnter",
-        version = "v1.6.*",
+        version = "v1.9.1",
         dependencies = {
             {
-                "saghen/blink.compat",
-                version = "*",
-                lazy = true,
-                opts = {},
-            },
-            {
                 "L3MON4D3/LuaSnip",
-                version = "v2.*",
+                version = "v2.4.1",
                 event = "InsertEnter",
                 config = function()
-                    require("luasnip").config.setup {
-                        updateevents = "TextChanged,TextChangedI",
-                        store_selection_keys = "<Tab>",
-                    }
                     require "config.snippets"
                 end,
             },
@@ -57,7 +47,7 @@ return {
                     and vim.b.completion ~= false
             end,
             cmdline = {
-                sources = {}, -- Updated from sources.cmdline to cmdline.sources
+                enabled = false,
             },
             sources = {
                 default = { "lsp", "path", "snippets", "buffer" },
@@ -73,35 +63,23 @@ return {
                     border = "rounded",
                     min_width = 20,
                     draw = {
-                        align_to = "kind_icon",
-                        padding = { 1, 0 },
                         columns = {
                             { "label", "label_description", gap = 1 },
-                            { "kind_icon", gap = 1 },
+                            { "kind_icon", "kind", gap = 1 },
+                            { "source_name" },
                         },
                         components = {
-                            label = { width = { fill = true } },
-                            label_description = { width = { fill = true } },
-                            kind_icon = {
-                                ellipsis = false,
-                                width = { fill = true },
+                            source_name = {
                                 text = function(ctx)
-                                    local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
-                                    local source_formatted = ({
-                                        Buffer = "[Buffer]",
-                                        LSP = "[LSP]",
-                                        TreeSitter = "[TS]",
-                                        Path = "[Path]",
-                                        Snippets = "[Snippet]",
-                                    })[ctx.item.source_name]
-                                    if not source_formatted then
-                                        source_formatted = ctx.item.source_name
-                                    end
-                                    return kind_icon .. " " .. source_formatted
-                                end,
-                                highlight = function(ctx)
-                                    local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-                                    return hl
+                                    local names = {
+                                        buffer = "[Buffer]",
+                                        lsp = "[LSP]",
+                                        path = "[Path]",
+                                        snippets = "[Snippet]",
+                                        lazydev = "[Lua]",
+                                    }
+
+                                    return names[ctx.source_id] or ("[" .. ctx.source_name .. "]")
                                 end,
                             },
                         },
@@ -115,6 +93,7 @@ return {
                         border = "rounded",
                     },
                     auto_show = true,
+                    auto_show_delay_ms = 300,
                 },
                 ghost_text = {
                     enabled = true,
