@@ -1,6 +1,7 @@
 local M = {}
 local utils = require "utils"
 local highlight_group = vim.api.nvim_create_augroup("user_lsp_document_highlight", { clear = false })
+local diagnostic_float = { border = "rounded", source = "if_many", scope = "line" }
 
 local function format_buffer()
     local conform_ok, conform = pcall(require, "conform")
@@ -12,7 +13,7 @@ local function format_buffer()
 
     local clients = vim.lsp.get_clients { bufnr = 0 }
     for _, client in ipairs(clients) do
-        if client.supports_method "textDocument/formatting" then
+        if client:supports_method "textDocument/formatting" then
             vim.lsp.buf.format { async = true }
             return
         end
@@ -59,17 +60,23 @@ function M.custom_on_attach(client, bufnr)
     -- goto_definition
     vim.keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<CR>", attach_opts)
     -- show line diagnostic
-    vim.keymap.set("n", "ge", "<cmd>Lspsaga show_line_diagnostics<CR>", attach_opts)
+    vim.keymap.set("n", "ge", function()
+        vim.diagnostic.open_float(nil, diagnostic_float)
+    end, attach_opts)
     -- Diagnostic jump
     -- You can use <C-o> to jump back to your previous location
-    vim.keymap.set("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", attach_opts)
-    vim.keymap.set("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", attach_opts)
+    vim.keymap.set("n", "[e", function()
+        vim.diagnostic.jump { count = -1, float = diagnostic_float }
+    end, attach_opts)
+    vim.keymap.set("n", "]e", function()
+        vim.diagnostic.jump { count = 1, float = diagnostic_float }
+    end, attach_opts)
 
     -- Server capabilities spec:
     -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#serverCapabilities
     -- print(dump(client.server_capabilities))
 
-    if client.supports_method "textDocument/documentHighlight" then
+    if client:supports_method "textDocument/documentHighlight" then
         vim.api.nvim_clear_autocmds { buffer = bufnr, group = highlight_group }
         vim.api.nvim_create_autocmd("CursorHold", {
             callback = vim.lsp.buf.document_highlight,
@@ -85,8 +92,8 @@ function M.custom_on_attach(client, bufnr)
         })
     end
 
-    if client.supports_method "textDocument/codeAction" then
-        vim.keymap.set("n", "<leader>ga", "<cmd>Lspsaga code_action<CR>", attach_opts)
+    if client:supports_method "textDocument/codeAction" then
+        vim.keymap.set({ "n", "v" }, "<leader>ga", vim.lsp.buf.code_action, attach_opts)
     end
 end
 
