@@ -156,3 +156,15 @@ end, attach_opts)
 -- Paste before/after linewise
 vim.keymap.set({ "n", "x" }, "[p", '<Cmd>exe "put! " . v:register<CR>', { desc = "Paste Above" })
 vim.keymap.set({ "n", "x" }, "]p", '<Cmd>exe "put "  . v:register<CR>', { desc = "Paste Below" })
+
+vim.keymap.set("n", "<leader>mq", function()
+    require("utils.marks").marks_to_quickfix_list()
+end, { desc = "Tracked Marks Quickfix" })
+
+vim.keymap.set("n", "]m", function()
+    require("utils.marks").next()
+end, { desc = "Next Tracked Mark" })
+
+vim.keymap.set("n", "[m", function()
+    require("utils.marks").prev()
+end, { desc = "Previous Tracked Mark" })

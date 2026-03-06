@@ -179,9 +179,9 @@ local mappings = {
     {
         "<leader>fM",
         function()
-            Snacks.picker.marks()
+            require("utils.marks").picker()
         end,
-        desc = "Marks",
+        desc = "Tracked Marks",
     },
     {
         "<leader>tp",
