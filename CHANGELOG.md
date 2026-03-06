@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.3.0](https://github.com/sbulav/dotfiles/compare/v5.2.0...v5.3.0) (2026-03-06)
+
+
+### Features
+
+* **jira.nvim:** add new plugin ([1ba247e](https://github.com/sbulav/dotfiles/commit/1ba247e58f3c6da7455bafc4db206b00641cfc9f))
+* remove jira.nvim ([a812732](https://github.com/sbulav/dotfiles/commit/a81273288960839a1e51de6a71aed69926d06df1))
+
 ## [5.2.0](https://github.com/sbulav/dotfiles/compare/v5.1.0...v5.2.0) (2026-01-29)
 
 
