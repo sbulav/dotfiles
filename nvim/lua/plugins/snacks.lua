@@ -32,7 +32,7 @@ local mappings = {
     {
         "<leader>fr",
         function()
-            Snacks.picker.grep { cwd = Snacks.git.get_root(path), title = "Grep in Git root" }
+            Snacks.picker.grep { cwd = Snacks.git.get_root(), title = "Grep in Git root" }
         end,
         desc = "Grep in Git root",
     }, -- }}}
@@ -275,6 +275,7 @@ return {
         quickfile = { enabled = true },
         scroll = { enabled = false },
         statuscolumn = { enabled = false },
+        terminal = { enabled = true },
         words = { enabled = false },
         notifier = { -- {{{
             enabled = true,

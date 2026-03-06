@@ -1,6 +1,10 @@
 local attach_opts = { silent = true }
 local utils = require "utils"
 
+local function toggle_terminal(opts)
+    Snacks.terminal.toggle(nil, opts)
+end
+
 local function url_repo()
     local cursorword = vim.fn.expand "<cfile>"
     if string.find(cursorword, "^[a-zA-Z0-9-_.]*/[a-zA-Z0-9-_.]*$") then
@@ -72,11 +76,27 @@ vim.keymap.set("n", "K", function()
     Show_documentation()
 end, attach_opts)
 
-vim.keymap.set({ "n", "t" }, "<Space>t9", function()
-    _K9S_TOGGLE()
+vim.keymap.set({ "n", "t" }, "<C-\\>", function()
+    toggle_terminal {
+        count = 1,
+        win = {
+            position = "right",
+            width = 0.4,
+        },
+    }
 end, attach_opts)
 
-vim.keymap.set({ "n", "t" }, "<M-\\>", "<cmd>ToggleTerm direction=float<CR>", attach_opts)
+vim.keymap.set({ "n", "t" }, "<M-\\>", function()
+    toggle_terminal {
+        count = 2,
+        win = {
+            position = "float",
+            border = "rounded",
+            width = 0.9,
+            height = 0.9,
+        },
+    }
+end, attach_opts)
 
 --- luasnip keymappings
 vim.keymap.set({ "i", "s" }, "<c-x>", function()
