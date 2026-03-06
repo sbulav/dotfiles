@@ -1,37 +1,53 @@
-vim.api.nvim_create_augroup("Highlight", { clear = true })
+local highlight_group = vim.api.nvim_create_augroup("Highlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-    command = "silent! lua vim.highlight.on_yank({higroup='IncSearch', timeout=1500, on_visual = true})",
-    group = "Highlight",
+    group = highlight_group,
     desc = "Highlight yanked text",
+    callback = function()
+        vim.hl.on_yank { higroup = "IncSearch", timeout = 1500, on_visual = true }
+    end,
 })
 
-vim.api.nvim_create_augroup("CursorInsertMode", { clear = true })
+local cursorline_group = vim.api.nvim_create_augroup("CursorInsertMode", { clear = true })
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
-    callback = function()
-        vim.opt.cursorline = true
-    end,
-    group = "CursorInsertMode",
+    group = cursorline_group,
     desc = "Enable cursorline in normal mode",
+    callback = function()
+        vim.wo.cursorline = true
+    end,
 })
 vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
-    callback = function()
-        vim.opt.cursorline = false
-    end,
-    group = "CursorInsertMode",
+    group = cursorline_group,
     desc = "Disable cursorline on insert",
+    callback = function()
+        vim.wo.cursorline = false
+    end,
 })
 
-vim.api.nvim_create_augroup("RestoreCursorPosition", { clear = true })
+local restore_cursor_group = vim.api.nvim_create_augroup("RestoreCursorPosition", { clear = true })
 vim.api.nvim_create_autocmd("BufReadPost", {
-    callback = function()
-        -- TODO?: filetype/buftype exclude
-        local row, col = unpack(vim.api.nvim_buf_get_mark(0, '"'))
-        if row > 0 and row <= vim.api.nvim_buf_line_count(0) then
-            vim.api.nvim_win_set_cursor(0, { row, col })
+    group = restore_cursor_group,
+    desc = "Return to last known cursor position",
+    callback = function(args)
+        local buf = args.buf
+        if vim.bo[buf].buftype ~= "" then
+            return
+        end
+
+        local ignored_filetypes = {
+            gitcommit = true,
+            gitrebase = true,
+            svn = true,
+        }
+        if ignored_filetypes[vim.bo[buf].filetype] then
+            return
+        end
+
+        local mark = vim.api.nvim_buf_get_mark(buf, '"')
+        local row, col = mark[1], mark[2]
+        if row > 0 and row <= vim.api.nvim_buf_line_count(buf) then
+            pcall(vim.api.nvim_win_set_cursor, 0, { row, col })
         end
     end,
-    desc = "Return to last known cursor position",
-    group = "RestoreCursorPosition",
 })
 -- vim.api.nvim_create_augroup("ValidateJenkinsfiles", { clear = true })
 -- vim.api.nvim_create_autocmd("BufWritePre", {
@@ -44,33 +60,28 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 --     pattern = "*enkinsfile*",
 -- })
 --
-vim.api.nvim_create_augroup("ValidateGitlabCIfiles", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePre", {
-    callback = function()
-        require("validate-gitlab-ci.validate-gitlab-ci").validate()
-    end,
-    group = "ValidateGitlabCIfiles",
-    desc = "Validate Gitlab CI  files on save",
-    pattern = ".gitlab-ci.yml",
-})
-
-vim.api.nvim_create_augroup("ConfugureLuaBo", { clear = true })
-vim.api.nvim_create_autocmd("BufRead", {
-    callback = function()
-        vim.bo.include = [[\v<((do|load)file|require)[^''"]*[''"]\zs[^''"]+]]
-        vim.bo.includeexpr = "v:lua.require'utils'.include_expr(v:fname)"
-    end,
-    group = "ConfugureLuaBo",
-    desc = "Configure Lua Buffer opts on Read",
+local lua_buffer_group = vim.api.nvim_create_augroup("ConfigureLuaBufferOptions", { clear = true })
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+    group = lua_buffer_group,
+    desc = "Configure Lua buffer options",
     pattern = "*.lua",
+    callback = function(args)
+        vim.bo[args.buf].include = [[\v<((do|load)file|require)[^''"]*[''"]\zs[^''"]+]]
+        vim.bo[args.buf].includeexpr = "v:lua.require'utils'.include_expr(v:fname)"
+    end,
 })
 
-vim.api.nvim_create_augroup("MiniIndentScope", { clear = true })
+local mini_indent_group = vim.api.nvim_create_augroup("MiniIndentScope", { clear = true })
 vim.api.nvim_create_autocmd({ "BufEnter", "TermOpen" }, {
-    desc = "Disable indent scope for conent types",
-    group = "MiniIndentScope",
-    callback = function()
-        vim.b.miniindentscope_disable = vim.tbl_contains({ "help", "terminal", "nofile", "prompt" }, vim.bo.buftype)
+    group = mini_indent_group,
+    desc = "Disable indent scope for special buffers",
+    callback = function(args)
+        local buf = args.buf
+        local buftype = vim.bo[buf].buftype
+        local filetype = vim.bo[buf].filetype
+        vim.b[buf].miniindentscope_disable = buftype == "prompt"
+            or vim.tbl_contains({ "help", "terminal", "nofile" }, buftype)
+            or filetype == "snacks_picker_input"
     end,
 })
 
