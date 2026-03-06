@@ -182,39 +182,6 @@ local mappings = {
         end,
         desc = "Jira open issues in current sprint",
     },
-    {
-        "<leader>jj",
-        function()
-            require("jira").open_jira_issues {
-                issues = {
-                    args = {
-                        "issue",
-                        "list",
-                        "-q",
-                        "assignee in membersOf('Технический департамент :: Команда K8S') AND sprint IS EMPTY and status=Open",
-                    },
-                    filters = { "-s~closed", "-s~done" },
-                    -- prefill_search = "your-username",
-                },
-            }
-        end,
-        desc = "Jira open issues in current sprint",
-    },
-    {
-        "<leader>jc",
-        function()
-            require("jira").create_issue()
-        end,
-        desc = "Create Jira Issue",
-    },
-    {
-        "<leader>je",
-        function()
-            require("jira").open_jira_epic()
-        end,
-        desc = "Jira open issues in current sprint",
-    },
-
     -- }}}
 }
 return {
