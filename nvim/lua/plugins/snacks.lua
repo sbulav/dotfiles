@@ -5,6 +5,35 @@ local function footer()
     return string.format(" v%d.%d.%d %s  %s", v.major, v.minor, v.patch, platform, datetime)
 end
 
+local function setup_notifier_integrations()
+    local group = vim.api.nvim_create_augroup("user_snacks_notifier", { clear = true })
+
+    vim.api.nvim_create_autocmd("LspProgress", {
+        group = group,
+        desc = "Show LSP progress in Snacks notifier",
+        callback = function(ev)
+            local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+            vim.notify(vim.lsp.status(), vim.log.levels.INFO, {
+                id = "lsp_progress",
+                title = "LSP Progress",
+                opts = function(notif)
+                    notif.icon = ev.data.params.value.kind == "end" and " "
+                        or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
+                end,
+            })
+        end,
+    })
+
+    if vim.fn.exists(":Notifications") == 0 then
+        vim.api.nvim_create_user_command("Notifications", function()
+            Snacks.notifier.show_history()
+        end, {
+            nargs = 0,
+            desc = "Show Snacks notification history",
+        })
+    end
+end
+
 local mappings = {
     -- Grep
     -- {{{
@@ -175,13 +204,6 @@ local mappings = {
         end,
         desc = "Tea Create Pull Request",
     },
-    {
-        "<leader>ji",
-        function()
-            require("jira").open_jira_issues()
-        end,
-        desc = "Jira open issues in current sprint",
-    },
     -- }}}
 }
 return {
@@ -195,15 +217,9 @@ return {
     },
     priority = 1000,
     lazy = false,
-    cmd = { "TeaPR", "TeaPRCreate", "TeaHealth" }, -- Added: Auto-load on these cmds
     keys = mappings,
     init = function()
-        vim.schedule(function()
-            local ok, tea = pcall(require, "snacks.tea")
-            if ok then
-                tea.setup() -- Force early setup
-            end
-        end)
+        setup_notifier_integrations()
     end,
     opts = {
         forgejo = {
@@ -304,27 +320,6 @@ return {
             top_down = true, -- place notifications from top to bottom
             date_format = "%R", -- time format for notifications
             refresh = 50, -- refresh at most every 50ms
-
-            -- LSP progress notification
-            vim.api.nvim_create_autocmd("LspProgress", {
-                ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
-                callback = function(ev)
-                    local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
-                    vim.notify(vim.lsp.status(), "info", {
-                        id = "lsp_progress",
-                        title = "LSP Progress",
-                        opts = function(notif)
-                            notif.icon = ev.data.params.value.kind == "end" and " "
-                                or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
-                        end,
-                    })
-                end,
-            }),
-            vim.api.nvim_create_user_command("Notifications", function()
-                Snacks.notifier.show_history()
-            end, {
-                nargs = 0,
-            }),
         }, -- }}}
         picker = {
             ui_select = true, -- replace `vim.ui.select` with the snacks picker
@@ -336,86 +331,27 @@ return {
                 input = {
                     keys = {
                         ["<Esc>"] = "close",
-                        -- to close the picker on ESC instead of going to normal mode,
-                        -- add the following keymap to your config
-                        -- ["<Esc>"] = { "close", mode = { "n", "i" } },
-                        ["<CR>"] = { "confirm", mode = { "n", "i" } },
-                        ["G"] = "list_bottom",
-                        ["gg"] = "list_top",
-                        ["j"] = "list_down",
-                        ["k"] = "list_up",
-                        ["/"] = "toggle_focus",
                         ["q"] = "close",
-                        ["c-q"] = "close",
-                        ["?"] = "toggle_help",
-                        ["<a-d>"] = { "inspect", mode = { "n", "i" } },
-                        ["<c-a>"] = { "select_all", mode = { "n", "i" } },
-                        ["<a-m>"] = { "toggle_maximize", mode = { "i", "n" } },
-                        ["<a-p>"] = { "toggle_preview", mode = { "i", "n" } },
-                        ["<a-w>"] = { "cycle_win", mode = { "i", "n" } },
-                        ["<C-w>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
-                        ["<C-Up>"] = { "history_back", mode = { "i", "n" } },
-                        ["<C-Down>"] = { "history_forward", mode = { "i", "n" } },
-                        ["<Tab>"] = { "select_and_next", mode = { "i", "n" } },
-                        ["<S-Tab>"] = { "select_and_prev", mode = { "i", "n" } },
-                        ["<Down>"] = { "list_down", mode = { "i", "n" } },
-                        ["<Up>"] = { "list_up", mode = { "i", "n" } },
-                        ["<c-j>"] = { "list_down", mode = { "i", "n" } },
-                        ["<c-k>"] = { "list_up", mode = { "i", "n" } },
-                        ["<c-n>"] = { "list_down", mode = { "i", "n" } },
-                        ["<c-p>"] = { "list_up", mode = { "i", "n" } },
+                        ["?"] = "toggle_help_input",
                         ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
                         ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
-                        ["<PageUp>"] = { "list_scroll_up", mode = { "i", "n" } },
-                        ["<PageDown>"] = { "list_scroll_down", mode = { "i", "n" } },
-                        ["<c-g>"] = { "toggle_live", mode = { "i", "n" } },
-                        ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
-                        ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
-                        ["<c-q>"] = { "qflist", mode = { "i", "n" } },
-                        ["<a-i>"] = { "toggle_ignored", mode = { "i", "n" } },
                         ["<a-.>"] = { "toggle_hidden", mode = { "i", "n" } },
                     },
                 },
                 -- result list window
                 list = {
                     keys = {
-                        ["<CR>"] = "confirm",
-                        ["gg"] = "list_top",
-                        ["G"] = "list_bottom",
-                        ["i"] = "focus_input",
-                        ["j"] = "list_down",
-                        ["k"] = "list_up",
                         ["q"] = "close",
                         ["Q"] = "close",
-                        ["<Tab>"] = "select_and_next",
-                        ["<S-Tab>"] = "select_and_prev",
-                        ["<Down>"] = "list_down",
-                        ["<Up>"] = "list_up",
-                        ["<a-d>"] = "inspect",
                         ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
                         ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
-                        ["<PageUp>"] = { "list_scroll_up", mode = { "i", "n" } },
-                        ["<PageDown>"] = { "list_scroll_down", mode = { "i", "n" } },
-                        ["/"] = "toggle_focus",
-                        ["<c-a>"] = "select_all",
-                        ["<c-v>"] = "edit_vsplit",
-                        ["<c-s>"] = "edit_split",
-                        ["<c-j>"] = "list_down",
-                        ["<c-k>"] = "list_up",
-                        ["<c-n>"] = "list_down",
-                        ["<c-p>"] = "list_up",
-                        ["<a-w>"] = "cycle_win",
-                        ["<Esc>"] = "close",
+                        ["?"] = "toggle_help_list",
                     },
                 },
                 -- preview window
                 preview = {
                     keys = {
-                        ["<Esc>"] = "close",
-                        ["q"] = "close",
                         ["Q"] = "close",
-                        ["i"] = "focus_input",
-                        ["<a-w>"] = "cycle_win",
                     },
                 },
             },
