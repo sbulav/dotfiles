@@ -112,9 +112,6 @@ return {
                     -- FIXME: not working properly, starting newline one node higher
                     enable = false,
                 },
-                autotag = {
-                    enable = true,
-                },
                 textobjects = {
                     select = {
                         enable = true,
