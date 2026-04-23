@@ -1,5 +1,21 @@
 # Changelog
 
+## [5.3.0](https://github.com/sbulav/dotfiles/compare/v5.2.0...v5.3.0) (2026-04-23)
+
+
+### Features
+
+* **jira-oil:** add jira-oil plugin ([e155c58](https://github.com/sbulav/dotfiles/commit/e155c585e29b39beb25b6655adb7b2bfd771c741))
+* **jira.nvim:** add new plugin ([1ba247e](https://github.com/sbulav/dotfiles/commit/1ba247e58f3c6da7455bafc4db206b00641cfc9f))
+* remove jira.nvim ([a812732](https://github.com/sbulav/dotfiles/commit/a81273288960839a1e51de6a71aed69926d06df1))
+
+
+### Bug Fixes
+
+* actualize git-clean ([f202b80](https://github.com/sbulav/dotfiles/commit/f202b809f095fbac23f7eea7dc3cf929cd415977))
+* **autotags:** remove deprecated config ([8a09772](https://github.com/sbulav/dotfiles/commit/8a09772d19de930fcd4de37b4bb1ab3e77acba95))
+* move to github security scanning ([306e3ee](https://github.com/sbulav/dotfiles/commit/306e3ee737c05df38c32b716ff1af950196034d9))
+
 ## [5.2.0](https://github.com/sbulav/dotfiles/compare/v5.1.0...v5.2.0) (2026-01-29)
 
 
