@@ -144,7 +144,10 @@ return {
         lazy = false,
         build = function()
             local treesitter = require "nvim-treesitter"
-            treesitter.install(ensure_installed, { summary = true }):wait(300000)
+            -- force = true recompiles even when the locked revision is unchanged,
+            -- so parsers can't lag behind Neovim's bundled queries after an upgrade
+            -- (a stale parser triggers "Invalid node type" query errors otherwise).
+            treesitter.install(ensure_installed, { force = true, summary = true }):wait(300000)
             treesitter.update(ensure_installed, { summary = true }):wait(300000)
         end,
         config = function()
