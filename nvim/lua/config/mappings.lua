@@ -121,20 +121,58 @@ vim.keymap.set("n", "<Space>yn", function()
     vim.fn.setreg("+", filename)
 end, attach_opts)
 
-local function yank_nodepath()
-    local ft = vim.bo.ft
-    if ft == "yaml" or ft == "helm" then
-        return require("utils.yaml").statusline()
-    else
-        return "Not in YAML or JSON!"
+-- Resolve the PR URL for the current branch, dispatching on the remote host:
+-- GitHub remotes use `gh`, everything else is treated as Forgejo/Gitea via `tea`.
+local function current_pr_url()
+    local function trim(s)
+        return (s:gsub("%s+$", ""))
     end
+
+    local remote = trim(vim.fn.system "git remote get-url origin")
+    if vim.v.shell_error ~= 0 or remote == "" then
+        return nil, "Not a git repo or no 'origin' remote"
+    end
+
+    if remote:match "github%.com" then
+        local url = trim(vim.fn.system "gh pr view --json url --jq .url")
+        if vim.v.shell_error ~= 0 or url == "" then
+            return nil, "No GitHub PR for the current branch"
+        end
+        return url
+    end
+
+    -- Forgejo/Gitea: tea has no "current branch" shortcut, so match the open PR
+    -- whose head branch equals the current branch.
+    local branch = trim(vim.fn.system "git branch --show-current")
+    if branch == "" then
+        return nil, "Detached HEAD: no current branch"
+    end
+
+    local out = vim.fn.system "tea pr ls --output json --fields head,url --state all --limit 100"
+    if vim.v.shell_error ~= 0 then
+        return nil, "tea pr ls failed: " .. trim(out)
+    end
+
+    local ok, prs = pcall(vim.json.decode, out)
+    if ok and type(prs) == "table" then
+        for _, pr in ipairs(prs) do
+            if pr.head == branch then
+                return pr.url
+            end
+        end
+    end
+
+    return nil, "No Forgejo PR for branch '" .. branch .. "'"
 end
 
 vim.keymap.set("n", "<Space>yp", function()
-    local path = yank_nodepath()
-    print(path)
-    utils.info("Yanking current " .. vim.bo.ft .. "path: " .. path, "INFO")
-    vim.fn.setreg("+", path)
+    local url, err = current_pr_url()
+    if not url then
+        utils.error(err, "Yank PR")
+        return
+    end
+    vim.fn.setreg("+", url)
+    utils.info("Yanked PR: " .. url, "Yank PR")
 end, attach_opts)
 
 vim.keymap.set("n", "<Space>yb", function()
