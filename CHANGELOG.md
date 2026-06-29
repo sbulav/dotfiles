@@ -1,5 +1,27 @@
 # Changelog
 
+## [5.3.0](https://github.com/sbulav/dotfiles/compare/v5.2.0...v5.3.0) (2026-06-29)
+
+
+### Features
+
+* add codex proxy ([4351c9e](https://github.com/sbulav/dotfiles/commit/4351c9e5ba97c3af0ea4e157eddb8b29674322f8))
+* **fish:** use gpg-agent as ssh agent ([0eb728d](https://github.com/sbulav/dotfiles/commit/0eb728d069cfceb766c45158a3b21ae0862ff931))
+* **jira-oil:** add jira-oil plugin ([e155c58](https://github.com/sbulav/dotfiles/commit/e155c585e29b39beb25b6655adb7b2bfd771c741))
+* **jira.nvim:** add new plugin ([1ba247e](https://github.com/sbulav/dotfiles/commit/1ba247e58f3c6da7455bafc4db206b00641cfc9f))
+* make yp yank pr number ([cf3a0c6](https://github.com/sbulav/dotfiles/commit/cf3a0c6ea3e7965514f5765096709f0e1bd185df))
+* remove jira.nvim ([a812732](https://github.com/sbulav/dotfiles/commit/a81273288960839a1e51de6a71aed69926d06df1))
+
+
+### Bug Fixes
+
+* actualize git-clean ([f202b80](https://github.com/sbulav/dotfiles/commit/f202b809f095fbac23f7eea7dc3cf929cd415977))
+* **autotags:** remove deprecated config ([8a09772](https://github.com/sbulav/dotfiles/commit/8a09772d19de930fcd4de37b4bb1ab3e77acba95))
+* bugs in git-clean ([26cac24](https://github.com/sbulav/dotfiles/commit/26cac24537c0cdcd554191723fea8b0f4c9905b1))
+* force treesitter recompile ([856d85e](https://github.com/sbulav/dotfiles/commit/856d85e0f92fe91f0efabfd3bc2f73acab93a155))
+* move to github security scanning ([306e3ee](https://github.com/sbulav/dotfiles/commit/306e3ee737c05df38c32b716ff1af950196034d9))
+* **treesitter:** adapt to 0.12 ([5896768](https://github.com/sbulav/dotfiles/commit/5896768226687d8fe7f7ccc6068e3227626358ac))
+
 ## [5.2.0](https://github.com/sbulav/dotfiles/compare/v5.1.0...v5.2.0) (2026-01-29)
 
 
