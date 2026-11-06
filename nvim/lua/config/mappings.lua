@@ -37,7 +37,7 @@ local keyword_program = function(word)
         local ok = pcall(vim.cmd, string.format("help %s", word))
 
         if not ok then
-            local split_word = vim.split(word, ".", true)
+            local split_word = vim.split(word, ".", { plain = true })
             ok = pcall(vim.cmd, string.format("help %s", split_word[#split_word]))
         end
 
