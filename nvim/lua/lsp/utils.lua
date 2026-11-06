@@ -1,5 +1,4 @@
 local M = {}
-local utils = require "utils"
 local highlight_group = vim.api.nvim_create_augroup("user_lsp_document_highlight", { clear = false })
 local diagnostic_float = { border = "rounded", source = "if_many", scope = "line" }
 
@@ -95,11 +94,6 @@ function M.custom_on_attach(client, bufnr)
     if client:supports_method "textDocument/codeAction" then
         vim.keymap.set({ "n", "v" }, "<leader>ga", vim.lsp.buf.code_action, attach_opts)
     end
-end
-
-function M.custom_on_init()
-    -- print "Language Server Protocol started!"
-    utils.info("Language Server Protocol started!", "LSP")
 end
 
 return M

@@ -41,7 +41,6 @@ return {
             })
 
             local function on_attach(client, bufnr)
-                require("lsp.utils").custom_on_init()
                 require("lsp.utils").custom_on_attach(client, bufnr)
             end
 
