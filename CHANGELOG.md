@@ -1,5 +1,34 @@
 # Changelog
 
+## [5.3.0](https://github.com/sbulav/dotfiles/compare/v5.2.0...v5.3.0) (2026-11-06)
+
+
+### Features
+
+* add codex proxy ([4351c9e](https://github.com/sbulav/dotfiles/commit/4351c9e5ba97c3af0ea4e157eddb8b29674322f8))
+* **fish:** use gpg-agent as ssh agent ([0eb728d](https://github.com/sbulav/dotfiles/commit/0eb728d069cfceb766c45158a3b21ae0862ff931))
+* **jira-oil:** add jira-oil plugin ([e155c58](https://github.com/sbulav/dotfiles/commit/e155c585e29b39beb25b6655adb7b2bfd771c741))
+* **jira.nvim:** add new plugin ([1ba247e](https://github.com/sbulav/dotfiles/commit/1ba247e58f3c6da7455bafc4db206b00641cfc9f))
+* make yp yank pr number ([cf3a0c6](https://github.com/sbulav/dotfiles/commit/cf3a0c6ea3e7965514f5765096709f0e1bd185df))
+* **nvim:** restore option defaults and fold with treesitter ([4ab10df](https://github.com/sbulav/dotfiles/commit/4ab10df7b93540a022b2e5d185245e2fe322e1f8)), closes [#113](https://github.com/sbulav/dotfiles/issues/113)
+* remove jira.nvim ([a812732](https://github.com/sbulav/dotfiles/commit/a81273288960839a1e51de6a71aed69926d06df1))
+
+
+### Bug Fixes
+
+* actualize git-clean ([f202b80](https://github.com/sbulav/dotfiles/commit/f202b809f095fbac23f7eea7dc3cf929cd415977))
+* **autotags:** remove deprecated config ([8a09772](https://github.com/sbulav/dotfiles/commit/8a09772d19de930fcd4de37b4bb1ab3e77acba95))
+* bugs in git-clean ([26cac24](https://github.com/sbulav/dotfiles/commit/26cac24537c0cdcd554191723fea8b0f4c9905b1))
+* codex is now chatgpt ([5129079](https://github.com/sbulav/dotfiles/commit/5129079bbba07471a7a2360716f7da01e5fe5075))
+* force treesitter recompile ([856d85e](https://github.com/sbulav/dotfiles/commit/856d85e0f92fe91f0efabfd3bc2f73acab93a155))
+* move to github security scanning ([306e3ee](https://github.com/sbulav/dotfiles/commit/306e3ee737c05df38c32b716ff1af950196034d9))
+* **nvim:** apply schemastore and nixd settings without on_new_config ([6d2ae87](https://github.com/sbulav/dotfiles/commit/6d2ae87c327e69c2f18c3925b941811f7bb2d7e3)), closes [#109](https://github.com/sbulav/dotfiles/issues/109)
+* **nvim:** put tracked marks on ]m/[m and functions on ]f/[f ([4db242d](https://github.com/sbulav/dotfiles/commit/4db242d12b78329c47b0af9cf18eedd656d7ee73)), closes [#114](https://github.com/sbulav/dotfiles/issues/114)
+* **nvim:** repair keymap.vim mappings and drop dead bindings ([593643a](https://github.com/sbulav/dotfiles/commit/593643a50cd92b687d14ab00b5d733482c898056)), closes [#111](https://github.com/sbulav/dotfiles/issues/111)
+* **nvim:** repair utils helpers and snippet definitions ([747f59b](https://github.com/sbulav/dotfiles/commit/747f59b8ab9c71f9469c7bead2263075435ffc36)), closes [#110](https://github.com/sbulav/dotfiles/issues/110)
+* **nvim:** resolve keymap conflicts and duplicate LSP notifications ([59fd616](https://github.com/sbulav/dotfiles/commit/59fd6166db41806b1458c1e5ef21c0bbd5453261)), closes [#114](https://github.com/sbulav/dotfiles/issues/114)
+* **treesitter:** adapt to 0.12 ([5896768](https://github.com/sbulav/dotfiles/commit/5896768226687d8fe7f7ccc6068e3227626358ac))
+
 ## [5.2.0](https://github.com/sbulav/dotfiles/compare/v5.1.0...v5.2.0) (2026-01-29)
 
 
