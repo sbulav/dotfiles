@@ -4,13 +4,8 @@ vim.g.maplocalleader = " "
 local globals = {
     -- Fix vim sandwitch overriding sentence text object
     textobj_sandwich_no_default_key_mappings = 1,
-    -- Deactivate plugins I don't use
-    loaded_netrwPlugin = 1,
+    -- Deactivate plugins I don't use (others are disabled via lazy.nvim performance.rtp.disabled_plugins)
     loaded_tutor_mode_plugin = 1,
-    loaded_tarPlugin = 1,
-    loaded_zipPlugin = 1,
-    loaded_gzip = 1,
-    loaded_2html_plugin = 1,
     markdown_recommended_style = 0,
     did_install_default_menus = 1,
     did_install_syntax_menu = 1,
@@ -82,6 +77,7 @@ local options = {
     hidden = true, -- Do not close the buffers, hide them
     history = 1000, -- Remember more commands and search history
     undolevels = 1000, -- Remember more levels of undo
+    undofile = true, -- Persist undo history (undodir defaults to stdpath("state")/undo)
     -- noerrorbells = true,        -- No buzz on error
     -- novisualbell = true,        -- No 'visual buzz' on error
     -- t_vb = "",                  -- Same as above

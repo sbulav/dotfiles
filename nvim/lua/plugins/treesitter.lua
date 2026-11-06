@@ -113,13 +113,6 @@ end
 
 return {
     {
-        -- Keep around for occasional Treesitter debugging, but leave it off by default.
-        "nvim-treesitter/playground",
-        cmd = "TSPlaygroundToggle",
-        enabled = false,
-    },
-
-    {
         "nvim-treesitter/nvim-treesitter",
         branch = "main",
         dependencies = {

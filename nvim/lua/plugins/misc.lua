@@ -5,9 +5,9 @@ return {
     -- Fugitive!
     {
         "tpope/vim-fugitive",
-        cmd = { "Git", "Gread", "Gwrite", "GBranches", "Gdiff", "Gvdiffsplit", "Git blame" },
+        cmd = { "Git", "Gread", "Gwrite", "Gdiffsplit", "Gvdiffsplit", "Gcd" },
     },
-    { "janko/vim-test", cmd = { "TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit" } },
+    { "vim-test/vim-test", cmd = { "TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit" } },
 
     -- Redirect output to scratch buffer
     {

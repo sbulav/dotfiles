@@ -123,14 +123,6 @@ local function my_percent()
     return "%p%%"
 end
 
--- Auto command for LSP progress updates
-vim.api.nvim_create_autocmd("User", {
-    pattern = "LspProgressUpdate",
-    callback = function()
-        vim.opt.readonly = vim.opt.readonly
-    end,
-})
-
 -- Setup function
 function M.setup()
     require("lspsaga").setup {

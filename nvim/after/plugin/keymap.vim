@@ -44,13 +44,12 @@ nmap <F6> :set spell!<CR>
 " Show Treesitter syntax tree
 nnoremap <F8> :InspectTree<CR>
 " Show lsp log
-nnoremap <F9> <cmd>lua require('nredir').nredir("!tail -100 " .. vim.lsp.get_log_path())<cr>
+nnoremap <F9> <cmd>lua require('nredir').nredir("!tail -100 " .. vim.lsp.log.get_filename())<cr>
 
 " Start lsp clients
 nnoremap <F12> :LspStart<CR>
 " Stop all lsp clients
 nnoremap <c-F12> :LspStop<CR>
-" nnoremap <c-F12> <cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<cr>
 
 " Space toggle fold
 " nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
