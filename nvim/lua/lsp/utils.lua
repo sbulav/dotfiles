@@ -21,7 +21,7 @@ local function format_buffer()
     vim.notify("No attached formatter is available.", vim.log.levels.WARN)
 end
 
-if vim.fn.exists(":Format") == 0 then
+if vim.fn.exists ":Format" == 0 then
     vim.api.nvim_create_user_command("Format", format_buffer, {})
 end
 
@@ -44,20 +44,30 @@ function M.custom_on_attach(client, bufnr)
 
     local attach_opts = { silent = true, buffer = bufnr }
 
-    -- lsp provider to find the cursor word definition and reference
-    vim.keymap.set("n", "gh", "<cmd>Lspsaga finder<CR>", attach_opts)
-    -- lsp outline window with symbols
-    vim.keymap.set("n", "<F7>", "<cmd>Lspsaga outline<CR>", attach_opts)
+    local function opts(desc)
+        return vim.tbl_extend("force", attach_opts, { desc = desc })
+    end
+
+    -- references picker
+    vim.keymap.set("n", "gh", function()
+        Snacks.picker.lsp_references()
+    end, opts "LSP references")
+    -- document symbols picker
+    vim.keymap.set("n", "<F7>", function()
+        Snacks.picker.lsp_symbols()
+    end, opts "LSP symbols")
     -- show function signature help
     vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, attach_opts)
-    -- rename
-    vim.keymap.set("n", "gr", "<cmd>Lspsaga rename<CR>", attach_opts)
-    -- go to implementation
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, attach_opts)
-    -- peek definition
-    vim.keymap.set("n", "gD", "<cmd>Lspsaga peek_definition<CR>", attach_opts)
-    -- goto_definition
-    vim.keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<CR>", attach_opts)
+    -- implementations picker
+    vim.keymap.set("n", "gi", function()
+        Snacks.picker.lsp_implementations()
+    end, opts "LSP implementations")
+    -- go to declaration
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts "LSP declaration")
+    -- definitions picker (jumps directly when there is a single result)
+    vim.keymap.set("n", "gd", function()
+        Snacks.picker.lsp_definitions()
+    end, opts "LSP definitions")
     -- show line diagnostic
     vim.keymap.set("n", "ge", function()
         vim.diagnostic.open_float(nil, diagnostic_float)

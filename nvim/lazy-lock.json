@@ -10,7 +10,6 @@
   "jira-oil.nvim": { "branch": "main", "commit": "b0bf5d41db377d1b16c1d8251316b986ab0896a6" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lazydev.nvim": { "branch": "main", "commit": "01bc2aacd51cf9021eb19d048e70ce3dd09f7f93" },
-  "lspsaga.nvim": { "branch": "main", "commit": "cf6fc9473bba1d332eda9887855ea29ed9b37701" },
   "lualine.nvim": { "branch": "master", "commit": "221ce6b2d999187044529f49da6554a92f740a96" },
   "mini.nvim": { "branch": "main", "commit": "a321b535c75ca88ba7fddfd8eb5b583fbda50dd6" },
   "nredir.nvim": { "branch": "main", "commit": "a9c2a85fd3f3b814cb748ba0bcfcae46276dca0c" },

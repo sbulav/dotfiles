@@ -10,7 +10,7 @@
 "   F4   - toggle relativenumber        "
 "   F5/F6 - filetype runners (nredir)   "
 "   F6   - toggle spell (fallback)      "
-"   F7   - LSP outline (Lspsaga)        "
+"   F7   - LSP symbols (Snacks)         "
 "   F8   - :InspectTree                 "
 "   F9   - show lsp log                 "
 "   F12  - :LspStart (C-F12 :LspStop)   "

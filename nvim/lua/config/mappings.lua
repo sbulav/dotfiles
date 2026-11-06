@@ -68,7 +68,7 @@ local function Show_documentation()
     elseif vim.fn.index({ "lua" }, vim.bo.filetype) >= 0 then
         keyword_program()
     else
-        require("lspsaga.hover").render_hover_doc()
+        vim.lsp.buf.hover()
     end
 end
 
