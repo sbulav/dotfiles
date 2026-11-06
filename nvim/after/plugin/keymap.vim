@@ -142,7 +142,7 @@ nnoremap <leader>a :argadd <C-R>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
 nnoremap <leader>A :argadd <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 
 " GIT - add all modified files to staging
-nnoremap <leader>ga :Git add .<cr>
+nnoremap <leader>gA :Git add .<cr>
 " GIT - run Gdiffsplit against current file and HEAD
 nnoremap <leader>gd :Gdiffsplit<cr>
 " GIT - change directory to git root

@@ -1,9 +1,6 @@
 -- Lualine configuration (optimized)
 local M = {}
 
--- Spinners for LSP progress
-local spinners = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
-
 -- Color palettes
 local palettes = {
     base = {
@@ -85,27 +82,6 @@ local themes = {
     },
 }
 
--- LSP progress component
-local function lsp_progress(_, is_active)
-    if not is_active then
-        return
-    end
-    local msgs = vim.lsp.status()
-    if #msgs == 0 then
-        return ""
-    end
-
-    local parts = {}
-    for _, m in ipairs(msgs) do
-        local title = m.title or ""
-        table.insert(parts, string.format("%d%% %s", m.percentage or 0, title))
-    end
-
-    local ms = vim.uv.hrtime() / 1e6
-    local frame = math.floor(ms / 120) % #spinners + 1
-    return table.concat(parts, "  ") .. " " .. spinners[frame]
-end
-
 -- LSP clients component
 local function lsp_client_names()
     local names = {}
@@ -153,7 +129,6 @@ function M.setup()
             },
             lualine_x = {
                 lsp_client_names,
-                lsp_progress,
                 { "diagnostics", sources = { "nvim_diagnostic" } },
                 "filetype",
             },
