@@ -210,9 +210,8 @@ return {
     "folke/snacks.nvim",
     dependencies = {
         {
-            -- Uncommend for development
-            dir = "~/git_priv/snacks-tea.nvim/",
-            -- "sbulav/snacks-tea.nvim",
+            "sbulav/snacks-tea.nvim",
+            dev = true,
         },
     },
     priority = 1000,
@@ -324,7 +323,7 @@ return {
         picker = {
             ui_select = true, -- replace `vim.ui.select` with the snacks picker
 
-            db = { sqlite3_path = "/home/sab/.local/lib/libsqlite3.so" },
+            db = { sqlite3_path = vim.env.HOME .. "/.local/lib/libsqlite3.so" },
             layout = { preset = "telescope", reverse = true },
             win = {
                 -- input window

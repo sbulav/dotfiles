@@ -13,7 +13,6 @@ return {
     {
 
         "sbulav/nredir.nvim",
-        -- dir = "~/git_priv/nredir.nvim", -- local checkout
         cmd = "Nredir", -- lazy-load when :Nredir is used
         config = function()
             -- call setup (you can omit the table if you want all defaults)

@@ -2,11 +2,11 @@ return {
     {
         "saghen/blink.cmp",
         event = "InsertEnter",
-        version = "v1.9.1",
+        version = "1.*",
         dependencies = {
             {
                 "L3MON4D3/LuaSnip",
-                version = "v2.4.1",
+                version = "2.*",
                 event = "InsertEnter",
                 config = function()
                     require "config.snippets"

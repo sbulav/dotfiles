@@ -2,7 +2,7 @@ return {
     {
         "folke/lazydev.nvim",
         ft = "lua",
-        version = "v1.10.0",
+        version = "1.*",
         opts = {
             library = {
                 { path = "${3rd}/luv/library", words = { "vim%.uv" } },
