@@ -56,6 +56,12 @@ vim.opt.wildignore:append {
 
 vim.opt.formatoptions:remove "o" -- O and o, don't continue comments
 
+-- Better vimdiff: keep defaults, add smarter algorithm and line matching
+vim.opt.diffopt:remove "linematch:40" -- default in 0.12; replaced below
+vim.opt.diffopt:append { "algorithm:patience", "indent-heuristic", "linematch:60" }
+
+vim.opt.shortmess:append "c" -- Don't show ins-completion-menu messages
+
 local options = {
     -- Visual customizations{{{
     termguicolors = true, -- truecolours for better experience
@@ -75,7 +81,6 @@ local options = {
 
     -- Files & Buffers{{{
     hidden = true, -- Do not close the buffers, hide them
-    history = 1000, -- Remember more commands and search history
     undolevels = 1000, -- Remember more levels of undo
     undofile = true, -- Persist undo history (undodir defaults to stdpath("state")/undo)
     -- noerrorbells = true,        -- No buzz on error
@@ -86,11 +91,9 @@ local options = {
     -- of the file, if one exists
     clipboard = "unnamedplus", -- Use * and + registers to access system clipboard(i.e. tmux)
     confirm = true, -- Dialog foor unsaved changes
-    splitright = true, -- Go to right pane by default (Needed for quickmenu)
-    shortmess = "csa", -- Disable some hit-enter messages}}}
+    splitright = true, -- Go to right pane by default (Needed for quickmenu)}}}
 
     -- Terminal setup{{{
-    lazyredraw = true, -- lazyredraw to make macro faster
     showcmd = true, -- Show keys in status}}}
 
     -- Indentation{{{
@@ -105,17 +108,16 @@ local options = {
     joinspaces = true, -- one space after joining lines with puncutation}}}
 
     -- Folding{{{
-    foldmethod = "marker", -- foldmethod using marker
-    foldlevel = 10, -- limit foldings}}}
+    foldmethod = "expr", -- fold by treesitter syntax tree
+    foldexpr = "v:lua.vim.treesitter.foldexpr()",
+    foldlevel = 99, -- open all folds by default
+    foldtext = "", -- keep highlighted first line as fold text}}}
 
     -- Trailings / tabs{{{
     list = true, -- display listchars
     fillchars = { vert = "│", eob = " " }, -- make vertical split sign better
     listchars = { eol = "↲", tab = "» ", nbsp = "␣" }, -- set listchars
-    --
-    -- -- Better vimdiff{{{
-    diffopt = "internal,algorithm:patience,indent-heuristic", --}}}
-    --
+
     -- Completion{{{
     pumheight = 10, -- limit completion items
     timeoutlen = 400, -- faster timeout wait time
