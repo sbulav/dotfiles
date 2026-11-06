@@ -105,13 +105,10 @@ return {
                 settings = {
                     json = {
                         format = { enable = true },
+                        schemas = schemastore.json.schemas(),
                         validate = { enable = true },
                     },
                 },
-                on_new_config = function(new_config)
-                    new_config.settings.json.schemas = new_config.settings.json.schemas or {}
-                    vim.list_extend(new_config.settings.json.schemas, schemastore.json.schemas())
-                end,
             })
 
             -- YAML Language Server with schema support
@@ -122,16 +119,10 @@ return {
                         validate = true,
                         keyOrdering = false,
                         schemaStore = { enable = false, url = "" },
+                        schemas = schemastore.yaml.schemas(),
                     },
                     redhat = { telemetry = { enabled = false } },
                 },
-                on_new_config = function(new_config)
-                    new_config.settings.yaml.schemas = vim.tbl_deep_extend(
-                        "force",
-                        new_config.settings.yaml.schemas or {},
-                        schemastore.yaml.schemas()
-                    )
-                end,
             })
 
             -- Markdown Language Server
@@ -163,8 +154,14 @@ return {
                     client.server_capabilities.documentRangeFormattingProvider = false
                 end,
                 settings = nixd_settings(),
-                on_new_config = function(new_config, root_dir)
-                    new_config.settings = nixd_settings(root_dir)
+                -- vim.lsp.config has no per-root settings hook; pick nixd settings from the workspace root.
+                -- Mutate config.settings in place: the client already holds a reference to that table.
+                before_init = function(params, config)
+                    local root = params.rootPath
+                    if type(root) ~= "string" then
+                        root = type(params.rootUri) == "string" and vim.uri_to_fname(params.rootUri) or config.root_dir
+                    end
+                    config.settings.nixd = nixd_settings(root).nixd
                 end,
             })
 
