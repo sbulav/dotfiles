@@ -8,7 +8,7 @@ _G.dump = function(...)
 end
 
 _G.pp = function(...)
-    vim.pretty_print(...)
+    vim.print(...)
 end
 
 _G.reload = function(modname)
@@ -23,7 +23,7 @@ _G.prequire = function(plugin, verbose)
     end
     local errmsg = string.format("Could not load %s", plugin)
     if verbose then
-        errmsg = string.format("%s\nError:%s", plug)
+        errmsg = string.format("%s\nError:%s", errmsg, plug)
     end
     M.error(errmsg, "Prequire failed")
 end
@@ -92,22 +92,12 @@ function M.include_expr(filename)
     if not filename then
         local line = vim.fn.getline "."
 
-        -- require('.*')
-        local result = string.match(line, [[require%('(.*)'%)]])
+        -- require('.*'), require(".*"), require ( "..." )
+        local result = string.match(line, [[require%s*%(%s*['"]([^'"]+)['"]%s*%)]])
 
-        -- require'.*'
+        -- require'.*', require".*", require "..."
         if result == nil then
-            result = string.match(line [[require'(.*)']])
-        end
-
-        -- require(".*")
-        if result == nil then
-            result = string.match(line, [[require%("(.*)"%))]])
-        end
-
-        -- require".*"
-        if result == nil then
-            result = string.match(line [[require(".*"%)]])
+            result = string.match(line, [=[require%s*['"]([^'"]+)['"]]=])
         end
 
         to_search = result
@@ -115,13 +105,23 @@ function M.include_expr(filename)
         to_search = filename
     end
 
-    local found_file = package.searchpath(to_search, package.path)
+    if not to_search then
+        return ""
+    end
+
+    -- Neovim resolves modules via 'runtimepath', which package.path does not cover
+    local modpath = to_search:gsub("%.", "/")
+    local found_file = vim.api.nvim_get_runtime_file("lua/" .. modpath .. ".lua", false)[1]
+        or vim.api.nvim_get_runtime_file("lua/" .. modpath .. "/init.lua", false)[1]
+
+    if not found_file then
+        found_file = package.searchpath(to_search, package.path)
+    end
 
     if not found_file then
         found_file = package.searchpath(to_search, package.cpath)
     end
 
-    -- TODO: What happens when it's nil?
     return found_file or ""
 end
 

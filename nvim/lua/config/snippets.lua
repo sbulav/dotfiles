@@ -59,7 +59,7 @@ local function bash(_, _, command)
 end
 
 local function get_port_snip(args)
-    if #args < 1 and not args[1][1] then
+    if #args < 1 or not args[1][1] then
         return node(nil, text "hello world")
     end
 
@@ -108,28 +108,28 @@ ls.add_snippets(nil, {
     all = {
         snip({
             trig = "date",
-            namr = "Date",
+            name = "Date",
             dscr = "Date in the form of YYYY-MM-DD",
         }, {
             func(date, {}),
         }),
         snip({
             trig = "pwd",
-            namr = "PWD",
+            name = "PWD",
             dscr = "Path to current working directory",
         }, {
             func(bash, {}, { user_args = { "pwd" } }),
         }),
         snip({
             trig = "filename",
-            namr = "Filename",
+            name = "Filename",
             dscr = "Absolute path to file",
         }, {
             func(filename, {}),
         }),
         snip({
             trig = "signature",
-            namr = "Signature",
+            name = "Signature",
             dscr = "Name and Surname",
         }, {
             text "Sergei Bulavintsev",
@@ -209,7 +209,7 @@ ls.add_snippets(nil, {
         -- Select link, press C-s, enter link to receive snippet
         snip({
             trig = "link",
-            namr = "markdown_link",
+            name = "markdown_link",
             dscr = "Create markdown link [txt](url)",
         }, {
             text "[",
@@ -223,7 +223,7 @@ ls.add_snippets(nil, {
         }),
         snip({
             trig = "codewrap",
-            namr = "markdown_code_wrap",
+            name = "markdown_code_wrap",
             dscr = "Create markdown code block from existing text",
         }, {
             text "``` ",
@@ -240,7 +240,7 @@ ls.add_snippets(nil, {
         }),
         snip({
             trig = "codeempty",
-            namr = "markdown_code_empty",
+            name = "markdown_code_empty",
             dscr = "Create empty markdown code block",
         }, {
             text "``` ",
@@ -252,7 +252,7 @@ ls.add_snippets(nil, {
         }),
         snip({
             trig = "meta",
-            namr = "Metadata",
+            name = "Metadata",
             dscr = "Yaml metadata format for markdown",
         }, {
             text { "---", "title: " },
@@ -345,7 +345,7 @@ ls.add_snippets(nil, {
         snip(
             {
                 trig = "pod",
-                namr = "k8s Pod",
+                name = "k8s Pod",
                 dscr = "Kubernetes Pod definition",
             },
             fmt(
@@ -377,7 +377,7 @@ ls.add_snippets(nil, {
         snip(
             {
                 trig = "deploy",
-                namr = "k8s Deployment",
+                name = "k8s Deployment",
                 dscr = "Kubernetes Deployment definition",
             },
             fmt(
@@ -420,7 +420,7 @@ ls.add_snippets(nil, {
         snip(
             {
                 trig = "service",
-                namr = "k8s Service",
+                name = "k8s Service",
                 dscr = "Kubernetes Service definition",
             },
             fmt(
