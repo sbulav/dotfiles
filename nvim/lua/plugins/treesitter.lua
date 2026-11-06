@@ -115,6 +115,27 @@ end
 
 return {
     {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        -- Loaded at startup: native `gc` is a built-in operator, so there is no keymap to lazy-load on.
+        lazy = false,
+        init = function()
+            vim.g.skip_ts_context_commentstring_module = true
+        end,
+        config = function()
+            require("ts_context_commentstring").setup { enable_autocmd = false }
+
+            -- Native commenting (Neovim 0.10+) resolves 'commentstring' via vim.filetype.get_option:
+            -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring/wiki/Integrations#native-commenting-in-neovim-010
+            local get_option = vim.filetype.get_option
+            ---@diagnostic disable-next-line: duplicate-set-field
+            vim.filetype.get_option = function(filetype, option)
+                return option == "commentstring"
+                        and require("ts_context_commentstring.internal").calculate_commentstring()
+                    or get_option(filetype, option)
+            end
+        end,
+    },
+    {
         "nvim-treesitter/nvim-treesitter",
         branch = "main",
         dependencies = {
