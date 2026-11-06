@@ -41,16 +41,12 @@ nnoremap <F4> :set relativenumber!<CR>
 " Check spelling on F6
 nmap <F6> :set spell!<CR>
 
-" Show TS Playground
-nnoremap <F8> :TSPlaygroundToggle<CR>
+" Show Treesitter syntax tree
+nnoremap <F8> :InspectTree<CR>
 " Show lsp log
 nnoremap <F9> <cmd>lua require('nredir').nredir("!tail -100 " .. vim.lsp.get_log_path())<cr>
 
-" Show lsp status
-nnoremap <F10> :lua print(vim.inspect(vim.lsp.buf_get_clients()))<cr>
-" nnoremap <F10> <cmd>lua require('nredir').nredir(vim.inspect(vim.lsp.buf_get_clients()))<cr>
-
-" Stop all lsp clients
+" Start lsp clients
 nnoremap <F12> :LspStart<CR>
 " Stop all lsp clients
 nnoremap <c-F12> :LspStop<CR>
@@ -102,10 +98,14 @@ nmap ' viw'
 " ----------------------------------------------------------------------------
 " Quickfix
 " ----------------------------------------------------------------------------
-nnoremap ]q :cnext<cr>zz        " Quickfix next
-nnoremap [q :cprev<cr>zz        " Quickfix previous
-nnoremap ]Q :cnewer<cr>zz       " Open newer quickfix results
-nnoremap [Q :colder<cr>zz       " Open older quickfix results
+" Quickfix next
+nnoremap ]q :cnext<cr>zz
+" Quickfix previous
+nnoremap [q :cprev<cr>zz
+" Open newer quickfix results
+nnoremap ]Q :cnewer<cr>zz
+" Open older quickfix results
+nnoremap [Q :colder<cr>zz
 
 " ----------------------------------------------------------------------------
 " Buffers
@@ -164,9 +164,6 @@ nnoremap <leader>d :bdelete<cr>
 nnoremap <leader>D :bdelete!<cr>
 " Undotree
 nnoremap <leader>u :UndotreeToggle<cr>
-" Reload vim config
-" nnoremap <leader>r :source $MYVIMRC<CR>
-nnoremap <leader>r :lua require("plenary.reload").reload_module'$MYVIMRC'<cr> :luafile $MYVIMRC<cr>
 " Use Nredir function to open vim command in split
 nnoremap <leader>R :Nredir <c-f>A
 nnoremap <leader>h <cmd>lua require('nredir').nredir(require("utils").cheatSheetCommand(), vim.bo.filetype)<cr>
@@ -201,34 +198,13 @@ nnoremap mi mI <bar>:lua require("utils.marks").refresh()<CR>
 nnoremap mo mO <bar>:lua require("utils.marks").refresh()<CR>
 " Escape works in command window
 autocmd CmdwinEnter * nnoremap <buffer> <Esc> <C-c>
-" Execute this file
-function! s:save_and_exec() abort
-  if &filetype == 'vim'
-    :silent! write
-    :source %
-  elseif &filetype == 'lua'
-    :silent! write
-    :lua require("plenary.reload").reload_module'init'
-    :lua require("plenary.reload").reload_module'lua'
-    :luafile %
-  else
-    :edit %
-  endif
-
-  return
-endfunction
-
-" Save and resource current file
-nnoremap <leader><leader>x :call <SID>save_and_exec()<CR>
-" Call completion
-inoremap <silent><expr> <c-space> completion#trigger_completion()
 
 " vim-test mappings
 nmap <silent> <leader>tn :TestNearest<CR>
 nmap <silent> <leader>tf :TestFile<CR>
 nmap <silent> <leader>ts :TestSuite<CR>
 nmap <silent> <leader>tl :TestLast<CR>
-nmap <silent> <leader>tv :TestVisit<CR>Folding
+nmap <silent> <leader>tv :TestVisit<CR>
 
 " Easier Moving between splits
 nnoremap <C-J> <C-W><C-J>
