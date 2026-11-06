@@ -20,11 +20,6 @@ return {
                     capabilities = blink.get_lsp_capabilities(capabilities)
                 end
 
-                capabilities.textDocument.foldingRange = {
-                    dynamicRegistration = false,
-                    lineFoldingOnly = true,
-                }
-
                 return capabilities
             end
 
