@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.g.localleader = " "
+vim.g.maplocalleader = " "
 
 local globals = {
     -- Fix vim sandwitch overriding sentence text object
