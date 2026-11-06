@@ -14,7 +14,7 @@ require("lazy").setup("plugins", {
     defaults = {
         lazy = true,
     },
-    dev = { path = "~/git" },
+    dev = { path = "~/git_priv" },
     install = {
         colorscheme = { "cyberdream" },
     },

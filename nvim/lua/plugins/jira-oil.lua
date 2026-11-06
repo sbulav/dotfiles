@@ -1,6 +1,5 @@
 return {
     "sbulav/jira-oil.nvim",
-    -- dir = "/home/sab/git_priv/jira-oil.nvim",
     -- Load on demand via keymaps
     keys = {
         {
