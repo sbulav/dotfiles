@@ -9,13 +9,12 @@ return {
                 if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
                     return
                 end
-                return { async = true, timeout_ms = 500, lsp_fallback = true }
+                return { async = true, timeout_ms = 500, lsp_format = "fallback" }
             end,
             formatters_by_ft = {
                 lua = { "stylua" },
                 nix = { "nixfmt" },
                 terraform = { "tofu_fmt" },
-                tf = { "tofu_fmt" },
             },
         }
     end,

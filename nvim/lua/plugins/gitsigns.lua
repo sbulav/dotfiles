@@ -28,7 +28,7 @@ return {
                         return "]c"
                     end
                     vim.schedule(function()
-                        gs.next_hunk()
+                        gs.nav_hunk "next"
                     end)
                     return "<Ignore>"
                 end, { expr = true, buffer = bufnr, desc = "Jump to next hunk" })
@@ -37,17 +37,11 @@ return {
                         return "[c"
                     end
                     vim.schedule(function()
-                        gs.prev_hunk()
+                        gs.nav_hunk "prev"
                     end)
                     return "<Ignore>"
                 end, { expr = true, buffer = bufnr, desc = "Jump to previous hunk" })
             end,
-            worktrees = {
-                {
-                    toplevel = vim.env.HOME,
-                    gitdir = string.format("%s/.dotfiles", vim.env.HOME),
-                },
-            },
         }
     end,
 }

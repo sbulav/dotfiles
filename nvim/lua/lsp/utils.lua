@@ -7,7 +7,7 @@ local function format_buffer()
     local conform_ok, conform = pcall(require, "conform")
 
     if conform_ok then
-        conform.format { async = true, lsp_fallback = true }
+        conform.format { async = true, lsp_format = "fallback" }
         return
     end
 

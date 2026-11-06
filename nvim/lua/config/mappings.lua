@@ -56,7 +56,7 @@ vim.keymap.set("n", "gx", function()
 end, attach_opts)
 
 --- Commands to troubleshoot LSP{{{
---- :lua print(vim.inspect(vim.lsp.buf_get_clients()))
+--- :lua print(vim.inspect(vim.lsp.get_clients()))
 --- :lua vim.cmd('e'..vim.lsp.get_log_path())
 --- :LspInfo
 --- Set log level to debug:

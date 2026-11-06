@@ -5,14 +5,16 @@
 
 """""""""""""""""""""""""""""""""""""""""
 "   SHORTCUTS                           "
-"   F1   - show columnline at 81        "
-"   F2   - change paste mode            "
-"   F3   - show netrw                   "
-"   F4   - numberToggle on/off          "
-"   F5   - run buffer is <PRG>          "
-"   F8   - show Treesitter Playground   "
-"   F9   - show lsp logs                "
-"   SPACE - fold/unfold                 "
+"   F1   - toggle colorcolumn at 81     "
+"   F3   - open yazi file manager       "
+"   F4   - toggle relativenumber        "
+"   F5/F6 - filetype runners (nredir)   "
+"   F6   - toggle spell (fallback)      "
+"   F7   - LSP outline (Lspsaga)        "
+"   F8   - :InspectTree                 "
+"   F9   - show lsp log                 "
+"   F12  - :LspStart (C-F12 :LspStop)   "
+"   SPACE - leader                      "
 "   gcc  - Comment/uncomment a line     "
 """""""""""""""""""""""""""""""""""""""""--}}}
 
@@ -22,8 +24,8 @@ after/plugin/keymap.vim
 lua/lsp
 - Plugins
 ~/.local/share/nvim/lazy/
-- Undo, logs, swap
-~/.local/share/nvim/
+- Undo, logs, swap (stdpath("state"))
+~/.local/state/nvim/
 
 ]]
 
